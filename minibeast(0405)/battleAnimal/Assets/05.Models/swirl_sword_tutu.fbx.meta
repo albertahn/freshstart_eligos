@@ -1,0 +1,406 @@
+fileFormatVersion: 2
+guid: ebffc4b28ac524d4d9679cdc831a3368
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bip001
+    100002: Bip001 Pelvis
+    100004: pCube200
+    100006: pCube204
+    100008: pCube205
+    100010: pCube212
+    100012: pCube213
+    100014: pCube214
+    100016: pCube215
+    100018: pCube216
+    100020: pCube242
+    100022: pCube243
+    100024: pCube244
+    100026: pCube247
+    100028: pCube248
+    100030: pCube249
+    100032: pCube250
+    100034: pCube251
+    100036: pCylinder109
+    100038: pCylinder116
+    100040: pCylinder118
+    100042: pCylinder121
+    100044: polySurface2053
+    100046: polySurface2054
+    100048: polySurface2060
+    100050: polySurface2067
+    100052: polySurface2068
+    100054: polySurface2074
+    100056: polySurface2075
+    100058: polySurface2077
+    100060: polySurface2078
+    100062: polySurface2372
+    100064: polySurface2607
+    100066: polySurface2608
+    100068: polySurface2614
+    100070: polySurface2620
+    100072: polySurface2621
+    100074: polySurface2623
+    100076: polySurface2624
+    100078: polySurface2626
+    100080: polySurface2627
+    100082: polySurface2629
+    100084: pPipe1
+    100086: pPipe2
+    100088: //RootNode
+    100090: sword1
+    100092: sword2
+    100094: SWORDS
+    400000: Bip001
+    400002: Bip001 Pelvis
+    400004: pCube200
+    400006: pCube204
+    400008: pCube205
+    400010: pCube212
+    400012: pCube213
+    400014: pCube214
+    400016: pCube215
+    400018: pCube216
+    400020: pCube242
+    400022: pCube243
+    400024: pCube244
+    400026: pCube247
+    400028: pCube248
+    400030: pCube249
+    400032: pCube250
+    400034: pCube251
+    400036: pCylinder109
+    400038: pCylinder116
+    400040: pCylinder118
+    400042: pCylinder121
+    400044: polySurface2053
+    400046: polySurface2054
+    400048: polySurface2060
+    400050: polySurface2067
+    400052: polySurface2068
+    400054: polySurface2074
+    400056: polySurface2075
+    400058: polySurface2077
+    400060: polySurface2078
+    400062: polySurface2372
+    400064: polySurface2607
+    400066: polySurface2608
+    400068: polySurface2614
+    400070: polySurface2620
+    400072: polySurface2621
+    400074: polySurface2623
+    400076: polySurface2624
+    400078: polySurface2626
+    400080: polySurface2627
+    400082: polySurface2629
+    400084: pPipe1
+    400086: pPipe2
+    400088: //RootNode
+    400090: sword1
+    400092: sword2
+    400094: SWORDS
+    2300000: pCube200
+    2300002: pCube204
+    2300004: pCube205
+    2300006: pCube212
+    2300008: pCube213
+    2300010: pCube214
+    2300012: pCube215
+    2300014: pCube216
+    2300016: pCube242
+    2300018: pCube243
+    2300020: pCube244
+    2300022: pCube247
+    2300024: pCube248
+    2300026: pCube249
+    2300028: pCube250
+    2300030: pCube251
+    2300032: pCylinder109
+    2300034: pCylinder116
+    2300036: pCylinder118
+    2300038: pCylinder121
+    2300040: polySurface2053
+    2300042: polySurface2054
+    2300044: polySurface2060
+    2300046: polySurface2067
+    2300048: polySurface2068
+    2300050: polySurface2074
+    2300052: polySurface2075
+    2300054: polySurface2077
+    2300056: polySurface2078
+    2300058: polySurface2372
+    2300060: polySurface2607
+    2300062: polySurface2608
+    2300064: polySurface2614
+    2300066: polySurface2620
+    2300068: polySurface2621
+    2300070: polySurface2623
+    2300072: polySurface2624
+    2300074: polySurface2626
+    2300076: polySurface2627
+    2300078: polySurface2629
+    2300080: pPipe1
+    2300082: pPipe2
+    3300000: pCube200
+    3300002: pCube204
+    3300004: pCube205
+    3300006: pCube212
+    3300008: pCube213
+    3300010: pCube214
+    3300012: pCube215
+    3300014: pCube216
+    3300016: pCube242
+    3300018: pCube243
+    3300020: pCube244
+    3300022: pCube247
+    3300024: pCube248
+    3300026: pCube249
+    3300028: pCube250
+    3300030: pCube251
+    3300032: pCylinder109
+    3300034: pCylinder116
+    3300036: pCylinder118
+    3300038: pCylinder121
+    3300040: polySurface2053
+    3300042: polySurface2054
+    3300044: polySurface2060
+    3300046: polySurface2067
+    3300048: polySurface2068
+    3300050: polySurface2074
+    3300052: polySurface2075
+    3300054: polySurface2077
+    3300056: polySurface2078
+    3300058: polySurface2372
+    3300060: polySurface2607
+    3300062: polySurface2608
+    3300064: polySurface2614
+    3300066: polySurface2620
+    3300068: polySurface2621
+    3300070: polySurface2623
+    3300072: polySurface2624
+    3300074: polySurface2626
+    3300076: polySurface2627
+    3300078: polySurface2629
+    3300080: pPipe1
+    3300082: pPipe2
+    4300000: pPipe1
+    4300002: pCylinder116
+    4300004: polySurface2372
+    4300006: pCube216
+    4300008: pCube215
+    4300010: pCube214
+    4300012: pCube213
+    4300014: pCube212
+    4300016: pCube205
+    4300018: pCube204
+    4300020: pCylinder109
+    4300022: polySurface2078
+    4300024: pCube200
+    4300026: polySurface2077
+    4300028: polySurface2075
+    4300030: polySurface2074
+    4300032: polySurface2068
+    4300034: polySurface2067
+    4300036: polySurface2060
+    4300038: polySurface2054
+    4300040: polySurface2053
+    4300042: pPipe2
+    4300044: pCylinder121
+    4300046: polySurface2629
+    4300048: pCube251
+    4300050: pCube250
+    4300052: pCube249
+    4300054: pCube248
+    4300056: pCube247
+    4300058: pCube244
+    4300060: pCube243
+    4300062: pCylinder118
+    4300064: polySurface2627
+    4300066: pCube242
+    4300068: polySurface2626
+    4300070: polySurface2624
+    4300072: polySurface2623
+    4300074: polySurface2621
+    4300076: polySurface2620
+    4300078: polySurface2614
+    4300080: polySurface2608
+    4300082: polySurface2607
+    7400000: swirl
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: swirl
+      takeName: Take 001
+      firstFrame: 204
+      lastFrame: 231
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip001
+        weight: 1
+      - path: Bip001/Bip001 Pelvis
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube200
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube204
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube205
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube212
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube213
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube214
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube215
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCube216
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCylinder109
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pCylinder116
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2053
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2054
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2060
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2067
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2068
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2074
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2075
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2077
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2078
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/polySurface2372
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword1/pPipe1
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube242
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube243
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube244
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube247
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube248
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube249
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube250
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCube251
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCylinder118
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pCylinder121
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2607
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2608
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2614
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2620
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2621
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2623
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2624
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2626
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2627
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/polySurface2629
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/SWORDS/sword2/pPipe2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
