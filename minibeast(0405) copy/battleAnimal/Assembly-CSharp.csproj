@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{2FD0F61D-EC26-989F-D6F2-5FF72BCBA90B}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\02.Scripts\DBManager.cs" />
+     <Compile Include="Assets\02.Scripts\Level_up_stuff\Level_up_evolve.cs" />
+     <Compile Include="Assets\02.Scripts\Player_hp\PlayerHealthState.cs" />
+     <Compile Include="Assets\02.Scripts\Player_hp\Player_hp_bar.cs" />
+     <Compile Include="Assets\02.Scripts\Player_hp\Player_hp_reciever_socket.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\DogSkill_GUI.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\FireSkill.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\SkillFirstCrl.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\WingSkill.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\WingSkillCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Skill_socket_reciever.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Skill_socket_reciever_ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\TurtleSkill.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Turtle_skill\SwirlSwordCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Turtle_skill\Tutu_skill_gui.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Turtle_skill\fireShell.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Turtle_skill\fireShellCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\Turtle_skill\swirl_sword.cs" />
+     <Compile Include="Assets\02.Scripts\Skill_gui\UI_skill_manager.cs" />
+     <Compile Include="Assets\02.Scripts\all_rooms_list\GUI_rooms.cs" />
+     <Compile Include="Assets\02.Scripts\all_rooms_list\roomSocketOn.cs" />
+     <Compile Include="Assets\02.Scripts\all_rooms_list\roomSocketStarter.cs" />
+     <Compile Include="Assets\02.Scripts\building_scripts\Building_hp.cs" />
+     <Compile Include="Assets\02.Scripts\building_scripts\MainFortress.cs" />
+     <Compile Include="Assets\02.Scripts\camerainterface\Cam_gui.cs" />
+     <Compile Include="Assets\02.Scripts\camerainterface\CameraTouch.cs" />
+     <Compile Include="Assets\02.Scripts\scLogIn\LogInUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonFire.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonHp.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonState.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannon_OutterCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BulletCtrl_BlueCannon.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\FollowCam.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\HP_Bar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfo.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfoUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\ItemShop.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\LobbyUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\MyGizmo.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\BulletCtrl_RedCannon.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonFire.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonHp.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonState.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannon_OutterCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Respawn.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketEmit.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketOn.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketStarter.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketTest.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SpawnMinion.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SpawnPlayer.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\UIhpbar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\UImpbar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\expBar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\moneyUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\skill1Plus.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\skill2Plus.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\skill3Plus.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minionSync.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\Minion_health_reciever_socket.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blueMinionCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blue_minion_HP.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blue_minion_state.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blue_outer_collider.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\mBulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\mFireCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minionAttackReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minionCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minionDieReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_HP.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_state.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\moveMinionReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\red_outer_collider.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\movePlayerReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\chichi\AniCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\chichi\FireCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\chichi\MoveCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\tutu\tutu_AniCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\tutu\tutu_FireCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\tutu\tutu_MoveCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\playerAttackReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\receiveFormat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\dogStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\playerStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\turtleStat.cs" />
+     <Compile Include="Assets\02.Scripts\scPreStart\PreStartUI.cs" />
+     <Compile Include="Assets\02.Scripts\scRegist\RegUI.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\ClientState.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\startUI.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\waitGUI.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\waitSocketOn.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\waitSocketStarter.cs" />
+     <Compile Include="Assets\02.Scripts\user_interface\My_inteface_hp_bar.cs" />
+     <Compile Include="Assets\Boomlagoon\JSON\JSONObject.cs" />
+     <Compile Include="Assets\Boomlagoon\JSON\TestScene\JSONObjectTester.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\FireProjectile.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\HUDFPS.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\MyGUI.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\Projectile.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\ProjectileScript.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\lightScript.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\lightScriptLong.cs" />
+     <Compile Include="Assets\KunaiEditor\KunaiRotation.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\LookAtTarget.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\MouseMove.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Scripts\Interpolate.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
+     <Compile Include="Assets\SocketNetworkFucker.cs" />
+     <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
+     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
+     <None Include="Assets\DynamicElements_Effects\ScaleParticles.txt" />
+     <None Include="Assets\MeleeWeaponTrail\README.txt" />
+     <None Include="Assets\MagicProjectiles - ReadMe.txt" />
+     <None Include="Assets\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
+     <None Include="Assets\DynamicElements_Effects\readme.txt" />
+     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\KunaiEditor\Editor\Readme.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="SimpleJson">
+ <HintPath>/Users/tanggoal/Documents/git_repo/5_12-4_atsametimenew_mini_beast/minibeast(0405)/battleAnimal/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
+ </Reference>
+ <Reference Include="SocketIO">
+ <HintPath>/Users/tanggoal/Documents/git_repo/5_12-4_atsametimenew_mini_beast/minibeast(0405)/battleAnimal/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Common">
+ <HintPath>/Users/tanggoal/Documents/git_repo/5_12-4_atsametimenew_mini_beast/minibeast(0405)/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Core">
+ <HintPath>/Users/tanggoal/Documents/git_repo/5_12-4_atsametimenew_mini_beast/minibeast(0405)/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Protocol">
+ <HintPath>/Users/tanggoal/Documents/git_repo/5_12-4_atsametimenew_mini_beast/minibeast(0405)/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Proxy">
+ <HintPath>/Users/tanggoal/Documents/git_repo/5_12-4_atsametimenew_mini_beast/minibeast(0405)/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
+ </Reference>
+ <Reference Include="WebSocket4Net">
+ <HintPath>/Users/tanggoal/Documents/git_repo/5_12-4_atsametimenew_mini_beast/minibeast(0405)/battleAnimal/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{74B002F7-08A7-9F79-80C7-67C83D20D095}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{127C1035-20C5-1C08-22E9-64C7513C2DCD}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
