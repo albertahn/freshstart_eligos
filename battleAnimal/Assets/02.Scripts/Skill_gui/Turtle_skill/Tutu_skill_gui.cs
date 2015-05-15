@@ -48,7 +48,7 @@ public class Tutu_skill_gui : MonoBehaviour {
 		
 		skill_state = new bool[3];
 		for (int i=0; i<3; i++)
-			skill_state [i] = false;
+			skill_state [i] = true;
 		
 		skillCool = new float[3];
 		skillCool [0] = 5.0f;
@@ -59,7 +59,7 @@ public class Tutu_skill_gui : MonoBehaviour {
 		
 		skill_live = new bool[3];
 		for (int i=0; i<3; i++) {
-			skill_live [i] = false;//false;
+			skill_live [i] = true;//false;
 		}
 		_lvUpEvolve =  GetComponent<Level_up_evolve> ();
 		
