@@ -99,7 +99,7 @@ public class CameraTouch : MonoBehaviour {
 		//focus the player here
 		
 		if(focusCamPlayer){			
-			camera.transform.position = myplayer.transform.position -Vector3.forward*20 +Vector3.up * 20;
+			camera.transform.position = myplayer.transform.position -Vector3.forward*30 +Vector3.up * 45;
 			camera.transform.LookAt (myplayer.transform.position);			
 		}
 		
