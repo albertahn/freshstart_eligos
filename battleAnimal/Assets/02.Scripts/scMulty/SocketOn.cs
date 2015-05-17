@@ -300,6 +300,7 @@ public class SocketOn : MonoBehaviour {
 
 
 		});
+
 			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room);
 
 	}//end start
