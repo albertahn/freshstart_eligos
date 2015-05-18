@@ -20,9 +20,17 @@ public class waitSocketOn : MonoBehaviour {
 			int num = int.Parse (temp[0]);
 			string id = temp[1];//접속한 유저 아이디
 
+		
+
 			if(clientID == id){
 				ClientState.order = num;
 				waitSocketStarter.Socket.Emit ("preuserREQ", id);
+
+				if (ClientState.order ==0){
+					ClientState.isMaster = true;
+
+				}
+
 			}else{
 				_waitGUI.remoteAddUser(num,id);
 			}

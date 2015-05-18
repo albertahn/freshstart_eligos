@@ -298,7 +298,17 @@ public class SocketOn : MonoBehaviour {
 
 		});
 
-			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room);
+//master or not? 
+		if (ClientState.isMaster) {
+
+			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room+":master");
+
+				} else {
+			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room+":notmaster");
+
+				}
+
+			
 
 	}//end start
 	
