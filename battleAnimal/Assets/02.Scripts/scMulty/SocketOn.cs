@@ -146,7 +146,7 @@ public class SocketOn : MonoBehaviour {
 		});
 
 		SocketStarter.Socket.On("createBlueMinionRES",(data) =>
-		                        {
+		{
 			string temp = data.Json.args[0].ToString();
 			string[] pos;
 			Vector3 spawnPos;
@@ -256,8 +256,6 @@ public class SocketOn : MonoBehaviour {
 			
 		});
 
-
-
 		//building attack
 		SocketStarter.Socket.On ("attackBuilding", (data) =>{
 			
@@ -274,8 +272,7 @@ public class SocketOn : MonoBehaviour {
 		SocketStarter.Socket.On ("minionDieRES", (data) =>{
 			string[] temp = data.Json.args[0].ToString().Split(':');
 			if(temp[0]!=ClientID){
-				if(temp[0][0] =='r')
-					_mDieReceiver.receive(temp[1]);
+				_mDieReceiver.receive(temp[1]);
 			}
 		});
 

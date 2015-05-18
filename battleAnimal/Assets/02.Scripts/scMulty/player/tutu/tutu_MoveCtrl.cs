@@ -7,6 +7,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 	Vector3 pre_tr;
 	private CharacterController _controller;
 	private tutu_FireCtrl _fireCtrl;
+	private attackMarkMaker _attackMarkMaker;
 	
 	public float h = 0.0f;
 	public float v = 0.0f;
@@ -43,6 +44,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		_attackMarkMaker = GetComponent<attackMarkMaker> ();
 		attackPoint = Vector3.zero;
 		tr = this.GetComponent<Transform> ();
 		_fireCtrl = this.GetComponent<tutu_FireCtrl> ();
@@ -125,6 +127,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 							
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
+								_attackMarkMaker.mark(hit3.collider.gameObject);
 								Vector3 target = hit3.point;
 								attackPoint = target;
 								
@@ -135,6 +138,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 						} else {
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
+								_attackMarkMaker.mark(hit3.collider.gameObject);
 								Vector3 target = hit3.point;
 								attackPoint = target;
 								
@@ -202,6 +206,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 							
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
+								_attackMarkMaker.mark(hitman2.collider.gameObject);
 								Vector3 target = hitman2.point;
 								attackPoint = target;
 								
@@ -212,6 +217,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 						} else {
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
+								_attackMarkMaker.mark(hitman2.collider.gameObject);
 								Vector3 target = hitman2.point;
 								attackPoint = target;
 								

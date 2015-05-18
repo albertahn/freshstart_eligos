@@ -4,6 +4,7 @@ using System.Collections;
 public class moveMinionReceiver : MonoBehaviour {
 	private bool switch_;
 	private string id;
+	private Vector3 currPos;
 	private Vector3 destPos;
 
 	private minionCtrl _ctrl;
@@ -19,6 +20,7 @@ public class moveMinionReceiver : MonoBehaviour {
 	void Update () {
 		if(switch_){
 			GameObject a = GameObject.Find (id);
+			a.transform.position = currPos;
 
 			if (a != null) {
 				if(a.name[0]=='r'){
@@ -38,10 +40,14 @@ public class moveMinionReceiver : MonoBehaviour {
 	public void receive(string data){
 		string[] temp = data.Split (':');
 		string[] posTemp;
-		
+		Debug.Log ("move minon data2 = " + data);
 		while (switch_) {}
 		id = temp [0];
 		posTemp = temp [1].Split (',');
+		currPos = new Vector3(float.Parse(posTemp[0]),
+		                      float.Parse(posTemp[1]),
+		                      float.Parse(posTemp[2]));
+		posTemp = temp [2].Split (',');
 		destPos = new Vector3(float.Parse(posTemp[0]),
 		                      float.Parse(posTemp[1]),
 		                      float.Parse(posTemp[2]));

@@ -67,22 +67,19 @@ public class blueMinionCtrl : MonoBehaviour {
 		
 		int number = extractNum(gameObject.name);
 		
-		if (number % 3 == 0) {
+		/*if (number % 3 == 0) {
 			point = GameObject.Find ("blueMovePoints/route1").GetComponentsInChildren<Transform> ();
 		} else if (number % 3 == 1) {
 			point = GameObject.Find ("blueMovePoints/route2").GetComponentsInChildren<Transform> ();
 		} else if (number % 3 == 2) {
 			point = GameObject.Find ("blueMovePoints/route3").GetComponentsInChildren<Transform> ();
-		}
+		}*/
+		point = GameObject.Find ("blueMovePoints/route2").GetComponentsInChildren<Transform> ();
 		
 		syncTarget = dest = point [idx].position;
 		
 		if (isMaster) {
 			StartCoroutine (this.CheckMonsterState ());
-			
-			string data = gameObject.name + ":" +
-				dest.x+","+dest.y+","+dest.z;
-			SocketStarter.Socket.Emit ("moveMinionREQ", data);
 		}
 	}
 	
@@ -195,14 +192,16 @@ public class blueMinionCtrl : MonoBehaviour {
 				if(isMove==false){
 					moveKey = true;
 										
-					string data = gameObject.name + ":" +
-						dest.x+","+dest.y+","+dest.z;
-					SocketStarter.Socket.Emit ("moveMinionREQ", data);
+					if (isMaster) {
+						string data = gameObject.name + ":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+":"+
+							dest.x+","+dest.y+","+dest.z;
+						SocketStarter.Socket.Emit("moveMinionREQ", data);
+					}
 				}
-			}
-			
+			}			
 		}
 	}
+
 	void moveSync(){		
 		float step = speed*2* Time.deltaTime;
 		
@@ -228,8 +227,7 @@ public class blueMinionCtrl : MonoBehaviour {
 				if (idx < point.Length - 1) {
 					syncTarget = dest = point [++idx].position;
 					moveKey = true;
-					
-					string data = gameObject.name + ":" +
+					string data = gameObject.name + ":" +minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+":"+
 						dest.x+","+dest.y+","+dest.z;
 					SocketStarter.Socket.Emit ("moveMinionREQ", data);
 				}

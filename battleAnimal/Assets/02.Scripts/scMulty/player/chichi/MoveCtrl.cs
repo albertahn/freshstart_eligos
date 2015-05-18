@@ -9,6 +9,7 @@ public class MoveCtrl : MonoBehaviour {
 	private CharacterController _controller;
 	private FireCtrl _fireCtrl;
 	public AudioClip stepSfx;
+	private attackMarkMaker _attackMarkMaker;
 	
 	public float h = 0.0f;
 	public float v = 0.0f;
@@ -50,6 +51,7 @@ public class MoveCtrl : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		_attackMarkMaker = GetComponent<attackMarkMaker> ();
 		attackPoint = Vector3.zero;
 		tr = this.GetComponent<Transform> ();
 		_fireCtrl = this.GetComponent<FireCtrl> ();
@@ -129,6 +131,7 @@ public class MoveCtrl : MonoBehaviour {
 							
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
+								_attackMarkMaker.mark(hit3.collider.gameObject);
 								Vector3 target = hit3.point;
 								attackPoint = target;
 								
@@ -139,6 +142,7 @@ public class MoveCtrl : MonoBehaviour {
 						} else {
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
+								_attackMarkMaker.mark(hit3.collider.gameObject);
 								Vector3 target = hit3.point;
 								attackPoint = target;
 								
@@ -150,6 +154,7 @@ public class MoveCtrl : MonoBehaviour {
 					}//else hit player
 					else if(Physics.Raycast(ray3, out hit4, Mathf.Infinity, 1<<LayerMask.NameToLayer("FLOOR"))){
 						//int pointerID = Input.touches; //EventSystem.current.IsPointerOverGameObject
+						_attackMarkMaker.deleteMarker();
 						
 						Touch currentTouch = Input.GetTouch(0);
 						
@@ -206,6 +211,7 @@ public class MoveCtrl : MonoBehaviour {
 							
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
+								_attackMarkMaker.mark(hitman2.collider.gameObject);
 								Vector3 target = hitman2.point;
 								attackPoint = target;
 								
@@ -216,6 +222,7 @@ public class MoveCtrl : MonoBehaviour {
 						} else {
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
+								_attackMarkMaker.mark(hitman2.collider.gameObject);
 								Vector3 target = hitman2.point;
 								attackPoint = target;
 								
@@ -226,6 +233,7 @@ public class MoveCtrl : MonoBehaviour {
 						}
 					} else if (Physics.Raycast (ray, out hitman, Mathf.Infinity, 1 << LayerMask.NameToLayer ("FLOOR"))) {
 						if (EventSystem.current.IsPointerOverGameObject () == false) {
+							_attackMarkMaker.deleteMarker();
 							myxpos = hitman.point.x; //Input.touches [0].position.x;
 							myypos = hitman.point.y;  //Input.touches [0].position.y;
 							myzpos = hitman.point.z;
