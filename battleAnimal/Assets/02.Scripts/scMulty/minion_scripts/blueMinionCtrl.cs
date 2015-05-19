@@ -177,9 +177,9 @@ public class blueMinionCtrl : MonoBehaviour {
 			
 			if(dist<=attackDist){
 				if(isAttack==false){
-					attackKey = true;					
-					
-					string data = gameObject.name + ":" + targetObj.name;
+					attackKey = true;	
+
+					string data = gameObject.name + ":" + targetObj.name+":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z;
 					SocketStarter.Socket.Emit ("minionAttackREQ", data);
 				}
 			}

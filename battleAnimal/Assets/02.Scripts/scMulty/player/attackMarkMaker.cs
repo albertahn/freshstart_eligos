@@ -13,19 +13,12 @@ public class attackMarkMaker : MonoBehaviour {
 
 	public void mark(GameObject _target){
 		if (pre_target != _target) {
-			if(pre_target!=null)
-				Destroy (marker.gameObject);
-			GameObject a = (GameObject)Instantiate (attackMark, _target.transform.position, _target.transform.rotation);
-			a.GetComponent<attackMarkCtrl> ().setTarget (_target);
 			pre_target = _target;
+			if(marker!=null)
+				Destroy (marker.gameObject);
+			GameObject a = (GameObject)Instantiate(attackMark, _target.transform.position, _target.transform.rotation);
+			a.GetComponent<attackMarkCtrl> ().setTarget (_target);
 			marker = a;
-		} else {
-			if(pre_target==null){				
-				GameObject a = (GameObject)Instantiate (attackMark, _target.transform.position, _target.transform.rotation);
-				a.GetComponent<attackMarkCtrl> ().setTarget (_target);
-				pre_target = _target;
-				marker = a;
-			}
 		}
 	}
 

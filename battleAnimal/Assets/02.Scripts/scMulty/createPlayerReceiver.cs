@@ -30,6 +30,7 @@ public class createPlayerReceiver : MonoBehaviour {
 		}
 	}
 	public void receive(string data){		
+		SocketOn.debugstring = data;
 		temp2 = data.Split(':');
 		addId = temp2[0];//접속한 유저의 아이디
 		pos = temp2[1].Split(',');

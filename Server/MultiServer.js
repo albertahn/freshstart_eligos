@@ -116,12 +116,16 @@ console.log("createMinion");
              jarray.room1.timer2 =  setInterval(blueSender,3000);
              
              
-            var maxMinion =100000;
-            var currMinion=0;
+	 var redmaxMinion =10;
+         var bluemaxMinion =10;
+         
+	var redcurrMinion=0;
+	var bluecurrMinion=0;
             var redIdx=0;
             var blueIdx=0;
             
             function redSender(){
+                if(bluecurrMinion<=bluemaxMinion){
                 redIdx++;
                 var data = "29.0,50.0,30.0";
                 minionNames["rm"+redIdx] = "rm"+redIdx;
@@ -132,12 +136,12 @@ console.log("createMinion");
                 
                 data = "rm"+redIdx+":"+data;         
                  io.sockets.in(socket.room).emit("createRedMinionRES",data);
-                 currMinion++;
-                 if(currMinion>=maxMinion)
-                    clearInterval(jarray[socket.room].timer1 );
+                 redcurrMinion++;
+                }
             }
             
             function blueSender(){
+                if(bluecurrMinion<=bluemaxMinion){
                 blueIdx++;
                 var data = "75.0,50.0,70.0";
                // minionNames["bm"+blueIdx] = "bm"+blueIdx;
@@ -148,16 +152,16 @@ console.log("createMinion");
                 /*jarray[socket.room]["minionNames"] = minionNames;               
                 jarray[socket.room]["minionPos"]= minionPos;*/
 
-console.log("Minion fuckers : "+JSON.stringify(jarray[socket.room]["minionNames"]));
-console.log("Minion fuckers : "+JSON.stringify(jarray[socket.room]["minionPos"]));
+//console.log("Minion fuckers : "+JSON.stringify(jarray[socket.room]["minionNames"]));
+//console.log("Minion fuckers : "+JSON.stringify(jarray[socket.room]["minionPos"]));
 
                 data = "bm"+blueIdx+":"+data;                
                  io.sockets.in(socket.room).emit("createBlueMinionRES",data);
-                 currMinion++;
-               //  if(currMinion>=maxMinion)
-               //     clearInterval(jarray[socket.room].timer2);
+                 bluecurrMinion++;
+               
             }
-        }//end create minion        
+        }//end create minion      
+    }
     });
 //end create room    
     

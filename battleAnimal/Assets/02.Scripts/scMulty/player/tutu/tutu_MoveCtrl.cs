@@ -150,6 +150,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 					}//else hit player
 					else if(Physics.Raycast(ray3, out hit4, Mathf.Infinity, 1<<LayerMask.NameToLayer("FLOOR"))){
 						//int pointerID = Input.touches; //EventSystem.current.IsPointerOverGameObject
+						_attackMarkMaker.deleteMarker();
 						
 						Touch currentTouch = Input.GetTouch(0);
 						
@@ -228,6 +229,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 						}
 					} else if (Physics.Raycast (ray, out hitman, Mathf.Infinity, 1 << LayerMask.NameToLayer ("FLOOR"))) {
 						if (EventSystem.current.IsPointerOverGameObject () == false) {
+							_attackMarkMaker.deleteMarker();
 							myxpos = hitman.point.x; //Input.touches [0].position.x;
 							myypos = hitman.point.y;  //Input.touches [0].position.y;
 							myzpos = hitman.point.z;

@@ -54,12 +54,9 @@ public class SocketOn : MonoBehaviour {
 	private preUserPlayerReceiver _preUserPlayerReceiver;
 	private createObserver _createObserver;
 
-
-	private bool resBool;
-	private string resString;
+	public static string debugstring;
 
 	void Start () {
-		resBool = false;
 		_mAttackReceiver = GetComponent<minionAttackReceiver>();
 		_mDieReceiver = GetComponent<minionDieReceiver> ();
 		_movePlayerReceiver = GetComponent<movePlayerReceiver> ();
@@ -93,6 +90,7 @@ public class SocketOn : MonoBehaviour {
 
 		SocketStarter.Socket.On ("createRoomRES", (data) =>{
 			string temp = data.Json.args[0].ToString();
+			debugstring = "1";
 
 			if(temp== ClientID){
 				Debug.Log("created: "+ temp);
@@ -121,8 +119,10 @@ public class SocketOn : MonoBehaviour {
 		});
 	
 		SocketStarter.Socket.On("createPlayerRES",(data) =>
-		{//접속한 플레이어가 있을때 호출된다.
+		                        {//접속한 플레이어가 있을때 호출된다.
+			SocketOn.debugstring = "7";
 			_createPlayerReceiver.receive(data.Json.args[0].ToString());
+			SocketOn.debugstring = "8";
 		});
 
 		SocketStarter.Socket.On("createRedMinionRES",(data) =>
@@ -323,7 +323,9 @@ public class SocketOn : MonoBehaviour {
 
 		if (loadlevelSwitch) {
 			_lobbyUI.isUI =false;
-			StartCoroutine(_spawnPlayer.CreatePlayer());
+			debugstring = "2";
+			StartCoroutine(_spawnPlayer.CreatePlayer());			
+			//debugstring = "3";
 			loadlevelSwitch=false;
 		}
 
@@ -342,12 +344,14 @@ public class SocketOn : MonoBehaviour {
 //building health change
 	void change_building_health(){
 		GameObject buildingnow = GameObject.Find (building_name);
-		buildingnow.GetComponent<MainFortress>().hp = building_hp_int;
-		
+		buildingnow.GetComponent<MainFortress>().hp = building_hp_int;		
 	}
 	//change minion health
 	void change_minion_health(){
 		GameObject mininow = GameObject.Find (""+minion_name);
 		mininow.GetComponent<minion_state>().hp = minion_hp_int;		
+	}
+	void OnGUI(){
+		GUI.Label (new Rect (50,150,100,100), debugstring);
 	}
 }
