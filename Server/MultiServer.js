@@ -116,16 +116,12 @@ console.log("createMinion");
              jarray.room1.timer2 =  setInterval(blueSender,3000);
              
              
-	 var redmaxMinion =10;
-         var bluemaxMinion =10;
-         
-	var redcurrMinion=0;
-	var bluecurrMinion=0;
+            var maxMinion =100000;
+            var currMinion=0;
             var redIdx=0;
             var blueIdx=0;
             
             function redSender(){
-                if(bluecurrMinion<=bluemaxMinion){
                 redIdx++;
                 var data = "29.0,50.0,30.0";
                 minionNames["rm"+redIdx] = "rm"+redIdx;
@@ -136,12 +132,12 @@ console.log("createMinion");
                 
                 data = "rm"+redIdx+":"+data;         
                  io.sockets.in(socket.room).emit("createRedMinionRES",data);
-                 redcurrMinion++;
-                }
+                 currMinion++;
+                 if(currMinion>=maxMinion)
+                    clearInterval(jarray[socket.room].timer1 );
             }
             
             function blueSender(){
-                if(bluecurrMinion<=bluemaxMinion){
                 blueIdx++;
                 var data = "75.0,50.0,70.0";
                // minionNames["bm"+blueIdx] = "bm"+blueIdx;
@@ -157,11 +153,11 @@ console.log("createMinion");
 
                 data = "bm"+blueIdx+":"+data;                
                  io.sockets.in(socket.room).emit("createBlueMinionRES",data);
-                 bluecurrMinion++;
-               
+                 currMinion++;
+               //  if(currMinion>=maxMinion)
+               //     clearInterval(jarray[socket.room].timer2);
             }
-        }//end create minion      
-    }
+        }//end create minion        
     });
 //end create room    
     
@@ -177,10 +173,13 @@ var userTeam={};
 console.log("defined ?: "+ JSON.stringify( jarray[socket.room].userNames));
 
 if(JSON.stringify( jarray[socket.room].userNames)===undefined){
+    
         jarray[socket.room].userNames={};
         jarray[socket.room].userPos={};
         jarray[socket.room].userCharacter={};
         jarray[socket.room].userTeam={};
+
+        console.log("jarray[socket.room].userNames)===undefined");
         
     }
         var retCreP = data.split(":");
@@ -193,10 +192,10 @@ if(JSON.stringify( jarray[socket.room].userNames)===undefined){
         userTeam[retCreP[0]] = retCreP[3];        //team
  if(JSON.stringify(socket.room) !==undefined){
 
-    console.log("shit yeso room!: "+jarray+": [socket.id]: "+socket.id +"myid retCreP[0]:  "+ retCreP[0] );
+   // console.log("shit yeso room!: "+jarray+": [socket.id]: "+socket.id +"myid retCreP[0]:  "+ retCreP[0] );
 
             //1. add username to player in room 
-                jarray[socket.room].userNames= userNames;//[socket.id] = ""+ retCreP[0];
+                jarray[socket.room].userNames[socket.id] = retCreP[0];//[socket.id] = ""+ retCreP[0];
             
        //2. add userpos to player in room 
 
@@ -249,6 +248,11 @@ console.log("fuck no room!");
         }
         io.sockets.in(socket.room).emit("preuser1RES",retPre1);
         io.sockets.in(socket.room).emit("preuser2RES",retPre2);
+
+//console.log("ret1: "+ retPre1);
+
+console.log("ret2: "+ retPre2);
+
     });
 //    
     socket.on("movePlayerREQ",function(data){   
@@ -258,9 +262,15 @@ console.log("fuck no room!");
              jarray[socket.room]["userPos"][retMoveP[0]] = retMoveP[2];
             
         
-        io.sockets.in(socket.room).emit("movePlayerRES", data);      
+        io.sockets.in(socket.room).emit("movePlayerRES", data);  
+
+        console.log("move deffinced"+data);
+
+
         }else{
             
+ console.log("move not deffined"+data);
+
         }
     });
     
