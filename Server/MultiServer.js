@@ -68,7 +68,7 @@ io.sockets.on('connection', function (socket) {
          socket.room = temp[1];
         socket.join(temp[1]);
 
-        console.log("master: "+temp[2]+"room: "+ temp[1]);
+       // console.log("master: "+temp[2]+"room: "+ temp[1]);
 
              if(temp[2] =="master"){
 
@@ -112,12 +112,18 @@ io.sockets.on('connection', function (socket) {
 console.log("createMinion");
 
         
-             jarray.room1.timer1  =  setInterval(redSender,3000);
-             jarray.room1.timer2 =  setInterval(blueSender,3000);
+             jarray[socket.room].timer1 =  setInterval(redSender,5000);
+             jarray[socket.room].timer2 =  setInterval(blueSender,5000);
+
+     /*   var i;
+         for (i = 0; i < 5; i++) {
+          redSender();
+          blueSender();
+          }
              
-             
-            var maxMinion =100000;
-            var currMinion=0;
+       */      
+            var maxMinion = 10;
+            var currMinion= 0;
             var redIdx=0;
             var blueIdx=0;
             
@@ -133,8 +139,10 @@ console.log("createMinion");
                 data = "rm"+redIdx+":"+data;         
                  io.sockets.in(socket.room).emit("createRedMinionRES",data);
                  currMinion++;
-                 if(currMinion>=maxMinion)
-                    clearInterval(jarray[socket.room].timer1 );
+                 if(currMinion>=maxMinion){
+                      clearInterval( jarray[socket.room].timer1  );
+                 }
+                    
             }
             
             function blueSender(){
@@ -154,8 +162,10 @@ console.log("createMinion");
                 data = "bm"+blueIdx+":"+data;                
                  io.sockets.in(socket.room).emit("createBlueMinionRES",data);
                  currMinion++;
-               //  if(currMinion>=maxMinion)
-               //     clearInterval(jarray[socket.room].timer2);
+                 if(currMinion>=maxMinion){
+                        clearInterval( jarray[socket.room].timer2 );
+                 }
+                    
             }
         }//end create minion        
     });
@@ -170,7 +180,7 @@ var userPos = {};
 var userCharacter = {};
 var userTeam={};
 
-console.log("defined ?: "+ JSON.stringify( jarray[socket.room].userNames));
+//console.log("defined ?: "+ JSON.stringify( jarray[socket.room].userNames));
 
 if(JSON.stringify( jarray[socket.room].userNames)===undefined){
     
@@ -183,8 +193,10 @@ if(JSON.stringify( jarray[socket.room].userNames)===undefined){
         
     }
         var retCreP = data.split(":");
-        
+     
+        console.log("create player 1 socket.room= "+socket.room);
         io.sockets.in(socket.room).emit("createPlayerRES", data);
+        console.log("create player 2 = data"+ data);
         
         userNames[socket.id] = retCreP[0];    //client id      
         userPos[retCreP[0]] = retCreP[1];         //position 
@@ -212,13 +224,12 @@ if(JSON.stringify( jarray[socket.room].userNames)===undefined){
             
           //  console.log("afer create jarray: "+ JSON.stringify(jarray));
           
-        console.log("jarray now : "
-    + util.inspect(jarray));
+      //  console.log("jarray now : "  + util.inspect(jarray));
           
 
     }else{//no roomyet
         
-console.log("fuck no room!");
+//console.log("fuck no room!");
 
     }
 //end
@@ -251,7 +262,7 @@ console.log("fuck no room!");
 
 //console.log("ret1: "+ retPre1);
 
-console.log("ret2: "+ retPre2);
+//console.log("ret2: "+ retPre2);
 
     });
 //    
@@ -303,7 +314,7 @@ console.log("ret2: "+ retPre2);
 
 
         key = '/'+key;
-        console.log("jarray.userNames: ="+jarray.userNames);
+       // console.log("jarray.userNames: ="+jarray.userNames);
         if(jarray.userNames <=1){
 
 console.log("less than1");

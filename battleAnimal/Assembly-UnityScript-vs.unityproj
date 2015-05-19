@@ -70,31 +70,31 @@
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\KunaiEditor\Editor\Readme.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="SimpleJson">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
  </Reference>
  <Reference Include="SocketIO">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Common">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Core">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Protocol">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Proxy">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
  </Reference>
  <Reference Include="WebSocket4Net">
- <HintPath>/Users/tanggoal/Documents/git_repo/jin_5_19_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
+ <HintPath>/Users/tanggoal/Documents/git_repo/workl_ui_5_19freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
