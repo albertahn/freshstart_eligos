@@ -75,7 +75,7 @@ public class SocketOn : MonoBehaviour {
 		_preUserPlayerReceiver = GetComponent<preUserPlayerReceiver>();
 		_createObserver = GetComponent<createObserver> ();
 
-		Screen.SetResolution(480, 800, true);
+		Screen.SetResolution( 800,480, true);
 
 		_spawnPlayer = GetComponent<SpawnPlayer> ();
 		_spawnMinion = GetComponent<SpawnMinion> ();
