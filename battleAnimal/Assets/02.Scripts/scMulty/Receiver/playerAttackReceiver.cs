@@ -17,19 +17,7 @@ public class playerAttackReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			GameObject a = GameObject.Find (attacker);
-			
-			if (a != null) {
-				if(character=="dog"){
-					_moveCtrl = a.GetComponent<MoveCtrl>();
-					_moveCtrl.attack(target);
-				}
-				else if(character=="turtle"){
-					_tutu_moveCtrl = a.GetComponent<tutu_MoveCtrl>();
-					_tutu_moveCtrl.attack(target);
-				}
-			}
-			
+			StartCoroutine(doit ());
 			switch_=false;
 		}	
 	}
@@ -41,5 +29,22 @@ public class playerAttackReceiver : MonoBehaviour {
 		target = temp [2];
 		Debug.Log("attacker = "+attacker+" target = "+target);
 		switch_ = true;
+	}
+
+	
+	private IEnumerator doit(){
+		GameObject a = GameObject.Find (attacker);
+		
+		if (a != null) {
+			if(character=="dog"){
+				_moveCtrl = a.GetComponent<MoveCtrl>();
+				_moveCtrl.attack(target);
+			}
+			else if(character=="turtle"){
+				_tutu_moveCtrl = a.GetComponent<tutu_MoveCtrl>();
+				_tutu_moveCtrl.attack(target);
+			}
+		}	
+		yield return null;
 	}
 }

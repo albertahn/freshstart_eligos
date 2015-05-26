@@ -2,10 +2,7 @@
 using System.Collections;
 
 public class CannonSync_reciever : MonoBehaviour {
-
-
 	public bool destroyTrue;
-
 	public string cannonName ;
 
 
@@ -17,18 +14,20 @@ public class CannonSync_reciever : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(destroyTrue){
-			GameObject cannon = GameObject.Find(cannonName);
-			Destroy(cannon);
+			StartCoroutine(doit());
 			destroyTrue =false;
 		}	
 	}
 
 
 	public void killCannon(string data){
-
 		cannonName =data;
-
 		destroyTrue = true;
+	}
 
+	private IEnumerator doit(){
+		GameObject cannon = GameObject.Find(cannonName);
+		Destroy(cannon);
+		yield return null;
 	}
 }

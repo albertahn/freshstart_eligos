@@ -27,15 +27,7 @@ public class preUserPlayerReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			GameObject player = (GameObject)Resources.Load(_char);
-			GameObject b = (GameObject)Instantiate(player,spawnPos,Quaternion.identity);
-			b.name=id;
-			if(team =="red"){
-				b.transform.parent = Rteam.transform;
-			}else{
-				b.transform.parent = Bteam.transform;
-			}
-
+			StartCoroutine(doit ());
 			switch_=false;
 		}
 	}
@@ -58,5 +50,18 @@ public class preUserPlayerReceiver : MonoBehaviour {
 				switch_ = true;
 			}
 		}
+	}
+
+	
+	private IEnumerator doit(){
+		GameObject player = (GameObject)Resources.Load(_char);
+		GameObject b = (GameObject)Instantiate(player,spawnPos,Quaternion.identity);
+		b.name=id;
+		if(team =="red"){
+			b.transform.parent = Rteam.transform;
+		}else{
+			b.transform.parent = Bteam.transform;
+		}
+		yield return null;
 	}
 }

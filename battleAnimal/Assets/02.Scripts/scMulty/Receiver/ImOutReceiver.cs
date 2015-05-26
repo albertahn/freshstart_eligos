@@ -13,13 +13,18 @@ public class ImOutReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			GameObject a = GameObject.Find(outID);
-			GameObject.Destroy(a);			
+			StartCoroutine(doit ());
 			switch_=false;
 		}	
 	}
 	public void receive(string data){
 		outID = data;
 		switch_ = true;
+	}
+
+	private IEnumerator doit(){
+		GameObject a = GameObject.Find(outID);
+		GameObject.Destroy(a);
+		yield return null;
 	}
 }

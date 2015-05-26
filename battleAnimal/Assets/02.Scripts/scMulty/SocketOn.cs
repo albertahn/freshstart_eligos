@@ -46,6 +46,9 @@ public class SocketOn : MonoBehaviour {
 	private preUsers_reciever_2 _preUsers_reciever_2;
 	private preUserPlayerReceiver _preUserPlayerReceiver;
 	private createRoomReceiver _createRoomReceiver;
+	private createRedMinionReceiver _createRedMinionReceiver;
+	private createBlueMinionReceiver _createBlueMinionReceiver;
+	private preUserMininonReceiver _preUserMinionReceiver;
 
 	private createObserver _createObserver;
 
@@ -66,6 +69,9 @@ public class SocketOn : MonoBehaviour {
 		_preUserPlayerReceiver = GetComponent<preUserPlayerReceiver>();
 		_im_out_receiver = GetComponent<ImOutReceiver> ();
 		_createRoomReceiver = GetComponent<createRoomReceiver> ();
+		_createRedMinionReceiver = GetComponent<createRedMinionReceiver> ();
+		_createBlueMinionReceiver = GetComponent<createBlueMinionReceiver> ();
+		_preUserMinionReceiver = GetComponent<preUserMininonReceiver> ();
 
 		_createObserver = GetComponent<createObserver> ();
 
@@ -91,7 +97,6 @@ public class SocketOn : MonoBehaviour {
 		});
 
 		SocketStarter.Socket.On ("youMaster", (data) =>{
-			Debug.Log("i'am Master");//edit
 			ClientState.isMaster = true;
 
 		});
@@ -112,75 +117,18 @@ public class SocketOn : MonoBehaviour {
 		SocketStarter.Socket.On("createRedMinionRES",(data) =>
 		{
 			string temp = data.Json.args[0].ToString();
-			string[] pos;
-			Vector3 spawnPos;
-			string id;
-			
-			pos = temp.Split(':');
-			id = pos[0];//접속한 유저의 아이디
-			pos = pos[1].Split(',');
-			
-			spawnPos = new Vector3(float.Parse(pos[0]),
-			                       float.Parse(pos[1]),
-			                       float.Parse(pos[2]));
-
-			while(_spawnMinion.REDspawnSwitch==true){
-			}
-			_spawnMinion.REDsetSpawn(id,spawnPos);//해당 user를 instantiate한다.
+			_createRedMinionReceiver.receive(temp);
 		});
 
 		SocketStarter.Socket.On("createBlueMinionRES",(data) =>
 		{
 			string temp = data.Json.args[0].ToString();
-			string[] pos;
-			Vector3 spawnPos;
-			string id;
-			
-			pos = temp.Split(':');
-			id = pos[0];//접속한 유저의 아이디
-			pos = pos[1].Split(',');
-			
-			spawnPos = new Vector3(float.Parse(pos[0]),
-			                       float.Parse(pos[1]),
-			                       float.Parse(pos[2]));
-			
-			while(_spawnMinion.BLUEspawnSwitch==true){
-			}
-			_spawnMinion.BLUEsetSpawn(id,spawnPos);//해당 user를 instantiate한다.
+			_createBlueMinionReceiver.receive(temp);
 		});
 
 		SocketStarter.Socket.On ("preuser1RES", (data) => {			
 			string temp = data.Json.args[0].ToString();
-			string[] list;
-			string sender;
-			string[] pos;
-			string id;
-			string[] temp3;
-			Vector3 spawnPos;
-			
-			string[] temp2 = temp.Split('=');
-			sender = temp2[0];
-			list = temp2[1].Split('_');
-			if(ClientID==sender){
-				for(int i=0;i<list.Length-2;i++)
-				{
-					temp3 = list[i].Split(':');
-					id =temp3[0];
-					pos = temp3[1].Split(',');
-					spawnPos = new Vector3(float.Parse(pos[0]),
-					                       float.Parse(pos[1]),
-					                       float.Parse(pos[2]));
-					if(id[0]=='r'){
-						while(_spawnMinion.REDspawnSwitch==true){
-						}
-						_spawnMinion.REDsetSpawn(id,spawnPos);
-					}else if(id[0]=='b'){
-						while(_spawnMinion.BLUEspawnSwitch==true){
-						}
-						_spawnMinion.BLUEsetSpawn(id,spawnPos);
-					}
-				}
-			}
+			_preUserMinionReceiver.receive(temp);
 		});
 
 		SocketStarter.Socket.On ("preuser2RES", (data) => {
@@ -276,7 +224,6 @@ public class SocketOn : MonoBehaviour {
 
 //master or not? 
 		if (ClientState.isMaster) {
-
 			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room+":master");
 
 				} else {
@@ -294,8 +241,5 @@ public class SocketOn : MonoBehaviour {
 	void change_minion_health(){
 		GameObject mininow = GameObject.Find (""+minion_name);
 		mininow.GetComponent<minion_state>().hp = minion_hp_int;		
-	}
-	void OnGUI(){
-		GUI.Label (new Rect (50,150,100,100), debugstring);
 	}
 }

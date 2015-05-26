@@ -49,31 +49,48 @@ public class preUsers_reciever_2 : MonoBehaviour {
 	}
 	
 
-	void LateUpdate() {
-
-
-		
+	void LateUpdate() {		
 		if (ifJustArrive) {
+			StartCoroutine(doit ());			
+			ifJustArrive = false;
 			
-			//find  other players if they are there  . else instantiate
+		}//if just arrive
 
-			//for each if (GameObject.Find("WhateverItsCalled") == null)  {instant}
 
-			for(int i=0;i<list.Length-2;i++)
-			{
-				temp3 = list[i].Split(':');
-				id = temp3[0];
-				pos = temp3[1].Split(',');
-				spawnPos = new Vector3(float.Parse(pos[0]),
-				                       float.Parse(pos[1]),
-				                       float.Parse(pos[2]));
-				_char = temp3[2];
-				team = temp3[3];
 
-				GameObject a;
+	}//late
 
-				if(ClientState.id == sender){
 
+	public void preReciever(string data){
+		string[] temp2 = data.Split('=');
+		sender = temp2[0];
+		list = temp2[1].Split('_');
+		
+
+		ifJustArrive = true;		
+	}
+	
+	private IEnumerator doit(){
+		
+		//find  other players if they are there  . else instantiate
+		
+		//for each if (GameObject.Find("WhateverItsCalled") == null)  {instant}
+		
+		for(int i=0;i<list.Length-2;i++)
+		{
+			temp3 = list[i].Split(':');
+			id = temp3[0];
+			pos = temp3[1].Split(',');
+			spawnPos = new Vector3(float.Parse(pos[0]),
+			                       float.Parse(pos[1]),
+			                       float.Parse(pos[2]));
+			_char = temp3[2];
+			team = temp3[3];
+			
+			GameObject a;
+			
+			if(ClientState.id == sender){
+				
 				GameObject player = (GameObject)Resources.Load(_char);
 				a = (GameObject)Instantiate(player,spawnPos,Quaternion.identity);
 				a.name=id;
@@ -91,37 +108,11 @@ public class preUsers_reciever_2 : MonoBehaviour {
 				_skill2Plus.setPlayer();
 				_skill3Plus.setPlayer();
 				_cameraTouch.setPlayer();
-
-				}
-
 				
-			}//for
+			}
 			
 			
-			ifJustArrive = false;
-			
-		}//if just arrive
-
-
-
-	}//late
-
-
-	public void preReciever(string data){
-
-		Debug.Log ("preReciever: "+data);
-
-
-		string[] temp2 = data.Split('=');
-		sender = temp2[0];
-		list = temp2[1].Split('_');
-		
-
-		ifJustArrive = true;
-		
+		}//for	
+		yield return null;
 	}
-
-
-	
-	
 }

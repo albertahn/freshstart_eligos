@@ -20,12 +20,7 @@ public class createPlayerReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			_spawnPlayer.setSpawn(addId,spawnPos,_char,team);
-
-			if(ClientState.id==addId){
-				SocketStarter.Socket.Emit ("preuserREQ", addId);
-			}
-
+			StartCoroutine(doit ());
 			switch_=false;
 		}
 	}
@@ -43,5 +38,13 @@ public class createPlayerReceiver : MonoBehaviour {
 		while (switch_) {}
 		
 		switch_ = true;
+	}
+	private IEnumerator doit(){
+		_spawnPlayer.setSpawn(addId,spawnPos,_char,team);
+		
+		if(ClientState.id==addId){
+			SocketStarter.Socket.Emit ("preuserREQ", addId);
+		}
+		yield return null;
 	}
 }

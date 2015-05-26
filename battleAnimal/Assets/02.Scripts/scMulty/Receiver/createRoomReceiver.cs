@@ -14,12 +14,17 @@ public class createRoomReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			StartCoroutine(_spawnPlayer.CreatePlayer());			
+			StartCoroutine(doit ());			
 			switch_=false;
 		}	
 	}
 	public void receive(){
 		
 		switch_ = true;
+	}
+
+	private IEnumerator doit(){
+		StartCoroutine(_spawnPlayer.CreatePlayer());	
+		yield return null;
 	}
 }

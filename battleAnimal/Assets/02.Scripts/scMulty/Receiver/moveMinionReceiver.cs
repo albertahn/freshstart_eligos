@@ -19,9 +19,33 @@ public class moveMinionReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			GameObject a = GameObject.Find (id);
-			a.transform.position = currPos;
+			StartCoroutine(doit ());
+			switch_=false;
+		}	
+	}
+	public void receive(string data){
+		string[] temp = data.Split (':');
+		string[] posTemp;
 
+		Debug.Log ("data = "+data);
+
+		id = temp [0];
+		posTemp = temp [1].Split (',');
+		currPos = new Vector3(float.Parse(posTemp[0]),
+		                      float.Parse(posTemp[1]),
+		                      float.Parse(posTemp[2]));
+		posTemp = temp [2].Split (',');
+		destPos = new Vector3(float.Parse(posTemp[0]),
+		                      float.Parse(posTemp[1]),
+		                      float.Parse(posTemp[2]));
+		switch_ = true;
+	}
+	
+	private IEnumerator doit(){
+		GameObject a = GameObject.Find (id);
+		if(a!=null){
+			a.transform.position = currPos;
+			
 			if (a != null) {
 				if(a.name[0]=='r'){
 					_ctrl = a.GetComponent<minionCtrl>();
@@ -33,24 +57,7 @@ public class moveMinionReceiver : MonoBehaviour {
 					_bctrl.move ();
 				}
 			}
-
-			switch_=false;
-		}	
-	}
-	public void receive(string data){
-		string[] temp = data.Split (':');
-		string[] posTemp;
-		Debug.Log ("move minon data2 = " + data);
-		while (switch_) {}
-		id = temp [0];
-		posTemp = temp [1].Split (',');
-		currPos = new Vector3(float.Parse(posTemp[0]),
-		                      float.Parse(posTemp[1]),
-		                      float.Parse(posTemp[2]));
-		posTemp = temp [2].Split (',');
-		destPos = new Vector3(float.Parse(posTemp[0]),
-		                      float.Parse(posTemp[1]),
-		                      float.Parse(posTemp[2]));
-		switch_ = true;
+		}
+		yield return null;
 	}
 }

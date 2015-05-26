@@ -19,12 +19,17 @@ public class minionDieReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (switch_) {
-			if(name[0] =='r')
-				GameObject.Find(name).GetComponent<minion_state>().minionDie();
-			else
-				GameObject.Find(name).GetComponent<blue_minion_state>().minionDie();
+			StartCoroutine(doit ());
 			switch_ = false;
 		}	
 	
+	}
+
+	private IEnumerator doit(){
+		if(name[0] =='r')
+			GameObject.Find(name).GetComponent<minion_state>().minionDie();
+		else
+			GameObject.Find(name).GetComponent<blue_minion_state>().minionDie();
+		yield return null;
 	}
 }
