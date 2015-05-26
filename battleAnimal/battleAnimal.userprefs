@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\SocketOn.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\all_rooms_list\roomSocketStarter.cs">
     <Files>
-      <File FileName="Assets\02.Scripts\scMulty\SocketOn.cs" Line="89" Column="21" />
+      <File FileName="Assets\02.Scripts\scMulty\SocketStarter.cs" Line="12" Column="28" />
+      <File FileName="Assets\02.Scripts\scWait\waitSocketStarter.cs" Line="12" Column="28" />
+      <File FileName="Assets\02.Scripts\all_rooms_list\roomSocketStarter.cs" Line="12" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
