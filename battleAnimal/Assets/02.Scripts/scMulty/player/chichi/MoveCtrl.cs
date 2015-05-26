@@ -405,18 +405,5 @@ public class MoveCtrl : MonoBehaviour {
 		GameObject mark = (GameObject)Instantiate(movetomark,point,Quaternion.identity);
 		mark.name="MoveMark";
 		
-	}
-	
-	
-	/*void OnGUI(){
-
-		if (GUI.Button (new Rect (100, 110, 180, 180), "moving: "+playermoving )) {
-
-		}//doanloaded image
-	
-	}
-*/
-	//gui test
-	
-	
+	}	
 }

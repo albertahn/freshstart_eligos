@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +80,6 @@
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannon_OutterCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BulletCtrl_BlueCannon.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BulletCtrl.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\CannonSync_reciever.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\FollowCam.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\HP_Bar.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfo.cs" />
@@ -88,6 +87,18 @@
      <Compile Include="Assets\02.Scripts\scMulty\ItemShop.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\LobbyUI.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\MyGizmo.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\CannonSync_reciever.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\ImOutReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\createPlayerReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\createRoomReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\minionAttackReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\minionDieReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\moveMinionReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\movePlayerReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\playerAttackReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\preUserPlayerReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\preUsers_reciever_2.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\receiveFormat.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\RedCannon\BulletCtrl_RedCannon.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonFire.cs" />
@@ -108,7 +119,6 @@
      <Compile Include="Assets\02.Scripts\scMulty\UI\skill1Plus.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\UI\skill2Plus.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\UI\skill3Plus.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\createPlayerReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minionSync.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\Minion_health_reciever_socket.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blueMinionCtrl.cs" />
@@ -117,14 +127,10 @@
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blue_outer_collider.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\mBulletCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\mFireCtrl.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minionAttackReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minionCtrl.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minionDieReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_HP.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_state.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\moveMinionReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\red_outer_collider.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\movePlayerReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkMaker.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\chichi\AniCtrl.cs" />
@@ -134,10 +140,6 @@
      <Compile Include="Assets\02.Scripts\scMulty\player\tutu\tutu_AniCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\tutu\tutu_FireCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\tutu\tutu_MoveCtrl.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\playerAttackReceiver.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\preUserPlayerReceiver.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\preUsers_reciever_2.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\receiveFormat.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\status\dogStat.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\status\playerStat.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\status\turtleStat.cs" />
@@ -176,31 +178,31 @@
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\KunaiEditor\Editor\Readme.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="SimpleJson">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
  </Reference>
  <Reference Include="SocketIO">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Common">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Core">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Protocol">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Proxy">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
  </Reference>
  <Reference Include="WebSocket4Net">
- <HintPath>/Users/albert/Documents/github_repo/5_20_try_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
+ <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

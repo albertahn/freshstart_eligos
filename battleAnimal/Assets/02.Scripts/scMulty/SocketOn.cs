@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 //An element with the same key already exists in the dictionary에러를 피하려면 Socket.on을 모아놔야 한다.
 public class SocketOn : MonoBehaviour {
-	private SpawnPlayer _spawnPlayer;
 	private SpawnMinion _spawnMinion;
 	//private MoveCtrl _moveCtrl;
 	private LobbyUI _lobbyUI;
@@ -13,16 +12,11 @@ public class SocketOn : MonoBehaviour {
 	private string addId;
 
 	public Vector3 attackPos;
-	private bool moveUserSwitch;
-
-	private string outID;
-	private bool outUserSwitch;
 		
 	private string attackID;
 	private bool attackSwitch;
 	private string attackTarget;
 	private bool moveSyncSwitch;
-	private bool loadlevelSwitch;
 
 	private bool building_health_change;
 	private string building_name;
@@ -35,7 +29,6 @@ public class SocketOn : MonoBehaviour {
 
 	private string minionID;
 	private Vector3 minionPos, minionTg;
-	private bool minionSyncSwitch;
 	// Use this for initialization
 
 	public GameObject nmanager; // = GameObject.Find("NetworkManager");
@@ -47,11 +40,13 @@ public class SocketOn : MonoBehaviour {
 	private moveMinionReceiver _moveMinionReceiver;
 	private Player_hp_reciever_socket _player_hp_reciever;
 	private Minion_health_reciever_socket _minion_health_reciever;
-
+	private ImOutReceiver _im_out_receiver;
 	private CannonSync_reciever _CannonSync_reciever;
 	private createPlayerReceiver _createPlayerReceiver;
 	private preUsers_reciever_2 _preUsers_reciever_2;
 	private preUserPlayerReceiver _preUserPlayerReceiver;
+	private createRoomReceiver _createRoomReceiver;
+
 	private createObserver _createObserver;
 
 	public static string debugstring;
@@ -63,45 +58,34 @@ public class SocketOn : MonoBehaviour {
 		skill_reciever = GetComponent<Skill_socket_reciever> ();
 		_pAttackReceiver = GetComponent<playerAttackReceiver> ();
 		_moveMinionReceiver = GetComponent<moveMinionReceiver> ();
-
 		_createPlayerReceiver = GetComponent<createPlayerReceiver> ();
-
 		_player_hp_reciever = GetComponent<Player_hp_reciever_socket>();
-
 		_minion_health_reciever= GetComponent<Minion_health_reciever_socket>();
 		_CannonSync_reciever =GetComponent<CannonSync_reciever>();
-
 		_preUsers_reciever_2 = GetComponent<preUsers_reciever_2>();
 		_preUserPlayerReceiver = GetComponent<preUserPlayerReceiver>();
+		_im_out_receiver = GetComponent<ImOutReceiver> ();
+		_createRoomReceiver = GetComponent<createRoomReceiver> ();
+
 		_createObserver = GetComponent<createObserver> ();
 
 		Screen.SetResolution( 800,480, true);
 
-		_spawnPlayer = GetComponent<SpawnPlayer> ();
 		_spawnMinion = GetComponent<SpawnMinion> ();
 		_lobbyUI = GameObject.Find("MultiManager").GetComponent<LobbyUI>();
 		ClientID = ClientState.id;
-		
-		moveUserSwitch=false;
-		outUserSwitch = false;
+
 		attackSwitch = false;
 		moveSyncSwitch = false;
-		minionSyncSwitch = false;
 
 		SocketStarter.Socket.On ("createRoomRES", (data) =>{
 			string temp = data.Json.args[0].ToString();
-			debugstring = "1";
 
 			if(temp== ClientID){
-				Debug.Log("created: "+ temp);
 				if(temp!="ob")
-					loadlevelSwitch = true;
+					_createRoomReceiver.receive();
 				else{
 					_createObserver.receive();
-					/*SocketStarter.Socket.Emit ("preuserREQ", addId);
-					player = (GameObject)Resources.Load("Observer");
-					a = (GameObject)Instantiate(player,pos,Quaternion.identity);
-					a.name=_id;*/
 				}
 			}
 		});
@@ -199,12 +183,8 @@ public class SocketOn : MonoBehaviour {
 			}
 		});
 
-		SocketStarter.Socket.On ("preuser2RES", (data) => {	
-
-			//_preUsers_reciever_2.preReciever(data.Json.args[0].ToString());
+		SocketStarter.Socket.On ("preuser2RES", (data) => {
 			_preUserPlayerReceiver.receive(data.Json.args[0].ToString());
-
-
 		});
 
 		SocketStarter.Socket.On ("movePlayerRES", (data) =>
@@ -243,9 +223,7 @@ public class SocketOn : MonoBehaviour {
 
 		SocketStarter.Socket.On ("imoutRES", (data) =>{			
 			string temp = data.Json.args[0].ToString();
-			outID = temp;
-
-			outUserSwitch=true;
+			_im_out_receiver.receive(temp);
 		});
 
 
@@ -294,8 +272,6 @@ public class SocketOn : MonoBehaviour {
 		//skill attack
 		SocketStarter.Socket.On ("SkillAttack", (data) =>{
 			skill_reciever.skillShot(data.Json.args[0].ToString());
-
-
 		});
 
 //master or not? 
@@ -307,39 +283,7 @@ public class SocketOn : MonoBehaviour {
 			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room+":notmaster");
 
 				}
-
-			
-
 	}//end start
-	
-	// Update is called once per frame
-	void Update () {
-
-		if (outUserSwitch) {
-			GameObject a = GameObject.Find(outID);
-			GameObject.Destroy(a);
-			outUserSwitch=false;
-		}
-
-		if (loadlevelSwitch) {
-			_lobbyUI.isUI =false;
-			debugstring = "2";
-			StartCoroutine(_spawnPlayer.CreatePlayer());			
-			//debugstring = "3";
-			loadlevelSwitch=false;
-		}
-
-		if (minionSyncSwitch) {
-			GameObject a = GameObject.Find (minionID);
-			if(a!=null){
-				if(a.name[0]=='r')
-					a.GetComponent<minionCtrl>().setSync(minionPos,minionTg);
-				else
-					a.GetComponent<blueMinionCtrl>().setSync(minionPos,minionTg);
-			}
-			minionSyncSwitch=false;
-		}
-	}
 
 //building health change
 	void change_building_health(){

@@ -21,11 +21,6 @@ public class tutu_FireCtrl : MonoBehaviour {
 		duration = 0.4f;
 		distance = 4.0f;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	public void Fire(string _target){
 		if ((Time.time - birth) > duration) {

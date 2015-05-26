@@ -21,11 +21,6 @@ public class FireCtrl : MonoBehaviour {
 		duration = 0.5f;
 		distance = 7.0f;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	public void Fire(string _target){
 		if ((Time.time - birth) > duration) {

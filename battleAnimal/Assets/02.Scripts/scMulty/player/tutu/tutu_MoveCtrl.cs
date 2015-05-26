@@ -70,8 +70,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 		if (ClientID == gameObject.name && _state.isDie == false) {
 			if(oneDie==true)
 				oneDie = false;
-			
-			//id가 내 캐릭터 일때
+
 			#if UNITY_ANDROID||UNITY_IPHONE
 			if (Input.touchCount == 1 && Input.touchCount  <2) {
 				
@@ -180,10 +179,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 						}//if false                        
 					}//end 
 				}
-			}//if
-			
-			
-			
+			}//if		
 			
 			//}// if touchcount 1
 			#else
@@ -238,7 +234,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 							
 							string data = ClientID +":"+ClientState.character + ":" + + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 								":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-							SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.							
+							SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
 							
 							move ();
 						}
@@ -398,18 +394,5 @@ public class tutu_MoveCtrl : MonoBehaviour {
 		
 		GameObject mark = (GameObject)Instantiate(movetomark,point,Quaternion.identity);
 		mark.name = "MoveMark";		
-	}
-	
-	
-	/*void OnGUI(){
-
-		if (GUI.Button (new Rect (100, 110, 180, 180), "moving: "+playermoving )) {
-
-		}//doanloaded image
-	
-	}
-*/
-	//gui test
-	
-	
+	}	
 }

@@ -19,9 +19,4 @@ public class AniCtrl : MonoBehaviour {
 		_animation.clip = anim.idle;
 		_animation.Play ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

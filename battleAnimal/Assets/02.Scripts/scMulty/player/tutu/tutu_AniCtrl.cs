@@ -18,12 +18,5 @@ public class tutu_AniCtrl : MonoBehaviour {
 		_animation = GetComponentInChildren<Animation> ();
 		_animation.clip = anim.idle;
 		_animation.Play ();
-
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
