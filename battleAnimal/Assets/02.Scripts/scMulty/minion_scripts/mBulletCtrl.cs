@@ -34,8 +34,10 @@ public class mBulletCtrl : MonoBehaviour {
 				tr.position = Vector3.MoveTowards(tr.position, targetPosition, step);
 			}
 		}
-		if ((Time.time - birth) > durationTime)
-			Destroy (this.gameObject);
+		if ((Time.time - birth) > durationTime) {
+			StartCoroutine (PushObjectPool ());
+			birth = Time.time;
+		}
 	}
 	
 	void OnTriggerEnter(Collider coll){
@@ -46,18 +48,24 @@ public class mBulletCtrl : MonoBehaviour {
 						target.GetComponent<minion_state>().Heated("minion", gameObject,damage);
 					else
 						target.GetComponent<blue_minion_state>().Heated("minion",gameObject,damage);
-					Destroy (this.gameObject);
+					StartCoroutine (PushObjectPool ());
 				}else if(target.tag=="Player"){
 					target.GetComponent<PlayerHealthState>().Heated("minion", gameObject,damage);
-					Destroy (this.gameObject);					
+					StartCoroutine (PushObjectPool ());		
 				}else if(target.tag=="RED_CANNON"){
 					target.GetComponent<RedCannonState>().Heated("minion", gameObject,damage);
-					Destroy (this.gameObject);					
+					StartCoroutine (PushObjectPool ());
 				}else if(target.tag=="BLUE_CANNON"){
 					target.GetComponent<BlueCannonState>().Heated("minion", gameObject,damage);
-					Destroy (this.gameObject);					
+					StartCoroutine (PushObjectPool ());	
 				}
 			}
 		}
+	}
+
+	IEnumerator PushObjectPool()
+	{
+		yield return new WaitForSeconds(0.1f);
+		gameObject.SetActive (false);
 	}
 }

@@ -12,19 +12,29 @@ public class mFireCtrl : MonoBehaviour {
 	
 	public float distance;
 	
+	private GameObject[] bulletPool;
+	private mBulletCtrl[] _bulletCtrl;
+	private int maxBullet;
 	
+
 	// Use this for initialization
 	void Start () {
+		maxBullet = 6;
+		bulletPool = new GameObject[maxBullet];
+		_bulletCtrl = new mBulletCtrl[maxBullet];
+		for (int i=0; i<maxBullet; i++) {
+			bulletPool[i] = (GameObject)Instantiate(bullet);
+			_bulletCtrl[i] = bulletPool[i].GetComponent<mBulletCtrl>();
+			bulletPool[i].name = "Bullet_"+i.ToString();
+			bulletPool[i].SetActive(false);
+			bulletPool[i].transform.parent = gameObject.transform;
+		}
+
 		_renderer.enabled = false;	
 		duration = 0.5f;
 		distance = 10.0f;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
+
 	public void Fire(string _target){
 		if ((Time.time - birth) > duration) {
 			StartCoroutine (this.CreateBullet (_target));
@@ -34,8 +44,14 @@ public class mFireCtrl : MonoBehaviour {
 	}
 	
 	IEnumerator CreateBullet(string _target){
-		GameObject a =(GameObject)Instantiate(bullet,firePos.position,firePos.rotation);
-		a.GetComponent<mBulletCtrl> ().setTarget(_target);
+		for (int i=0; i<maxBullet; i++) {
+			if(bulletPool[i].activeSelf==false){
+				bulletPool[i].transform.position = firePos.position;
+				_bulletCtrl[i].setTarget(_target);
+				bulletPool[i].SetActive(true);
+				break;
+			}
+		}
 		yield return null;
 	}
 	

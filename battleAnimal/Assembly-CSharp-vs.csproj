@@ -79,7 +79,6 @@
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonState.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannon_OutterCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BulletCtrl_BlueCannon.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\BulletCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\FollowCam.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\HP_Bar.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfo.cs" />
@@ -134,6 +133,7 @@
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_HP.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_state.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\red_outer_collider.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\BulletCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkMaker.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\chichi\AniCtrl.cs" />
@@ -171,14 +171,18 @@
      <Compile Include="Assets\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
      <Compile Include="Assets\SocketNetworkFucker.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\DynamicElements_Effects\ScaleParticles.txt" />
      <None Include="Assets\MeleeWeaponTrail\README.txt" />
      <None Include="Assets\MagicProjectiles - ReadMe.txt" />
      <None Include="Assets\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
      <None Include="Assets\DynamicElements_Effects\readme.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\KunaiEditor\Editor\Readme.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Mentormong(corp.)/Documents/GitHub/freshstart_eligos/battleAnimal/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>

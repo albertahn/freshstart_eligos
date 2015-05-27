@@ -1,12 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\Receiver\moveMinionReceiver.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\minion_scripts\mFireCtrl.cs">
     <Files>
-      <File FileName="Assets\02.Scripts\scMulty\Receiver\createRedMinionReceiver.cs" Line="19" Column="15" />
-      <File FileName="Assets\02.Scripts\scMulty\Receiver\preUsers_reciever_2.cs" Line="54" Column="28" />
-      <File FileName="Assets\02.Scripts\scMulty\Receiver\moveMinionReceiver.cs" Line="28" Column="20" />
-      <File FileName="Assets\02.Scripts\scMulty\Receiver\createBlueMinionReceiver.cs" Line="39" Column="21" />
-      <File FileName="Assets\02.Scripts\scMulty\Receiver\createPlayerReceiver.cs" Line="22" Column="15" />
+      <File FileName="Assets\02.Scripts\scMulty\player\chichi\FireCtrl.cs" Line="9" Column="32" />
+      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\mFireCtrl.cs" Line="50" Column="30" />
+      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\mBulletCtrl.cs" Line="39" Column="22" />
+      <File FileName="Assets\02.Scripts\scMulty\player\BulletCtrl.cs" Line="64" Column="92" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
