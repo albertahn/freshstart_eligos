@@ -19,7 +19,6 @@ var timer2;
  var minionPos = {};  
 
 
-
 //jaray structure
 var jarray = {};
 
@@ -49,18 +48,14 @@ jarray["room1"].timer1 = {};
 jarray["room1"].timer2 = {};
 */
 
-
 console.log("jarray now : "
     + JSON.stringify(jarray));
-
-
+    
      /*   
 jarray.room7.userNames = "hi ther";//{try:"heart"};
 jarray.room7.userCharacter = {try:"heart"};
 jarray.room7.userTeam = {try:"heart"};
 */
-
-
 
 
 //set the jarray for each room before socket connect
@@ -105,12 +100,10 @@ io.sockets.on('connection', function (socket) {
                      //console.log(" master");     
 
              }else{
-
                      console.log("not master");      
                     socket.room = temp[1];
                     socket.join(temp[1]);
-                    socket.emit('createRoomRES',temp[0]);
-                   
+                    socket.emit('createRoomRES',temp[0]);                   
              }
 
   //check is room exists
@@ -169,9 +162,9 @@ console.log("createMinion");
                 data = "rm"+redIdx+":"+data;         
                  io.sockets.in(socket.room).emit("createRedMinionRES",data);
                  currMinion++;
-                 if(currMinion>=maxMinion){
+                /*if(currMinion>=maxMinion){
                       clearInterval( jarray[socket.room].timer1  );
-                 }
+                 }*/
                     
             }
             
@@ -192,9 +185,9 @@ console.log("createMinion");
                 data = "bm"+blueIdx+":"+data;                
                  io.sockets.in(socket.room).emit("createBlueMinionRES",data);
                  currMinion++;
-                 if(currMinion>=maxMinion){
+                /* if(currMinion>=maxMinion){
                         clearInterval( jarray[socket.room].timer2 );
-                 }
+                 }*/
                     
             }
         }//end create minion        
@@ -381,7 +374,6 @@ console.log("less than1");
 
             clearInterval(jarray[socket.room].timer1);
             clearInterval(jarray[socket.room].timer2);
-
             } 
         }
     });
@@ -402,19 +394,15 @@ console.log("less than1");
     });
 
     socket.on('SkillAttack', function(data){
-            
        io.sockets.in(socket.room).emit("SkillAttack", data);
     });
     
     
     socket.on('HealthSync', function(data){
-            
        io.sockets.in(socket.room).emit("HealthSync", data);
     });
 
      socket.on('cannonDie', function(data){
-            
        io.sockets.in(socket.room).emit("cannonDie", data);
     });
-
 });

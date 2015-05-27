@@ -13,17 +13,24 @@ public class PlayerHealthState : MonoBehaviour {
 	public GameObject myplayer, red_building, blue_building;
 	public Texture2D victory, defeat ;
 
-
+	private GameObject[] effectPool;
+	private int maxEffect;
 
 	// Use this for initialization
 	void Start () {
+		maxEffect = 5;
+		effectPool = new GameObject[maxEffect];
+		for (int i=0; i<maxEffect; i++)
+		{
+			effectPool[i] = (GameObject)Instantiate(bloodEffect);
+			effectPool[i].SetActive(false);
+		}
+
+
 		isDie = false;
 		_respawn = GameObject.Find ("NetworkManager").GetComponent<Respawn> ();
-
 		myplayer = this.gameObject;
-
 		hp = playerStat.maxHp;
-
 		maxhp = playerStat.maxHp;
 
 		red_building = GameObject.Find ("red_building");
@@ -140,18 +147,33 @@ public class PlayerHealthState : MonoBehaviour {
 	
 	IEnumerator CreateBloodEffect(Vector3 pos)
 	{
-		GameObject _blood1 = (GameObject)Instantiate (bloodEffect, pos, Quaternion.identity);
-		Destroy (_blood1, 2.0f);
-		
+		for (int i=0; i<maxEffect; i++) 
+		{
+			if(effectPool[i].activeSelf==false)
+			{
+				effectPool[i].transform.position = pos;
+				effectPool[i].SetActive(true);
+				StartCoroutine(PushObjectPool(effectPool[i]));
+				break;
+			}
+		}
+
+		/*
 		Vector3 decalPos = this.transform.position+(Vector3.right*5.01f);
-		Quaternion decalRot = Quaternion.Euler(0,Random.Range(0,360),0);
-		
-		/*GameObject _blood2 = (GameObject)Instantiate (bloodDecal, decalPos, decalRot);
+		Quaternion decalRot = Quaternion.Euler(0,Random.Range(0,360),0);		
+		GameObject _blood2 = (GameObject)Instantiate (bloodDecal, decalPos, decalRot);
 		float _scale = Random.Range (1.5f, 3.5f);
 		_blood2.transform.localScale = new Vector3 (_scale, 1, _scale);
-		Destroy (_blood2, 5.0f);*/
+		Destroy (_blood2, 5.0f);
+		*/
 		
 		yield return null;
+	}
+
+	IEnumerator PushObjectPool(GameObject a)
+	{
+		yield return new WaitForSeconds (0.5f);
+		a.SetActive (false);
 	}
 
 	void OnGUI(){		

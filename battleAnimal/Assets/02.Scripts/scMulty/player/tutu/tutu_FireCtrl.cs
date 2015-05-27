@@ -13,10 +13,25 @@ public class tutu_FireCtrl : MonoBehaviour {
 
 	public float distance;
 	public AudioClip fireSfx;
+	
+	private GameObject[] bulletPool;
+	private BulletCtrl[] _bulletCtrl;
+	private int maxBullet;
 
 
 	// Use this for initialization
 	void Start () {
+		maxBullet = 6;
+		bulletPool = new GameObject[maxBullet];
+		_bulletCtrl = new BulletCtrl[maxBullet];
+		for (int i=0; i<maxBullet; i++) {
+			bulletPool[i] = (GameObject)Instantiate(bullet);
+			_bulletCtrl[i] = bulletPool[i].GetComponent<BulletCtrl>();
+			bulletPool[i].name = "Bullet_"+i.ToString();
+			bulletPool[i].SetActive(false);
+			bulletPool[i].transform.parent = gameObject.transform;
+		}
+
 		_renderer.enabled = false;	
 		duration = 0.4f;
 		distance = 4.0f;
@@ -36,8 +51,14 @@ public class tutu_FireCtrl : MonoBehaviour {
 	}
 
 	IEnumerator CreateBullet(string _target){
-		GameObject a =(GameObject)Instantiate(bullet,firePos.position,firePos.rotation);
-		a.GetComponent<BulletCtrl> ().setTarget(ClientState.id, _target);
+		for (int i=0; i<maxBullet; i++) {
+			if(bulletPool[i].activeSelf==false){
+				bulletPool[i].transform.position = firePos.position;
+				_bulletCtrl[i].setTarget(ClientState.id, _target);
+				bulletPool[i].SetActive(true);
+				break;
+			}
+		}
 		yield return null;
 	}
 

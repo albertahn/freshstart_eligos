@@ -8,7 +8,7 @@ public class minion_state : MonoBehaviour {
 	
 	public int hp = 100;
 	public string firedbyname;
-
+	
 	private moneyUI _moneyUI;
 	// Use this for initialization
 	void Start () {
@@ -17,20 +17,20 @@ public class minion_state : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {	
-				
+		
 	}
-
-
-
+	
+	
+	
 	public void Heated(string firedby, GameObject obj,int damage){
 		Collider coll = obj.collider;		
 		StartCoroutine (this.CreateBloodEffect(coll.transform.position));
-
+		
 		firedbyname = firedby;	
-			hp -= damage;
+		hp -= damage;
 		
 		string data = this.name+":" + hp.ToString()+"";
-
+		
 		SocketStarter.Socket.Emit ("attackMinion", data);			
 		
 		if(hp<=0)
@@ -44,19 +44,19 @@ public class minion_state : MonoBehaviour {
 		
 		//Destroy (obj.gameObject);
 	}
-
+	
 	public void minionDie(){
 		this.collider.enabled = false;
 		GetComponent<minionCtrl> ().isDie = true;
-
+		
 		if(ClientState.id==firedbyname){			
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);
-
+			
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(10);
 		}
-		Destroy (this.gameObject, 3.0f);
+		StartCoroutine (PushObjectPool ());
 	}
 	
 	
@@ -74,5 +74,14 @@ public class minion_state : MonoBehaviour {
 		Destroy (_blood2, 5.0f);*/
 		
 		yield return null;
+	}
+	
+	IEnumerator PushObjectPool(){
+		yield return new WaitForSeconds(3.0f);
+		
+		this.collider.enabled = true;
+		GetComponent<minionCtrl> ().isDie = false;
+		
+		gameObject.SetActive (false);
 	}
 }
