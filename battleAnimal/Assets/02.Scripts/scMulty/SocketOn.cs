@@ -10,7 +10,6 @@ public class SocketOn : MonoBehaviour {
 
 	public string ClientID;
 	private string addId;
-
 	public Vector3 attackPos;
 		
 	private string attackID;
@@ -49,6 +48,7 @@ public class SocketOn : MonoBehaviour {
 	private createRedMinionReceiver _createRedMinionReceiver;
 	private createBlueMinionReceiver _createBlueMinionReceiver;
 	private preUserMininonReceiver _preUserMinionReceiver;
+	private attackBuildingReceiver _attackBuildingReceiver;
 
 	private createObserver _createObserver;
 
@@ -72,6 +72,7 @@ public class SocketOn : MonoBehaviour {
 		_createRedMinionReceiver = GetComponent<createRedMinionReceiver> ();
 		_createBlueMinionReceiver = GetComponent<createBlueMinionReceiver> ();
 		_preUserMinionReceiver = GetComponent<preUserMininonReceiver> ();
+		_attackBuildingReceiver = GetComponent<attackBuildingReceiver> ();
 
 		_createObserver = GetComponent<createObserver> ();
 
@@ -84,7 +85,7 @@ public class SocketOn : MonoBehaviour {
 		attackSwitch = false;
 		moveSyncSwitch = false;
 
-		SocketStarter.Socket.On ("createRoomRES", (data) =>{
+		SocketStarter.Socket.On("createRoomRES", (data) =>{
 			string temp = data.Json.args[0].ToString();
 
 			if(temp== ClientID){
@@ -98,20 +99,17 @@ public class SocketOn : MonoBehaviour {
 
 		SocketStarter.Socket.On ("youMaster", (data) =>{
 			ClientState.isMaster = true;
-
 		});
-//cannon die
-		SocketStarter.Socket.On ("cannonDie", (data) =>{
 
-			Debug.Log("candie: "+data.Json.args[0].ToString());//edit
-			_CannonSync_reciever.killCannon(data.Json.args[0].ToString());
+		//cannon die
+		SocketStarter.Socket.On ("cannonDie", (data) => {
+			if(!ClientState.isMaster)
+			_CannonSync_reciever.killCannon (data.Json.args [0].ToString ());
 		});
-	
+
 		SocketStarter.Socket.On("createPlayerRES",(data) =>
-		                        {//접속한 플레이어가 있을때 호출된다.
-			SocketOn.debugstring = "7";
+		{//접속한 플레이어가 있을때 호출된다.
 			_createPlayerReceiver.receive(data.Json.args[0].ToString());
-			SocketOn.debugstring = "8";
 		});
 
 		SocketStarter.Socket.On("createRedMinionRES",(data) =>
@@ -126,7 +124,7 @@ public class SocketOn : MonoBehaviour {
 			_createBlueMinionReceiver.receive(temp);
 		});
 
-		SocketStarter.Socket.On ("preuser1RES", (data) => {			
+		SocketStarter.Socket.On ("preuser1RES", (data) => {		
 			string temp = data.Json.args[0].ToString();
 			_preUserMinionReceiver.receive(temp);
 		});
@@ -174,25 +172,16 @@ public class SocketOn : MonoBehaviour {
 			_im_out_receiver.receive(temp);
 		});
 
-
-		SocketStarter.Socket.On ("attackMinion", (data) =>{
-			
-			_minion_health_reciever.receive(data.Json.args[0].ToString());
-			
-			
+		SocketStarter.Socket.On("attackMinion", (data) =>{
+			if(!ClientState.isMaster)
+				_minion_health_reciever.receive(data.Json.args[0].ToString());
 		});
 
 		//building attack
 		SocketStarter.Socket.On ("attackBuilding", (data) =>{
-			
-			string[] temp = data.Json.args[0].ToString().Split(':');
-			building_name = temp[0];
-			building_hp_int = int.Parse(temp[1]);
-			
-			
-			//Debug.Log("attack: " + building_name+":"+building_hp_int);
-			
-			building_health_change= true;
+			if(!ClientState.isMaster){
+				_attackBuildingReceiver.receive(data.Json.args[0].ToString());
+			}
 		});
 
 		SocketStarter.Socket.On ("minionDieRES", (data) =>{
@@ -203,20 +192,14 @@ public class SocketOn : MonoBehaviour {
 		});
 
 //changed player health sync
-
 		SocketStarter.Socket.On ("HealthSync", (data) =>{
 			string[] temp = data.Json.args[0].ToString().Split(':');
 			//if(temp[0]!=ClientID){
-
-				_player_hp_reciever.receive(data.Json.args[0].ToString());
-					
+				_player_hp_reciever.receive(data.Json.args[0].ToString());					
 			//}
 		});
-		
 
 //skills sync
-
-	
 		//skill attack
 		SocketStarter.Socket.On ("SkillAttack", (data) =>{
 			skill_reciever.skillShot(data.Json.args[0].ToString());
@@ -224,12 +207,10 @@ public class SocketOn : MonoBehaviour {
 
 //master or not? 
 		if (ClientState.isMaster) {
-			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room+":master");
-
-				} else {
-			SocketStarter.Socket.Emit ("createRoomREQ", ClientID+":"+ClientState.room+":notmaster");
-
-				}
+			SocketStarter.Socket.Emit("createRoomREQ", ClientID+":"+ClientState.room+":master");
+		} else {
+			SocketStarter.Socket.Emit("createRoomREQ", ClientID+":"+ClientState.room+":notmaster");
+		}
 	}//end start
 
 //building health change

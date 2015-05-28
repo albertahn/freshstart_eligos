@@ -39,7 +39,7 @@ public class tutu_FireCtrl : MonoBehaviour {
 
 	public void Fire(string _target){
 		if ((Time.time - birth) > duration) {
-						StartCoroutine (this.CreateBullet (_target));
+			StartCoroutine (this.CreateBullet (_target));
 			StartCoroutine (this.ShowMuzzleFlash ());
 			//StartCoroutine (this.PlaySfx(fireSfx));
 			birth = Time.time;

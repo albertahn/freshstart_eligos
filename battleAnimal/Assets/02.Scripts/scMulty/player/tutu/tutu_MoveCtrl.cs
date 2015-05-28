@@ -90,8 +90,6 @@ public class tutu_MoveCtrl : MonoBehaviour {
 					
 					swiped = true;
 					
-					Debug.Log("swiped");
-					
 					break;                    
 					// Report that a direction has been chosen when the finger is lifted.
 				case TouchPhase.Ended:        
@@ -100,15 +98,11 @@ public class tutu_MoveCtrl : MonoBehaviour {
 						directionChosen = true;    
 						
 					}else{
-						directionChosen = false;    
-						
-						swiped = false;
-						
-						
+						directionChosen = false;						
+						swiped = false;					
 					}    //                
 					break;
-				}//end switch
-				
+				}//end switch				
 			}
 			
 			if (Input.touchCount == 1  && Input.GetTouch(0).phase != TouchPhase.Moved  && directionChosen ==false) {
@@ -119,7 +113,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 				if(Physics.Raycast (ray3, out hit3, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))){
 					if(hit3.collider.tag =="BUILDING" || hit3.collider.tag =="MINION"||hit3.collider.tag =="Player"
 					   ||hit3.collider.tag=="BLUE_CANNON"||hit3.collider.tag=="RED_CANNON"){
-						string targetName = hit3.collider.name;
+						string targetName =  hit3.collider.name;
 
 						if (hit3.collider.tag == "Player") {
 							string parentName = hit3.collider.gameObject.transform.parent.name;
@@ -196,11 +190,12 @@ public class tutu_MoveCtrl : MonoBehaviour {
 			if (Input.GetMouseButtonDown (0)) {						
 				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))) {
 					if (hitman2.collider.tag == "BUILDING" || hitman2.collider.tag == "MINION" || hitman2.collider.tag == "Player"
-					    || hitman2.collider.tag == "BLUE_CANNON" || hitman2.collider.tag == "RED_CANNON") {
-						string targetName = hitman2.collider.name;
+					    || hitman2.collider.tag == "RED_CANNON"|| hitman2.collider.tag == "BLUE_CANNON" ) {
+						string targetName =  hitman2.collider.name;
+						
+
 						if (hitman2.collider.tag == "Player") {
-							string parentName = hitman2.collider.gameObject.transform.parent.name;
-							
+							string parentName = hitman2.collider.gameObject.transform.parent.name;							
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
 								_attackMarkMaker.mark(hitman2.collider.gameObject);
@@ -214,6 +209,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 						} else {
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
+								Debug.Log("targetName = "+targetName);
 								_attackMarkMaker.mark(hitman2.collider.gameObject);
 								Vector3 target = hitman2.point;
 								attackPoint = target;

@@ -29,7 +29,6 @@ public class movePlayerReceiver : MonoBehaviour {
 	public void receive(string data){
 		string[] temp = data.Split (':');
 		string[] posTemp;
-		Debug.Log ("data = " + data);
 		while (switch_) {}
 		id = temp [0];
 		character = temp [1];

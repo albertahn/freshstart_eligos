@@ -185,7 +185,7 @@ console.log("createMinion");
                 data = "bm"+blueIdx+":"+data;                
                  io.sockets.in(socket.room).emit("createBlueMinionRES",data);
                  currMinion++;
-                /* if(currMinion>=maxMinion){
+               /*  if(currMinion>=maxMinion){
                         clearInterval( jarray[socket.room].timer2 );
                  }*/
                     
@@ -384,6 +384,13 @@ console.log("less than1");
         
         buildingHP[retAttackM[0]] = retAttackM[1];         
         io.sockets.in(socket.room).emit("attackMinion", data);
+    });
+    
+     socket.on('minionDieREQ', function(data){
+        var retAttackM = data.split(":");
+        
+       // buildingHP[retAttackM[0]] = retAttackM[1];         
+        io.sockets.in(socket.room).emit("minionDieRES", data);
     });
 
     socket.on('attackBuilding', function(data){

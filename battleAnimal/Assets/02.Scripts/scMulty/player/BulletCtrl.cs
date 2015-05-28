@@ -39,10 +39,11 @@ public class BulletCtrl : MonoBehaviour {
 				tr.position = Vector3.MoveTowards(tr.position, targetPosition, step);
 			}
 		}
+
 		if ((Time.time - birth) > durationTime) {
 			birth = Time.time;
-						StartCoroutine (PushObjectPool ());
-				}
+			StartCoroutine (PushObjectPool ());
+		}
 	}
 
 	void OnTriggerEnter(Collider coll){

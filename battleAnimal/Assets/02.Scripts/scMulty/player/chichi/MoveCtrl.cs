@@ -126,6 +126,7 @@ public class MoveCtrl : MonoBehaviour {
 					if(hit3.collider.tag =="BUILDING" || hit3.collider.tag =="MINION"||hit3.collider.tag =="Player"
 					   ||hit3.collider.tag=="BLUE_CANNON"||hit3.collider.tag=="RED_CANNON"){
 						string targetName = hit3.collider.name;
+
 						if (hit3.collider.tag == "Player") {
 							string parentName = hit3.collider.gameObject.transform.parent.name;
 							
@@ -201,14 +202,14 @@ public class MoveCtrl : MonoBehaviour {
 			RaycastHit hitman2;
 			
 			
-			if (Input.GetMouseButtonDown (0)) {						
+			if (Input.GetMouseButtonDown (0)) {
 				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))) {
 					if (hitman2.collider.tag == "BUILDING" || hitman2.collider.tag == "MINION" || hitman2.collider.tag == "Player"
-					    || hitman2.collider.tag == "BLUE_CANNON" || hitman2.collider.tag == "RED_CANNON") {
-						string targetName = hitman2.collider.name;
+					    || hitman2.collider.tag == "RED_CANNON"|| hitman2.collider.tag == "BLUE_CANNON" ) {
+						string targetName=  hitman2.collider.name;
+
 						if (hitman2.collider.tag == "Player") {
-							string parentName = hitman2.collider.gameObject.transform.parent.name;
-							
+							string parentName = hitman2.collider.gameObject.transform.parent.name;							
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
 								_attackMarkMaker.mark(hitman2.collider.gameObject);
@@ -216,10 +217,11 @@ public class MoveCtrl : MonoBehaviour {
 								attackPoint = target;
 								
 								string data = ClientID+ ":"+ClientState.character + ":" + targetName;
-								SocketStarter.Socket.Emit ("attackREQ", data);	
+								SocketStarter.Socket.Emit ("attackREQ",data);	
 								attack (targetName);
 							}
 						} else {
+							Debug.Log("targetName = "+targetName);
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
 								_attackMarkMaker.mark(hitman2.collider.gameObject);
@@ -227,7 +229,7 @@ public class MoveCtrl : MonoBehaviour {
 								attackPoint = target;
 								
 								string data = ClientID + ":"+ClientState.character + ":" + targetName;
-								SocketStarter.Socket.Emit ("attackREQ", data);	
+								SocketStarter.Socket.Emit ("attackREQ",data);	
 								attack (targetName);
 							}
 						}
@@ -242,7 +244,7 @@ public class MoveCtrl : MonoBehaviour {
 							
 							string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 								":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-							SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.							
+							SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.							
 							
 							move ();
 						}

@@ -6,11 +6,26 @@ public class blue_minion_state : MonoBehaviour {
 	public GameObject bloodEffect;
 	public GameObject bloodDecal;
 	
-	public int hp = 100;
-	
+	public int hp;	
 	public string firedbyname;
 	
 	private moneyUI _moneyUI;
+		
+	private GameObject[] effectPool;
+	private int maxEffect;
+
+	void Awake(){
+		hp = 100;
+		maxEffect = 5;
+		effectPool = new GameObject[maxEffect];
+		for (int i=0; i<maxEffect; i++)
+		{
+			effectPool[i] = (GameObject)Instantiate(bloodEffect);
+			effectPool[i].transform.parent = gameObject.transform;
+			effectPool[i].SetActive(false);
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		_moneyUI = GameObject.Find ("UIManager").GetComponent<moneyUI>();		
@@ -20,32 +35,31 @@ public class blue_minion_state : MonoBehaviour {
 	void Update () {	
 		
 	}
-	
-	//COLIDE WITH SKILL1
+
 	
 	
 	public void Heated(string firedby, GameObject obj,int damage){
-		Collider coll = obj.collider;
-		
-		firedbyname = firedby;
-		
-		StartCoroutine (this.CreateBloodEffect(coll.transform.position));		
-		hp -= damage;
-		
-		
-		string data = this.name+":" + hp.ToString()+"";
-		SocketStarter.Socket.Emit ("attackMinion", data);			
-		
-		if(hp<=0)
-		{
-			hp=0;
-			minionDie();
+		if (ClientState.isMaster) 
+		{	
+			hp -= damage;
 			
-			string data2 = ClientState.id+":"+this.name;
-			SocketStarter.Socket.Emit ("minionDieREQ", data2);
+			string data = this.name+":" + hp.ToString()+"";
+			SocketStarter.Socket.Emit ("attackMinion", data);	
+
+			if(hp<=0)
+			{
+				hp=0;
+				minionDie();
+				
+				string data2 = ClientState.id+":"+this.name;
+				SocketStarter.Socket.Emit ("minionDieREQ", data2);
+			}
 		}
-		
-		//Destroy (obj.gameObject);
+
+		firedbyname = firedby;
+		Collider coll = obj.collider;	
+		StartCoroutine (this.CreateBloodEffect(coll.transform.position));	
+
 	}
 	
 	public void minionDie(){
@@ -65,23 +79,28 @@ public class blue_minion_state : MonoBehaviour {
 	
 	IEnumerator CreateBloodEffect(Vector3 pos)
 	{
-		GameObject _blood1 = (GameObject)Instantiate (bloodEffect, pos, Quaternion.identity);
-		Destroy (_blood1, 2.0f);
-		
-		Vector3 decalPos = this.transform.position+(Vector3.right*5.01f);
-		Quaternion decalRot = Quaternion.Euler(0,Random.Range(0,360),0);
-		
-		/*GameObject _blood2 = (GameObject)Instantiate (bloodDecal, decalPos, decalRot);
-		float _scale = Random.Range (1.5f, 3.5f);
-		_blood2.transform.localScale = new Vector3 (_scale, 1, _scale);
-		Destroy (_blood2, 5.0f);*/
+		for (int i=0; i<maxEffect; i++) 
+		{
+			if(effectPool[i].activeSelf==false)
+			{
+				effectPool[i].transform.position = pos;
+				effectPool[i].SetActive(true);
+				StartCoroutine(PushObjectEffectPool(effectPool[i]));
+				break;
+			}
+		}
 		
 		yield return null;
 	}
-	
+	IEnumerator PushObjectEffectPool(GameObject a)
+	{
+		yield return new WaitForSeconds (0.2f);
+		a.SetActive (false);
+	}
 	IEnumerator PushObjectPool(){
 		yield return new WaitForSeconds(3.0f);
 		
+		hp = 100;
 		this.collider.enabled = true;
 		GetComponent<blueMinionCtrl> ().isDie = false;
 		

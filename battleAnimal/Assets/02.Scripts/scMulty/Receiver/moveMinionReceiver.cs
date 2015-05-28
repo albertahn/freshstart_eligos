@@ -27,8 +27,6 @@ public class moveMinionReceiver : MonoBehaviour {
 		string[] temp = data.Split (':');
 		string[] posTemp;
 
-		Debug.Log ("data = "+data);
-
 		id = temp [0];
 		posTemp = temp [1].Split (',');
 		currPos = new Vector3(float.Parse(posTemp[0]),

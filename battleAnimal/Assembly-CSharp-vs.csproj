@@ -48,9 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\02.Scripts\DBManager.cs" />
      <Compile Include="Assets\02.Scripts\Level_up_stuff\Level_up_evolve.cs" />
-     <Compile Include="Assets\02.Scripts\Player_hp\PlayerHealthState.cs" />
-     <Compile Include="Assets\02.Scripts\Player_hp\Player_hp_bar.cs" />
-     <Compile Include="Assets\02.Scripts\Player_hp\Player_hp_reciever_socket.cs" />
      <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\DogSkill_GUI.cs" />
      <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\FireSkill.cs" />
      <Compile Include="Assets\02.Scripts\Skill_gui\Dog_skill\SkillFirstCrl.cs" />
@@ -88,6 +85,7 @@
      <Compile Include="Assets\02.Scripts\scMulty\MyGizmo.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Receiver\CannonSync_reciever.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Receiver\ImOutReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\attackBuildingReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Receiver\createBlueMinionReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Receiver\createPlayerReceiver.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Receiver\createRedMinionReceiver.cs" />
@@ -134,6 +132,9 @@
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_state.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\red_outer_collider.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\BulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\Player_hp\PlayerHealthState.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\Player_hp\Player_hp_bar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\Player_hp\Player_hp_reciever_socket.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkMaker.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\player\chichi\AniCtrl.cs" />

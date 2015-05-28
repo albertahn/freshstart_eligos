@@ -22,34 +22,25 @@ public class Minion_health_reciever_socket : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-		if(switch_){
-			
+	void Update () {		
+		if(switch_){			
 			GameObject a = GameObject.Find (id);
 
 			if(a !=null){
-
 				if(id[0]== 'r'){
 					minion_state = a.GetComponent<minion_state>();
 					minion_state.hp = int.Parse(rec_hp);
 
-				}else{
+				}else if(id[0]=='b'){
 					blue_minion_state = a.GetComponent<blue_minion_state>();
 					blue_minion_state.hp = int.Parse(rec_hp);
-
 				}
-
-
 				switch_=false;
 			}
-
 		}	
 	}//end update
-	public void receive(string data){
-		
-		Debug.Log ("hp recieved sync");
-		
+
+	public void receive(string data){		
 		string[] temp = data.Split (':');
 		string[] posTemp;
 

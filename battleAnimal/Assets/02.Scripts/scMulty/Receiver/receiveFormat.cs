@@ -23,4 +23,8 @@ public class receiveFormat : MonoBehaviour {
 		
 		switch_ = true;
 	}
+
+	private IEnumerator doit(){
+		yield return null;
+	}
 }

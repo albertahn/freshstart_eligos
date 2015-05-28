@@ -17,7 +17,22 @@ public class RedCannonState : MonoBehaviour {
 	public string FiredBy;
 	private moneyUI _moneyUI;
 	// Use this for initialization
+
+	
+	private GameObject[] effectPool;
+	private int maxEffect;
+
+
 	void Start () {
+		maxEffect = 5;
+		effectPool = new GameObject[maxEffect];
+		for (int i=0; i<maxEffect; i++)
+		{
+			effectPool[i] = (GameObject)Instantiate(bloodEffect);
+			effectPool[i].transform.parent = gameObject.transform;
+			effectPool[i].SetActive(false);
+		}
+
 		maxhp = 200;
 		hp = maxhp;
 		isDie = false;
@@ -31,20 +46,22 @@ public class RedCannonState : MonoBehaviour {
 	
 	public void Heated(string firedby,GameObject obj,int damage){
 		FiredBy = firedby;
-		Collider coll = obj.collider;
-		
+		Collider coll = obj.collider;		
 		StartCoroutine (this.CreateBloodEffect(coll.transform.position));
-		
-		hp -= damage;
-		
-		//string data = this.name+":" + hp.ToString()+"";
-		//SocketStarter.Socket.Emit ("attackMinion", data);			
-		
-		if(hp<=0)
+
+		if (ClientState.isMaster)
 		{
-			hp=0;
-			playerDie(firedby);
+			hp -= damage;		
+			string data = this.name + ":" + hp.ToString () + "";
+			SocketStarter.Socket.Emit ("attackBuilding", data);
+
+			if(hp<=0)
+			{
+				hp=0;
+				playerDie(firedby);
+			}			
 		}
+
 		
 		//Destroy (obj.gameObject);
 	}//end heated
@@ -94,20 +111,24 @@ public class RedCannonState : MonoBehaviour {
 		
 	}
 	
-	
 	IEnumerator CreateBloodEffect(Vector3 pos)
 	{
-		GameObject _blood1 = (GameObject)Instantiate (bloodEffect, pos, Quaternion.identity);
-		Destroy (_blood1, 2.0f);
-		
-		Vector3 decalPos = this.transform.position+(Vector3.right*5.01f);
-		Quaternion decalRot = Quaternion.Euler(0,Random.Range(0,360),0);
-		
-		/*GameObject _blood2 = (GameObject)Instantiate (bloodDecal, decalPos, decalRot);
-		float _scale = Random.Range (1.5f, 3.5f);
-		_blood2.transform.localScale = new Vector3 (_scale, 1, _scale);
-		Destroy (_blood2, 5.0f);*/
+		for (int i=0; i<maxEffect; i++) 
+		{
+			if(effectPool[i].activeSelf==false)
+			{
+				effectPool[i].transform.position = pos;
+				effectPool[i].SetActive(true);
+				StartCoroutine(PushObjectPool(effectPool[i]));
+				break;
+			}
+		}
 		
 		yield return null;
+	}
+	IEnumerator PushObjectPool(GameObject a)
+	{
+		yield return new WaitForSeconds (0.2f);
+		a.SetActive (false);
 	}
 }
