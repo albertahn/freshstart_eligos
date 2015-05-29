@@ -78,51 +78,13 @@ public class MoveCtrl : MonoBehaviour {
 			
 			//id가 내 캐릭터 일때
 			#if UNITY_ANDROID||UNITY_IPHONE
-			if (Input.touchCount == 1 && Input.touchCount  <2) {
-				
-				var touch = Input.GetTouch(0);                
-				
-				switch (touch.phase) {
-					// Record initial touch position.
-				case TouchPhase.Began:
-					timeOfTouch = Time.time;
-					
-					swiped = false;
-					
-					break;                    
-					// Determine direction by comparing the current touch position with the initial one.
-				case TouchPhase.Moved:
-					direction = touch.position - startPos;
-					
-					swiped = true;
-					
-					Debug.Log("swiped");
-					
-					break;                    
-					// Report that a direction has been chosen when the finger is lifted.
-				case TouchPhase.Ended:        
-					
-					if(Time.time - timeOfTouch>3.0f || swiped ==true){
-						directionChosen = true;    
 						
-					}else{
-						directionChosen = false;    
-						
-						swiped = false;
-						
-						
-					}    //                
-					break;
-				}//end switch
-				
-			}
-			
-			if (Input.touchCount == 1  && Input.GetTouch(0).phase != TouchPhase.Moved  && directionChosen ==false) {
-				Ray ray3 = Camera.main.ScreenPointToRay (Input.touches [0].position);
+			if (Input.touchCount >0  && Input.GetTouch(0).phase ==TouchPhase.Began) {
+				Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
 				RaycastHit hit3;
-				RaycastHit hit4;    
+				RaycastHit hit4;
 				
-				if(Physics.Raycast (ray3, out hit3, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))){
+				if(Physics.Raycast (ray, out hit3, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))){
 					if(hit3.collider.tag =="BUILDING" || hit3.collider.tag =="MINION"||hit3.collider.tag =="Player"
 					   ||hit3.collider.tag=="BLUE_CANNON"||hit3.collider.tag=="RED_CANNON"){
 						string targetName = hit3.collider.name;
@@ -153,42 +115,28 @@ public class MoveCtrl : MonoBehaviour {
 							}
 						}                                 
 					}//else hit player
-					else if(Physics.Raycast(ray3, out hit4, Mathf.Infinity, 1<<LayerMask.NameToLayer("FLOOR"))){
+					else if(Physics.Raycast(ray, out hit4, Mathf.Infinity, 1<<LayerMask.NameToLayer("FLOOR"))){
 						//int pointerID = Input.touches; //EventSystem.current.IsPointerOverGameObject
 						_attackMarkMaker.deleteMarker();
-						
-						Touch currentTouch = Input.GetTouch(0);
-						
-						bool inputIsActive = (currentTouch.phase != TouchPhase.Ended &&
-						                      currentTouch.phase != TouchPhase.Canceled);
-						
-						
-						
-						if( inputIsActive && EventSystem.current.IsPointerOverGameObject(currentTouch.fingerId)==false){  
-							Vector3 target = new Vector3(hit4.point.x, 0 , hit4.point.z);
+
+						Vector3 target = new Vector3(hit4.point.x, 0 , hit4.point.z);
 							
-							clickendpoint = hit4.point;
+						clickendpoint = hit4.point;
 							
-							string data = ClientID+  ":"+ClientState.character+ ":" +tr.position.x+","+tr.position.y+","+tr.position.z+
-								":"+ clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-							SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.        
+						string data = ClientID+  ":"+ClientState.character+ ":" +tr.position.x+","+tr.position.y+","+tr.position.z+
+							":"+ clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
+						SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.        
 							
-							move();
+						move();
 							
 							//playermoving = true;
 							
-							tr.LookAt(hit4.point); 
-							myxpos    =hit4.point.x; //Input.touches [0].position.x;
-							myypos    =hit4.point.z;  //Input.touches [0].position.y;    
-							
-							
-						}//if false                        
+						tr.LookAt(hit4.point); 
+						myxpos    =hit4.point.x; //Input.touches [0].position.x;
+						myypos    =hit4.point.z;  //Input.touches [0].position.y;
 					}//end 
 				}
 			}//if
-			
-			
-			
 			
 			//}// if touchcount 1
 			#else

@@ -9,10 +9,12 @@ public class BulletCtrl : MonoBehaviour {
 	private Transform tr;
 	public string firedbyname;
 	public int damage;
+	private TrailRenderer _trail;
 
 	// Use this for initialization
 	void Awake () {
 		tr = GetComponent<Transform> ();
+		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
 		damage = playerStat.damage;
 		speed = 20.0f;
@@ -72,6 +74,7 @@ public class BulletCtrl : MonoBehaviour {
 	IEnumerator PushObjectPool()
 	{
 		yield return new WaitForSeconds(0.1f);
+		_trail.enabled = false;
 		gameObject.SetActive (false);
 	}
 }

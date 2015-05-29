@@ -23,7 +23,6 @@ io.sockets.on('connection', function (socket) {
     socket.on("joinRoomREQ",function(data){       
         var roomname = data;        
         var rooms = io.sockets.manager.rooms;
-        console.log("rooms = "+rooms);
         
         if(true ==(roomname in socketRoom)){
           socket.room = data;
@@ -88,7 +87,7 @@ io.sockets.on('connection', function (socket) {
                 delete(jarray[socket.room].userNames[socket.id]);
             }
             socket.leave(key);
-        }
+            }
         }
     });
 });

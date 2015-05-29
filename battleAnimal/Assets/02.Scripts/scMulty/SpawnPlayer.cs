@@ -10,6 +10,7 @@ public class SpawnPlayer : MonoBehaviour {
 	private expBar _exp;
 	private UI_skill_manager _ui_skill_manager;
 	private CameraTouch _cameraTouch;
+	private FollowCam _followCam;
 
 	private skill1Plus _skill1Plus;
 	private skill2Plus _skill2Plus;
@@ -41,6 +42,7 @@ public class SpawnPlayer : MonoBehaviour {
 		_exp = GameObject.Find ("ExpBarParent").GetComponent<expBar>();
 		_ui_skill_manager = GameObject.Find ("UIManager").GetComponent<UI_skill_manager> ();
 		_cameraTouch = GameObject.Find ("CameraWrap").GetComponent<CameraTouch>();
+		_followCam = GameObject.Find ("CameraWrap").GetComponent<FollowCam>();
 
 		_skill1Plus = GameObject.Find ("skill1+").GetComponent<skill1Plus> ();
 		_skill2Plus = GameObject.Find ("skill2+").GetComponent<skill2Plus> ();
@@ -67,16 +69,17 @@ public class SpawnPlayer : MonoBehaviour {
 		}
 		//a.GetComponentInChildren<HP_Bar>().target = a.transform;
 		if (_id == ClientState.id) {
-						_respawn.setPlayer ();
-						_ui_skill_manager.setPlayer ();
+			_respawn.setPlayer ();
+			_ui_skill_manager.setPlayer ();
 						//_gui.setPlayer();
-						_exp.setPlayer ();			
-						_skill1Plus.setPlayer ();
-						_skill2Plus.setPlayer ();
-						_skill3Plus.setPlayer ();
-						_cameraTouch.setPlayer ();
-						_uihpbar.setPlayer ();
-				}
+			_exp.setPlayer ();			
+			_skill1Plus.setPlayer ();
+			_skill2Plus.setPlayer ();
+			_skill3Plus.setPlayer ();
+			_cameraTouch.setPlayer ();
+			_uihpbar.setPlayer ();
+			_followCam.setTarget(a.transform);
+		}
 	}
 	
 	//a.transform.parent = rms.transform;

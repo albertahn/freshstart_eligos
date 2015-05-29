@@ -69,6 +69,7 @@
      <Compile Include="Assets\02.Scripts\building_scripts\MainFortress.cs" />
      <Compile Include="Assets\02.Scripts\camerainterface\Cam_gui.cs" />
      <Compile Include="Assets\02.Scripts\camerainterface\CameraTouch.cs" />
+     <Compile Include="Assets\02.Scripts\camerainterface\FollowCam.cs" />
      <Compile Include="Assets\02.Scripts\scLogIn\LogInUI.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonFire.cs" />
@@ -76,7 +77,6 @@
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonState.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannon_OutterCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BulletCtrl_BlueCannon.cs" />
-     <Compile Include="Assets\02.Scripts\scMulty\FollowCam.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\HP_Bar.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfo.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfoUI.cs" />

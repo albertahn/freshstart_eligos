@@ -8,10 +8,12 @@ public class mBulletCtrl : MonoBehaviour {
 	private float durationTime;
 	public GameObject target;
 	private Transform tr;
+	private TrailRenderer _trail;
 
 	// Use this for initialization
 	void Start () {
 		tr = GetComponent<Transform> ();
+		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
 		damage = 20;
 		speed = 20.0f;
@@ -66,6 +68,7 @@ public class mBulletCtrl : MonoBehaviour {
 	IEnumerator PushObjectPool()
 	{
 		yield return new WaitForSeconds(0.1f);
+		_trail.enabled = false;
 		gameObject.SetActive (false);
 	}
 }

@@ -28,8 +28,8 @@ public class tutu_FireCtrl : MonoBehaviour {
 			bulletPool[i] = (GameObject)Instantiate(bullet);
 			_bulletCtrl[i] = bulletPool[i].GetComponent<BulletCtrl>();
 			bulletPool[i].name = "Bullet_"+i.ToString();
-			bulletPool[i].SetActive(false);
 			bulletPool[i].transform.parent = gameObject.transform;
+			bulletPool[i].SetActive(false);
 		}
 
 		_renderer.enabled = false;	

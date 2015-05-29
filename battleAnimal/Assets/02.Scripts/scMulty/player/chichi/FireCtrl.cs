@@ -16,6 +16,7 @@ public class FireCtrl : MonoBehaviour {
 
 	private GameObject[] bulletPool;
 	private BulletCtrl[] _bulletCtrl;
+	private TrailRenderer[] _trail;
 	private int maxBullet;
 
 	// Use this for initialization
@@ -23,12 +24,14 @@ public class FireCtrl : MonoBehaviour {
 		maxBullet = 6;
 		bulletPool = new GameObject[maxBullet];
 		_bulletCtrl = new BulletCtrl[maxBullet];
+		_trail = new TrailRenderer[maxBullet];
 		for (int i=0; i<maxBullet; i++) {
 			bulletPool[i] = (GameObject)Instantiate(bullet);
 			_bulletCtrl[i] = bulletPool[i].GetComponent<BulletCtrl>();
+			_trail[i] =bulletPool[i].GetComponent<TrailRenderer>();
 			bulletPool[i].name = "Bullet_"+i.ToString();
-			bulletPool[i].SetActive(false);
 			bulletPool[i].transform.parent = gameObject.transform;
+			bulletPool[i].SetActive(false);
 		}
 
 		_renderer.enabled = false;	
@@ -54,6 +57,7 @@ public class FireCtrl : MonoBehaviour {
 			if(bulletPool[i].activeSelf==false){
 				bulletPool[i].transform.position = firePos.position;
 				_bulletCtrl[i].setTarget(ClientState.id, _target);
+				_trail[i].enabled = true;
 				bulletPool[i].SetActive(true);
 				break;
 			}
