@@ -28,7 +28,6 @@ public class waitSocketOn : MonoBehaviour {
 
 				if (ClientState.order ==0){
 					ClientState.isMaster = true;
-
 				}
 
 			}else{

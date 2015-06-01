@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class createRoomReceiver : MonoBehaviour {
-	private bool switch_;	
-	private SpawnPlayer _spawnPlayer;
+	public bool switch_;	
+	public SpawnPlayer _spawnPlayer;
 	
 	// Use this for initialization
-	void Start () {		
+	void Awake () {		
 		_spawnPlayer = GetComponent<SpawnPlayer> ();
 		switch_ = false;
 	}
@@ -14,17 +14,16 @@ public class createRoomReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			StartCoroutine(doit ());			
-			switch_=false;
+			StartCoroutine(doit ());
 		}	
 	}
 	public void receive(){
-		
 		switch_ = true;
 	}
 
 	private IEnumerator doit(){
-		StartCoroutine(_spawnPlayer.CreatePlayer());	
+		_spawnPlayer.CreatePlayer();				
+		switch_=false;
 		yield return null;
 	}
 }

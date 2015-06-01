@@ -88,9 +88,11 @@ public class SocketOn : MonoBehaviour {
 		SocketStarter.Socket.On("createRoomRES", (data) =>{
 			string temp = data.Json.args[0].ToString();
 
+
 			if(temp== ClientID){
-				if(temp!="ob")
+				if(temp!="ob"){
 					_createRoomReceiver.receive();
+				}
 				else{
 					_createObserver.receive();
 				}
@@ -109,13 +111,11 @@ public class SocketOn : MonoBehaviour {
 
 		SocketStarter.Socket.On("createPlayerRES",(data) =>
 		{//접속한 플레이어가 있을때 호출된다.
-			Debug.Log("i'm in~~~~~");
 			_createPlayerReceiver.receive(data.Json.args[0].ToString());
 		});
 
 		SocketStarter.Socket.On("createRedMinionRES",(data) =>
 		{
-			Debug.Log("redminion!!");
 			string temp = data.Json.args[0].ToString();
 			_createRedMinionReceiver.receive(temp);
 		});

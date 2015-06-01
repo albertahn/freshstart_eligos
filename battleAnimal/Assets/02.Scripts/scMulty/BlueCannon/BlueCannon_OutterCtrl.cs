@@ -82,7 +82,6 @@ public class BlueCannon_OutterCtrl : MonoBehaviour {
 	}
 	
 	public void changeTarget(){
-		Debug.Log ("list num = "+enemyList.Count);
 		if(enemyList.Count<=0){
 			isRun=false;
 		}else{

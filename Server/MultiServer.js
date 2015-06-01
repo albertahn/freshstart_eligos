@@ -79,8 +79,7 @@ io.sockets.on('connection', function (socket) {
 //end create room    
     
 //crate playe
-    socket.on("createPlayerREQ", function(data) {
-        
+    socket.on("createPlayerREQ", function(data) {        
         var ret = data.split(":");
     
         io.sockets.in(socket.room).emit("createPlayerRES", data);

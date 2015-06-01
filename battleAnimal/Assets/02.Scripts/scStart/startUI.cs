@@ -6,6 +6,7 @@ public class startUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Screen.SetResolution(480, 800, true);
+		PlayerPrefs.SetString ("email","aa");//not internet
 	}
 	
 	// Update is called once per frame

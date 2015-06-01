@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(AudioSource))]
 public class MoveCtrl : MonoBehaviour {	
 	private Transform tr;
-	Vector3 pre_tr;
 	private CharacterController _controller;
 	private FireCtrl _fireCtrl;
 	public AudioClip stepSfx;
@@ -44,6 +43,8 @@ public class MoveCtrl : MonoBehaviour {
 	private AniCtrl _aniCtrl;
 	private bool oneDie;
 
+	private int layerMask;
+
 	IEnumerator playSfx(AudioClip _clip){
 		audio.PlayOneShot (_clip, 0.9f);
 		yield return null;
@@ -51,11 +52,11 @@ public class MoveCtrl : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		layerMask = (1 << LayerMask.NameToLayer ("FLOOR"))|(1 << LayerMask.NameToLayer ("TOUCH"));
 		_attackMarkMaker = GetComponent<attackMarkMaker> ();
 		attackPoint = Vector3.zero;
 		tr = this.GetComponent<Transform> ();
 		_fireCtrl = this.GetComponent<FireCtrl> ();
-		pre_tr = t2v(tr);
 		_controller = GetComponent<CharacterController> ();
 		_state = GetComponent<PlayerHealthState> ();
 		ClientID = ClientState.id;
@@ -84,10 +85,10 @@ public class MoveCtrl : MonoBehaviour {
 				RaycastHit hit3;
 				RaycastHit hit4;
 				
-				if(Physics.Raycast (ray, out hit3, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))){
+				if(Physics.Raycast (ray, out hit3, Mathf.Infinity,layerMask)){
 					if(hit3.collider.tag =="BUILDING" || hit3.collider.tag =="MINION"||hit3.collider.tag =="Player"
 					   ||hit3.collider.tag=="BLUE_CANNON"||hit3.collider.tag=="RED_CANNON"){
-						string targetName = hit3.collider.name;
+						string targetName= hit3.collider.transform.parent.name;
 
 						if (hit3.collider.tag == "Player") {
 							string parentName = hit3.collider.gameObject.transform.parent.name;
@@ -151,10 +152,10 @@ public class MoveCtrl : MonoBehaviour {
 			
 			
 			if (Input.GetMouseButtonDown (0)) {
-				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))) {
+				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,layerMask)) {
 					if (hitman2.collider.tag == "BUILDING" || hitman2.collider.tag == "MINION" || hitman2.collider.tag == "Player"
 					    || hitman2.collider.tag == "RED_CANNON"|| hitman2.collider.tag == "BLUE_CANNON" ) {
-						string targetName=  hitman2.collider.name;
+						string targetName= hitman2.collider.transform.parent.name;
 
 						if (hitman2.collider.tag == "Player") {
 							string parentName = hitman2.collider.gameObject.transform.parent.name;							
@@ -169,7 +170,6 @@ public class MoveCtrl : MonoBehaviour {
 								attack (targetName);
 							}
 						} else {
-							Debug.Log("targetName = "+targetName);
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
 								_attackMarkMaker.mark(hitman2.collider.gameObject);
@@ -327,23 +327,7 @@ public class MoveCtrl : MonoBehaviour {
 		isAttack = false;
 		isMoveAndAttack = false;
 	}
-	
-	bool isSame(Transform a,Vector3 b){
-		if (a.position.x == b.x &&
-		    a.position.y == b.y &&
-		    a.position.z == b.z)
-			return true;
-		else
-			return false;
-	}
-	
-	Vector3 t2v(Transform t){		
-		Vector3 a;
-		a.x = t.position.x;
-		a.y = t.position.y;
-		a.z = t.position.z;
-		return a;
-	}
+
 	public void moveToPointMark(Vector3 point){
 		
 		GameObject pastmovetomark = GameObject.Find ("MoveMark"); 

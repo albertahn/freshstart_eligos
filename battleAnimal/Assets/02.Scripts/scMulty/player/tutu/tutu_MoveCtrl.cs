@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class tutu_MoveCtrl : MonoBehaviour {	
 	private Transform tr;
-	Vector3 pre_tr;
+
 	private CharacterController _controller;
 	private tutu_FireCtrl _fireCtrl;
 	private attackMarkMaker _attackMarkMaker;
@@ -42,13 +42,15 @@ public class tutu_MoveCtrl : MonoBehaviour {
 	private tutu_AniCtrl _aniCtrl;
 	private bool oneDie;
 	
+	private int layerMask;
+	
 	// Use this for initialization
 	void Start () {
+		layerMask = (1 << LayerMask.NameToLayer ("FLOOR"))|(1 << LayerMask.NameToLayer ("TOUCH"));
 		_attackMarkMaker = GetComponent<attackMarkMaker> ();
 		attackPoint = Vector3.zero;
 		tr = this.GetComponent<Transform> ();
 		_fireCtrl = this.GetComponent<tutu_FireCtrl> ();
-		pre_tr = t2v(tr);
 		_controller = GetComponent<CharacterController> ();
 		_state = GetComponent<PlayerHealthState> ();
 		ClientID = ClientState.id;
@@ -60,7 +62,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 		directionChosen = false;
 		isAttack = false;
 		isMoveAndAttack=false;
-		
+
 		swiped = false;
 		oneDie = false;
 	}	
@@ -77,10 +79,10 @@ public class tutu_MoveCtrl : MonoBehaviour {
 				RaycastHit hit3;
 				RaycastHit hit4;
 				
-				if(Physics.Raycast (ray, out hit3, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))){
+				if(Physics.Raycast (ray, out hit3, Mathf.Infinity,layerMask)){
 					if(hit3.collider.tag =="BUILDING" || hit3.collider.tag =="MINION"||hit3.collider.tag =="Player"
 					   ||hit3.collider.tag=="BLUE_CANNON"||hit3.collider.tag=="RED_CANNON"){
-						string targetName = hit3.collider.name;
+						string targetName= hit3.collider.transform.parent.name;
 						
 						if (hit3.collider.tag == "Player") {
 							string parentName = hit3.collider.gameObject.transform.parent.name;
@@ -144,10 +146,10 @@ public class tutu_MoveCtrl : MonoBehaviour {
 			
 			
 			if (Input.GetMouseButtonDown (0)) {						
-				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,(-1) -(1 << LayerMask.NameToLayer("OBSTACLE")))) {
+				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,layerMask)) {
 					if (hitman2.collider.tag == "BUILDING" || hitman2.collider.tag == "MINION" || hitman2.collider.tag == "Player"
 					    || hitman2.collider.tag == "RED_CANNON"|| hitman2.collider.tag == "BLUE_CANNON" ) {
-						string targetName =  hitman2.collider.name;
+						string targetName= hitman2.collider.transform.parent.name;
 						
 
 						if (hitman2.collider.tag == "Player") {
@@ -319,23 +321,7 @@ public class tutu_MoveCtrl : MonoBehaviour {
 		isAttack = false;
 		isMoveAndAttack = false;
 	}
-	
-	bool isSame(Transform a,Vector3 b){
-		if (a.position.x == b.x &&
-		    a.position.y == b.y &&
-		    a.position.z == b.z)
-			return true;
-		else
-			return false;
-	}
-	
-	Vector3 t2v(Transform t){		
-		Vector3 a;
-		a.x = t.position.x;
-		a.y = t.position.y;
-		a.z = t.position.z;
-		return a;
-	}
+
 	public void moveToPointMark(Vector3 point){
 		
 		GameObject pastmovetomark = GameObject.Find ("MoveMark"); 

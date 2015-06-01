@@ -55,12 +55,8 @@ public class PlayerHealthState : MonoBehaviour {
 			}		
 		}//end blue team health recover
 
-		if (hp > playerStat.maxHp)
+		if (hp >= playerStat.maxHp)
 			hp = playerStat.maxHp;
-		if (Time.time - hpBirth > 1.0f){
-			hp++;
-			hpBirth=Time.time;
-		}
 	}
 
 	public void Heated(string firedby,GameObject obj,int damage){

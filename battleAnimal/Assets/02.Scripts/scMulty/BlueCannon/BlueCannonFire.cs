@@ -9,9 +9,27 @@ public class BlueCannonFire : MonoBehaviour {
 	private float birth;
 	private float duration;
 	
+	private GameObject[] bulletPool;
+	private BulletCtrl_BlueCannon[] _bulletCtrl;
+	private TrailRenderer[] _trail;
+	private int maxBullet;
 	
 	// Use this for initialization
 	void Start () {
+		maxBullet = 6;		
+		bulletPool = new GameObject[maxBullet];
+		_bulletCtrl = new BulletCtrl_BlueCannon[maxBullet];
+		_trail = new TrailRenderer[maxBullet];
+
+		for (int i=0; i<maxBullet; i++) {
+			bulletPool[i] = (GameObject)Instantiate(bullet);
+			_bulletCtrl[i] = bulletPool[i].GetComponent<BulletCtrl_BlueCannon>();
+			_trail[i] =bulletPool[i].GetComponent<TrailRenderer>();
+			bulletPool[i].name = "Bullet_"+i.ToString();
+			bulletPool[i].transform.parent = gameObject.transform;
+			bulletPool[i].SetActive(false);
+		}
+
 		_renderer.enabled = false;	
 		duration = 0.5f;
 	}
@@ -30,8 +48,15 @@ public class BlueCannonFire : MonoBehaviour {
 	}
 	
 	IEnumerator CreateBullet(string _target){
-		GameObject a =(GameObject)Instantiate(bullet,firePos.position,firePos.rotation);
-		a.GetComponent<BulletCtrl_BlueCannon> ().setTarget(_target);
+		for (int i=0; i<maxBullet; i++) {
+			if(bulletPool[i].activeSelf==false){
+				bulletPool[i].transform.position = firePos.position;
+				_bulletCtrl[i].setTarget(_target);
+				_trail[i].enabled = true;
+				bulletPool[i].SetActive(true);
+				break;
+			}
+		}
 		yield return null;
 	}
 	

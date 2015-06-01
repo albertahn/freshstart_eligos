@@ -8,10 +8,12 @@ public class BulletCtrl_RedCannon : MonoBehaviour {
 	private float durationTime;
 	public GameObject target;
 	private Transform tr;
+	private TrailRenderer _trail;
 	
 	// Use this for initialization
 	void Start () {
 		tr = GetComponent<Transform> ();
+		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
 		damage = 10;
 		speed = 20.0f;
@@ -34,8 +36,10 @@ public class BulletCtrl_RedCannon : MonoBehaviour {
 				tr.position = Vector3.MoveTowards(tr.position, targetPosition, step);
 			}
 		}
-		if ((Time.time - birth) > durationTime)
-			Destroy (this.gameObject);
+		if ((Time.time - birth) > durationTime) {
+			StartCoroutine (PushObjectPool ());		
+			birth = Time.time;
+				}
 	}
 	
 	void OnTriggerEnter(Collider coll){
@@ -46,12 +50,19 @@ public class BulletCtrl_RedCannon : MonoBehaviour {
 						target.GetComponent<minion_state>().Heated("minion", gameObject,damage);
 					else
 						target.GetComponent<blue_minion_state>().Heated("minion",gameObject,damage);
-					Destroy (this.gameObject);
+					StartCoroutine (PushObjectPool ());		
 				}else if(target.tag=="Player"){					
 					target.GetComponent<PlayerHealthState>().Heated("minion", gameObject,damage);
-					Destroy (this.gameObject);					
+					StartCoroutine (PushObjectPool ());					
 				}//hit player
 			}
 		}
+	}
+	
+	IEnumerator PushObjectPool()
+	{
+		yield return new WaitForSeconds(0.1f);
+		_trail.enabled = false;
+		gameObject.SetActive (false);
 	}
 }

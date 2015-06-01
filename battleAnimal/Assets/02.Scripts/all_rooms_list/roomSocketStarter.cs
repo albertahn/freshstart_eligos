@@ -9,7 +9,7 @@ public class roomSocketStarter : MonoBehaviour
 	
 	void Awake()
 	{
-		url = "http://119.9.76.77:7000/";//"http://127.0.0.1:8080/";//"http://119.9.76.77:8080/";
+		url = "http://119.9.76.77:7000";//"http://127.0.0.1:8080/";//"http://119.9.76.77:8080/";
 		Socket = new Client(url);
 		Socket.Opened += SocketOpened;
 		Socket.Connect();
