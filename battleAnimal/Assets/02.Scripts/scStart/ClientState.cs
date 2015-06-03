@@ -46,11 +46,11 @@ public class ClientState : MonoBehaviour {
 		inventory [idx] = a.ToString();
 	}
 	
-	void OnGUI(){
+	/*void OnGUI(){
 		GUI.Label(new Rect(200,10,50,50),"id = "+id);
 		GUI.Label(new Rect(200,70,50,50),"room = "+room);
 		GUI.Label(new Rect(200,130,50,50),"order = "+order);
 		GUI.Label(new Rect(200,190,50,50),"character = "+character);
 		GUI.Label(new Rect(200,250,50,50),"team = "+team);
-	}
+	}*/
 }

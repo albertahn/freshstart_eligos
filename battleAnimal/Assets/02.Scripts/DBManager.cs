@@ -11,7 +11,7 @@ public class DBManager :MonoBehaviour{
 	public JSONObject fuckdata;
 	
 	
-	protected string _host = "http://mobile.coachparrot.com/";
+	protected string _host = "http://mobile.sharebasket.com/";
 	
 	protected string _controller;
 	protected string _method;
@@ -26,7 +26,7 @@ public class DBManager :MonoBehaviour{
 		
 		Debug.Log("saving scroe:  "+email);
 		
-		string url = "http://mobile.coachparrot.com/best_score/add_my";
+		string url = "http://mobile.sharebasket.com/best_score/add_my";
 		
 		// Create a form object for sending high score data to the server
 		var form = new WWWForm();
@@ -73,7 +73,7 @@ public class DBManager :MonoBehaviour{
 		
 		Debug.Log("fucking:  "+email);
 		
-		string url = "http://mobile.coachparrot.com/login/run";
+		string url = "http://mobile.sharebasket.com/login/run";
 		
 		// Create a form object for sending high score data to the server
 		var form = new WWWForm();
@@ -113,7 +113,7 @@ public class DBManager :MonoBehaviour{
 		
 		Debug.Log("fucking:  "+email);
 		
-		string url = "http://mobile.coachparrot.com/register/reg";
+		string url = "http://mobile.sharebasket.com/register/reg";
 		
 		// Create a form object for sending high score data to the server
 		var form = new WWWForm();
