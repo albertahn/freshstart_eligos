@@ -5,6 +5,8 @@ public class playerStat : MonoBehaviour {
 	public static int maxHp;
 	public static float speed;
 	public static int damage;
+	public static float attack_distance;
+	public static float attack_speed;
 
 	// Use this for initialization
 	void Start () {

@@ -35,8 +35,8 @@ public class FireCtrl : MonoBehaviour {
 		}
 
 		_renderer.enabled = false;	
-		duration = 0.5f;
-		distance = 7.0f;
+		duration = playerStat.attack_speed;
+		distance = playerStat.attack_distance;
 	}
 
 	public void Fire(string _target){
