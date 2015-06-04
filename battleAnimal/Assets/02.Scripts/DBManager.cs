@@ -7,7 +7,7 @@ using Boomlagoon.JSON;
 
 public class DBManager :MonoBehaviour{
 	public JSONObject fuckdata;
-	protected string _host = "http://mobile.coachparrot.com/";
+	protected string _host = "http://mobile.sharebasket.com/";
 
 	protected string _controller;
 	protected string _method;
@@ -18,10 +18,10 @@ public class DBManager :MonoBehaviour{
 	
 	public IEnumerator SaveBestScore(string index, string email, string score)
 	{
-		string url = "http://mobile.coachparrot.com//best_score/add_my";
+		string url = "http://mobile.sharebasket.com/best_score/add_my";
 		
 		// Create a form object for sending high score data to the server
-		var form = new WWWForm();
+		WWWForm form = new WWWForm();
 		// Assuming the perl script manages high scores for different games
 		
 		// The name of the player submitting the scores
@@ -30,7 +30,7 @@ public class DBManager :MonoBehaviour{
 		form.AddField( "score",   score);
 		
 		// Create a download object
-		var downloadbabe = new WWW( url, form );
+		WWW downloadbabe = new WWW( url, form );
 		// Wait until the download is done
 		yield return downloadbabe;
 		if(downloadbabe.error !=null) {
@@ -65,17 +65,17 @@ public class DBManager :MonoBehaviour{
 		
 		Debug.Log("fucking:  "+email);
 		
-		string url = "http://mobile.coachparrot.com//login/run";
+		string url = "http://mobile.sharebasket.com/login/run";
 		
 		// Create a form object for sending high score data to the server
-		var form = new WWWForm();
+		WWWForm form = new WWWForm();
 		// Assuming the perl script manages high scores for different games
 		form.AddField( "email", email );
 		// The name of the player submitting the scores
 		form.AddField( "password",  password);
 		
 		// Create a download object
-		var downloadbabe = new WWW( url, form );
+		WWW downloadbabe = new WWW( url, form );
 		// Wait until the download is done
 		yield return downloadbabe;
 		if(downloadbabe.error !=null) {
@@ -103,10 +103,10 @@ public class DBManager :MonoBehaviour{
 	public IEnumerator RegUser(string email, string password, string password2, string username)
 	{
 		
-		string url = "http://mobile.coachparrot.com//register/reg";
+		string url = "http://mobile.sharebasket.com/register/reg";
 		
 		// Create a form object for sending high score data to the server
-		var form = new WWWForm();
+		WWWForm form = new WWWForm();
 		// Assuming the perl script manages high scores for different games
 		form.AddField( "username", username );
 		form.AddField( "email", email );
@@ -115,7 +115,7 @@ public class DBManager :MonoBehaviour{
 		form.AddField( "password2",  password2);
 		
 		// Create a download object
-		var downloadbabe = new WWW( url, form );
+		WWW downloadbabe = new WWW( url, form );
 		// Wait until the download is done
 		yield return downloadbabe;
 		if(downloadbabe.error !=null) {

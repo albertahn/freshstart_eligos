@@ -36,8 +36,9 @@ public class RegUI : MonoBehaviour {
 		
 		username = _dbManager.fuckdata.GetString("username");
 		
-		if(username !=""){			
-			Application.LoadLevel ("scPreStart");
+		if(username !=""){
+
+			Application.LoadLevel ("scStart");
 			Debug.Log("loggedin fucker : "+_dbManager.fuckdata.GetString("email")) ;
 			
 		}else{

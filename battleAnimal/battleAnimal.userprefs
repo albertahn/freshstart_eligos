@@ -1,6 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/02.Scripts/scRegist/RegUI.cs">
+    <Files>
+      <File FileName="Assets/02.Scripts/camerainterface/CameraTouch.cs" Line="1" Column="1" />
+      <File FileName="Assets/02.Scripts/camerainterface/FollowCam.cs" Line="1" Column="1" />
+      <File FileName="Assets/SocketNetworkFucker.cs" Line="1" Column="1" />
+      <File FileName="Assets/02.Scripts/scMulty/player/chichi/MoveCtrl.cs" Line="1" Column="1" />
+      <File FileName="Assets/02.Scripts/scMulty/minion_scripts/mBulletCtrl.cs" Line="1" Column="1" />
+      <File FileName="Assets/02.Scripts/scMulty/minion_scripts/minion_HP.cs" Line="1" Column="1" />
+      <File FileName="Assets/02.Scripts/scMulty/minion_scripts/Minion_health_reciever_socket.cs" Line="1" Column="1" />
+      <File FileName="Assets/02.Scripts/DBManager.cs" Line="104" Column="3" />
+      <File FileName="Assets/02.Scripts/scRegist/RegUI.cs" Line="40" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

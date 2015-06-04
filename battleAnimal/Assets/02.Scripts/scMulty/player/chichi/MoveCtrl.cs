@@ -52,6 +52,12 @@ public class MoveCtrl : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		GameObject movetomark = (GameObject)Resources.Load("moveToMark");
+		Vector3 point = new Vector3 (0,0,0);
+
+		GameObject mark = (GameObject)Instantiate(movetomark,point,Quaternion.identity);
+		mark.name="MoveMark";
+
 		layerMask = (1 << LayerMask.NameToLayer ("FLOOR"))|(1 << LayerMask.NameToLayer ("TOUCH"));
 		_attackMarkMaker = GetComponent<attackMarkMaker> ();
 		attackPoint = Vector3.zero;
@@ -332,12 +338,12 @@ public class MoveCtrl : MonoBehaviour {
 		
 		GameObject pastmovetomark = GameObject.Find ("MoveMark"); 
 		
-		Destroy (pastmovetomark);
+		pastmovetomark.transform.position = point;
 		
-		GameObject movetomark = (GameObject)Resources.Load("moveToMark");
+		//GameObject movetomark = (GameObject)Resources.Load("moveToMark");
 		
-		GameObject mark = (GameObject)Instantiate(movetomark,point,Quaternion.identity);
-		mark.name="MoveMark";
+		//GameObject mark = (GameObject)Instantiate(movetomark,point,Quaternion.identity);
+		//mark.name="MoveMark";
 		
 	}	
 }
