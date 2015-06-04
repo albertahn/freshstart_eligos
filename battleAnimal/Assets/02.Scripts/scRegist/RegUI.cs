@@ -27,7 +27,6 @@ public class RegUI : MonoBehaviour {
 
 	private IEnumerator RegLoginData (string email, string password, string password2, string username)
 	{
-		
 		yield return StartCoroutine (_dbManager.RegUser(email, password,password2, username ));
 		
 		string emailman = _dbManager.fuckdata.GetString ("password");

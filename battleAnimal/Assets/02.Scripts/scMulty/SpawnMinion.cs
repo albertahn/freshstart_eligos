@@ -45,10 +45,12 @@ public class SpawnMinion : MonoBehaviour {
 		for (int i=0; i<redMax; i++) {
 			if(redMinionPool[i].activeSelf==false){
 				redMinionPool[i].transform.position = _data;
-				redMinionPool[i].SetActive(true);
 				if(ClientState.isMaster){//edit
 					_redMinionCtrl[i].isMaster = true;
+					StartCoroutine(_redMinionCtrl[i].CheckMonsterState());
 				}
+				_redMinionCtrl[i].move();
+				redMinionPool[i].SetActive(true);
 				break;
 			}
 		}
@@ -57,11 +59,13 @@ public class SpawnMinion : MonoBehaviour {
 	public void BLUEsetSpawn(string _id,Vector3 _data){
 		for (int i=0; i<blueMax; i++) {
 			if(blueMinionPool[i].activeSelf==false){
-				blueMinionPool[i].transform.position = _data;
-				blueMinionPool[i].SetActive(true);				
+				blueMinionPool[i].transform.position = _data;			
 				if(ClientState.isMaster){//edit
 					_blueMinionCtrl[i].isMaster = true;
+					StartCoroutine(_blueMinionCtrl[i].CheckMonsterState());
 				}
+				_blueMinionCtrl[i].move();
+				blueMinionPool[i].SetActive(true);	
 				break;				
 			}
 		}

@@ -12,6 +12,7 @@ public class blue_minion_state : MonoBehaviour {
 	private moneyUI _moneyUI;
 		
 	private GameObject[] effectPool;
+
 	private int maxEffect;
 
 	void Awake(){
@@ -28,7 +29,7 @@ public class blue_minion_state : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		_moneyUI = GameObject.Find ("UIManager").GetComponent<moneyUI>();		
+		_moneyUI = GameObject.Find ("UIManager").GetComponent<moneyUI>();
 	}
 	
 	// Update is called once per frame
@@ -101,6 +102,7 @@ public class blue_minion_state : MonoBehaviour {
 		yield return new WaitForSeconds(3.0f);
 		
 		hp = 100;
+
 		this.collider.enabled = true;
 		GetComponent<blueMinionCtrl> ().isDie = false;
 		

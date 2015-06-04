@@ -6,27 +6,19 @@ using Boomlagoon.JSON;
 
 
 public class DBManager :MonoBehaviour{
-	
-	
 	public JSONObject fuckdata;
-	
-	
-	protected string _host = "http://mobile.sharebasket.com/";
-	
+	protected string _host = "http://mobile.coachparrot.com/";
+
 	protected string _controller;
 	protected string _method;
 
 	void Start(){
 		fuckdata = new JSONObject();
-
 	}
 	
 	public IEnumerator SaveBestScore(string index, string email, string score)
 	{
-		
-		Debug.Log("saving scroe:  "+email);
-		
-		string url = "http://mobile.sharebasket.com/best_score/add_my";
+		string url = "http://mobile.coachparrot.com//best_score/add_my";
 		
 		// Create a form object for sending high score data to the server
 		var form = new WWWForm();
@@ -73,7 +65,7 @@ public class DBManager :MonoBehaviour{
 		
 		Debug.Log("fucking:  "+email);
 		
-		string url = "http://mobile.sharebasket.com/login/run";
+		string url = "http://mobile.coachparrot.com//login/run";
 		
 		// Create a form object for sending high score data to the server
 		var form = new WWWForm();
@@ -111,9 +103,7 @@ public class DBManager :MonoBehaviour{
 	public IEnumerator RegUser(string email, string password, string password2, string username)
 	{
 		
-		Debug.Log("fucking:  "+email);
-		
-		string url = "http://mobile.sharebasket.com/register/reg";
+		string url = "http://mobile.coachparrot.com//register/reg";
 		
 		// Create a form object for sending high score data to the server
 		var form = new WWWForm();
@@ -133,7 +123,7 @@ public class DBManager :MonoBehaviour{
 			//return;
 		} else {
 			// show the highscores
-			Debug.Log(downloadbabe.text);
+			Debug.Log("down "+downloadbabe.text);
 		}
 		
 		//WWW www = new WWW (url);
@@ -148,9 +138,4 @@ public class DBManager :MonoBehaviour{
 			fuckdata = JSONObject.Parse(downloadbabe.text);
 		}
 	}
-	
-	
-	
-	
-	
 }//end server

@@ -16,7 +16,7 @@ public class waitSocketOn : MonoBehaviour {
 		waitSocketStarter.Socket.On("createPlayerRES",(data) =>
 		                        {//접속한 플레이어가 있을때 호출된다.
 			string[] temp = data.Json.args[0].ToString().Split(':');
-			Debug.Log("createPlayerRES = "+data.Json.args[0].ToString());
+			//Debug.Log("createPlayerRES = "+data.Json.args[0].ToString());
 			int num = int.Parse (temp[0]);
 			string id = temp[1];//접속한 유저 아이디
 

@@ -118,13 +118,15 @@ public class minionCtrl : MonoBehaviour {
 		
 						if (isAttack) {
 							if (targetObj != null) {
-								minionTr.LookAt (targetObj.transform.position);
-								_fireCtrl.Fire (targetObj.name);	
 					if(targetObj==null||targetObj.tag=="Player"&&targetObj.GetComponent<PlayerHealthState>().isDie==true){
 									move();
 					}else if(targetObj==null||targetObj.tag=="MINION"&&targetObj.GetComponent<blueMinionCtrl>().isDie==true){
 									move ();
 								}
+					else{
+						minionTr.LookAt (targetObj.transform.position);
+						_fireCtrl.Fire (targetObj.name);						
+					}
 										
 							}
 						}
@@ -163,7 +165,7 @@ public class minionCtrl : MonoBehaviour {
 		isAttack = true;
 	}
 	
-	IEnumerator CheckMonsterState(){
+	public IEnumerator CheckMonsterState(){
 		while (!isDie) {
 			yield return new WaitForSeconds(0.2f);
 			

@@ -9,7 +9,7 @@ public class startUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Screen.SetResolution(800, 480, true);
-		PlayerPrefs.SetString ("email","aa");//not internet
+		ClientState.id = "bb";//not internet
 
 		UserName.text = PlayerPrefs.GetString("username");
 		Userlevel.text = PlayerPrefs.GetString ("userlevel");

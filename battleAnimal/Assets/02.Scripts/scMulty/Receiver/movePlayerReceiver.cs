@@ -8,7 +8,7 @@ public class movePlayerReceiver : MonoBehaviour {
 	private Vector3 destPos;
 	private Vector3 currPos;
 	private MoveCtrl _moveCtrl;
-	private tutu_MoveCtrl _tutu_moveCtrl;
+	//private tutu_MoveCtrl _tutu_moveCtrl;
 	
 	private float limit;
 	
@@ -54,18 +54,18 @@ public class movePlayerReceiver : MonoBehaviour {
 			//if(distance(a.transform.position,currPos)>limit)
 			a.transform.position = currPos;
 			a.transform.LookAt( destPos);
-			if(character=="dog"){
-				Debug.Log ("dog");
+		//	if(character=="dog"){
+		//		Debug.Log ("dog");
 				_moveCtrl = a.GetComponent<MoveCtrl>();
 				_moveCtrl.clickendpoint= destPos;
 				_moveCtrl.move();
-			}
+		/*	}
 			else if(character=="turtle"){
 				Debug.Log ("turtle");
 				_tutu_moveCtrl = a.GetComponent<tutu_MoveCtrl>();
 				_tutu_moveCtrl.clickendpoint= destPos;
 				_tutu_moveCtrl.move();
-			}
+			}*/
 		}
 		yield return null;
 	}

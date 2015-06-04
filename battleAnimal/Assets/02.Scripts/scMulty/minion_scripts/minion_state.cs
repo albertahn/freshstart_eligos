@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class minion_state : MonoBehaviour {	
+public class minion_state : MonoBehaviour {
+
 	public GameObject bloodEffect;
 	public GameObject bloodDecal;
 	
@@ -11,6 +12,7 @@ public class minion_state : MonoBehaviour {
 	private moneyUI _moneyUI;
 	
 	private GameObject[] effectPool;
+
 	private int maxEffect;
 
 	void Awake(){
@@ -39,7 +41,7 @@ public class minion_state : MonoBehaviour {
 		if (ClientState.isMaster)
 		{
 			hp -= damage;
-		
+
 			string data = this.name + ":" + hp.ToString () + "";
 			SocketStarter.Socket.Emit ("attackMinion", data);
 
@@ -87,15 +89,17 @@ public class minion_state : MonoBehaviour {
 		}		
 		yield return null;
 	}
+
 	IEnumerator PushObjectEffectPool(GameObject a)
 	{
 		yield return new WaitForSeconds (0.2f);
 		a.SetActive (false);
 	}
+
 	IEnumerator PushObjectPool(){
 		yield return new WaitForSeconds(3.0f);
 		hp = 100;
-		
+
 		this.collider.enabled = true;
 		GetComponent<minionCtrl> ().isDie = false;
 		

@@ -57,6 +57,8 @@ io.sockets.on('connection', function (socket) {
             function redSender(){
                 redIdx++;
                 var data = "29.0,50.0,30.0";
+                console.log("jarray[socket.room] = "+jarray[socket.room]);
+                console.log(" jarray[socket.room].minionNames = "+ jarray[socket.room].minionNames);
                 jarray[socket.room].minionNames["rm"+redIdx] = "rm"+redIdx;
                 jarray[socket.room].minionPos["rm"+redIdx] = data;
                 
@@ -109,6 +111,7 @@ io.sockets.on('connection', function (socket) {
              +jarray[socket.room].userCharacter[jarray[socket.room].userNames[key]]
              +":"+jarray[socket.room].userTeam[jarray[socket.room].userNames[key]]+"_";
         }
+        
         io.sockets.in(socket.room).emit("preuser1RES",retPre1);
         io.sockets.in(socket.room).emit("preuser2RES",retPre2);
     });
