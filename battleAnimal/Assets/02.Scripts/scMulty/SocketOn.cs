@@ -49,10 +49,8 @@ public class SocketOn : MonoBehaviour {
 	private createBlueMinionReceiver _createBlueMinionReceiver;
 	private preUserMininonReceiver _preUserMinionReceiver;
 	private attackBuildingReceiver _attackBuildingReceiver;
-
 	private createObserver _createObserver;
-
-	public static string debugstring;
+	private createMinionReceiver _createMinionReceiver;
 
 	void Start () {
 		_mAttackReceiver = GetComponent<minionAttackReceiver>();
@@ -73,6 +71,7 @@ public class SocketOn : MonoBehaviour {
 		_createBlueMinionReceiver = GetComponent<createBlueMinionReceiver> ();
 		_preUserMinionReceiver = GetComponent<preUserMininonReceiver> ();
 		_attackBuildingReceiver = GetComponent<attackBuildingReceiver> ();
+		_createMinionReceiver = GetComponent<createMinionReceiver> ();
 
 		_createObserver = GetComponent<createObserver> ();
 
@@ -114,7 +113,7 @@ public class SocketOn : MonoBehaviour {
 			_createPlayerReceiver.receive(data.Json.args[0].ToString());
 		});
 
-		SocketStarter.Socket.On("createRedMinionRES",(data) =>
+		/*SocketStarter.Socket.On("createRedMinionRES",(data) =>
 		{
 			string temp = data.Json.args[0].ToString();
 			_createRedMinionReceiver.receive(temp);
@@ -124,12 +123,12 @@ public class SocketOn : MonoBehaviour {
 		{
 			string temp = data.Json.args[0].ToString();
 			_createBlueMinionReceiver.receive(temp);
-		});
+		});*/
 
-		SocketStarter.Socket.On ("preuser1RES", (data) => {		
+		/*SocketStarter.Socket.On ("preuser1RES", (data) => {		
 			string temp = data.Json.args[0].ToString();
 			_preUserMinionReceiver.receive(temp);
-		});
+		});*/
 
 		SocketStarter.Socket.On ("preuser2RES", (data) => {
 			_preUserPlayerReceiver.receive(data.Json.args[0].ToString());
@@ -143,6 +142,15 @@ public class SocketOn : MonoBehaviour {
 				_movePlayerReceiver.receive(temp);
 			}
 		});
+		
+		SocketStarter.Socket.On("createMinionRES",(data) =>
+		                        {
+			if(!ClientState.isMaster){
+				string temp = data.Json.args[0].ToString();
+				_createMinionReceiver.receive(temp);
+			}
+		});
+
 
 		SocketStarter.Socket.On ("moveMinionRES", (data) =>
 		{
@@ -188,7 +196,7 @@ public class SocketOn : MonoBehaviour {
 
 		SocketStarter.Socket.On ("minionDieRES", (data) =>{
 			string[] temp = data.Json.args[0].ToString().Split(':');
-			if(temp[0]!=ClientID){
+			if(!ClientState.isMaster){
 				_mDieReceiver.receive(temp[1]);
 			}
 		});

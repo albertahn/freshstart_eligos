@@ -22,6 +22,9 @@ public class RedCannonState : MonoBehaviour {
 	private GameObject[] effectPool;
 	private int maxEffect;
 
+	
+	private RedCannon_OutterCtrl _outterCtrl;
+
 
 	void Start () {
 		maxEffect = 5;
@@ -36,6 +39,7 @@ public class RedCannonState : MonoBehaviour {
 		maxhp = 200;
 		hp = maxhp;
 		isDie = false;
+		_outterCtrl = GetComponentInChildren<RedCannon_OutterCtrl> ();
 		_moneyUI = GameObject.Find ("UIManager").GetComponent<moneyUI>();
 	}
 	
@@ -81,7 +85,7 @@ public class RedCannonState : MonoBehaviour {
 	
 	
 	void playerDie(string firedby){
-
+		_outterCtrl.isRun = false;
 		string data = this.name;
 		SocketStarter.Socket.Emit ("cannonDie", data);  
 

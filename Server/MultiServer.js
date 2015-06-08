@@ -43,7 +43,7 @@ io.sockets.on('connection', function (socket) {
 
         if(temp[2] =="master"){
           socket.emit("youMaster",temp[0]);
-          createMinion();
+        //  createMinion();
         }
         socket.emit('createRoomRES',temp[0]);
 
@@ -79,6 +79,9 @@ io.sockets.on('connection', function (socket) {
         }//end create minion        
     });
 //end create room    
+    socket.on("createMinionREQ", function(data) { 
+        io.sockets.in(socket.room).emit("createMinionRES", data);
+    });
     
 //crate playe
     socket.on("createPlayerREQ", function(data) {        

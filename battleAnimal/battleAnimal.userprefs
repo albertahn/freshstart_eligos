@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/02.Scripts/scStart/startUI.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\RedCannon\RedCannonCtrl.cs">
     <Files>
-      <File FileName="../../gold_ui_changed_check_6_3_freshstart_eligos/battleAnimal/Assets/02.Scripts/scStart/startUI.cs" Line="7" Column="2" />
-      <File FileName="Assets/02.Scripts/scStart/startUI.cs" Line="12" Column="5" />
+      <File FileName="Assets\02.Scripts\scMulty\BlueCannon\BlueCannon_OutterCtrl.cs" Line="8" Column="28" />
+      <File FileName="Assets\02.Scripts\scMulty\RedCannon\RedCannon_OutterCtrl.cs" Line="18" Column="39" />
+      <File FileName="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonCtrl.cs" Line="24" Column="18" />
+      <File FileName="Assets\02.Scripts\scMulty\RedCannon\RedCannonCtrl.cs" Line="25" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

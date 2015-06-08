@@ -6,7 +6,6 @@ public class minionDieReceiver : MonoBehaviour {
 	private string name;
 
 	public void receive(string data){
-
 		while (switch_) {}
 		name = data;
 		switch_ = true;
@@ -21,11 +20,12 @@ public class minionDieReceiver : MonoBehaviour {
 		if (switch_) {
 			StartCoroutine(doit ());
 			switch_ = false;
-		}	
-	
+		}
 	}
 
 	private IEnumerator doit(){
+		Debug.Log ("minionDie = "+name);
+		Debug.Log ("GameObject.Find(name) = "+GameObject.Find(name));
 		if(name[0] =='r')
 			GameObject.Find(name).GetComponent<minion_state>().minionDie();
 		else

@@ -19,7 +19,7 @@ public class attackMarkCtrl : MonoBehaviour {
 		if (target != null) {
 						tr.position = target.transform.position;
 		} else {			
-			Destroy (this.gameObject);
+			this.gameObject.SetActive(false);
 		}
 	}
 }

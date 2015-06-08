@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class SpawnMinion : MonoBehaviour {
+	private Transform REDspawnSpot;
+	private Transform BLUEspawnSpot;
+	
 	public GameObject redMinion;
 	public GameObject blueMinion;
 	
@@ -12,11 +15,13 @@ public class SpawnMinion : MonoBehaviour {
 	private GameObject[] redMinionPool;
 	private GameObject[] blueMinionPool;
 	private minionCtrl[] _redMinionCtrl;
-	private blueMinionCtrl[] _blueMinionCtrl;
-	
+	private blueMinionCtrl[] _blueMinionCtrl;	
 	
 	// Use this for initialization
-	void Start () {
+	void Start () {		
+		REDspawnSpot = GameObject.Find("redMovePoints/spawnPoint").GetComponent<Transform>();
+		BLUEspawnSpot = GameObject.Find("blueMovePoints/spawnPoint").GetComponent<Transform>();
+		
 		rms = GameObject.Find ("redMinions");
 		bms = GameObject.Find ("blueMinions");
 		redMax = 10;
@@ -25,6 +30,7 @@ public class SpawnMinion : MonoBehaviour {
 		blueMinionPool = new GameObject[blueMax];
 		_redMinionCtrl = new minionCtrl[redMax];
 		_blueMinionCtrl = new blueMinionCtrl[blueMax];
+		
 		for (int i=0; i<redMax; i++) {
 			redMinionPool[i] = (GameObject)Instantiate(redMinion);
 			blueMinionPool[i] = (GameObject)Instantiate(blueMinion);
@@ -39,33 +45,65 @@ public class SpawnMinion : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	
-	public void REDsetSpawn(string _id,Vector3 _data){
+	//master
+	public void createMinion(){
+		string data=null;
 		for (int i=0; i<redMax; i++) {
 			if(redMinionPool[i].activeSelf==false){
-				redMinionPool[i].transform.position = _data;
+				redMinionPool[i].transform.position = REDspawnSpot.position;
+				_redMinionCtrl[i].isMaster = true;
+				_redMinionCtrl[i].move();
+				redMinionPool[i].SetActive(true);
+				_redMinionCtrl[i].isDie = false;
+				data = redMinionPool[i].name;
+				StartCoroutine(_redMinionCtrl[i].CheckMonsterState());
+				break;
+			}
+		}
+		for (int i=0; i<blueMax; i++) {
+			if(blueMinionPool[i].activeSelf==false){
+				blueMinionPool[i].transform.position = BLUEspawnSpot.position;
+				_blueMinionCtrl[i].isMaster = true;
+				_blueMinionCtrl[i].move();
+				blueMinionPool[i].SetActive(true);	
+				_blueMinionCtrl[i].isDie = false;
+				data = data+":"+blueMinionPool[i].name;
+				StartCoroutine(_blueMinionCtrl[i].CheckMonsterState());
+				break;
+			}
+		}
+		SocketStarter.Socket.Emit ("createMinionREQ",data);
+	}
+	
+	
+	//slave
+	public void REDsetSpawn(string _id){
+		for (int i=0; i<redMax; i++) {
+			if(redMinionPool[i].activeSelf==false){
+				redMinionPool[i].transform.position = REDspawnSpot.position;
 				if(ClientState.isMaster){//edit
 					_redMinionCtrl[i].isMaster = true;
 					StartCoroutine(_redMinionCtrl[i].CheckMonsterState());
 				}
 				_redMinionCtrl[i].move();
 				redMinionPool[i].SetActive(true);
+				_redMinionCtrl[i].isDie = false;
 				break;
 			}
 		}
 	}
 	
-	public void BLUEsetSpawn(string _id,Vector3 _data){
+	public void BLUEsetSpawn(string _id){
 		for (int i=0; i<blueMax; i++) {
 			if(blueMinionPool[i].activeSelf==false){
-				blueMinionPool[i].transform.position = _data;			
+				blueMinionPool[i].transform.position = BLUEspawnSpot.position;	
 				if(ClientState.isMaster){//edit
 					_blueMinionCtrl[i].isMaster = true;
 					StartCoroutine(_blueMinionCtrl[i].CheckMonsterState());
 				}
 				_blueMinionCtrl[i].move();
 				blueMinionPool[i].SetActive(true);	
+				_blueMinionCtrl[i].isDie = false;
 				break;				
 			}
 		}

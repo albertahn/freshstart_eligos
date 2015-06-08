@@ -35,9 +35,7 @@ public class blue_minion_state : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {	
 		
-	}
-
-	
+	}		
 	
 	public void Heated(string firedby, GameObject obj,int damage){
 		if (ClientState.isMaster) 
@@ -104,7 +102,6 @@ public class blue_minion_state : MonoBehaviour {
 		hp = 100;
 
 		this.collider.enabled = true;
-		GetComponent<blueMinionCtrl> ().isDie = false;
 		
 		gameObject.SetActive (false);
 	}

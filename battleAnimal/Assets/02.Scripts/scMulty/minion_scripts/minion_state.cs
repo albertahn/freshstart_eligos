@@ -101,7 +101,6 @@ public class minion_state : MonoBehaviour {
 		hp = 100;
 
 		this.collider.enabled = true;
-		GetComponent<minionCtrl> ().isDie = false;
 		
 		gameObject.SetActive (false);
 	}

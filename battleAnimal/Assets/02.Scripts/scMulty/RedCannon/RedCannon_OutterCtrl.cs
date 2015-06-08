@@ -5,16 +5,18 @@ using System.Collections.Generic;
 public class RedCannon_OutterCtrl : MonoBehaviour {
 	public RedCannonCtrl _ctrl;
 	private string targetName;
+	private RedCannonState _state;
 	
 	public List<GameObject> enemyList;
 	
-	private bool isRun;
+	public bool isRun;
 	
 	// Use this for initialization
 	void Start () {
 		isRun = false;
 		_ctrl = GetComponentInParent<RedCannonCtrl> ();
 		enemyList = new List<GameObject> ();
+		_state = GetComponentInParent<RedCannonState> ();
 	}
 	
 	// Update is called once per frame
@@ -23,41 +25,43 @@ public class RedCannon_OutterCtrl : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider coll){
-		if (coll.tag == "Player") {
-			string parentName = coll.gameObject.transform.parent.name;
-			if (parentName [0] == 'B') {
-				enemyList.Add (coll.gameObject);
+		if (!_state.isDie) {
+						if (coll.tag == "Player") {
+								string parentName = coll.gameObject.transform.parent.name;
+								if (parentName [0] == 'B') {
+										enemyList.Add (coll.gameObject);
 				
-				if(isRun==false){
-					targetName = coll.name;
-					_ctrl.targetObj = coll.gameObject;
-					_ctrl.isAttack = true;
-					isRun=true;
-				}
-			}
-		} else if (coll.tag == "MINION") {
-			if (coll.name [0] == 'b') {
-				enemyList.Add (coll.gameObject);
+										if (isRun == false) {
+												targetName = coll.name;
+												_ctrl.targetObj = coll.gameObject;
+												_ctrl.isAttack = true;
+												isRun = true;
+										}
+								}
+						} else if (coll.tag == "MINION") {
+								if (coll.name [0] == 'b') {
+										enemyList.Add (coll.gameObject);
 				
-				if(isRun==false){
-					targetName = coll.name;
-					_ctrl.targetObj = coll.gameObject;
-					_ctrl.isAttack = true;
-					isRun=true;
-				}
-			}
-		} else if (coll.tag == "BUILDING") {		
-			if (coll.name [0] == 'b') {
-				enemyList.Add (coll.gameObject);
+										if (isRun == false) {
+												targetName = coll.name;
+												_ctrl.targetObj = coll.gameObject;
+												_ctrl.isAttack = true;
+												isRun = true;
+										}
+								}
+						} else if (coll.tag == "BUILDING") {		
+								if (coll.name [0] == 'b') {
+										enemyList.Add (coll.gameObject);
 				
-				if(isRun==false){
-					targetName = coll.name;
-					_ctrl.targetObj = coll.gameObject;
-					_ctrl.isAttack = true;
-					isRun=true;
+										if (isRun == false) {
+												targetName = coll.name;
+												_ctrl.targetObj = coll.gameObject;
+												_ctrl.isAttack = true;
+												isRun = true;
+										}
+								}
+						}
 				}
-			}
-		}
 	}
 	
 	void OnTriggerExit(Collider coll){

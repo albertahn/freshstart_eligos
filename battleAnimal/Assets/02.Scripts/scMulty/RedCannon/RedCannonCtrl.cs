@@ -6,6 +6,7 @@ public class RedCannonCtrl : MonoBehaviour {
 	public bool isAttack;
 	public GameObject targetObj;
 	private RedCannon_OutterCtrl _outterCtrl;
+	private RedCannonState _state;
 	
 	private Transform tr;
 	
@@ -16,11 +17,12 @@ public class RedCannonCtrl : MonoBehaviour {
 		isAttack = false;
 		_fireCtrl = GetComponent<RedCannonFire> ();
 		_outterCtrl = GetComponentInChildren<RedCannon_OutterCtrl> ();
+		_state = GetComponent<RedCannonState> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isAttack) {
+		if (isAttack&&(!_state.isDie)) {
 			if (targetObj != null) {
 				if(targetObj.tag=="Player"&&targetObj.GetComponent<PlayerHealthState>().isDie==true){
 					_outterCtrl.targetDie(targetObj.name);

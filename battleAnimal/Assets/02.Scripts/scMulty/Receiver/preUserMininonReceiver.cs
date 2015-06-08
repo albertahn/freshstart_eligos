@@ -23,7 +23,7 @@ public class preUserMininonReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			StartCoroutine(doit ());			
+			//StartCoroutine(doit ());			
 			switch_=false;
 		}	
 	}
@@ -37,7 +37,7 @@ public class preUserMininonReceiver : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator doit(){
+	/*private IEnumerator doit(){
 		for(int i=0;i<list.Length-2;i++)
 		{
 			temp3 = list[i].Split(':');
@@ -53,5 +53,5 @@ public class preUserMininonReceiver : MonoBehaviour {
 			}
 		}
 		yield return null;
-	}
+	}*/
 }

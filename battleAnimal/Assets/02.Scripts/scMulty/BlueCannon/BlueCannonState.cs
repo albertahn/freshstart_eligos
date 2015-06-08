@@ -5,12 +5,9 @@ public class BlueCannonState : MonoBehaviour {
 	public GameObject bloodEffect;
 	public GameObject bloodDecal;
 	
-	public GameObject fireDie;
-	
-	public GameObject lavaDie;
-	
-	public int maxhp;
-	
+	public GameObject fireDie;	
+	public GameObject lavaDie;	
+	public int maxhp;	
 	public int hp;
 	
 	public bool isDie;
@@ -18,6 +15,8 @@ public class BlueCannonState : MonoBehaviour {
 	
 	private GameObject[] effectPool;
 	private int maxEffect;
+
+	private BlueCannon_OutterCtrl _outterCtrl;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +32,7 @@ public class BlueCannonState : MonoBehaviour {
 		maxhp = 200;
 		hp = maxhp;
 		isDie = false;
+		_outterCtrl = GetComponentInChildren<BlueCannon_OutterCtrl> ();
 		_moneyUI = GameObject.Find ("UIManager").GetComponent<moneyUI>();
 	}
 	
@@ -76,7 +76,7 @@ public class BlueCannonState : MonoBehaviour {
 	
 	
 	void playerDie(string firedby){
-		
+		_outterCtrl.isRun = false;
 		string data = this.name;
 		SocketStarter.Socket.Emit ("cannonDie", data); 
 		

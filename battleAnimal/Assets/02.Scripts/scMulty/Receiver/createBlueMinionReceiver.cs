@@ -5,7 +5,6 @@ public class createBlueMinionReceiver : MonoBehaviour {
 	private bool switch_;
 	private string id;
 	private string[] pos;
-	private Vector3 spawnPos;
 	private SpawnMinion _spawnMinion;
 	
 	// Use this for initialization
@@ -26,16 +25,12 @@ public class createBlueMinionReceiver : MonoBehaviour {
 
 		id = temp[0];//접속한 유저의 아이디
 		pos = temp[1].Split(',');
-		
-		spawnPos = new Vector3(float.Parse(pos[0]),
-		                       float.Parse(pos[1]),
-		                       float.Parse(pos[2]));
-		
+
 		switch_ = true;
 	}
 
 	private IEnumerator doit(){
-		_spawnMinion.BLUEsetSpawn(id,spawnPos);
+		_spawnMinion.BLUEsetSpawn(id);
 		yield return null;
 	}
 }

@@ -15,29 +15,31 @@ public class red_outer_collider : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider coll){
-		if (coll.tag == "Player") {
-			string parentName = coll.gameObject.transform.parent.name;
-			if (parentName [0] == 'B') {
-				_ctrl.targetObj = coll.gameObject;
-				_ctrl.playerTr = coll.transform;
-				_ctrl.traceKey = true;
-			}
-		} else if (coll.tag == "MINION") {
-			if(coll.name[0] =='b'){
-				_ctrl.targetObj = coll.gameObject;
-				_ctrl.playerTr = coll.transform;
-				_ctrl.traceKey = true;
-			}
-		}else if (coll.tag == "BUILDING") {		
-			if (coll.name [0] == 'b') {
-				_ctrl.targetObj = coll.gameObject;
-				_ctrl.playerTr = coll.transform;
-				_ctrl.traceKey = true;
-			}
-		}else if (coll.tag == "BLUE_CANNON") {
-			_ctrl.targetObj = coll.gameObject;
-			_ctrl.playerTr = coll.transform;
-			_ctrl.traceKey = true;
-		}
+		if (coll.gameObject.name != "touchCollider") {
+						if (coll.tag == "Player") {
+								string parentName = coll.gameObject.transform.parent.name;
+								if (parentName [0] == 'B') {
+										_ctrl.targetObj = coll.gameObject;
+										_ctrl.playerTr = coll.transform;
+										_ctrl.traceKey = true;
+								}
+						} else if (coll.tag == "MINION") {
+								if (coll.name [0] == 'b') {
+										_ctrl.targetObj = coll.gameObject;
+										_ctrl.playerTr = coll.transform;
+										_ctrl.traceKey = true;
+								}
+						} else if (coll.tag == "BUILDING") {		
+								if (coll.name [0] == 'b') {
+										_ctrl.targetObj = coll.gameObject;
+										_ctrl.playerTr = coll.transform;
+										_ctrl.traceKey = true;
+								}
+						} else if (coll.tag == "BLUE_CANNON") {
+								_ctrl.targetObj = coll.gameObject;
+								_ctrl.playerTr = coll.transform;
+								_ctrl.traceKey = true;
+						}
+				}
 	}
 }

@@ -6,6 +6,7 @@ public class BlueCannonCtrl : MonoBehaviour {
 	public bool isAttack;
 	public GameObject targetObj;
 	private BlueCannon_OutterCtrl _outterCtrl;
+	private BlueCannonState _state;
 	
 	private Transform tr;
 	
@@ -16,11 +17,12 @@ public class BlueCannonCtrl : MonoBehaviour {
 		isAttack = false;
 		_fireCtrl = GetComponent<BlueCannonFire> ();
 		_outterCtrl = GetComponentInChildren<BlueCannon_OutterCtrl> ();
+		_state = GetComponent<BlueCannonState> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isAttack) {
+		if (isAttack&&(!_state.isDie)) {
 			if (targetObj != null) {
 				if(targetObj.tag=="Player"&&targetObj.GetComponent<PlayerHealthState>().isDie==true){
 					_outterCtrl.targetDie(targetObj.name);
