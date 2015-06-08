@@ -91,14 +91,18 @@ public class PlayerHealthState : MonoBehaviour {
 
 
 	void playerDie(){
+		this.tag = "DIE";
+		this.transform.FindChild ("touchCollider").tag = "DIE";
 		this.collider.enabled = false;
 		isDie = true;
 		//GetComponent<MoveCtrl> ().isDie = true;
 
-		if (ClientState.id == this.name) {
-			ClientState.death ++;
-			_respawn.Set();
+		if (ClientState.isMaster) {
+			ClientState.death++;
+			_respawn.Set(this.name);
+			SocketStarter.Socket.Emit ("respawnREQ", this.name);	
 		}
+
 		this.collider.enabled = false;
 		int oldInt = PlayerPrefs.GetInt ("minions_killed");
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);

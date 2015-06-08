@@ -26,7 +26,7 @@ public class RedCannonFire : MonoBehaviour {
 			_bulletCtrl[i] = bulletPool[i].GetComponent<BulletCtrl_RedCannon>();
 			_trail[i] =bulletPool[i].GetComponent<TrailRenderer>();
 			bulletPool[i].name = "Bullet_"+i.ToString();
-			bulletPool[i].transform.parent = gameObject.transform;
+			bulletPool[i].transform.parent =GameObject.Find("bullets").transform;
 			bulletPool[i].SetActive(false);
 		}
 

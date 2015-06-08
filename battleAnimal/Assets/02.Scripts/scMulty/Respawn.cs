@@ -28,7 +28,10 @@ public class Respawn : MonoBehaviour {
 		_playerState = player.GetComponent<PlayerHealthState> ();
 	}
 
-	public void Set(){
+	public void Set(string _id){
+		player = GameObject.Find (_id);
+		_playerState = player.GetComponent<PlayerHealthState> ();
+
 		if (ClientState.level <= 2) {
 				
 		} else if (ClientState.level <= 4) {
@@ -36,28 +39,25 @@ public class Respawn : MonoBehaviour {
 		} else {
 			respawnTime = 5.0f;
 		}
+
 		birth = Time.time;
 		_switch = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		if (_switch && (Time.time - birth > respawnTime)) {
 			_playerState.isDie = false;
 			player.collider.enabled = true;
+			player.tag = "Player";
+			player.transform.FindChild ("touchCollider").tag = "Player";
 			_playerState.hp =playerStat.maxHp;
 			if(ClientState.team=="red")
-				player.transform.position = new Vector3( 25.0f,50.0f,25.0f);
+				player.transform.position = new Vector3(25.0f,50.0f,25.0f);
 			else
 				player.transform.position = new Vector3(70.0f,50.0f,70.0f);
-
 			_switch = false;
-
 			_CameraTouch.focusCamPlayer = true;
-
-			Debug.Log ("respawns");
-
 		}
 	
 	}

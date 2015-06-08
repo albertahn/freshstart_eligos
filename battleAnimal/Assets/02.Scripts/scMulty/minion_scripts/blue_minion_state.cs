@@ -62,6 +62,9 @@ public class blue_minion_state : MonoBehaviour {
 	}
 	
 	public void minionDie(){
+		this.tag = "DIE";
+		this.transform.FindChild ("touchCollider").tag = "DIE";
+
 		this.collider.enabled = false;
 		GetComponent<blueMinionCtrl> ().isDie = true;
 		

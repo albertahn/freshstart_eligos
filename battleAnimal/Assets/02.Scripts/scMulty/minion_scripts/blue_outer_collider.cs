@@ -16,7 +16,8 @@ public class blue_outer_collider : MonoBehaviour {
 
 	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.name != "touchCollider") {
-						if (coll.tag == "Player") {
+			if (coll.tag == "Player") {
+				Debug.Log("coll.tag = "+coll.tag);
 								string parentName = coll.gameObject.transform.parent.name;
 								if (parentName [0] == 'R') {
 										_ctrl.targetObj = coll.gameObject;

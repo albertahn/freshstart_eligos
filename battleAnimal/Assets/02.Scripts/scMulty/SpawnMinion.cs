@@ -50,6 +50,11 @@ public class SpawnMinion : MonoBehaviour {
 		string data=null;
 		for (int i=0; i<redMax; i++) {
 			if(redMinionPool[i].activeSelf==false){
+				Debug.Log("redMinionPool[i].transform.tag = "+redMinionPool[i].transform.tag);
+				
+				redMinionPool[i].transform.tag = "MINION";
+				redMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
+
 				redMinionPool[i].transform.position = REDspawnSpot.position;
 				_redMinionCtrl[i].isMaster = true;
 				_redMinionCtrl[i].move();
@@ -62,6 +67,9 @@ public class SpawnMinion : MonoBehaviour {
 		}
 		for (int i=0; i<blueMax; i++) {
 			if(blueMinionPool[i].activeSelf==false){
+				blueMinionPool[i].transform.tag = "MINION";
+				blueMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
+
 				blueMinionPool[i].transform.position = BLUEspawnSpot.position;
 				_blueMinionCtrl[i].isMaster = true;
 				_blueMinionCtrl[i].move();
@@ -80,6 +88,9 @@ public class SpawnMinion : MonoBehaviour {
 	public void REDsetSpawn(string _id){
 		for (int i=0; i<redMax; i++) {
 			if(redMinionPool[i].activeSelf==false){
+				redMinionPool[i].transform.tag = "MINION";
+				redMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
+
 				redMinionPool[i].transform.position = REDspawnSpot.position;
 				if(ClientState.isMaster){//edit
 					_redMinionCtrl[i].isMaster = true;
@@ -96,6 +107,9 @@ public class SpawnMinion : MonoBehaviour {
 	public void BLUEsetSpawn(string _id){
 		for (int i=0; i<blueMax; i++) {
 			if(blueMinionPool[i].activeSelf==false){
+				blueMinionPool[i].transform.tag = "MINION";
+				blueMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
+
 				blueMinionPool[i].transform.position = BLUEspawnSpot.position;	
 				if(ClientState.isMaster){//edit
 					_blueMinionCtrl[i].isMaster = true;

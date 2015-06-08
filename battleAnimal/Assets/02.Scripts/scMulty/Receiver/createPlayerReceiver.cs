@@ -10,11 +10,13 @@ public class createPlayerReceiver : MonoBehaviour {
 	string team;
 	string addId;
 	private SpawnPlayer _spawnPlayer;
+	private GameState _gameState;
 	
 	// Use this for initialization
 	void Start () {
 		switch_ = false;
 		_spawnPlayer = GetComponent<SpawnPlayer> ();
+		_gameState = GetComponent<GameState> ();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +42,7 @@ public class createPlayerReceiver : MonoBehaviour {
 	}
 	private IEnumerator doit(){
 		_spawnPlayer.setSpawn(addId,spawnPos,_char,team);
+		//_gameState._teamStruct.name = "";
 		
 		if(ClientState.id==addId){
 			SocketStarter.Socket.Emit ("preuserREQ", addId);

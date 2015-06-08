@@ -28,8 +28,10 @@ public class RedCannonCtrl : MonoBehaviour {
 					_outterCtrl.targetDie(targetObj.name);
 				}else if(targetObj.tag=="MINION"&&targetObj.GetComponent<blueMinionCtrl>().isDie==true){
 					_outterCtrl.targetDie(targetObj.name);
-				}
-				_fireCtrl.Fire (targetObj.name);
+				}else if(targetObj.tag=="DIE"){
+					_outterCtrl.targetDie(targetObj.name);
+				}else
+					_fireCtrl.Fire (targetObj.name);
 			}
 		}
 	}

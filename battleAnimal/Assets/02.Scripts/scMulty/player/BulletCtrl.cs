@@ -27,8 +27,7 @@ public class BulletCtrl : MonoBehaviour {
 	public void setTarget(string firedby, string _name){
 		target = GameObject.Find(_name);
 		firedbyname = firedby;
-
-		//Debug.Log ("fired by: "+ firedbyname);
+		birth = Time.time;
 	}
 
 	// Update is called once per frame
@@ -43,7 +42,7 @@ public class BulletCtrl : MonoBehaviour {
 		}
 
 		if ((Time.time - birth) > durationTime) {
-			birth = Time.time;
+			//birth = Time.time;
 			StartCoroutine (PushObjectPool ());
 		}
 	}
@@ -67,6 +66,7 @@ public class BulletCtrl : MonoBehaviour {
 					target.GetComponent<BlueCannonState>().Heated("minion", gameObject,playerStat.damage);
 					StartCoroutine (PushObjectPool ());
 				}
+				StartCoroutine (PushObjectPool ());
 			}
 		}
 	}

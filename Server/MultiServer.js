@@ -130,6 +130,10 @@ io.sockets.on('connection', function (socket) {
         io.sockets.in(socket.room).emit("attackRES", data); 
     });
     
+    socket.on("respawnREQ",function(data){
+        io.sockets.in(socket.room).emit("respawnRES", data); 
+    });
+    
    /* socket.on("moveSyncREQ",function(data){  
         var ret = data.split(":");
         jarray[socket.room]["userPos"][ret[0]] = ret[1];         

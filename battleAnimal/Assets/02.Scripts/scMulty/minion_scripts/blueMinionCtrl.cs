@@ -121,14 +121,12 @@ public class blueMinionCtrl : MonoBehaviour {
 		
 						if (isAttack) {
 							if (targetObj != null) {
-								if(targetObj.tag=="Player"&&targetObj.GetComponent<PlayerHealthState>().isDie==true){
+								if(targetObj==null||targetObj.tag=="DIE")
 									move();
-								}else if(targetObj.tag=="MINION"&&targetObj.GetComponent<minionCtrl>().isDie==true){
-									move ();
-					}else{
-						minionTr.LookAt (targetObj.transform.position);
-						_fireCtrl.Fire (targetObj.name);						
-					}
+								else{
+									minionTr.LookAt (targetObj.transform.position);
+									_fireCtrl.Fire (targetObj.name);						
+								}										
 							}
 						}
 

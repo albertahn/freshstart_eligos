@@ -161,10 +161,13 @@ public class MoveCtrl : MonoBehaviour {
 				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,layerMask)) {
 					if (hitman2.collider.tag == "BUILDING" || hitman2.collider.tag == "MINION" || hitman2.collider.tag == "Player"
 					    || hitman2.collider.tag == "RED_CANNON"|| hitman2.collider.tag == "BLUE_CANNON" ) {
+						Debug.Log("hitman2.collider.tag = "+hitman2.collider.tag);
 						string targetName= hitman2.collider.transform.parent.name;
+						Debug.Log("targetName ="+targetName);
+						Debug.Log("hitman2.collider.tag ="+hitman2.collider.tag);
 
 						if (hitman2.collider.tag == "Player") {
-							string parentName = hitman2.collider.gameObject.transform.parent.name;							
+							string parentName = hitman2.collider.transform.parent.transform.parent.name;					
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
 								_attackMarkMaker.mark(hitman2.collider.gameObject);
@@ -175,7 +178,8 @@ public class MoveCtrl : MonoBehaviour {
 								SocketStarter.Socket.Emit ("attackREQ",data);	
 								attack (targetName);
 							}
-						} else {
+						}
+						else {
 							if (ClientState.team == "red" && targetName [0] == 'b'
 							    || ClientState.team == "blue" && targetName [0] == 'r') {
 								_attackMarkMaker.mark(hitman2.collider.gameObject);
@@ -198,7 +202,7 @@ public class MoveCtrl : MonoBehaviour {
 							
 							string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 								":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-							SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.							
+							SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
 							
 							move ();
 						}
@@ -238,7 +242,7 @@ public class MoveCtrl : MonoBehaviour {
 						}
 		
 						if (isAttack) {
-								if (targetObj != null) {				
+								if (targetObj != null) {
 										_aniCtrl._animation.CrossFade (_aniCtrl.anim.attack.name, 0.3f);
 										//if(targetObj.GetComponent<minionCtrl>()!=null){
 										if (targetObj.tag == "MINION") {
@@ -269,7 +273,10 @@ public class MoveCtrl : MonoBehaviour {
 																}
 														}
 												}
-										} else {//non minions
+										}
+										else if(targetObj.tag == "DIE"){
+												idle ();
+										}else {//non minions
 												Vector3 tt;
 												tt = targetObj.transform.position;
 												tt.y = 50.0f;

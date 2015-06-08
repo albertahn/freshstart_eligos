@@ -21,7 +21,6 @@ public class SocketOn : MonoBehaviour {
 	private string building_name;
 	private int building_hp_int;
 
-
 	private bool minion_health_change;
 	private string minion_name;
 	private int minion_hp_int;
@@ -51,6 +50,7 @@ public class SocketOn : MonoBehaviour {
 	private attackBuildingReceiver _attackBuildingReceiver;
 	private createObserver _createObserver;
 	private createMinionReceiver _createMinionReceiver;
+	private respawnReceiver _respawnReceiver;
 
 	void Start () {
 		_mAttackReceiver = GetComponent<minionAttackReceiver>();
@@ -72,6 +72,7 @@ public class SocketOn : MonoBehaviour {
 		_preUserMinionReceiver = GetComponent<preUserMininonReceiver> ();
 		_attackBuildingReceiver = GetComponent<attackBuildingReceiver> ();
 		_createMinionReceiver = GetComponent<createMinionReceiver> ();
+		_respawnReceiver = GetComponent<respawnReceiver> ();
 
 		_createObserver = GetComponent<createObserver> ();
 
@@ -111,6 +112,12 @@ public class SocketOn : MonoBehaviour {
 		SocketStarter.Socket.On("createPlayerRES",(data) =>
 		{//접속한 플레이어가 있을때 호출된다.
 			_createPlayerReceiver.receive(data.Json.args[0].ToString());
+		});
+
+		SocketStarter.Socket.On("respawnRES",(data) =>
+		{//접속한 플레이어가 있을때 호출된다.
+			if(!ClientState.isMaster)
+			_respawnReceiver.receive(data.Json.args[0].ToString());
 		});
 
 		/*SocketStarter.Socket.On("createRedMinionRES",(data) =>

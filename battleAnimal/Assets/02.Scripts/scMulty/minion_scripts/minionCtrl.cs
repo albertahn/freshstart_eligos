@@ -81,7 +81,7 @@ public class minionCtrl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-				if (!isDie) {
+		if (!isDie) {
 						if (isMaster) {
 								if (moveKey) {
 										moveKey = false;
@@ -118,22 +118,17 @@ public class minionCtrl : MonoBehaviour {
 		
 						if (isAttack) {
 							if (targetObj != null) {
-					if(targetObj==null||targetObj.tag=="Player"&&targetObj.GetComponent<PlayerHealthState>().isDie==true){
+								if(targetObj==null||targetObj.tag=="DIE")
 									move();
-					}else if(targetObj==null||targetObj.tag=="MINION"&&targetObj.GetComponent<blueMinionCtrl>().isDie==true){
-									move ();
-								}
-					else{
-						minionTr.LookAt (targetObj.transform.position);
-						_fireCtrl.Fire (targetObj.name);						
-					}
-										
+								else{
+									minionTr.LookAt (targetObj.transform.position);
+									_fireCtrl.Fire (targetObj.name);						
+								}										
 							}
-						}
-		
+						}		
 						if (minionSyncSwitch)
 								moveSync ();
-				}
+			}
 		}
 	
 	int extractNum(string a){
