@@ -131,7 +131,7 @@ io.sockets.on('connection', function (socket) {
     });
     
     socket.on("respawnREQ",function(data){
-        io.sockets.in(socket.room).emit("respawnRES", data); 
+        io.sockets.in(socket.room).emit("respawnRES", data);
     });
     
    /* socket.on("moveSyncREQ",function(data){  

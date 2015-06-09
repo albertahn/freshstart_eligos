@@ -3,27 +3,32 @@ using System.Collections;
 
 public class GameState : MonoBehaviour {
 
-	[System.Serializable]
-	public struct TeamStruct{
-		public string name;
-		public string team;
-		public string level;
-	}
-
-	public int idx;
-
-	public TeamStruct[] _teamStruct;
-
+	public static string[] name;
+	public static string[] team;
+	public static int[] level;
+	
+	public static int idx;
+	
 	// Use this for initialization
 	void Awake () {
 		idx = 0;
-		_teamStruct = new TeamStruct[6];
-		for (int i=0; i<6; i++)
-			_teamStruct [i] = new TeamStruct ();
+		
+		name = new string[6];
+		team = new string[6];
+		level = new int[6];
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
 	
+	public static int search_by_name(string _name){
+		for (int i=0; i<idx; i++) {
+			if(name[i] ==_name)
+				return i;
+		}
+		
+		return -1;
 	}
 }

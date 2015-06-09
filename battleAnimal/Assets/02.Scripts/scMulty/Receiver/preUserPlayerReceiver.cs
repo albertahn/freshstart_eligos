@@ -3,7 +3,7 @@ using System.Collections;
 
 public class preUserPlayerReceiver : MonoBehaviour {
 	private bool switch_;
-
+	
 	string[] list;
 	string sender;
 	string[] pos;
@@ -13,7 +13,7 @@ public class preUserPlayerReceiver : MonoBehaviour {
 	string _char;
 	string team;
 	private SpawnPlayer _spawnPlayer;
-
+	
 	GameObject Rteam,Bteam;
 	
 	// Use this for initialization
@@ -35,7 +35,7 @@ public class preUserPlayerReceiver : MonoBehaviour {
 		string[] temp2 = data.Split('=');
 		sender = temp2[0];
 		list = temp2[1].Split('_');
-
+		
 		if(ClientState.id==sender){
 			for(int i=0;i<list.Length-2;i++)
 			{
@@ -51,12 +51,18 @@ public class preUserPlayerReceiver : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	
 	private IEnumerator doit(){
 		GameObject player = (GameObject)Resources.Load(_char);
 		GameObject b = (GameObject)Instantiate(player,spawnPos,Quaternion.identity);
 		b.name=id;
+		
+		int i = GameState.idx;
+		GameState.name [i] = id;
+		GameState.team [i] = team;
+		GameState.idx++;
+		
 		if(team =="red"){
 			b.transform.parent = Rteam.transform;
 		}else{
