@@ -16,8 +16,13 @@ public class EndGameManager : MonoBehaviour {
 
 	RectTransform containerRectTransform ;
 
+	int red_count, blue_count;
+
 	// Use this for initialization
 	void Start () {
+
+		red_count = 1;
+		blue_count = 1;
 
 		endServerDatabase = GetComponent<EndServerDatabase> ();
 
@@ -44,7 +49,7 @@ public class EndGameManager : MonoBehaviour {
 	{		
 		yield return StartCoroutine (endServerDatabase.getRoomStats(roomIndex)); // id를 Email로 바꿔야 하지 않을까
 
-		Debug.Log("kills:  "+ endServerDatabase.fuckArray.Length);	
+		Debug.Log("myindex:  "+ PlayerPrefs.GetString("user_index"));	
 
 		//containerRectTransform.sizeDelta = new Vector2( 20, 100*endServerDatabase.fuckArray.Length);
 
@@ -52,7 +57,21 @@ public class EndGameManager : MonoBehaviour {
 
 			JSONObject jsonobj = JSONObject.Parse(endServerDatabase.fuckArray[i].ToString());
 
-			setStatRow (i, jsonobj.GetString("kills"),jsonobj.GetString("assists"),jsonobj.GetString("deaths"),jsonobj.GetString("points") );
+
+
+				setStatRow_red (i, 
+			                jsonobj.GetString("members_index"),
+				                jsonobj.GetString("profile_pic"),
+				                jsonobj.GetString("team"),
+				                jsonobj.GetString("kills"),
+				                jsonobj.GetString("assists"),
+				                jsonobj.GetString("deaths"),
+				                jsonobj.GetString("gold"),
+			                    jsonobj.GetString("level"),
+			                    jsonobj.GetString("items"),
+				                jsonobj.GetString("points") );
+
+
 
 
 		}
@@ -62,33 +81,64 @@ public class EndGameManager : MonoBehaviour {
 	}
 
 
-	public void setStatRow(int num, string kills, string assists, string deaths, string points){
+	public void setStatRow_red(int num,
+	                           string members_index,
+	                           string profile_pic,
+	                           string team,
+	                           string kills,
+	                           string assists,
+	                           string deaths,
+	                           string gold,
+	                           string level,
+	                           string items,
+	                           string points){
 
 
-		Debug.Log ("stats: "+kills+"assis: "+assists);
+		if (team == "red") {
+			GameObject newItem = GameObject.Find ("stat_row_red"+red_count);
+			
+			//newItem.transform.FindChild ("profile_tx").transform.GetComponent<Text> ().text = kills;
+			newItem.transform.FindChild ("kills_tx").transform.GetComponent<Text> ().text = kills;
+			newItem.transform.FindChild ("assists_tx").transform.GetComponent<Text> ().text = assists;
+			newItem.transform.FindChild ("deaths_tx").transform.GetComponent<Text> ().text = deaths;
+			newItem.transform.FindChild ("gold_tx").transform.GetComponent<Text> ().text = gold;
+			newItem.transform.FindChild ("level_tx").transform.GetComponent<Text> ().text = level;
+			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
+			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
 
+			checkFriend(newItem, members_index);
 
-		//create a new item, name it, and set the parent
-
-		GameObject newItem = GameObject.Find ("stat_row_red1");
-
-		//GameObject newItem = Instantiate(stat_row) as GameObject;
-		//GameObject pannelContent = Instantiate(pannel_content) as GameObject;
-
-		newItem.transform.FindChild ("kills_tx").transform.GetComponent<Text> ().text = kills;
-		newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
-
-
-		//Debug.Log ("len"+kills_tx.GetComponent<Text>());
-
-		//textmesh[0].text = "hi";
+			red_count++;
 		
-		newItem.name = stat_row.name + " item at ()";
-		//newItem.transform.parent = pannel_content.transform;
+		}else if (team =="blue"){
+			GameObject newItem = GameObject.Find ("stat_row_blue"+blue_count);
+			
+			//newItem.transform.FindChild ("profile_tx").transform.GetComponent<Text> ().text = kills;
+			newItem.transform.FindChild ("kills_tx").transform.GetComponent<Text> ().text = kills;
+			newItem.transform.FindChild ("assists_tx").transform.GetComponent<Text> ().text = assists;
+			newItem.transform.FindChild ("deaths_tx").transform.GetComponent<Text> ().text = deaths;
+			newItem.transform.FindChild ("gold_tx").transform.GetComponent<Text> ().text = gold;
+			newItem.transform.FindChild ("level_tx").transform.GetComponent<Text> ().text = level;
+			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
+			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
+
+			checkFriend(newItem, members_index);
+
+			blue_count++;
+
+
+
+		}
+
+
+	}
+
+	private void checkFriend(GameObject statrow, string members_index){
+
+		if (members_index == PlayerPrefs.GetString ("user_index")) {
+			statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
 		
-//		newItem.transform.SetParent (pannel_content.transform);
-
-
+		}
 
 
 	}
