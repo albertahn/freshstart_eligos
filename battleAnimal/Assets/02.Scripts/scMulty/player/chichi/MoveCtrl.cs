@@ -84,8 +84,7 @@ public class MoveCtrl : MonoBehaviour {
 		if (ClientID == gameObject.name && _state.isDie == false) {
 			
 			//id가 내 캐릭터 일때
-			#if UNITY_ANDROID||UNITY_IPHONE
-						
+			#if UNITY_ANDROID||UNITY_IPHONE						
 			if (Input.touchCount >0  && Input.GetTouch(0).phase ==TouchPhase.Began) {
 				Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
 				RaycastHit hit3;
@@ -97,7 +96,7 @@ public class MoveCtrl : MonoBehaviour {
 						string targetName= hit3.collider.transform.parent.name;
 
 						if (hit3.collider.tag == "Player") {
-							string parentName = hit3.collider.gameObject.transform.parent.name;
+							string parentName = hit3.collider.transform.parent.transform.parent.name;
 							
 							if (ClientState.team == "red" && parentName == "BlueTeam"
 							    || ClientState.team == "blue" && parentName == "RedTeam") {
@@ -161,10 +160,7 @@ public class MoveCtrl : MonoBehaviour {
 				if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,layerMask)) {
 					if (hitman2.collider.tag == "BUILDING" || hitman2.collider.tag == "MINION" || hitman2.collider.tag == "Player"
 					    || hitman2.collider.tag == "RED_CANNON"|| hitman2.collider.tag == "BLUE_CANNON" ) {
-						Debug.Log("hitman2.collider.tag = "+hitman2.collider.tag);
 						string targetName= hitman2.collider.transform.parent.name;
-						Debug.Log("targetName ="+targetName);
-						Debug.Log("hitman2.collider.tag ="+hitman2.collider.tag);
 
 						if (hitman2.collider.tag == "Player") {
 							string parentName = hitman2.collider.transform.parent.transform.parent.name;					

@@ -19,7 +19,7 @@ public class BlueCannonState : MonoBehaviour {
 	private BlueCannon_OutterCtrl _outterCtrl;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		maxEffect = 5;
 		effectPool = new GameObject[maxEffect];
 		for (int i=0; i<maxEffect; i++)

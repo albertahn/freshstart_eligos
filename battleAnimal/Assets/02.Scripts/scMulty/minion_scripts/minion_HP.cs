@@ -19,7 +19,7 @@ public class minion_HP : MonoBehaviour {
 			Vector3 temp = new Vector3 ((float)hp / maxHP, 1, 1);
 			this.transform.localScale = temp;
 			
-			hpText.GetComponent<TextMesh>().text = ""+hp.ToString();
+//			hpText.GetComponent<TextMesh>().text = ""+hp.ToString();
 			
 		}
 	}

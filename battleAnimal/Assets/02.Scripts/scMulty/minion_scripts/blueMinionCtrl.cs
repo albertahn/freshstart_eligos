@@ -36,7 +36,6 @@ public class blueMinionCtrl : MonoBehaviour {
 	public bool isMaster;
 	
 	private Vector3 minionPos, minionTg;
-	private bool minionSyncSwitch;
 	
 	
 	public GameObject targetObj;
@@ -45,8 +44,6 @@ public class blueMinionCtrl : MonoBehaviour {
 	void Start () {
 		traceDist = 20.0f;
 		attackDist = 7.0f;
-
-		minionSyncSwitch = false;
 
 		moveKey = true;
 		traceKey = false;
@@ -88,9 +85,11 @@ public class blueMinionCtrl : MonoBehaviour {
 		if (!isDie) {
 						if (isMaster) {
 								if (moveKey) {
-										moveKey = false;
-				
-										move ();
+									moveKey = false;
+									string data = gameObject.name + ":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+
+											":"+dest.x+","+dest.y+","+dest.z;
+									SocketStarter.Socket.Emit("moveMinionREQ", data);
+									move ();
 								}
 								if (traceKey) {
 										traceKey = false;
@@ -129,9 +128,6 @@ public class blueMinionCtrl : MonoBehaviour {
 								}										
 							}
 						}
-
-						if (minionSyncSwitch)
-								moveSync ();
 				}
 	}
 	
@@ -190,34 +186,9 @@ public class blueMinionCtrl : MonoBehaviour {
 			{
 				if(isMove==false){
 					moveKey = true;
-										
-					if (isMaster) {
-						string data = gameObject.name + ":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+":"+
-							dest.x+","+dest.y+","+dest.z;
-						SocketStarter.Socket.Emit("moveMinionREQ", data);
-					}
 				}
 			}			
 		}
-	}
-
-	void moveSync(){		
-		float step = speed*2* Time.deltaTime;
-		
-		transform.position = Vector3.MoveTowards(transform.position, minionPos, step);
-		
-		transform.LookAt(minionPos);		
-		
-		if (transform.position == minionPos) {
-			minionSyncSwitch = false;			
-		}// arrived switch
-	}
-	
-	public void setSync(Vector3 _pos,Vector3 _tg){
-		minionPos = _pos;
-		minionTg = _tg;
-		
-		minionSyncSwitch = true;
 	}
 
 	void OnTriggerEnter(Collider coll){
@@ -226,9 +197,6 @@ public class blueMinionCtrl : MonoBehaviour {
 				if (idx < point.Length - 1) {
 					syncTarget = dest = point [++idx].position;
 					moveKey = true;
-					string data = gameObject.name + ":" +minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+":"+
-						dest.x+","+dest.y+","+dest.z;
-					SocketStarter.Socket.Emit ("moveMinionREQ", data);
 				}
 			}
 		}

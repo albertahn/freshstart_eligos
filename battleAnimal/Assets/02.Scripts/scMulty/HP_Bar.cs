@@ -19,6 +19,7 @@ public class HP_Bar : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		tr.LookAt (_camera.transform);
+		tr.Rotate (0,180,0,Space.Self);
 		tr.rotation= Quaternion.Euler(60,320,tr.rotation.z);
 	}
 }
