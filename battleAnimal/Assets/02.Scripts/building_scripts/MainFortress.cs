@@ -43,8 +43,8 @@ public class MainFortress : MonoBehaviour {
 						GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
 					}
 			
-			if (GUI.Button (new Rect (100, 400, 150, 100), "exit")) {
-				Application.LoadLevel ("scStart");
+			if (GUI.Button (new Rect (100, 400, 150, 100), "ok")) {
+				Application.LoadLevel ("scEndGame");
 			}
 		}else if(this.gameObject.name == "red_building" && buildingDead==true){
 
@@ -59,9 +59,9 @@ public class MainFortress : MonoBehaviour {
 			
 			GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
 			
-			if (GUI.Button (new Rect (100, 400, 150, 100), "exit")) {
+			if (GUI.Button (new Rect (100, 400, 150, 100), "ok")) {
 				
-				Application.LoadLevel ("scStart");
+				Application.LoadLevel ("scEndGame");
 				
 			}
 		}
