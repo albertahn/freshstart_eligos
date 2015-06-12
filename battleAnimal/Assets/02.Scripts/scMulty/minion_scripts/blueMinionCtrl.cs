@@ -6,14 +6,14 @@ public class blueMinionCtrl : MonoBehaviour {
 	public Transform playerTr;
 	
 	public bool isMove;
-	private Transform[] point;
+	public Transform[] point;
 	public Vector3 dest;
 	public Vector3 target;
 	public Vector3 syncTarget;
 	
 	public mFireCtrl _fireCtrl;
 	
-	private int idx;
+	public int idx;
 	private int speed;
 	
 	public enum MinionState{idle,trace,attack,die};
@@ -33,18 +33,19 @@ public class blueMinionCtrl : MonoBehaviour {
 	
 	
 	public bool isAttack;
-	public bool isMaster;
-	
+	public bool isMaster;	
 	private Vector3 minionPos, minionTg;
-	
-	
+	private blue_outer_collider _outterCtrl;
 	public GameObject targetObj;
+	
+	private NavMeshAgent nvAgent;
+	
 	
 	// Use this for initialization
 	void Start () {
 		traceDist = 20.0f;
 		attackDist = 7.0f;
-
+		
 		moveKey = true;
 		traceKey = false;
 		attackKey = false;
@@ -56,6 +57,10 @@ public class blueMinionCtrl : MonoBehaviour {
 		isPlayer = false;
 		isTrace = false;
 		isAttack = false;
+		
+		_outterCtrl = GetComponentInChildren<blue_outer_collider> ();
+		
+		nvAgent = this.gameObject.GetComponent<NavMeshAgent> ();
 		
 		idx = 1;
 		speed = 2;
@@ -83,52 +88,66 @@ public class blueMinionCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!isDie) {
-						if (isMaster) {
-								if (moveKey) {
-									moveKey = false;
-									string data = gameObject.name + ":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+
-											":"+dest.x+","+dest.y+","+dest.z;
-									SocketStarter.Socket.Emit("moveMinionREQ", data);
-									move ();
-								}
-								if (traceKey) {
-										traceKey = false;
-										trace ();
-								}
-								if (attackKey) {
-										attackKey = false;
-										attack ();
-								}
-						}
-		
-						if (isMove) {
-								minionTr.LookAt (dest);
-								if (dest != minionTr.position) {
-										float step = speed * Time.deltaTime;
-										minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
-								}
-						}
-		
-						if (isTrace) {
-								if (playerTr != null) {
-										syncTarget = target = playerTr.position;
+			if (isMaster) {
+				if (moveKey) {
+					moveKey = false;
+					string data = gameObject.name + ":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+
+						":"+dest.x+","+dest.y+","+dest.z;
+					SocketStarter.Socket.Emit("moveMinionREQ", data);
+					move ();
+				}
+				if (traceKey) {
+					traceKey = false;
+					trace ();
+				}
+				if (attackKey) {
+					attackKey = false;
+					attack ();
+				}
+			}
+			
+			if (isMove) {
+				minionTr.LookAt (dest);
+				if(dest!=minionTr.position){
+					float step = speed * Time.deltaTime;
+					minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
+				}
+				
+				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
+				{
+					if(idx<8)
+						idx++;
+					dest = point [idx].position;
+					moveKey = true;
+				}	
+			}
+			
+			if (isTrace) {
+				if (targetObj != null) {
+					nvAgent.destination = targetObj.transform.position;
+					/*syncTarget = target = playerTr.position;
 										minionTr.LookAt (target);
 										float step = speed * Time.deltaTime;
-										minionTr.position = Vector3.MoveTowards (minionTr.position, target, step);
-								}
-						}
-		
-						if (isAttack) {
-							if (targetObj != null) {
-								if(targetObj==null||targetObj.tag=="DIE")
-									move();
-								else{
-									minionTr.LookAt (targetObj.transform.position);
-									_fireCtrl.Fire (targetObj.name);						
-								}										
-							}
-						}
+										minionTr.position = Vector3.MoveTowards (minionTr.position, target, step);*/
 				}
+			}
+			
+			if (isAttack) {
+				nvAgent.Stop();
+				if (targetObj != null) {
+					if(targetObj==null||targetObj.tag=="DIE"){
+						move();
+						_outterCtrl.targetDie(targetObj.transform);
+					}
+					else{
+						minionTr.LookAt (targetObj.transform.position);
+						_fireCtrl.Fire (targetObj.name);						
+					}										
+				}else{
+					move();
+				}
+			}
+		}
 	}
 	
 	public void move(){
@@ -164,7 +183,7 @@ public class blueMinionCtrl : MonoBehaviour {
 		while (!isDie) {
 			yield return new WaitForSeconds(0.2f);
 			
-			if(playerTr!=null){
+			if(targetObj!=null){
 				dist = Vector3.Distance(targetObj.transform.position,minionTr.position);
 			}else{
 				dist = 1000.0f;
@@ -173,7 +192,7 @@ public class blueMinionCtrl : MonoBehaviour {
 			if(dist<=attackDist){
 				if(isAttack==false){
 					attackKey = true;	
-
+					
 					string data = gameObject.name + ":" + targetObj.name+":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z;
 					SocketStarter.Socket.Emit ("minionAttackREQ", data);
 				}
@@ -190,8 +209,8 @@ public class blueMinionCtrl : MonoBehaviour {
 			}			
 		}
 	}
-
-	void OnTriggerEnter(Collider coll){
+	
+	/*void OnTriggerEnter(Collider coll){
 		if (coll.tag == "BluePoint") {
 			if (isMaster) {
 				if (idx < point.Length - 1) {
@@ -200,5 +219,5 @@ public class blueMinionCtrl : MonoBehaviour {
 				}
 			}
 		}
-	}
+	}*/
 }

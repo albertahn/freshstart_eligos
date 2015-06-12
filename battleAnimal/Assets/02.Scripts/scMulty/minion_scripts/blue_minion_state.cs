@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class blue_minion_state : MonoBehaviour {
 	
@@ -10,11 +11,11 @@ public class blue_minion_state : MonoBehaviour {
 	public string firedbyname;
 	
 	private moneyUI _moneyUI;
-		
+	
 	private GameObject[] effectPool;
-
+	
 	private int maxEffect;
-
+	
 	void Awake(){
 		hp = 100;
 		maxEffect = 5;
@@ -26,14 +27,14 @@ public class blue_minion_state : MonoBehaviour {
 			effectPool[i].SetActive(false);
 		}
 	}
-
+	
 	// Use this for initialization
 	void Start () {
 		_moneyUI = GameObject.Find ("UIManager").GetComponent<moneyUI>();
 	}
 	
 	// Update is called once per frame
-	void Update () {	
+	void Update () {
 		
 	}		
 	
@@ -44,7 +45,7 @@ public class blue_minion_state : MonoBehaviour {
 			
 			string data = this.name+":" + hp.ToString()+"";
 			SocketStarter.Socket.Emit ("attackMinion", data);	
-
+			
 			if(hp<=0)
 			{
 				hp=0;
@@ -54,17 +55,17 @@ public class blue_minion_state : MonoBehaviour {
 				SocketStarter.Socket.Emit ("minionDieREQ", data2);
 			}
 		}
-
+		
 		firedbyname = firedby;
 		Collider coll = obj.collider;	
 		StartCoroutine (this.CreateBloodEffect(coll.transform.position));	
-
+		
 	}
 	
 	public void minionDie(){
 		this.tag = "DIE";
 		this.transform.FindChild ("touchCollider").tag = "DIE";
-
+		
 		this.collider.enabled = false;
 		GetComponent<blueMinionCtrl> ().isDie = true;
 		
@@ -100,10 +101,9 @@ public class blue_minion_state : MonoBehaviour {
 		a.SetActive (false);
 	}
 	IEnumerator PushObjectPool(){
-		yield return new WaitForSeconds(3.0f);
-		
+		yield return new WaitForSeconds(3.0f);		
 		hp = 100;
-
+		
 		this.collider.enabled = true;
 		
 		gameObject.SetActive (false);

@@ -15,7 +15,7 @@ public class Building_hp : MonoBehaviour {
 	void Update () {
 		if (building != null) {			
 			int hp = building.GetComponent<MainFortress> ().hp;
-			Vector3 temp = new Vector3 ((float)hp / playerStat.maxHp, 1, 1);
+			Vector3 temp = new Vector3 ((float)hp / maxHP, 1, 1);
 			this.transform.localScale = temp;			
 		}
 		
