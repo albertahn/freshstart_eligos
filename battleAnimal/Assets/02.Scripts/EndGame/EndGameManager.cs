@@ -12,7 +12,12 @@ public class EndGameManager : MonoBehaviour {
 
 	private EndServerDatabase endServerDatabase;
 
+	private FriendDatabase friendDatabase;
+
 	public int itemCount = 10, columnCount = 1;
+
+	public string my_index;
+
 
 	RectTransform containerRectTransform ;
 
@@ -24,7 +29,11 @@ public class EndGameManager : MonoBehaviour {
 		red_count = 1;
 		blue_count = 1;
 
+		my_index = PlayerPrefs.GetString ("user_index");
+
 		endServerDatabase = GetComponent<EndServerDatabase> ();
+
+		friendDatabase = GetComponent<FriendDatabase> ();
 
 		StartCoroutine (GetStatData ("1"));//ClientState.room));
 
@@ -49,7 +58,7 @@ public class EndGameManager : MonoBehaviour {
 	{		
 		yield return StartCoroutine (endServerDatabase.getRoomStats(roomIndex)); // id를 Email로 바꿔야 하지 않을까
 
-		Debug.Log("myindex:  "+ PlayerPrefs.GetString("user_index"));	
+		//Debug.Log("myindex:  "+ PlayerPrefs.GetString("user_index"));	
 
 		//containerRectTransform.sizeDelta = new Vector2( 20, 100*endServerDatabase.fuckArray.Length);
 
@@ -71,10 +80,7 @@ public class EndGameManager : MonoBehaviour {
 			                    jsonobj.GetString("items"),
 				                jsonobj.GetString("points") );
 
-
-
-
-		}
+		}//end for 
 
 
 		yield return null;		
@@ -106,7 +112,7 @@ public class EndGameManager : MonoBehaviour {
 			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
 			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
 
-			checkFriend(newItem, members_index);
+			StartCoroutine(checkFriend(newItem, members_index));
 
 			red_count++;
 		
@@ -122,7 +128,7 @@ public class EndGameManager : MonoBehaviour {
 			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
 			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
 
-			checkFriend(newItem, members_index);
+			 StartCoroutine(checkFriend(newItem, members_index));
 
 			blue_count++;
 
@@ -133,14 +139,52 @@ public class EndGameManager : MonoBehaviour {
 
 	}
 
-	private void checkFriend(GameObject statrow, string members_index){
+	private IEnumerator checkFriend(GameObject statrow, string members_index){
 
-		if (members_index == PlayerPrefs.GetString ("user_index")) {
-			statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
+		if (members_index == my_index) {
+
+						statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
+		
+
+				} else {
+
+				
+			yield return StartCoroutine (friendDatabase.getfriendState(my_index, members_index)); // id를 Email로 바꿔야 하지 않을까
+			
+			Debug.Log("myindex:  "+ PlayerPrefs.GetString("user_index"));	
+			
+			//containerRectTransform.sizeDelta = new Vector2( 20, 100*endServerDatabase.fuckArray.Length);
+			
+			for ( int i =0; i< endServerDatabase.fuckArray.Length; i ++){
+				
+				JSONObject jsonobj = JSONObject.Parse(endServerDatabase.fuckArray[i].ToString());
+
+				if(jsonobj.GetString("status")=="follow"){
+
+					statrow.transform.FindChild ("already_follow").localScale = new Vector2 (5, 5);
+					
+					statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
+
+				}else{
+
+					statrow.transform.FindChild ("already_follow").localScale = new Vector2 (0, 0);
+
+					statrow.transform.FindChild ("add_friend").localScale = new Vector2 (5, 5);
+
+				}
+				
+			}//end for 
+			
+			
+			yield return null;		
 		
 		}
 
 
+
+
 	}
+
+
 
 }

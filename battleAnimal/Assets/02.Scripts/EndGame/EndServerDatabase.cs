@@ -40,7 +40,7 @@ public class EndServerDatabase : MonoBehaviour {
 			//return;
 		} else {
 			// show the highscores
-			Debug.Log(downloadbabe.text);
+			//Debug.Log(downloadbabe.text);
 		}
 		
 		//WWW www = new WWW (url);
