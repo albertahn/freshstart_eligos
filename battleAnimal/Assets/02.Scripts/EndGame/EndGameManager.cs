@@ -6,8 +6,6 @@ using Boomlagoon.JSON;
 
 public class EndGameManager : MonoBehaviour {
 
-
-
 	public GameObject stat_row, pannel_content;
 
 	private EndServerDatabase endServerDatabase;
@@ -17,14 +15,17 @@ public class EndGameManager : MonoBehaviour {
 	public int itemCount = 10, columnCount = 1;
 
 	public string my_index;
-
-
 	RectTransform containerRectTransform ;
-
 	int red_count, blue_count;
+
+	public string[] red_index;
+	public string[] blue_index;
 
 	// Use this for initialization
 	void Start () {
+
+		red_index = new string[3];
+		blue_index = new string[3];
 
 		red_count = 1;
 		blue_count = 1;
@@ -45,12 +46,6 @@ public class EndGameManager : MonoBehaviour {
 
 		//int rowCount = itemCount / columnCount;
 
-
-
-
-
-
-	
 	}
 	
 
@@ -112,6 +107,11 @@ public class EndGameManager : MonoBehaviour {
 			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
 			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
 
+			int index_red = red_count-1;
+			red_index[index_red] = members_index;
+
+			Debug.Log("index_redt: "+index_red);
+
 			StartCoroutine(checkFriend(newItem, members_index));
 
 			red_count++;
@@ -127,6 +127,8 @@ public class EndGameManager : MonoBehaviour {
 			newItem.transform.FindChild ("level_tx").transform.GetComponent<Text> ().text = level;
 			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
 			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
+
+			blue_index[blue_count] = members_index;
 
 			 StartCoroutine(checkFriend(newItem, members_index));
 
@@ -154,28 +156,36 @@ public class EndGameManager : MonoBehaviour {
 			Debug.Log("myindex:  "+ PlayerPrefs.GetString("user_index"));	
 			
 			//containerRectTransform.sizeDelta = new Vector2( 20, 100*endServerDatabase.fuckArray.Length);
-			
-			for ( int i =0; i< endServerDatabase.fuckArray.Length; i ++){
+	//3times		
+			for ( int i =0; i< endServerDatabase.fuckArray.Length; i ++){ //endServerDatabase.fuckArray.Length
+
+				if(endServerDatabase.fuckArray[i]!=null){
+
+				
 				
 				JSONObject jsonobj = JSONObject.Parse(endServerDatabase.fuckArray[i].ToString());
 
-				if(jsonobj.GetString("status")=="follow"){
-
-					statrow.transform.FindChild ("already_follow").localScale = new Vector2 (5, 5);
-					
+				if(jsonobj.GetString("status")=="follow" || jsonobj.GetString("status")=="friend"){
 					statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
+					statrow.transform.FindChild ("already_follow").localScale = new Vector2 (1, 1);
+					statrow.transform.FindChild ("add_friend").renderer.enabled = false;
+
+
+
 
 				}else{
 
 					statrow.transform.FindChild ("already_follow").localScale = new Vector2 (0, 0);
 
-					statrow.transform.FindChild ("add_friend").localScale = new Vector2 (5, 5);
+					statrow.transform.FindChild ("add_friend").localScale = new Vector2 (1, 1);
 
 				}
+
+				}// notnull
 				
 			}//end for 
-			
-			
+
+
 			yield return null;		
 		
 		}
