@@ -114,10 +114,9 @@ public class minionCtrl : MonoBehaviour {
 				{
 					if(idx<8){
 						idx++;
-						dest = point [idx].position;
 						moveKey = true;
 					}
-					
+					dest = point [idx].position;					
 				}											
 			}
 			

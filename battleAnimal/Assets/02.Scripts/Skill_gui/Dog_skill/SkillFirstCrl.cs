@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SkillFirstCrl : MonoBehaviour {
-
+	
 	public int damage;
 	private float speed;
 	public float birth;
@@ -23,11 +23,11 @@ public class SkillFirstCrl : MonoBehaviour {
 		if ((Time.time - birth) > durationTime)
 			Destroy (this.gameObject);	
 	}
-
+	
 	public void shotByname(string firedBy){
 		firedByName = firedBy;	
 	}
-
+	
 	void OnTriggerEnter(Collider coll){		
 		if (coll.gameObject.tag == "MINION") {			
 			
@@ -46,23 +46,21 @@ public class SkillFirstCrl : MonoBehaviour {
 			}
 			
 			
-		}else if(coll.gameObject.tag=="Player"){
-
+		}else if(coll.gameObject.tag=="Player"&&coll.name!="touchCollider"){
+			
 			string hitParentName = coll.transform.parent.name;
 			string firedparentName = GameObject.Find (firedByName).transform.parent.name;
 			
-			if( hitParentName != firedparentName){
-				Debug.Log("hitskill");
+			if( hitParentName != firedparentName&&hitParentName != firedByName){
 				
 				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject);
 				//Destroy (this.gameObject);
 			}//if
 			
-		}//hit player
-		
+		}//hit player	
 		
 		
 	}//end colide
-
-
+	
+	
 }

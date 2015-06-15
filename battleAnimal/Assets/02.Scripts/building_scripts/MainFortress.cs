@@ -2,30 +2,30 @@
 using System.Collections;
 
 public class MainFortress : MonoBehaviour {
-
-
+	
+	
 	public GameObject bloodEffect;
 	public GameObject bloodDecal;
-
+	
 	public int hp = 400;
-
+	
 	public bool buildingDead;
-
+	
 	public Texture2D victory, defeat ;
-
+	
 	// Use this for initialization
 	void Start () {
-	
+		
 		buildingDead = false;
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	}
-
+	
 	void OnGUI(){
-
+		
 		/*GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
 		
 		if (GUI.Button (new Rect (100, 400, 150, 100), "Blue Team Win: "+ClientState.team)) {
@@ -36,26 +36,26 @@ public class MainFortress : MonoBehaviour {
 		
 		if (this.gameObject.name == "blue_building" && buildingDead ==true ) {
 			
-					if(ClientState.team =="red"){
-						GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
-
-					}else{
-						GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
-					}
+			if(ClientState.team =="red"){
+				GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
+				
+			}else{
+				GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
+			}
 			
 			if (GUI.Button (new Rect (100, 400, 150, 100), "ok")) {
 				Application.LoadLevel ("scEndGame");
 			}
 		}else if(this.gameObject.name == "red_building" && buildingDead==true){
-
-
+			
+			
 			if(ClientState.team =="blue"){
 				GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
 				
 			}else{
 				GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
 			}
-
+			
 			
 			GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
 			
@@ -66,9 +66,9 @@ public class MainFortress : MonoBehaviour {
 			}
 		}
 	}
-
-
-	void OnTriggerEnter(Collider coll){
+	
+	
+	/*	void OnTriggerEnter(Collider coll){
 
 		if (coll.gameObject.tag == "BULLET_BALL") {
 			StartCoroutine (this.CreateBloodEffect(coll.transform.position));
@@ -104,8 +104,8 @@ public class MainFortress : MonoBehaviour {
 
 		}
 	}
-
-
+*/
+	
 	IEnumerator CreateBloodEffect(Vector3 pos)
 	{
 		GameObject _blood1 = (GameObject)Instantiate (bloodEffect, pos, Quaternion.identity);
@@ -121,10 +121,10 @@ public class MainFortress : MonoBehaviour {
 		
 		yield return null;
 	}
-
+	
 	public void buildingDie(){
-
+		
 		buildingDead = true;
-
+		
 	}
 }

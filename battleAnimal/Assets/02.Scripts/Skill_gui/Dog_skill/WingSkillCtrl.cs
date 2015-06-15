@@ -28,7 +28,7 @@ public class WingSkillCtrl : MonoBehaviour {
 		firedByName = firedBy;	
 	}
 	
-	void OnTriggerEnter(Collider coll){		
+	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.tag == "MINION") {			
 			
 			string hitParentName = coll.transform.parent.name;
@@ -44,15 +44,13 @@ public class WingSkillCtrl : MonoBehaviour {
 					coll.gameObject.GetComponent<blue_minion_state>().Heated("skill", gameObject,damage);
 				Destroy (this.gameObject);
 			}
-			
-			
-		}else if(coll.gameObject.tag=="Player"){
+		}else if(coll.gameObject.tag=="Player"&&coll.name!="touchCollider"){
 			
 			string hitParentName = coll.transform.parent.name;
 			string firedparentName = GameObject.Find (firedByName).transform.parent.name;
 			
-			if( hitParentName != firedparentName){
-				Debug.Log("hitskill");
+			if( hitParentName != firedparentName&&hitParentName != firedByName){
+				Debug.Log("hit target = "+coll.name);
 				
 				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject);
 				Destroy (this.gameObject);

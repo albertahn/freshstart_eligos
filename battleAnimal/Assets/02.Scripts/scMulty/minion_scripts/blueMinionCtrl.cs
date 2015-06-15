@@ -117,9 +117,9 @@ public class blueMinionCtrl : MonoBehaviour {
 				{
 					if(idx<8){
 						idx++;
-						dest = point [idx].position;
 						moveKey = true;
 					}
+					dest = point [idx].position;
 					
 				}	
 			}
