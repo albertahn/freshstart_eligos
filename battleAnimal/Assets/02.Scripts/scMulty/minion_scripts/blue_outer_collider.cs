@@ -13,6 +13,7 @@ public class blue_outer_collider : MonoBehaviour {
 		_ctrl = GetComponentInParent<blueMinionCtrl> ();
 		targets = new List<GameObject>();
 		isRun = false;
+		StartCoroutine (refreshList ());
 	}
 	
 	// Update is called once per frame
@@ -20,17 +21,13 @@ public class blue_outer_collider : MonoBehaviour {
 	}
 	
 	public void targetDie(Transform a){
-		targets.Remove (a.gameObject);
-		
-		if (a.name == targetName) {
-			_ctrl.moveKey = true;
-			changeTarget();
-		}
+		removeOne (a.gameObject);
 	}
 	
 	public void changeTarget(){
 		if(targets.Count<=0){
 			isRun=false;
+			targetName = null;
 		}else if(targets.Count>=2){
 			int i;
 			for(i=0;i<targets.Count;i++){
@@ -69,14 +66,7 @@ public class blue_outer_collider : MonoBehaviour {
 	}
 	
 	void OnTriggerExit(Collider coll){
-		if (coll.name == targetName) {
-			targets.Remove (coll.gameObject);
-			_ctrl.isAttack = false;
-			
-			changeTarget ();
-		} else {
-			targets.Remove (coll.gameObject);
-		}
+		removeOne (coll.gameObject);
 	}
 	
 	public void addEnemy(GameObject _zn){
@@ -89,10 +79,31 @@ public class blue_outer_collider : MonoBehaviour {
 			isRun = true;
 		}
 	}
+	
+	public void removeOne(GameObject go){
+		targets.Remove (go);
+		if (go.name == targetName) {
+			_ctrl.moveKey = true;
+			changeTarget ();
+		}
+	}	
+	
 	public void removeAll(){
-		Debug.Log ("dlelete!@#!@#!#$!#%$!");
-		for(int i=0;i<targets.Count;i++){
-			targets.Remove(targets[i]);
+		targets.Clear ();
+		targetName = null;
+		isRun= false;
+	}
+	
+	public IEnumerator refreshList(){
+		while (true) {
+			yield return new WaitForSeconds(1.0f);
+			for (int i=0; i<targets.Count; i++) {
+				if (targets [i] == null){
+					if(i==0)
+						targetName = null;
+					targets.Remove (targets [i]);
+				}
+			}
 		}
 	}
 }

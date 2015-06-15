@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\minion_scripts\blueMinionCtrl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonState.cs">
     <Files>
-      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\red_outer_collider.cs" Line="93" Column="36" />
-      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\blue_outer_collider.cs" Line="95" Column="31" />
-      <File FileName="Assets\02.Scripts\scMulty\SpawnMinion.cs" Line="87" Column="38" />
-      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\minionCtrl.cs" Line="123" Column="18" />
-      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\blueMinionCtrl.cs" Line="126" Column="18" />
+      <File FileName="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonState.cs" Line="10" Column="11" />
+      <File FileName="Assets\02.Scripts\scMulty\RedCannon\RedCannonState.cs" Line="97" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

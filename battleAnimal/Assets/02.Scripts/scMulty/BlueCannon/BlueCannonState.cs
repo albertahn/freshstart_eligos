@@ -84,6 +84,8 @@ public class BlueCannonState : MonoBehaviour {
 		isDie = true;
 		//GetComponent<MoveCtrl> ().isDie = true;
 		
+		this.tag = "DIE";
+
 		int oldInt = PlayerPrefs.GetInt ("minions_killed");
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);
 		

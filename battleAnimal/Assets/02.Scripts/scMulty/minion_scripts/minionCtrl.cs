@@ -6,14 +6,14 @@ public class minionCtrl : MonoBehaviour {
 	public Transform playerTr;
 	
 	public bool isMove;
-	private Transform[] point;
+	public Transform[] point;
 	public Vector3 dest;
 	public Vector3 target;
 	public Vector3 syncTarget;
 	
 	public mFireCtrl _fireCtrl;
 	
-	private int idx;
+	public int idx;
 	private int speed;
 	
 	public enum MinionState{idle,trace,attack,die};
@@ -112,10 +112,12 @@ public class minionCtrl : MonoBehaviour {
 				}
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
 				{
-					if(idx<8)
+					if(idx<8){
 						idx++;
-					dest = point [idx].position;
-					moveKey = true;
+						dest = point [idx].position;
+						moveKey = true;
+					}
+					
 				}											
 			}
 			
@@ -177,8 +179,10 @@ public class minionCtrl : MonoBehaviour {
 		while (!isDie) {
 			yield return new WaitForSeconds(0.2f);
 			
-			if(targetObj!=null)
-				dist = Vector3.Distance(targetObj.transform.position,minionTr.position);
+			if(targetObj!=null){
+				float innerSize = targetObj.transform.localScale.x/2;
+				dist = Vector3.Distance(targetObj.transform.position,minionTr.position)-innerSize;
+			}
 			else{
 				dist = 1000.0f;
 			}

@@ -115,10 +115,12 @@ public class blueMinionCtrl : MonoBehaviour {
 				
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
 				{
-					if(idx<8)
+					if(idx<8){
 						idx++;
-					dest = point [idx].position;
-					moveKey = true;
+						dest = point [idx].position;
+						moveKey = true;
+					}
+					
 				}	
 			}
 			
@@ -184,7 +186,8 @@ public class blueMinionCtrl : MonoBehaviour {
 			yield return new WaitForSeconds(0.2f);
 			
 			if(targetObj!=null){
-				dist = Vector3.Distance(targetObj.transform.position,minionTr.position);
+				float innerSize = targetObj.transform.localScale.x/2;
+				dist = Vector3.Distance(targetObj.transform.position,minionTr.position)-innerSize;
 			}else{
 				dist = 1000.0f;
 			}

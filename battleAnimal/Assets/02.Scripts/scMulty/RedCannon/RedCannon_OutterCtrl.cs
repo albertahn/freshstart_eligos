@@ -26,42 +26,42 @@ public class RedCannon_OutterCtrl : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider coll){
 		if (!_state.isDie) {
-						if (coll.tag == "Player") {
-								string parentName = coll.gameObject.transform.parent.name;
-								if (parentName [0] == 'B') {
-										enemyList.Add (coll.gameObject);
-				
-										if (isRun == false) {
-												targetName = coll.name;
-												_ctrl.targetObj = coll.gameObject;
-												_ctrl.isAttack = true;
-												isRun = true;
-										}
-								}
-						} else if (coll.tag == "MINION") {
-								if (coll.name [0] == 'b') {
-										enemyList.Add (coll.gameObject);
-				
-										if (isRun == false) {
-												targetName = coll.name;
-												_ctrl.targetObj = coll.gameObject;
-												_ctrl.isAttack = true;
-												isRun = true;
-										}
-								}
-						} else if (coll.tag == "BUILDING") {		
-								if (coll.name [0] == 'b') {
-										enemyList.Add (coll.gameObject);
-				
-										if (isRun == false) {
-												targetName = coll.name;
-												_ctrl.targetObj = coll.gameObject;
-												_ctrl.isAttack = true;
-												isRun = true;
-										}
-								}
-						}
+			if (coll.tag == "Player") {
+				string parentName = coll.gameObject.transform.parent.name;
+				if (parentName [0] == 'B') {
+					enemyList.Add (coll.gameObject);
+					
+					if (isRun == false) {
+						targetName = coll.name;
+						_ctrl.targetObj = coll.gameObject;
+						_ctrl.isAttack = true;
+						isRun = true;
+					}
 				}
+			} else if (coll.tag == "MINION") {
+				if (coll.name [0] == 'b') {
+					enemyList.Add (coll.gameObject);
+					
+					if (isRun == false) {
+						targetName = coll.name;
+						_ctrl.targetObj = coll.gameObject;
+						_ctrl.isAttack = true;
+						isRun = true;
+					}
+				}
+			} else if (coll.tag == "BUILDING") {		
+				if (coll.name [0] == 'b') {
+					enemyList.Add (coll.gameObject);
+					
+					if (isRun == false) {
+						targetName = coll.name;
+						_ctrl.targetObj = coll.gameObject;
+						_ctrl.isAttack = true;
+						isRun = true;
+					}
+				}
+			}
+		}
 	}
 	
 	void OnTriggerExit(Collider coll){
@@ -86,6 +86,7 @@ public class RedCannon_OutterCtrl : MonoBehaviour {
 	public void changeTarget(){
 		if(enemyList.Count<=0){
 			isRun=false;
+			targetName = null;
 		}else{
 			targetName = enemyList[enemyList.Count-1].name;
 			_ctrl.targetObj = enemyList[enemyList.Count-1];

@@ -94,6 +94,8 @@ public class RedCannonState : MonoBehaviour {
 		this.collider.enabled = false;
 		isDie = true;
 		//GetComponent<MoveCtrl> ().isDie = true;
+
+		this.tag = "DIE";
 		
 		int oldInt = PlayerPrefs.GetInt ("minions_killed");
 		
