@@ -117,6 +117,7 @@ public class EndGameManager : MonoBehaviour {
 			red_count++;
 		
 		}else if (team =="blue"){
+
 			GameObject newItem = GameObject.Find ("stat_row_blue"+blue_count);
 			
 			//newItem.transform.FindChild ("profile_tx").transform.GetComponent<Text> ().text = kills;
@@ -128,7 +129,10 @@ public class EndGameManager : MonoBehaviour {
 			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
 			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
 
-			blue_index[blue_count] = members_index;
+
+			int index_blue = blue_count-1;
+
+			blue_index[index_blue] = members_index;
 
 			 StartCoroutine(checkFriend(newItem, members_index));
 
@@ -146,8 +150,8 @@ public class EndGameManager : MonoBehaviour {
 		if (members_index == my_index) {
 
 						statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
+			           statrow.transform.FindChild ("already_follow").localScale = new Vector2 (0, 0);
 		
-
 				} else {
 
 				
@@ -157,29 +161,27 @@ public class EndGameManager : MonoBehaviour {
 			
 			//containerRectTransform.sizeDelta = new Vector2( 20, 100*endServerDatabase.fuckArray.Length);
 	//3times		
-			for ( int i =0; i< endServerDatabase.fuckArray.Length; i ++){ //endServerDatabase.fuckArray.Length
+			for ( int i =0; i< friendDatabase.friendArray.Length; i ++){ //endServerDatabase.fuckArray.Length
 
-				if(endServerDatabase.fuckArray[i]!=null){
+				if(friendDatabase.friendArray[i]!=null){
 
+					
 				
 				
-				JSONObject jsonobj = JSONObject.Parse(endServerDatabase.fuckArray[i].ToString());
+					JSONObject jsonobj = JSONObject.Parse(friendDatabase.friendArray[i].ToString());
 
 				if(jsonobj.GetString("status")=="follow" || jsonobj.GetString("status")=="friend"){
 					statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
 					statrow.transform.FindChild ("already_follow").localScale = new Vector2 (1, 1);
-					statrow.transform.FindChild ("add_friend").renderer.enabled = false;
+					
 
 
-
-
-				}else{
+				  }else{
 
 					statrow.transform.FindChild ("already_follow").localScale = new Vector2 (0, 0);
-
 					statrow.transform.FindChild ("add_friend").localScale = new Vector2 (1, 1);
 
-				}
+				  }
 
 				}// notnull
 				

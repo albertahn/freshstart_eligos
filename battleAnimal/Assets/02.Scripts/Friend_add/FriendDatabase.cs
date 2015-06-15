@@ -5,14 +5,11 @@ using Boomlagoon.JSON;
 
 public class FriendDatabase : MonoBehaviour {
 	public JSONArray friendArray;
+	public JSONObject returnObj;
 	// Use this for initialization
 	void Start () {
-		friendArray = new JSONArray();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		friendArray = new JSONArray ();
+		returnObj = new JSONObject ();
 	}
 
 
@@ -23,9 +20,7 @@ public class FriendDatabase : MonoBehaviour {
 		// Create a form object for sending high score data to the server
 		WWWForm form = new WWWForm();
 		// Assuming the perl script manages high scores for different games
-		
-		// The name of the player submitting the scores
-		
+	
 		
 		// Create a download object
 		WWW downloadbabe = new WWW( url );
@@ -54,4 +49,36 @@ public class FriendDatabase : MonoBehaviour {
 		
 		
 	}//end getdata
+
+
+	public IEnumerator sendfriendReq(string my_index, string friend_index)
+	{
+		string url = "http://mobile.sharebasket.com/friend/add_friend/"+my_index+"/"+friend_index;
+
+		
+		// Create a download object
+		WWW downloadbabe = new WWW( url );
+		// Wait until the download is done
+		yield return downloadbabe;
+		if(downloadbabe.error !=null) {
+			
+			Debug.Log( "Error downloading: " + downloadbabe.error );
+			//return;
+		} else {
+			// show the highscores
+			Debug.Log(downloadbabe.text);
+		}
+
+		if (downloadbabe.size <= 2) {
+			
+			yield return null;
+			
+		} else {
+			
+			returnObj = JSONObject.Parse(downloadbabe.text);
+		}
+		
+		
+	}//end getdata
+
 }
