@@ -6,10 +6,14 @@ using Boomlagoon.JSON;
 public class FriendDatabase : MonoBehaviour {
 	public JSONArray friendArray;
 	public JSONObject returnObj;
+
+	public JSONArray myFriendsList;
 	// Use this for initialization
 	void Start () {
 		friendArray = new JSONArray ();
 		returnObj = new JSONObject ();
+
+		myFriendsList = new JSONArray ();
 	}
 
 
@@ -80,5 +84,33 @@ public class FriendDatabase : MonoBehaviour {
 		
 		
 	}//end getdata
+
+	public IEnumerator getFriendList(string my_index){
+
+		string url = "http://mobile.sharebasket.com/friend/get_friend_list/"+my_index;
+		
+		
+		// Create a download object
+		WWW downloadbabe = new WWW( url );
+		// Wait until the download is done
+		yield return downloadbabe;
+		if(downloadbabe.error !=null) {
+			
+			Debug.Log( "Error downloading: " + downloadbabe.error );
+			//return;
+		} else {
+			// show the highscores
+			Debug.Log(downloadbabe.text);
+		}
+		
+		if (downloadbabe.size <= 2) {
+			
+			yield return null;
+			
+		} else {
+			
+			myFriendsList = JSONArray.Parse(downloadbabe.text);
+		}
+	}
 
 }
