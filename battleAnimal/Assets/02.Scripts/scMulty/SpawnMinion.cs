@@ -56,7 +56,6 @@ public class SpawnMinion : MonoBehaviour {
 		string data=null;
 		for (int i=0; i<redMax; i++) {
 			if(redMinionPool[i].activeSelf==false){
-				Debug.Log("redMinionPool[i].transform.tag = "+redMinionPool[i].transform.tag);
 				
 				redMinionPool[i].transform.tag = "MINION";
 				redMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";

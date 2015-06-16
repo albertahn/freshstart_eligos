@@ -46,7 +46,7 @@ public class fireShellCtrl : MonoBehaviour {
 			}
 			
 			
-		}else if(coll.gameObject.tag=="Player"){
+		}else if(coll.gameObject.tag=="Player"&&coll.name!="touchCollider"){
 			
 			string hitParentName = coll.transform.parent.name;
 			string firedparentName = GameObject.Find (firedByName).transform.parent.name;

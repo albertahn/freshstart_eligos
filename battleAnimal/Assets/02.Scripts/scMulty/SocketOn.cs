@@ -121,24 +121,7 @@ public class SocketOn : MonoBehaviour {
 			_respawnReceiver.receive(data.Json.args[0].ToString());
 		});
 
-		/*SocketStarter.Socket.On("createRedMinionRES",(data) =>
-		{
-			string temp = data.Json.args[0].ToString();
-			_createRedMinionReceiver.receive(temp);
-		});
-
-		SocketStarter.Socket.On("createBlueMinionRES",(data) =>
-		{
-			string temp = data.Json.args[0].ToString();
-			_createBlueMinionReceiver.receive(temp);
-		});*/
-
-		/*SocketStarter.Socket.On ("preuser1RES", (data) => {		
-			string temp = data.Json.args[0].ToString();
-			_preUserMinionReceiver.receive(temp);
-		});*/
-
-		SocketStarter.Socket.On ("preuser2RES", (data) => {
+		SocketStarter.Socket.On ("preuserRES", (data) => {
 			_preUserPlayerReceiver.receive(data.Json.args[0].ToString());
 		});
 
@@ -225,9 +208,9 @@ public class SocketOn : MonoBehaviour {
 
 //master or not? 
 		if (ClientState.isMaster) {
-			SocketStarter.Socket.Emit("createRoomREQ", ClientID+":"+ClientState.room+":master");
+			SocketStarter.Socket.Emit("createRoomREQ", ClientState.id+":"+ClientState.room+":master");
 		} else {
-			SocketStarter.Socket.Emit("createRoomREQ", ClientID+":"+ClientState.room+":notmaster");
+			SocketStarter.Socket.Emit("createRoomREQ", ClientState.id+":"+ClientState.room+":notmaster");
 		}
 	}//end start
 

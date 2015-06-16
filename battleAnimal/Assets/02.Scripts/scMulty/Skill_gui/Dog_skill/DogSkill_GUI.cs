@@ -74,14 +74,9 @@ public class DogSkill_GUI : MonoBehaviour {
 	
 	
 	public void Skill1_bot()
-	{
-		
-		Debug.Log ("what the fuck");
-		
+	{		
 		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]) {
 			GameObject dogy = GameObject.Find (ClientState.id);
-			
-			Debug.Log ("skill1bot: "+ClientID);
 			
 			Vector3 spawnPos = dogy.transform.position;
 			Quaternion rotationdog = dogy.transform.rotation;
@@ -199,7 +194,8 @@ public class DogSkill_GUI : MonoBehaviour {
 				skills [2].sprite = skill3_spr;
 				skill_state [2] = true;
 			}
-			
+
+
 			if (Input.GetMouseButtonDown (0)) {
 				
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -224,11 +220,7 @@ public class DogSkill_GUI : MonoBehaviour {
 						
 						
 						dog.transform.LookAt (hiterone.point);
-						
-						/*WingSkill wingskill = dog.GetComponent<WingSkill> ();	
-					wingskill.fireWing(ClientState.id);*/
-						//destroy gameobject]
-						//destroy all wraps
+
 						clearSkillWraps ();
 						
 						skillOneReady = false;
@@ -287,10 +279,7 @@ public class DogSkill_GUI : MonoBehaviour {
 						
 						fireThird (dog, hiterone.point, ClientState.id);
 						
-						/*FireSkill skillfire = dog.GetComponent<FireSkill> ();	
-					skillfire.fireBall(ClientState.id);
-*/
-						
+
 						//destroy gameobject]
 						//destroy all wraps
 						clearSkillWraps ();
@@ -306,7 +295,7 @@ public class DogSkill_GUI : MonoBehaviour {
 					
 				} ///raycasr
 				
-			}//mousedown skillone ready 
+			}
 		}
 		
 		
@@ -324,13 +313,7 @@ public class DogSkill_GUI : MonoBehaviour {
 			Destroy (skillwraps [i]);	
 		}		
 		
-	}//clear
-	
-	
-	
-	//realfire skills
-	
-	//first
+	}
 	
 	public void fireFirst(GameObject gameobject, Vector3 vector, string firedBy){
 		

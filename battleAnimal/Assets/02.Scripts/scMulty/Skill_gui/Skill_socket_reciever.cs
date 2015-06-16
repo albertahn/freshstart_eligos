@@ -32,6 +32,7 @@ public class Skill_socket_reciever : MonoBehaviour {
 		if(firedskill ==true && userID != ClientState.id){
 
 			firedplayer = GameObject.Find(userID);
+			Debug.Log("firedplayer = "+firedplayer.name);
 
 			firedplayer.transform.LookAt(newPos);
 
@@ -39,20 +40,20 @@ public class Skill_socket_reciever : MonoBehaviour {
 			case "dog":
 				dog_skill_gui  = GameObject.Find (userID).GetComponent<DogSkill_GUI>();		
 
-				for (int i=0; i<3; i++){
+				/*for (int i=0; i<3; i++){
 					dog_skill_gui.skill_state[i] = true;
 					dog_skill_gui.skill_live[i] = true;
-				}
+				}*/
 					
 				break;
 			case "turtle":
 				tutu_skill = GameObject.Find (userID).GetComponent<Tutu_skill_gui>();	
 
-				for (int i=0; i<3; i++){
+				/*for (int i=0; i<3; i++){
 
 					tutu_skill.skill_state[i] = true;
 					tutu_skill.skill_live[i] = true;
-				}
+				}*/
 				break;
 			}
 
@@ -66,6 +67,7 @@ public class Skill_socket_reciever : MonoBehaviour {
 	}//update
 
 	public void skillShot(string data){
+		Debug.Log ("skillShot = "+data);
 
 		string[] temp = data.Split(':');
 
@@ -78,13 +80,7 @@ public class Skill_socket_reciever : MonoBehaviour {
 		userCharacter = temp [2];
 		skillNumber=  temp[3];
 
-
-
-		Debug.Log("attack: skill " + userID+":"+userCharacter+":"+data );
-
 		firedskill = true;
-
-		Debug.Log ("data fied: "+firedskill);
 
 	}//
 

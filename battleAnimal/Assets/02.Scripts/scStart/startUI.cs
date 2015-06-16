@@ -10,11 +10,14 @@ public class startUI : MonoBehaviour {
 	void Start () {
 		Screen.SetResolution(800, 480, true);
 		//PlayerPrefs.SetString ("email","aa");//not internet
-		
+
+
 		UserName.text = PlayerPrefs.GetString("username");
 		Userlevel.text = PlayerPrefs.GetString ("userlevel");
 		Gold.text = PlayerPrefs.GetString ("gold");
 		Cash.text = PlayerPrefs.GetString ("cash");
+
+		ClientState.id = UserName.text;
 	}
 	
 	// Update is called once per frame
