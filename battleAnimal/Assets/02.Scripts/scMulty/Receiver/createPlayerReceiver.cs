@@ -24,7 +24,8 @@ public class createPlayerReceiver : MonoBehaviour {
 			switch_=false;
 		}
 	}
-	public void receive(string data){	
+	public void receive(string data){
+		Debug.Log("cretate Player = "+data);
 		temp2 = data.Split(':');
 		addId = temp2[0];//접속한 유저의 아이디
 		pos = temp2[1].Split(',');

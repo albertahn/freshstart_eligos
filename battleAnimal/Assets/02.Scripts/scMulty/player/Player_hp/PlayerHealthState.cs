@@ -12,6 +12,7 @@ public class PlayerHealthState : MonoBehaviour {
 	public Texture2D victory, defeat;
 	private GameObject[] effectPool;
 	private int maxEffect;
+	private AniCtrl _aniCtrl;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,7 @@ public class PlayerHealthState : MonoBehaviour {
 
 		red_building = GameObject.Find ("red_building");
 		blue_building = GameObject.Find ("blue_building");
+		_aniCtrl = GetComponent<AniCtrl> ();
 	}
 	
 	// Update is called once per frame
@@ -76,8 +78,6 @@ public class PlayerHealthState : MonoBehaviour {
 			if(!isDie)
 				playerDie();
 		}
-		
-		//Destroy (obj.gameObject);
 	}//end heated
 
 	public void hitbySkill(string firedby,GameObject obj){		
@@ -86,12 +86,13 @@ public class PlayerHealthState : MonoBehaviour {
 		hp -= 50;		
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
 		string data = this.name+":" + hp.ToString()+"";
-		SocketStarter.Socket.Emit ("attackMinion", data);	
+		//SocketStarter.Socket.Emit ("attackMinion", data);	
 	}
 
 
 	void playerDie(){
 		this.tag = "DIE";
+		_aniCtrl._animation.CrossFade (_aniCtrl.anim.die.name, 0.3f);
 		this.transform.FindChild ("touchCollider").tag = "DIE";
 		this.collider.enabled = false;
 		isDie = true;

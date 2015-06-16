@@ -18,6 +18,7 @@ public class createRoomReceiver : MonoBehaviour {
 		}	
 	}
 	public void receive(){
+		Debug.Log("cretate RoomReceiver = ");
 		switch_ = true;
 	}
 

@@ -87,7 +87,8 @@ public class SocketOn : MonoBehaviour {
 
 		SocketStarter.Socket.On("createRoomRES", (data) =>{
 			string temp = data.Json.args[0].ToString();
-
+			
+			Debug.Log("cretate RoomRes = "+temp);
 
 			if(temp== ClientID){
 				if(temp!="ob"){
@@ -168,12 +169,12 @@ public class SocketOn : MonoBehaviour {
 			}
 		});
 
-		/*SocketStarter.Socket.On ("minionAttackRES", (data) =>
+		SocketStarter.Socket.On ("minionAttackRES", (data) =>
 		{
 			if(ClientState.isMaster==false){
 				_mAttackReceiver.receive(data.Json.args[0].ToString());
 			}
-		});*/
+		});
 
 		SocketStarter.Socket.On ("attackRES", (data) =>
 		{

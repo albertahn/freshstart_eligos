@@ -107,8 +107,9 @@ public class minionCtrl : MonoBehaviour {
 				nvAgent.Stop();
 				minionTr.LookAt (dest);
 				if(dest!=minionTr.position){
-					float step = speed * Time.deltaTime;
-					minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
+					//	float step = speed * Time.deltaTime;
+					//	minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
+					nvAgent.destination = dest;
 				}
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
 				{

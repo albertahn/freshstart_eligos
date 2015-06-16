@@ -109,8 +109,9 @@ public class blueMinionCtrl : MonoBehaviour {
 			if (isMove) {
 				minionTr.LookAt (dest);
 				if(dest!=minionTr.position){
-					float step = speed * Time.deltaTime;
-					minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
+				//	float step = speed * Time.deltaTime;
+				//	minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
+					nvAgent.destination = dest;
 				}
 				
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
@@ -119,8 +120,7 @@ public class blueMinionCtrl : MonoBehaviour {
 						idx++;
 						moveKey = true;
 					}
-					dest = point [idx].position;
-					
+					dest = point [idx].position;					
 				}	
 			}
 			
@@ -200,6 +200,7 @@ public class blueMinionCtrl : MonoBehaviour {
 					SocketStarter.Socket.Emit ("minionAttackREQ", data);
 				}
 			}
+
 			else if(dist<=traceDist)
 			{
 				if(isTrace==false)

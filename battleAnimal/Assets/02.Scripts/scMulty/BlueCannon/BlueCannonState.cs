@@ -70,8 +70,7 @@ public class BlueCannonState : MonoBehaviour {
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
 		
 		string data = this.name+":" + hp.ToString()+"";
-		SocketStarter.Socket.Emit ("attackMinion", data);    
-		
+		SocketStarter.Socket.Emit ("attackMinion", data);		
 	}
 	
 	
@@ -85,6 +84,7 @@ public class BlueCannonState : MonoBehaviour {
 		//GetComponent<MoveCtrl> ().isDie = true;
 		
 		this.tag = "DIE";
+		GameObject.Find (this.name + "/touchCollider").tag = "DIE";
 
 		int oldInt = PlayerPrefs.GetInt ("minions_killed");
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);
