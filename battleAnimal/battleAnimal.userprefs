@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\minimap.cs">
     <Files>
-      <File FileName="Assets\02.Scripts\scMulty\minimap.cs" Line="22" Column="26" />
-      <File FileName="Assets\02.Scripts\scMulty\ItemInfo\itemInfoUI.cs" Line="26" Column="56" />
+      <File FileName="Assets\02.Scripts\scMulty\minimap.cs" Line="101" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
