@@ -4,14 +4,16 @@ using System.Collections;
 public class clickAnimation : MonoBehaviour {
 
 	public bool moveChiChi;
-	GameObject chichibtn;
-	float fracJourney = 0.5f;
+	public GameObject chichibtn, stola ;
+
+
+	float fracJourney = 4.5f;
 	// Use this for initialization
 	Vector3 newpos ;
 	void Start () {
 
 		moveChiChi = true;
-		newpos = new Vector3 (100.0f, 10, 0);
+		newpos = new Vector3 (100.0f, -75, 0);
 		chichibtn = GameObject.Find ("Dog");
 
 	}
@@ -32,5 +34,11 @@ public class clickAnimation : MonoBehaviour {
 			moveChiChi =false;
 		}
 
-	}
+
+
+	}//end update
+
+
+
+
 }
