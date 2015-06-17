@@ -12,14 +12,15 @@ public class preUserPlayerReceiver : MonoBehaviour {
 	Vector3 spawnPos;
 	string _char;
 	string team;
-	private SpawnPlayer _spawnPlayer;
 	
 	GameObject Rteam,Bteam;
+	private minimap _minimap;
 	
 	// Use this for initialization
 	void Start () {
+		_minimap = GameObject.Find ("minimapWrapper").GetComponent<minimap> ();
+
 		switch_ = false;
-		_spawnPlayer = GetComponent<SpawnPlayer> ();
 		Rteam = GameObject.Find ("RedTeam");
 		Bteam = GameObject.Find ("BlueTeam");
 	}
@@ -62,7 +63,9 @@ public class preUserPlayerReceiver : MonoBehaviour {
 		GameState.name [i] = id;
 		GameState.team [i] = team;
 		GameState.idx++;
-		
+
+		_minimap.setOtherPlayer (b.transform);
+
 		if(team =="red"){
 			b.transform.parent = Rteam.transform;
 		}else{

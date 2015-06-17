@@ -17,6 +17,8 @@ public class SpawnPlayer : MonoBehaviour {
 	private skill3Plus _skill3Plus;
 	private UIhpbar _uihpbar;
 
+	private minimap _minimap;
+
 	public void CreatePlayer(){
 		string data;
 		if(ClientState.team=="red"){
@@ -43,6 +45,8 @@ public class SpawnPlayer : MonoBehaviour {
 		_skill2Plus = GameObject.Find ("skill2+").GetComponent<skill2Plus> ();
 		_skill3Plus = GameObject.Find ("skill3+").GetComponent<skill3Plus> ();
 		_uihpbar = GameObject.Find("HpBarParent").GetComponent<UIhpbar> ();
+
+		_minimap = GameObject.Find ("minimapWrapper").GetComponent<minimap> ();
 
 		ClientID = ClientState.id;
 		Rteam = GameObject.Find ("RedTeam");
@@ -73,7 +77,8 @@ public class SpawnPlayer : MonoBehaviour {
 			_skill3Plus.setPlayer ();
 			_cameraTouch.setPlayer ();
 			_uihpbar.setPlayer ();
-			_followCam.setTarget(a.transform);
+			_followCam.setTarget (a.transform);
+			_minimap.setPlayer (a.transform);
 		}
 	}
 	
