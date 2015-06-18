@@ -17,17 +17,23 @@ public class SpawnPlayer : MonoBehaviour {
 	private skill3Plus _skill3Plus;
 	private UIhpbar _uihpbar;
 
+	private Vector3 RspawnPoint, BspawnPoint;
+
 	private minimap _minimap;
 
 	public void CreatePlayer(){
 		string data;
 		if(ClientState.team=="red"){
 			GameObject.Find ("CameraWrap").transform.position= new Vector3(26.0f,73.67f,4.21f);
-			data = ClientState.id+":25.0,50,25:"+ClientState.character+":"+ClientState.team;
+			data = ClientState.id
+				+":"+RspawnPoint.x+","+RspawnPoint.y+","+RspawnPoint.z+":"
+				+ClientState.character+":"+ClientState.team;
 			//접속한 유저의 아이디와 생성할 위치를 서버에 전송
 		}else{
 			GameObject.Find ("CameraWrap").transform.position= new Vector3(72.0f,73.67f,43.21f);
-			data = ClientState.id+":70.0,50,70:"+ClientState.character+":"+ClientState.team;
+			data = ClientState.id
+				+":"+BspawnPoint.x+","+BspawnPoint.y+","+BspawnPoint.z+":"
+				+ClientState.character+":"+ClientState.team;
 		}		
 		SocketStarter.Socket.Emit("createPlayerREQ",data);
 	}
@@ -52,6 +58,9 @@ public class SpawnPlayer : MonoBehaviour {
 		Rteam = GameObject.Find ("RedTeam");
 		Bteam = GameObject.Find ("BlueTeam");
 
+		RspawnPoint = GameObject.Find ("RedTeam/spawnPoint").transform.position;
+		BspawnPoint = GameObject.Find ("BlueTeam/spawnPoint").transform.position;
+
 		PlayerPrefs.SetString("evolved", "false");
 		//StartCoroutine (CreatePlayer());
 	}
@@ -68,17 +77,19 @@ public class SpawnPlayer : MonoBehaviour {
 		}
 		//a.GetComponentInChildren<HP_Bar>().target = a.transform;
 		if (_id == ClientState.id) {
-			_respawn.setPlayer ();
-			_ui_skill_manager.setPlayer ();
+						_respawn.setPlayer ();
+						_ui_skill_manager.setPlayer ();
 						//_gui.setPlayer();
-			_exp.setPlayer ();			
-			_skill1Plus.setPlayer ();
-			_skill2Plus.setPlayer ();
-			_skill3Plus.setPlayer ();
-			_cameraTouch.setPlayer ();
-			_uihpbar.setPlayer ();
-			_followCam.setTarget (a.transform);
-			_minimap.setPlayer (a.transform);
+						_exp.setPlayer ();			
+						_skill1Plus.setPlayer ();
+						_skill2Plus.setPlayer ();
+						_skill3Plus.setPlayer ();
+						_cameraTouch.setPlayer ();
+						_uihpbar.setPlayer ();
+						_followCam.setTarget (a.transform);
+						_minimap.setPlayer (a.transform);
+		} else {
+			_minimap.setOtherPlayer(a.transform);
 		}
 	}
 	

@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class blueMinionCtrl : MonoBehaviour {
 	private Transform minionTr;
 	public Transform playerTr;
 	
 	public bool isMove;
-	public Transform[] point;
+	public Transform[] pointTemp;
+	public List<Transform> point;
+	
 	public Vector3 dest;
 	public Vector3 target;
 	public Vector3 syncTarget;
 	
 	public mFireCtrl _fireCtrl;
-	
-	public int idx;
+
 	private int speed;
 	
 	public enum MinionState{idle,trace,attack,die};
@@ -61,8 +63,7 @@ public class blueMinionCtrl : MonoBehaviour {
 		_outterCtrl = GetComponentInChildren<blue_outer_collider> ();
 		
 		nvAgent = this.gameObject.GetComponent<NavMeshAgent> ();
-		
-		idx = 1;
+
 		speed = 2;
 		minionTr = gameObject.GetComponent<Transform> ();
 		_fireCtrl = GetComponent<mFireCtrl>();
@@ -76,13 +77,36 @@ public class blueMinionCtrl : MonoBehaviour {
 		} else if (number % 3 == 2) {
 			point = GameObject.Find ("blueMovePoints/route3").GetComponentsInChildren<Transform> ();
 		}*/
-		point = GameObject.Find ("blueMovePoints/route2").GetComponentsInChildren<Transform> ();
+		pointTemp = GameObject.Find ("redMovePoints/route2").GetComponentsInChildren<Transform> ();
+		point = new List<Transform> ();
 		
-		syncTarget = dest = point [idx].position;
+		initiatePoints ();
 		
 		if (isMaster) {
 			StartCoroutine (this.CheckMonsterState ());
 		}
+	}
+	
+	public void initiatePoints(){
+		point.Clear ();
+		
+		foreach (Transform p in pointTemp)
+		{
+			point.Add (p);
+		}
+		
+		sortPointsByDistance ();
+		
+		dest = point[0].position;
+		
+		point.RemoveAt (0);
+	}
+	
+	private void sortPointsByDistance(){
+		point.Sort (delegate(Transform t1,Transform t2) {
+			return(Vector3.Distance (t1.position, minionTr.position).CompareTo
+			       (Vector3.Distance (t2.position, minionTr.position)));
+		});
 	}
 	
 	// Update is called once per frame
@@ -109,18 +133,15 @@ public class blueMinionCtrl : MonoBehaviour {
 			if (isMove) {
 				minionTr.LookAt (dest);
 				if(dest!=minionTr.position){
-				//	float step = speed * Time.deltaTime;
-				//	minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
+					//	float step = speed * Time.deltaTime;
+					//	minionTr.position = Vector3.MoveTowards (minionTr.position, dest, step);
 					nvAgent.destination = dest;
 				}
 				
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
 				{
-					if(idx<8){
-						idx++;
-						moveKey = true;
-					}
-					dest = point [idx].position;					
+					dest = point [0].position;
+					point.RemoveAt (0);					
 				}	
 			}
 			
@@ -200,7 +221,7 @@ public class blueMinionCtrl : MonoBehaviour {
 					SocketStarter.Socket.Emit ("minionAttackREQ", data);
 				}
 			}
-
+			
 			else if(dist<=traceDist)
 			{
 				if(isTrace==false)

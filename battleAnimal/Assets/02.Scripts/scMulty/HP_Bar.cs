@@ -20,6 +20,6 @@ public class HP_Bar : MonoBehaviour {
 	void LateUpdate () {
 		tr.LookAt (_camera.transform);
 		tr.Rotate (0,180,0,Space.Self);
-		tr.rotation= Quaternion.Euler(60,320,tr.rotation.z);
+		tr.rotation= Quaternion.Euler(60,0,tr.rotation.z);
 	}
 }

@@ -134,18 +134,14 @@ public class minimap : MonoBehaviour {
 		prePivotX = moveFieldTr.position.x - moveFieldTr.localScale.x / 2;
 		prePivotZ = moveFieldTr.position.z - moveFieldTr.localScale.y / 2;
 		
-		nextPivotX = minimapRect.localPosition.x;
-		nextPivotZ = minimapRect.localPosition.y;
-		
 		x = _a.position.x - prePivotX;
 		z = _a.position.z - prePivotZ;
 		
 		x = (x * minimapRect.rect.width) / moveFieldTr.localScale.x;
 		z = (z * minimapRect.rect.height) / moveFieldTr.localScale.y;
 		
-		
-		ret.x = nextPivotX+x;
-		ret.y = nextPivotZ+z;
+		ret.x = x;
+		ret.y = z;
 		
 		return ret;
 	}

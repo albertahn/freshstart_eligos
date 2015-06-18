@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\minimap.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\minion_scripts\minionCtrl.cs">
     <Files>
-      <File FileName="Assets\02.Scripts\scMulty\minimap.cs" Line="101" Column="51" />
+      <File FileName="Assets\02.Scripts\scMulty\SpawnPlayer.cs" Line="52" Column="21" />
+      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\minionCtrl.cs" Line="17" Column="2" />
+      <File FileName="Assets\02.Scripts\scMulty\minion_scripts\blueMinionCtrl.cs" Line="73" Column="27" />
+      <File FileName="Assets\02.Scripts\scMulty\HP_Bar.cs" Line="10" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

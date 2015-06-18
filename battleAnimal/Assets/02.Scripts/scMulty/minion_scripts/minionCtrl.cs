@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class minionCtrl : MonoBehaviour {
 	private Transform minionTr;
 	public Transform playerTr;
 	
 	public bool isMove;
-	public Transform[] point;
+	public Transform[] pointTemp;
+	public List<Transform> point;
+	
 	public Vector3 dest;
 	public Vector3 target;
-	public Vector3 syncTarget;
 	
 	public mFireCtrl _fireCtrl;
-	
-	public int idx;
+
 	private int speed;
 	
 	public enum MinionState{idle,trace,attack,die};
@@ -59,8 +60,7 @@ public class minionCtrl : MonoBehaviour {
 		isDie = false;
 		isPlayer = false;
 		isTrace = false;
-		
-		idx = 1;
+
 		speed = 2;
 		minionTr = gameObject.GetComponent<Transform>();		
 		int number = extractNum(gameObject.name);
@@ -73,13 +73,37 @@ public class minionCtrl : MonoBehaviour {
 		} else if (number % 3 == 2) {
 			point = GameObject.Find ("redMovePoints/route3").GetComponentsInChildren<Transform> ();
 		}*/
-		point = GameObject.Find ("redMovePoints/route2").GetComponentsInChildren<Transform> ();
+		pointTemp = GameObject.Find ("redMovePoints/route2").GetComponentsInChildren<Transform> ();
+		point = new List<Transform> ();
 		
-		syncTarget = dest = point[idx].position;
+		
+		initiatePoints ();
 		
 		if (isMaster) {
 			StartCoroutine (this.CheckMonsterState ());
 		}
+	}
+	
+	public void initiatePoints(){
+		point.Clear ();
+		
+		foreach (Transform p in pointTemp)
+		{
+			point.Add (p);
+		}
+		
+		sortPointsByDistance ();
+		
+		dest = point[0].position;
+		
+		point.RemoveAt (0);
+	}
+	
+	private void sortPointsByDistance(){
+		point.Sort (delegate(Transform t1,Transform t2) {
+			return(Vector3.Distance (t1.position, minionTr.position).CompareTo
+			       (Vector3.Distance (t2.position, minionTr.position)));
+		});
 	}
 	
 	// Update is called once per frame
@@ -113,11 +137,12 @@ public class minionCtrl : MonoBehaviour {
 				}
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
 				{
-					if(idx<8){
+					dest = point [0].position;
+					point.RemoveAt (0);
+					/*if(idx<8){
 						idx++;
 						moveKey = true;
-					}
-					dest = point [idx].position;					
+					}*/					
 				}											
 			}
 			

@@ -41,6 +41,7 @@ public class MoveCtrl : MonoBehaviour {
 	private int layerMask;
 	private int touchLayerMask;
 	private int floorLayerMask;
+	private int uiLayerMask;
 
 	private float terrainHeight;
 
@@ -63,6 +64,7 @@ public class MoveCtrl : MonoBehaviour {
 		layerMask = (1 << LayerMask.NameToLayer ("FLOOR"))|(1 << LayerMask.NameToLayer ("TOUCH"));
 		touchLayerMask = (1 << LayerMask.NameToLayer ("TOUCH"));
 		floorLayerMask = (1 << LayerMask.NameToLayer ("FLOOR"));
+		uiLayerMask = (1 << LayerMask.NameToLayer ("UI"));
 
 		_attackMarkMaker = GetComponent<attackMarkMaker> ();
 		attackPoint = Vector3.zero;
@@ -242,8 +244,12 @@ public class MoveCtrl : MonoBehaviour {
 								Ray ray = Camera.main.ScreenPointToRay (Input.touches [0].position);
 								RaycastHit hit3;
 								RaycastHit hit4;
-			
-								if (Physics.Raycast (ray, out hit3, Mathf.Infinity, touchLayerMask)) {
+
+								if (Physics.Raycast (ray, out hit3, Mathf.Infinity,uiLayerMask)) {
+									if(hit3.collider.tag =="MINIMAP"){
+										Debug.Log("minimap~~ hi!!");
+									}
+								}else if (Physics.Raycast (ray, out hit3, Mathf.Infinity, touchLayerMask)) {
 										myDebug = ("hit3.collider.tag = " + hit3.collider.tag);
 										//	if(hit3.collider.tag!="UI"){
 										if (hit3.collider.tag == "DIE") {
@@ -350,7 +356,11 @@ public class MoveCtrl : MonoBehaviour {
 		RaycastHit hitman2;		
 		
 		if (Input.GetMouseButtonDown (0)) {
-			if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,touchLayerMask)) {
+			if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,uiLayerMask)) {
+				if(hitman2.collider.tag =="MINIMAP"){
+					Debug.Log("minimap~~ hi!!");
+				}
+			}else if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,touchLayerMask)) {
 				if(hitman2.collider.tag =="DIE")
 				{
 						_attackMarkMaker.deleteMarker();
