@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class waitGUI : MonoBehaviour {
+
 	public Sprite dogPortrait,turtlePortrait,randomPortrait,emptyPortrait,nameTag;
 
 	private string[] name;
@@ -18,8 +19,7 @@ public class waitGUI : MonoBehaviour {
 	int charSelectOrder;
 	string charSelectCharacter;
 	bool charSelectSwitch;
-
-	
+		
 	int delUserOrder;
 	bool delUserSwitch;
 
