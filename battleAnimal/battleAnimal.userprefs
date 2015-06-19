@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/02.Scripts/scWait/clickAnimation.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\player\MoveCtrl.cs">
     <Files>
-      <File FileName="Assets/02.Scripts/scWait/clickAnimation.cs" Line="80" Column="4" />
+      <File FileName="Assets\02.Scripts\scMulty\player\MoveCtrl.cs" Line="178" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

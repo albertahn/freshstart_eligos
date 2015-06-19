@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 7ae72f05f93212141a73b4cdca0aef2b
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: furfurskill_2_0
+    21300002: furfurskill_2_1
+    21300004: furfurskill_2_2
+    21300006: furfurskill_2_3
+    21300008: furfurskill_2_4
+    21300010: furfurskill_2_5
+    21300012: furfurskill_2_6
+    21300014: furfurskill_2_7
+    21300016: furfurskill_2_8
+    21300018: furfurskill_2_9
+    21300020: furfurskill_2_10
+    21300022: furfurskill_2_11
+    21300024: furfurskill_2_12
+    21300026: furfurskill_2_13
+    21300028: furfurskill_2_14
+    21300030: furfurskill_2_15
+    21300032: furfurskill_2_16
+    21300034: furfurskill_2_17
+    21300036: furfurskill_2_18
+    21300038: furfurskill_2_19
+    21300040: furfurskill_2_20
+    21300042: furfurskill_2_21
+    21300044: furfurskill_2_22
+    21300046: furfurskill_2_23
+    21300048: furfurskill_2_24
+    21300050: furfurskill_2_25
+    21300052: furfurskill_2_26
+    21300054: furfurskill_2_27
+    21300056: furfurskill_2_28
+    21300058: furfurskill_2_29
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: furfurskill_2_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 600
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_1
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 600
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 600
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_3
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 600
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_4
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 600
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_5
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 485
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_6
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 485
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_7
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 485
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_8
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 485
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_9
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 485
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 370
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_11
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 370
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_12
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 370
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_13
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 370
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_14
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 370
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_15
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 255
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_16
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 255
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_17
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 255
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_18
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 255
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_19
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 255
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_20
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 140
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_21
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 140
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_22
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 140
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_23
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 140
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_24
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 140
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_25
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 25
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_26
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 25
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_27
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 25
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_28
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 25
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: furfurskill_2_29
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 25
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
