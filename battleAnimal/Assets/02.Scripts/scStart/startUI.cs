@@ -8,10 +8,15 @@ public class startUI : MonoBehaviour {
 
 	public GameObject friendPannel, myProfilePannel;
 
+	public GameObject following_board, my_followers_board;
+
 	public Vector3 newpos, outofScreen;
+
+	public Vector3 followers_pos, my_followers_pos;
 	
 	// Use this for initialization
 	void Start () {
+
 		Screen.SetResolution(800, 480, true);
 		//PlayerPrefs.SetString ("email","aa");//not internet
 
@@ -22,7 +27,6 @@ public class startUI : MonoBehaviour {
 		ClientState.id = UserName.text;
 
 		newpos = new Vector3 (-200.0f, friendPannel.transform.localPosition.y, 0);
-
 		outofScreen = friendPannel.transform.localPosition;
 
 	}
@@ -60,5 +64,14 @@ public class startUI : MonoBehaviour {
 			myProfilePannel.transform.localPosition =  newpos; 
 
 	}
+
+	//show my followers
+
+	public void showMyFollowers(){
+
+		Debug.Log ("floowers");
+	//	following_board.
+
+	}//sh
 	
 }

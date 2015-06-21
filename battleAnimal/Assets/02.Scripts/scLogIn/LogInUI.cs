@@ -13,7 +13,7 @@ public class LogInUI : MonoBehaviour {
 		if(PlayerPrefs.GetString("email")!=""){
 			Application.LoadLevel("scStart");
 		}
-		Screen.SetResolution(480, 800, true);
+		Screen.SetResolution(1280, 800, true);
 		
 		_dbManager = GetComponent<DBManager> ();
 	}
