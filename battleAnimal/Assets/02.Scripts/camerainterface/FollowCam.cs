@@ -10,7 +10,7 @@ public class FollowCam : MonoBehaviour {
 	public float smooth= 5.0f;
 	private Transform tr;
 
-
+	public Camera camera; 
 
 	public float dampTime = 0.15f;
 	private Vector3 velocity = Vector3.zero;
@@ -21,7 +21,7 @@ public class FollowCam : MonoBehaviour {
 		side = 5.0f;
 		tr = GetComponent<Transform> ();
 
-
+		camera = GameObject.Find ("Main Camera").camera;
 	
 	}
 
@@ -47,7 +47,8 @@ public class FollowCam : MonoBehaviour {
 			Vector3 delta = target.position + (Vector3.up * height) - Vector3.forward*dist -  Vector3.left*side ;//target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
 			Vector3 destination = delta;
 			tr.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
-			//tr.LookAt (target);
+
+			//camera.transform.LookAt (target);
 
 		}
 	}
