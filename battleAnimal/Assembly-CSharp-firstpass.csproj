@@ -69,25 +69,25 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="SimpleJson">
- <HintPath>/Users/albert/Documents/github_repo/backups/login_6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
+ <HintPath>/Users/albert/Documents/github_repo/6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
  </Reference>
  <Reference Include="SocketIO">
- <HintPath>/Users/albert/Documents/github_repo/backups/login_6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
+ <HintPath>/Users/albert/Documents/github_repo/6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Common">
- <HintPath>/Users/albert/Documents/github_repo/backups/login_6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
+ <HintPath>/Users/albert/Documents/github_repo/6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Core">
- <HintPath>/Users/albert/Documents/github_repo/backups/login_6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
+ <HintPath>/Users/albert/Documents/github_repo/6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Protocol">
- <HintPath>/Users/albert/Documents/github_repo/backups/login_6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
+ <HintPath>/Users/albert/Documents/github_repo/6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
  </Reference>
  <Reference Include="SuperSocket.ClientEngine.Proxy">
- <HintPath>/Users/albert/Documents/github_repo/backups/login_6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
+ <HintPath>/Users/albert/Documents/github_repo/6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
  </Reference>
  <Reference Include="WebSocket4Net">
- <HintPath>/Users/albert/Documents/github_repo/backups/login_6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
+ <HintPath>/Users/albert/Documents/github_repo/6_19_jin_work_freshstart_eligos/battleAnimal/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

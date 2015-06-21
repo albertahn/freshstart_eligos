@@ -38,12 +38,9 @@ public class EndGameManager : MonoBehaviour {
 
 		StartCoroutine (GetStatData ("1"));//ClientState.room));
 
-//		containerRectTransform = pannel_content.GetComponent<RectTransform>();
-		
+//		containerRectTransform = pannel_content.GetComponent<RectTransform>();		
 		//calculate the width and height of each child item.
 		//float width = containerRectTransform.rect.width / columnCount;
-
-
 		//int rowCount = itemCount / columnCount;
 
 	}
@@ -99,13 +96,13 @@ public class EndGameManager : MonoBehaviour {
 			GameObject newItem = GameObject.Find ("stat_row_red"+red_count);
 			
 			//newItem.transform.FindChild ("profile_tx").transform.GetComponent<Text> ().text = kills;
-			newItem.transform.FindChild ("kills_tx").transform.GetComponent<Text> ().text = kills;
-			newItem.transform.FindChild ("assists_tx").transform.GetComponent<Text> ().text = assists;
+			newItem.transform.FindChild ("kills_tx").transform.GetComponent<Text> ().text = kills +"/";
+			newItem.transform.FindChild ("assists_tx").transform.GetComponent<Text> ().text = assists+"/";
 			newItem.transform.FindChild ("deaths_tx").transform.GetComponent<Text> ().text = deaths;
 			newItem.transform.FindChild ("gold_tx").transform.GetComponent<Text> ().text = gold;
-			newItem.transform.FindChild ("level_tx").transform.GetComponent<Text> ().text = level;
+			newItem.transform.FindChild ("level_tx").transform.GetComponent<Text> ().text = "Lv. "+level;
 			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
-			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
+			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text ="Pt: "+ points;
 
 			int index_red = red_count-1;
 			red_index[index_red] = members_index;
@@ -121,14 +118,13 @@ public class EndGameManager : MonoBehaviour {
 			GameObject newItem = GameObject.Find ("stat_row_blue"+blue_count);
 			
 			//newItem.transform.FindChild ("profile_tx").transform.GetComponent<Text> ().text = kills;
-			newItem.transform.FindChild ("kills_tx").transform.GetComponent<Text> ().text = kills;
-			newItem.transform.FindChild ("assists_tx").transform.GetComponent<Text> ().text = assists;
+			newItem.transform.FindChild ("kills_tx").transform.GetComponent<Text> ().text = kills +"/";
+			newItem.transform.FindChild ("assists_tx").transform.GetComponent<Text> ().text = assists+"/";
 			newItem.transform.FindChild ("deaths_tx").transform.GetComponent<Text> ().text = deaths;
 			newItem.transform.FindChild ("gold_tx").transform.GetComponent<Text> ().text = gold;
-			newItem.transform.FindChild ("level_tx").transform.GetComponent<Text> ().text = level;
+			newItem.transform.FindChild ("level_tx").transform.GetComponent<Text> ().text = "Lv. "+level;
 			newItem.transform.FindChild ("items_tx").transform.GetComponent<Text> ().text = items;
-			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
-
+			newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text ="Pt: "+ points;
 
 			int index_blue = blue_count-1;
 
