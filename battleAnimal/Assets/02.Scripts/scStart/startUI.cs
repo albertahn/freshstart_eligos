@@ -17,7 +17,8 @@ public class startUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Screen.SetResolution(800, 480, true);
+		//Screen.SetResolution(800, 480, true);
+		Screen.SetResolution(1280, 800, true);
 		//PlayerPrefs.SetString ("email","aa");//not internet
 
 		UserName.text = PlayerPrefs.GetString("username");
@@ -28,6 +29,7 @@ public class startUI : MonoBehaviour {
 
 		newpos = new Vector3 (-200.0f, friendPannel.transform.localPosition.y, 0);
 		outofScreen = friendPannel.transform.localPosition;
+
 
 	}
 
@@ -69,8 +71,15 @@ public class startUI : MonoBehaviour {
 
 	public void showMyFollowers(){
 
+		
+		followers_pos =  following_board.transform.position;
+		my_followers_pos = my_followers_board.transform.position;
+
 		Debug.Log ("floowers");
-	//	following_board.
+
+		my_followers_board.transform.position = followers_pos;
+		 
+		following_board.transform.position = my_followers_pos;
 
 	}//sh
 	
