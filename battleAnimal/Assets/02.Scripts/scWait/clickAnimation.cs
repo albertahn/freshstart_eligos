@@ -29,7 +29,7 @@ public class clickAnimation : MonoBehaviour
 
 				move_furfur = move_stola = move_gusi = move_barbas = false;
 	
-		newpos = new Vector3 (500.0f, gameobj[0].transform.localPosition.y, 0);
+		newpos = new Vector3 (600.0f, gameobj[0].transform.localPosition.y, 0);
 				reset_char_point = false;
 
 		}

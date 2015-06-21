@@ -5,32 +5,32 @@ using System.Collections;
 public class startUI : MonoBehaviour {
 
 	public Text UserName, Userlevel, Gold, Cash;
+
+	public GameObject friendPannel, myProfilePannel;
+
+	public Vector3 newpos, outofScreen;
 	
 	// Use this for initialization
 	void Start () {
 		Screen.SetResolution(800, 480, true);
 		//PlayerPrefs.SetString ("email","aa");//not internet
 
-
 		UserName.text = PlayerPrefs.GetString("username");
 		Userlevel.text = PlayerPrefs.GetString ("userlevel");
 		Gold.text = PlayerPrefs.GetString ("gold");
 		Cash.text = PlayerPrefs.GetString ("cash");
-
 		ClientState.id = UserName.text;
+
+		newpos = new Vector3 (-200.0f, friendPannel.transform.localPosition.y, 0);
+
+		outofScreen = friendPannel.transform.localPosition;
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 	
 	public void Multy()
 	{
-		//Application.LoadLevel("scWait");
-	
 		Application.LoadLevel("scRoomsList");
-
 
 	}
 	
@@ -47,8 +47,18 @@ public class startUI : MonoBehaviour {
 	public void Exit()
 	{
 		Application.Quit();
+			//Application.LoadLevel("scLogin");
+	}//exit
 
-		//Application.LoadLevel("scLogin");
+	public void showFriendPannel(){
+		friendPannel.transform.localPosition = newpos;
+		myProfilePannel.transform.localPosition = outofScreen;
+
+	}//show
+	public void showMyProfile(){
+		friendPannel.transform.localPosition = outofScreen;
+			myProfilePannel.transform.localPosition =  newpos; 
+
 	}
 	
 }

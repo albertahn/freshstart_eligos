@@ -18,9 +18,7 @@ public class friendList : MonoBehaviour {
 		friendDatabase = GetComponent<FriendDatabase> ();
 
 		myIndex = PlayerPrefs.GetString ("user_index");
-
 		StartCoroutine (GetFriendData(myIndex));
-
 		pannel_content = GameObject.Find ("Friend_inside_pannel");
 	
 	}//end start
@@ -32,7 +30,6 @@ public class friendList : MonoBehaviour {
 		yield return StartCoroutine (friendDatabase.getFriendList(myIndex)); // id를 Email로 바꿔야 하지 않을까
 		
 		Debug.Log("friends:  "+ friendDatabase.myFriendsList);	
-
 
 		for ( int i =0; i< friendDatabase.myFriendsList.Length; i ++){
 			
@@ -57,7 +54,7 @@ public class friendList : MonoBehaviour {
 		//GameObject pannelContent = Instantiate(pannel_content) as GameObject;
 
 		newItem.transform.FindChild ("username_tx").transform.GetComponent<Text> ().text = friend_username;
-		//newItem.transform.FindChild ("points_tx").transform.GetComponent<Text> ().text = points;
+		newItem.transform.FindChild ("profile_pic_tx").transform.GetComponent<Text> ().text = ""+ num;
 		
 		//Debug.Log ("len"+kills_tx.GetComponent<Text>());
 		//textmesh[0].text = "hi";
@@ -65,12 +62,12 @@ public class friendList : MonoBehaviour {
 		//statrow.transform.FindChild ("add_friend").localScale = new Vector2 (0, 0);
 		//newItem.transform.localScale = new Vector2 (1, 1);
 
-		newItem.transform.position = new Vector3 (0,num * itemheight, 0);
+		newItem.transform.position = new Vector3 (0,- num * itemheight, 0);
 
 		//newItem.transform.localPosition = new Vector3 (0,0, 0);//num *itemheight
 		newItem.name =   "friend"+friend_index;
 
-		pannel_content.GetComponent<RectTransform>().sizeDelta = new Vector2(2, 20*num * itemheight);
+		//pannel_content.GetComponent<RectTransform>().sizeDelta = new Vector2(2, 20*num * itemheight);
 
 		newItem.transform.SetParent (pannel_content.transform,false);
 
