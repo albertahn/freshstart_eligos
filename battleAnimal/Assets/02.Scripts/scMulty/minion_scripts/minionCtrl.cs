@@ -37,13 +37,23 @@ public class minionCtrl : MonoBehaviour {
 	
 	private string minionID;
 	private Vector3 minionPos, minionTg;
-	private red_outer_collider _outterCtrl;
+	public red_outer_collider _outterCtrl;
 	public GameObject targetObj;
 	
 	private NavMeshAgent nvAgent;
-	
+
+	public int line;
+
+	public void Start(){
+		_outterCtrl = GetComponentInChildren<red_outer_collider> ();		
+		nvAgent = this.gameObject.GetComponent<NavMeshAgent> ();
+		minionTr = gameObject.GetComponent<Transform> ();
+		_fireCtrl = GetComponent<mFireCtrl>();
+		
+	}
+
 	// Use this for initialization
-	void Start () {
+	public void StartC () {
 		traceDist = 20.0f;
 		attackDist = 7.0f;
 		
@@ -66,6 +76,7 @@ public class minionCtrl : MonoBehaviour {
 		int number = extractNum(gameObject.name);
 		
 		_outterCtrl = GetComponentInChildren<red_outer_collider> ();
+
 		/*if (number % 3 == 0) {
 			point = GameObject.Find ("redMovePoints/route1").GetComponentsInChildren<Transform> ();
 		} else if (number % 3 == 1) {
@@ -73,11 +84,10 @@ public class minionCtrl : MonoBehaviour {
 		} else if (number % 3 == 2) {
 			point = GameObject.Find ("redMovePoints/route3").GetComponentsInChildren<Transform> ();
 		}*/
-		pointTemp = GameObject.Find ("redMovePoints/route2").GetComponentsInChildren<Transform> ();
 		point = new List<Transform> ();
 		
 		
-		initiatePoints ();
+		//initiatePoints ();
 		
 		if (isMaster) {
 			StartCoroutine (this.CheckMonsterState ());
@@ -86,10 +96,14 @@ public class minionCtrl : MonoBehaviour {
 	
 	public void initiatePoints(){
 		point.Clear ();
-		
-		foreach (Transform p in pointTemp)
-		{
-			point.Add (p);
+
+		if(line==1)
+			pointTemp = GameObject.Find ("redMovePoints/route1").GetComponentsInChildren<Transform> ();
+		else if(line==2)
+			pointTemp = GameObject.Find ("redMovePoints/route2").GetComponentsInChildren<Transform> ();
+
+		for (int i=1; i<pointTemp.Length; i++) {
+			point.Add(pointTemp[i]);
 		}
 		
 		sortPointsByDistance ();
@@ -137,8 +151,10 @@ public class minionCtrl : MonoBehaviour {
 				}
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
 				{
-					dest = point [0].position;
-					point.RemoveAt (0);
+					if(point.Count>0){
+						dest = point [0].position;
+						point.RemoveAt (0);
+					}
 					/*if(idx<8){
 						idx++;
 						moveKey = true;
@@ -159,13 +175,15 @@ public class minionCtrl : MonoBehaviour {
 			if (isAttack) {
 				nvAgent.Stop();
 				if (targetObj != null) {
-					if(targetObj==null||targetObj.tag=="DIE"){
-						move();
-						_outterCtrl.targetDie(targetObj.transform);
+					if(targetObj.tag=="DIE"){
+						_outterCtrl.removeOne(targetObj);
 					}else{
 						minionTr.LookAt (targetObj.transform.position);
-						_fireCtrl.Fire (targetObj.name);						
-					}										
+						_fireCtrl.Fire (targetObj.name);	
+					}
+				}else{					
+					_outterCtrl.refreshList();	
+					move();
 				}
 			}
 		}

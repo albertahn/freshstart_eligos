@@ -16,13 +16,14 @@ public class createMinion : MonoBehaviour {
 	}
 
 	private IEnumerator startM(){
-		yield return new WaitForSeconds(20.0f);
+		yield return new WaitForSeconds(5.0f);
 		StartCoroutine (loopM ());
 	}
 
 	private IEnumerator loopM(){
+		StartCoroutine(realMakeM());
 		while (true) {
-			yield return new WaitForSeconds (10.0f);
+			yield return new WaitForSeconds (20.0f);
 			StartCoroutine(realMakeM());
 		}
 	}
@@ -30,7 +31,8 @@ public class createMinion : MonoBehaviour {
 	private IEnumerator realMakeM(){
 		for (int i=0; i<3; i++) {
 			yield return new WaitForSeconds(1.0f);
-			_spawnMinion.createMinion ();
+			_spawnMinion.createMinion (1);
+			_spawnMinion.createMinion (2);
 		}
 	}
 }

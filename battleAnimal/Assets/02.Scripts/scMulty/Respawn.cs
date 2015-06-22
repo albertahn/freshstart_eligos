@@ -7,6 +7,8 @@ public class Respawn : MonoBehaviour {
 	private bool _switch;
 	private GameObject player;
 	private PlayerHealthState _playerState;
+	private Vector3 RspawnPos;
+	private Vector3 BspawnPos;
 	
 	private string team;
 	private int level;
@@ -24,7 +26,8 @@ public class Respawn : MonoBehaviour {
 		cameraman = GameObject.Find ("CameraWrap");
 		
 		_CameraTouch = cameraman.GetComponent<CameraTouch>();
-		
+		RspawnPos = GameObject.Find ("RedTeam/spawnPoint").transform.position;
+		BspawnPos = GameObject.Find ("BlueTeam/spawnPoint").transform.position;
 	}
 	
 	public void setPlayer(){
@@ -61,9 +64,9 @@ public class Respawn : MonoBehaviour {
 			player.transform.FindChild ("touchCollider").tag = "Player";
 			_playerState.hp =playerStat.maxHp;
 			if(team=="red")
-				player.transform.position = new Vector3(25.0f,50.0f,25.0f);
+				player.transform.position = RspawnPos;
 			else
-				player.transform.position = new Vector3(70.0f,50.0f,70.0f);
+				player.transform.position = BspawnPos;
 			_switch = false;
 			_CameraTouch.focusCamPlayer = true;
 		}

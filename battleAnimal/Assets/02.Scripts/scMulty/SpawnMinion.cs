@@ -26,8 +26,8 @@ public class SpawnMinion : MonoBehaviour {
 		
 		rms = GameObject.Find ("redMinions");
 		bms = GameObject.Find ("blueMinions");
-		redMax = 10;
-		blueMax = 10;
+		redMax = 30;
+		blueMax = 30;
 		redMinionPool = new GameObject[redMax];
 		blueMinionPool = new GameObject[blueMax];
 		_redMinionCtrl = new minionCtrl[redMax];
@@ -48,18 +48,20 @@ public class SpawnMinion : MonoBehaviour {
 			blueMinionPool[i].SetActive(false);
 			redMinionPool[i].transform.parent = rms.transform;
 			blueMinionPool[i].transform.parent = bms.transform;
+			_redMinionCtrl[i].StartC();
+			_blueMinionCtrl[i].StartC();
 		}
 	}
 	
 	//master
-	public void createMinion(){
+	public void createMinion(int _line){
 		string data=null;
 		for (int i=0; i<redMax; i++) {
 			if(redMinionPool[i].activeSelf==false){
-				
 				redMinionPool[i].transform.tag = "MINION";
 				redMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
 
+				_redMinionCtrl[i].line=_line;
 				redMinionPool[i].transform.position = REDspawnSpot.position;
 				_redMinionCtrl[i].isMaster = true;
 				_redMinionCtrl[i].move();
@@ -68,6 +70,7 @@ public class SpawnMinion : MonoBehaviour {
 				data = redMinionPool[i].name;
 				StartCoroutine(_redMinionCtrl[i].CheckMonsterState());
 				_red_outter_ctrl[i].removeAll();
+				_redMinionCtrl[i].initiatePoints();
 				break;
 			}
 		}
@@ -75,7 +78,8 @@ public class SpawnMinion : MonoBehaviour {
 			if(blueMinionPool[i].activeSelf==false){
 				blueMinionPool[i].transform.tag = "MINION";
 				blueMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
-
+				
+				_blueMinionCtrl[i].line=_line;
 				blueMinionPool[i].transform.position = BLUEspawnSpot.position;
 				_blueMinionCtrl[i].isMaster = true;
 				_blueMinionCtrl[i].move();
@@ -84,6 +88,7 @@ public class SpawnMinion : MonoBehaviour {
 				data = data+":"+blueMinionPool[i].name;
 				StartCoroutine(_blueMinionCtrl[i].CheckMonsterState());
 				_blue_outter_ctrl[i].removeAll();
+				_blueMinionCtrl[i].initiatePoints();
 				break;
 			}
 		}
@@ -107,6 +112,7 @@ public class SpawnMinion : MonoBehaviour {
 				redMinionPool[i].SetActive(true);
 				_redMinionCtrl[i].isDie = false;
 				_red_outter_ctrl[i].removeAll();
+				_redMinionCtrl[i].initiatePoints();
 				break;
 			}
 		}
@@ -127,6 +133,7 @@ public class SpawnMinion : MonoBehaviour {
 				blueMinionPool[i].SetActive(true);	
 				_blueMinionCtrl[i].isDie = false;
 				_blue_outter_ctrl[i].removeAll();
+				_blueMinionCtrl[i].initiatePoints();
 				break;				
 			}
 		}

@@ -37,14 +37,24 @@ public class blueMinionCtrl : MonoBehaviour {
 	public bool isAttack;
 	public bool isMaster;	
 	private Vector3 minionPos, minionTg;
-	private blue_outer_collider _outterCtrl;
+	public blue_outer_collider _outterCtrl;
 	public GameObject targetObj;
 	
 	private NavMeshAgent nvAgent;
+
+	public int line;
 	
-	
+	public void Start(){
+		_outterCtrl = GetComponentInChildren<blue_outer_collider> ();
+		
+		nvAgent = this.gameObject.GetComponent<NavMeshAgent> ();
+		minionTr = gameObject.GetComponent<Transform> ();
+		_fireCtrl = GetComponent<mFireCtrl>();
+
+	}
+
 	// Use this for initialization
-	void Start () {
+	public void StartC() {
 		traceDist = 20.0f;
 		attackDist = 7.0f;
 		
@@ -77,10 +87,9 @@ public class blueMinionCtrl : MonoBehaviour {
 		} else if (number % 3 == 2) {
 			point = GameObject.Find ("blueMovePoints/route3").GetComponentsInChildren<Transform> ();
 		}*/
-		pointTemp = GameObject.Find ("redMovePoints/route2").GetComponentsInChildren<Transform> ();
 		point = new List<Transform> ();
 		
-		initiatePoints ();
+		//initiatePoints ();
 		
 		if (isMaster) {
 			StartCoroutine (this.CheckMonsterState ());
@@ -89,12 +98,16 @@ public class blueMinionCtrl : MonoBehaviour {
 	
 	public void initiatePoints(){
 		point.Clear ();
-		
-		foreach (Transform p in pointTemp)
-		{
-			point.Add (p);
+
+		if(line==1)
+			pointTemp = GameObject.Find ("redMovePoints/route1").GetComponentsInChildren<Transform> ();
+		else if(line==2)
+			pointTemp = GameObject.Find ("redMovePoints/route2").GetComponentsInChildren<Transform> ();
+
+		for (int i=1; i<pointTemp.Length; i++) {
+			point.Add(pointTemp[i]);
 		}
-		
+
 		sortPointsByDistance ();
 		
 		dest = point[0].position;
@@ -140,33 +153,45 @@ public class blueMinionCtrl : MonoBehaviour {
 				
 				if(Vector3.Distance(dest,minionTr.position)<=5.0f)
 				{
-					dest = point [0].position;
-					point.RemoveAt (0);					
+					if(point.Count>0){
+						dest = point [0].position;
+						point.RemoveAt (0);		
+					}
 				}	
 			}
 			
 			if (isTrace) {
-				if (targetObj != null) {
+				if (targetObj != null&&targetObj.tag=="DIE") {
 					nvAgent.destination = targetObj.transform.position;
-					/*syncTarget = target = playerTr.position;
-										minionTr.LookAt (target);
-										float step = speed * Time.deltaTime;
-										minionTr.position = Vector3.MoveTowards (minionTr.position, target, step);*/
 				}
 			}
 			
-			if (isAttack) {
+			/*if (isAttack) {
 				nvAgent.Stop();
 				if (targetObj != null) {
 					if(targetObj==null||targetObj.tag=="DIE"){
 						move();
-						_outterCtrl.targetDie(targetObj.transform);
+						_outterCtrl.refreshList();
 					}
 					else{
 						minionTr.LookAt (targetObj.transform.position);
 						_fireCtrl.Fire (targetObj.name);						
 					}										
 				}else{
+					move();
+				}
+			}*/
+			if (isAttack) {
+				nvAgent.Stop();
+				if (targetObj != null) {
+					if(targetObj.tag=="DIE"){
+						_outterCtrl.removeOne(targetObj);
+					}else{
+						minionTr.LookAt (targetObj.transform.position);
+						_fireCtrl.Fire (targetObj.name);	
+					}
+				}else{					
+					_outterCtrl.refreshList();	
 					move();
 				}
 			}

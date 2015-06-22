@@ -82,10 +82,10 @@ public class blue_outer_collider : MonoBehaviour {
 	
 	public void removeOne(GameObject go){
 		targets.Remove (go);
-		if (go.name == targetName) {
+	//	if (go.name == targetName) {
 			_ctrl.moveKey = true;
 			changeTarget ();
-		}
+//		}
 	}	
 	
 	public void removeAll(){

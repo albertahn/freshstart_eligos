@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -320,10 +320,12 @@ public class DogSkill_GUI : MonoBehaviour {
 		GameObject dog = gameobject;
 		
 		dog.transform.LookAt(vector);
+
+		
 		
 		WingSkill wingskill = dog.GetComponent<WingSkill> ();	
 		wingskill.fireWing(firedBy);
-		
+
 		clearSkillWraps();
 		
 		skillOneReady = false;
@@ -335,11 +337,7 @@ public class DogSkill_GUI : MonoBehaviour {
 		gameobject.transform.LookAt(vector);
 		
 		FireSkill skillfire = gameobject.GetComponent<FireSkill> ();	
-		skillfire.fireBall(firedBy);
-		
+		skillfire.fireBall(firedBy);	
 		
 	}
-	
-	
-	
 }

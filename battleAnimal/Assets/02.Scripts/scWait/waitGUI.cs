@@ -112,7 +112,7 @@ public class waitGUI : MonoBehaviour {
 		if (ClientState.id != "ob") {
 						string data = ClientState.id + ":" + ClientState.order + ":dog";
 						waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
-						ClientState.character = "dog";
+						ClientState.character = "guci";
 				}
 	}
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class WingSkillCtrl : MonoBehaviour {
@@ -56,11 +56,6 @@ public class WingSkillCtrl : MonoBehaviour {
 				Destroy (this.gameObject);
 			}//if
 			
-		}//hit player
-		
-		
-		
-	}//end colide
-	
-	
+		}//hit player		
+	}//end colide	
 }

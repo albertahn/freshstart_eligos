@@ -16,7 +16,6 @@ public class startUI : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-
 		//Screen.SetResolution(800, 480, true);
 		Screen.SetResolution(1280, 800, true);
 		//PlayerPrefs.SetString ("email","aa");//not internet

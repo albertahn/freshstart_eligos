@@ -4,6 +4,7 @@ using System.Collections;
 public class UI_skill_manager : MonoBehaviour {
 	public GameObject myplayer;
 	public DogSkill_GUI dog_skill_gui;
+	public GuciSkill_GUI guci_skill_gui;
 	public Tutu_skill_gui tutu_skill;
 
 	public void setPlayer(){
@@ -13,6 +14,10 @@ public class UI_skill_manager : MonoBehaviour {
 			case "dog":
 			dog_skill_gui  = GameObject.Find (ClientState.id).GetComponent<DogSkill_GUI>();
 			dog_skill_gui.setPlayer();
+			break;
+			case "guci":
+			guci_skill_gui  = GameObject.Find (ClientState.id).GetComponent<GuciSkill_GUI>();
+			guci_skill_gui.setPlayer();
 			break;
 			case "turtle":
 			tutu_skill = GameObject.Find (ClientState.id).GetComponent<Tutu_skill_gui>();
@@ -34,6 +39,9 @@ public class UI_skill_manager : MonoBehaviour {
 		case "turtle":
 			tutu_skill.Skill1_bot();
 			break;
+		case "guci":
+			guci_skill_gui.Skill1_bot();
+			break;
 		}
 	}
 	
@@ -45,6 +53,9 @@ public class UI_skill_manager : MonoBehaviour {
 		case "turtle":
 			tutu_skill.Skill2_bot();
 			break;
+		case "guci":
+			guci_skill_gui.Skill1_bot();
+			break;
 		}
 	}
 	
@@ -55,6 +66,9 @@ public class UI_skill_manager : MonoBehaviour {
 			break;
 		case "turtle":
 			tutu_skill.Skill3_bot(); 			
+			break;
+		case "guci":
+			guci_skill_gui.Skill1_bot();
 			break;
 		}	
 	}

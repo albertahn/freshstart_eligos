@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: b13e5cb67adf1154582f6b215a41dcde
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: gusi2_0
+    21300002: gusi2_1
+    21300004: gusi2_2
+    21300006: gusi2_3
+    21300008: gusi2_4
+    21300010: gusi2_5
+    21300012: gusi2_6
+    21300014: gusi2_7
+    21300016: gusi2_8
+    21300018: gusi2_9
+    21300020: gusi2_10
+    21300022: gusi2_11
+    21300024: gusi2_12
+    21300026: gusi2_13
+    21300028: gusi2_14
+    21300030: gusi2_15
+    21300032: gusi2_16
+    21300034: gusi2_17
+    21300036: gusi2_18
+    21300038: gusi2_19
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: gusi2_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1493
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_1
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 1493
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_2
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 1493
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_3
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 1493
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_4
+      rect:
+        serializedVersion: 2
+        x: 1975
+        y: 1493
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_5
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1003
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_6
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 1003
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_7
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 1003
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_8
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 1003
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_9
+      rect:
+        serializedVersion: 2
+        x: 1975
+        y: 1003
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_10
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 513
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_11
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 513
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_12
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 513
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_13
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 513
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_14
+      rect:
+        serializedVersion: 2
+        x: 1975
+        y: 513
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_15
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 23
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_16
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 23
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_17
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 23
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_18
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 23
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gusi2_19
+      rect:
+        serializedVersion: 2
+        x: 1975
+        y: 23
+        width: 490
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

@@ -19,6 +19,7 @@ public class UIhpbar : MonoBehaviour {
 		if (player != null) {
 						int hp = player.GetComponent<PlayerHealthState> ().hp;
 						Vector3 temp = new Vector3 ((float)hp / playerStat.maxHp, 1, 1);
+			if(hp<=0)hp=0;
 						GetComponent<RectTransform> ().localScale = temp;
 						//this.transform.localScale = temp;
 		

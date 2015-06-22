@@ -7,6 +7,7 @@ public class skill2Plus : MonoBehaviour {
 	Button b;
 	private DogSkill_GUI _dog;
 	private Tutu_skill_gui _turtle;
+	private GuciSkill_GUI _guci;
 	
 	public void setPlayer(){
 		Button b = gameObject.GetComponent<Button>();
@@ -17,6 +18,9 @@ public class skill2Plus : MonoBehaviour {
 		} else if (ClientState.character == "turtle") {
 			_turtle = GameObject.Find(ClientState.id).GetComponent<Tutu_skill_gui>();
 			b.onClick.AddListener(delegate() { turtleUI(); });
+		}else if (ClientState.character == "guci") {
+			_guci = GameObject.Find(ClientState.id).GetComponent<GuciSkill_GUI>();
+			b.onClick.AddListener(delegate() { guciUI(); });
 		}
 	}
 	
@@ -37,6 +41,11 @@ public class skill2Plus : MonoBehaviour {
 	public void turtleUI()
 	{
 		_turtle.skill2Plus_bot ();
+	}
+
+	public void guciUI()
+	{
+		_guci.skill2Plus_bot ();
 	}
 }
 
