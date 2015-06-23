@@ -4,7 +4,8 @@ using System.Collections;
 public class createMinionReceiver : MonoBehaviour {
 	private bool switch_;
 	private string redID,blueID;
-
+	private int redLine,blueLine;
+	
 	private SpawnMinion _spawnMinion;
 	
 	// Use this for initialization
@@ -22,15 +23,20 @@ public class createMinionReceiver : MonoBehaviour {
 	}
 	public void receive(string data){
 		string[] temp = data.Split (':');
-		redID = temp [0];
-		blueID = temp [1];
+		string[] temp2;
+		temp2 = temp [0].Split('_');
+		redID = temp2 [0];
+		redLine = int.Parse(temp2 [1]);
 		
+		temp2 = temp [1].Split ('_');
+		blueID = temp2 [0];
+		blueLine = int.Parse(temp2 [1]);
 		switch_ = true;
 	}
 	
 	private IEnumerator doit(){
-		_spawnMinion.REDsetSpawn (redID);
-		_spawnMinion.BLUEsetSpawn (blueID);
+		_spawnMinion.REDsetSpawn (redID,redLine);
+		_spawnMinion.BLUEsetSpawn (blueID,blueLine);
 		yield return null;
 	}
 }

@@ -24,16 +24,8 @@ public class MainFortress : MonoBehaviour {
 	void Update () {
 	}
 	
-	void OnGUI(){
-		
-		/*GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
-		
-		if (GUI.Button (new Rect (100, 400, 150, 100), "Blue Team Win: "+ClientState.team)) {
-			
-			Application.LoadLevel ("scStart");
-			
-		}*/
-		
+	
+	void OnGUI(){		
 		if (this.gameObject.name == "blue_building" && buildingDead ==true ) {
 			
 			if(ClientState.team =="red"){
@@ -67,44 +59,25 @@ public class MainFortress : MonoBehaviour {
 		}
 	}
 	
-	
-	/*	void OnTriggerEnter(Collider coll){
-
-		if (coll.gameObject.tag == "BULLET_BALL") {
-			StartCoroutine (this.CreateBloodEffect(coll.transform.position));
-				hp -= coll.gameObject.GetComponent<BulletCtrl>().damage;
-				string data = this.name+":" + hp.ToString()+"";
-				SocketStarter.Socket.Emit ("attackBuilding", data);
-			if(hp<=0)
-			{
-				hp=0;
-				buildingDie();
-			}
-		}else if(coll.gameObject.tag == "M_BULLET_BALL"){
-			StartCoroutine (this.CreateBloodEffect(coll.transform.position));
-			hp -= coll.gameObject.GetComponent<mBulletCtrl>().damage;
-			string data = this.name+":" + hp.ToString()+"";
+	public void Heated(string firedby, GameObject obj,int damage){
+		if (ClientState.isMaster) {	
+			hp -= damage;
+			
+			string data = this.name + ":" + hp.ToString () + "";
 			SocketStarter.Socket.Emit ("attackBuilding", data);
-			if(hp<=0)
-			{
-				hp=0;
-				buildingDie();
+			
+			if (hp <= 0) {
+				hp = 0;
+				buildingDie ();
+				
+				string data2 = ClientState.id + ":" + this.name;
+				//SocketStarter.Socket.Emit ("minionDieREQ", data2);
 			}
-		}else if(coll.gameObject.tag == "SKILL_FIRST"){
-
-			StartCoroutine (this.CreateBloodEffect(coll.transform.position));
-			hp -= coll.gameObject.GetComponent<SkillFirstCrl>().damage;
-			string data = this.name+":" + hp.ToString()+"";
-			SocketStarter.Socket.Emit ("attackBuilding", data);
-			if(hp<=0)
-			{
-				hp=0;
-				buildingDie();
-			}
-
 		}
+		
+		Collider coll = obj.collider;	
+		StartCoroutine (this.CreateBloodEffect(coll.transform.position));		
 	}
-*/
 	
 	IEnumerator CreateBloodEffect(Vector3 pos)
 	{
@@ -128,3 +101,4 @@ public class MainFortress : MonoBehaviour {
 		
 	}
 }
+

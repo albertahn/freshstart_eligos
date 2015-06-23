@@ -30,7 +30,7 @@ public class createBlueMinionReceiver : MonoBehaviour {
 	}
 
 	private IEnumerator doit(){
-		_spawnMinion.BLUEsetSpawn(id);
+//		_spawnMinion.BLUEsetSpawn(id);
 		yield return null;
 	}
 }

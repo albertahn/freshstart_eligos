@@ -25,6 +25,7 @@ public class blue_outer_collider : MonoBehaviour {
 	}
 	
 	public void changeTarget(){
+		refreshList ();
 		if(targets.Count<=0){
 			isRun=false;
 			targetName = null;
@@ -82,10 +83,10 @@ public class blue_outer_collider : MonoBehaviour {
 	
 	public void removeOne(GameObject go){
 		targets.Remove (go);
-	//	if (go.name == targetName) {
-			_ctrl.moveKey = true;
-			changeTarget ();
-//		}
+		//	if (go.name == targetName) {
+		_ctrl.moveKey = true;
+		changeTarget ();
+		//		}
 	}	
 	
 	public void removeAll(){

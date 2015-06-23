@@ -77,8 +77,8 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on("movePlayerREQ",function(data){   
-        var retMoveP = data.split(":");        
-        jarray[socket.room]["userPos"][retMoveP[0]] = retMoveP[2];            
+        var retMoveP = data.split(":");
+       // jarray[socket.room]["userPos"][retMoveP[0]] = retMoveP[2];            
         
         io.sockets.in(socket.room).emit("movePlayerRES", data);  
     });

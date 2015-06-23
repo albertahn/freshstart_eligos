@@ -10,7 +10,7 @@ public class BulletCtrl : MonoBehaviour {
 	public string firedbyname;
 	public int damage;
 	private TrailRenderer _trail;
-
+	
 	// Use this for initialization
 	void Awake () {
 		tr = GetComponent<Transform> ();
@@ -22,14 +22,14 @@ public class BulletCtrl : MonoBehaviour {
 		birth = Time.time;
 		durationTime = 5.0f;
 	}
-
-//set target
+	
+	//set target
 	public void setTarget(string firedby, string _name){
 		target = GameObject.Find(_name);
 		firedbyname = firedby;
 		birth = Time.time;
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
 		if (target != null) {
@@ -40,13 +40,13 @@ public class BulletCtrl : MonoBehaviour {
 				tr.position = Vector3.MoveTowards(tr.position, targetPosition, step);
 			}
 		}
-
+		
 		if ((Time.time - birth) > durationTime) {
 			//birth = Time.time;
 			StartCoroutine (PushObjectPool ());
 		}
 	}
-
+	
 	void OnTriggerEnter(Collider coll){
 		if (target != null) {
 			if(target.name==coll.name){
@@ -65,12 +65,19 @@ public class BulletCtrl : MonoBehaviour {
 				}else if(target.tag=="BLUE_CANNON"){
 					target.GetComponent<BlueCannonState>().Heated("minion", gameObject,playerStat.damage);
 					StartCoroutine (PushObjectPool ());
+				}else if(target.tag=="BLUE_CANNON"){
+					target.GetComponent<BlueCannonState>().Heated("minion", gameObject,playerStat.damage);
+					StartCoroutine (PushObjectPool ());
+				}else if(target.tag=="BUILDING"){
+					target.GetComponent<MainFortress>().Heated(firedbyname, gameObject,playerStat.damage);
+					StartCoroutine (PushObjectPool ());
 				}
+				
 				StartCoroutine (PushObjectPool ());
 			}
 		}
 	}
-
+	
 	IEnumerator PushObjectPool()
 	{
 		yield return new WaitForSeconds(0.1f);

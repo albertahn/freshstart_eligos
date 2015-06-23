@@ -34,7 +34,7 @@ public class Guci_firstSkill : MonoBehaviour {
 		
 		GameObject a = (GameObject)Instantiate(bulleta,firePosa.position,firePosa.rotation);
 		
-		a.GetComponent<GUCI_firstBulletCtrl> ().shotByname(firedBy,_pos);
+		a.GetComponent<GUCI_firstBulletCtrl> ().setTarget (firedBy, _pos);
 		
 		
 		yield return null;

@@ -60,14 +60,14 @@ public class SpawnMinion : MonoBehaviour {
 			if(redMinionPool[i].activeSelf==false){
 				redMinionPool[i].transform.tag = "MINION";
 				redMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
-
+				
 				_redMinionCtrl[i].line=_line;
 				redMinionPool[i].transform.position = REDspawnSpot.position;
 				_redMinionCtrl[i].isMaster = true;
 				_redMinionCtrl[i].move();
 				redMinionPool[i].SetActive(true);
 				_redMinionCtrl[i].isDie = false;
-				data = redMinionPool[i].name;
+				data = redMinionPool[i].name+"_"+_redMinionCtrl[i].line;
 				StartCoroutine(_redMinionCtrl[i].CheckMonsterState());
 				_red_outter_ctrl[i].removeAll();
 				_redMinionCtrl[i].initiatePoints();
@@ -85,7 +85,7 @@ public class SpawnMinion : MonoBehaviour {
 				_blueMinionCtrl[i].move();
 				blueMinionPool[i].SetActive(true);	
 				_blueMinionCtrl[i].isDie = false;
-				data = data+":"+blueMinionPool[i].name;
+				data = data+":"+blueMinionPool[i].name+"_"+_blueMinionCtrl[i].line;
 				StartCoroutine(_blueMinionCtrl[i].CheckMonsterState());
 				_blue_outter_ctrl[i].removeAll();
 				_blueMinionCtrl[i].initiatePoints();
@@ -97,12 +97,14 @@ public class SpawnMinion : MonoBehaviour {
 	
 	
 	//slave
-	public void REDsetSpawn(string _id){
+	public void REDsetSpawn(string _id,int _line){
 		for (int i=0; i<redMax; i++) {
-			if(redMinionPool[i].activeSelf==false){
+			if(redMinionPool[i].name ==_id){
+				Debug.Log(_line.ToString()+" : hello red mininon");
 				redMinionPool[i].transform.tag = "MINION";
 				redMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
-
+				
+				_redMinionCtrl[i].line=_line;
 				redMinionPool[i].transform.position = REDspawnSpot.position;
 				if(ClientState.isMaster){//edit
 					_redMinionCtrl[i].isMaster = true;
@@ -118,12 +120,14 @@ public class SpawnMinion : MonoBehaviour {
 		}
 	}
 	
-	public void BLUEsetSpawn(string _id){
+	public void BLUEsetSpawn(string _id,int _line){
 		for (int i=0; i<blueMax; i++) {
-			if(blueMinionPool[i].activeSelf==false){
+			if(blueMinionPool[i].name ==_id){
+				Debug.Log(_line.ToString()+" : hello blue mininon");
 				blueMinionPool[i].transform.tag = "MINION";
 				blueMinionPool[i].transform.FindChild ("touchCollider").transform.tag = "MINION";
-
+				
+				_blueMinionCtrl[i].line=_line;
 				blueMinionPool[i].transform.position = BLUEspawnSpot.position;	
 				if(ClientState.isMaster){//edit
 					_blueMinionCtrl[i].isMaster = true;

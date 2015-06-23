@@ -7,28 +7,28 @@ public class SocketOn : MonoBehaviour {
 	private SpawnMinion _spawnMinion;
 	//private MoveCtrl _moveCtrl;
 	private LobbyUI _lobbyUI;
-
+	
 	public string ClientID;
 	private string addId;
 	public Vector3 attackPos;
-		
+	
 	private string attackID;
 	private bool attackSwitch;
 	private string attackTarget;
 	private bool moveSyncSwitch;
-
+	
 	private bool building_health_change;
 	private string building_name;
 	private int building_hp_int;
-
+	
 	private bool minion_health_change;
 	private string minion_name;
 	private int minion_hp_int;
-
+	
 	private string minionID;
 	private Vector3 minionPos, minionTg;
 	// Use this for initialization
-
+	
 	public GameObject nmanager; // = GameObject.Find("NetworkManager");
 	public Skill_socket_reciever skill_reciever;
 	private minionAttackReceiver _mAttackReceiver;
@@ -51,7 +51,7 @@ public class SocketOn : MonoBehaviour {
 	private createObserver _createObserver;
 	private createMinionReceiver _createMinionReceiver;
 	private respawnReceiver _respawnReceiver;
-
+	
 	void Start () {
 		_mAttackReceiver = GetComponent<minionAttackReceiver>();
 		_mDieReceiver = GetComponent<minionDieReceiver> ();
@@ -73,23 +73,23 @@ public class SocketOn : MonoBehaviour {
 		_attackBuildingReceiver = GetComponent<attackBuildingReceiver> ();
 		_createMinionReceiver = GetComponent<createMinionReceiver> ();
 		_respawnReceiver = GetComponent<respawnReceiver> ();
-
+		
 		_createObserver = GetComponent<createObserver> ();
-
+		
 		Screen.SetResolution( 800,480, true);
-
+		
 		_spawnMinion = GetComponent<SpawnMinion> ();
 		_lobbyUI = GameObject.Find("MultiManager").GetComponent<LobbyUI>();
 		ClientID = ClientState.id;
-
+		
 		attackSwitch = false;
 		moveSyncSwitch = false;
-
+		
 		SocketStarter.Socket.On("createRoomRES", (data) =>{
 			string temp = data.Json.args[0].ToString();
 			
 			Debug.Log("cretate RoomRes = "+temp);
-
+			
 			if(temp== ClientID){
 				if(temp!="ob"){
 					_createRoomReceiver.receive();
@@ -99,34 +99,34 @@ public class SocketOn : MonoBehaviour {
 				}
 			}
 		});
-
+		
 		SocketStarter.Socket.On ("youMaster", (data) =>{
 			ClientState.isMaster = true;
 		});
-
+		
 		//cannon die
 		SocketStarter.Socket.On ("cannonDie", (data) => {
 			if(!ClientState.isMaster)
-			_CannonSync_reciever.killCannon (data.Json.args [0].ToString ());
+				_CannonSync_reciever.killCannon (data.Json.args [0].ToString ());
 		});
-
+		
 		SocketStarter.Socket.On("createPlayerRES",(data) =>
-		{//접속한 플레이어가 있을때 호출된다.
+		                        {//접속한 플레이어가 있을때 호출된다.
 			_createPlayerReceiver.receive(data.Json.args[0].ToString());
 		});
-
+		
 		SocketStarter.Socket.On("respawnRES",(data) =>
-		{//접속한 플레이어가 있을때 호출된다.
+		                        {//접속한 플레이어가 있을때 호출된다.
 			if(!ClientState.isMaster)
-			_respawnReceiver.receive(data.Json.args[0].ToString());
+				_respawnReceiver.receive(data.Json.args[0].ToString());
 		});
-
+		
 		SocketStarter.Socket.On ("preuserRES", (data) => {
 			_preUserPlayerReceiver.receive(data.Json.args[0].ToString());
 		});
-
+		
 		SocketStarter.Socket.On ("movePlayerRES", (data) =>
-		{
+		                         {
 			string temp = data.Json.args[0].ToString();
 			string[] temp2 = temp.Split(':');
 			if(ClientID !=temp2[0]){
@@ -141,80 +141,80 @@ public class SocketOn : MonoBehaviour {
 				_createMinionReceiver.receive(temp);
 			}
 		});
-
-
+		
+		
 		SocketStarter.Socket.On ("moveMinionRES", (data) =>
-		{
+		                         {
 			string temp = data.Json.args[0].ToString();
 			string[] temp2 = temp.Split(':');
 			if(ClientID !=temp2[0]){
 				_moveMinionReceiver.receive(temp);
 			}
 		});
-
+		
 		SocketStarter.Socket.On ("minionAttackRES", (data) =>
-		{
+		                         {
 			if(ClientState.isMaster==false){
 				_mAttackReceiver.receive(data.Json.args[0].ToString());
 			}
 		});
-
+		
 		SocketStarter.Socket.On ("attackRES", (data) =>
-		{
+		                         {
 			string temp = data.Json.args[0].ToString();
 			string[] temp2 = temp.Split(':');
 			if(ClientID !=temp2[0]){
 				_pAttackReceiver.receive(temp);
 			}
 		});
-
+		
 		SocketStarter.Socket.On ("imoutRES", (data) =>{			
 			string temp = data.Json.args[0].ToString();
 			_im_out_receiver.receive(temp);
 		});
-
+		
 		SocketStarter.Socket.On("attackMinion", (data) =>{
 			if(!ClientState.isMaster)
 				_minion_health_reciever.receive(data.Json.args[0].ToString());
 		});
-
+		
 		//building attack
 		SocketStarter.Socket.On ("attackBuilding", (data) =>{
-			if(!ClientState.isMaster){
-				_attackBuildingReceiver.receive(data.Json.args[0].ToString());
-			}
+			//if(!ClientState.isMaster){
+			_attackBuildingReceiver.receive(data.Json.args[0].ToString());
+			//}
 		});
-
+		
 		SocketStarter.Socket.On ("minionDieRES", (data) =>{
 			string[] temp = data.Json.args[0].ToString().Split(':');
 			if(!ClientState.isMaster){
 				_mDieReceiver.receive(temp[1]);
 			}
 		});
-
-//changed player health sync
+		
+		//changed player health sync
 		SocketStarter.Socket.On ("HealthSync", (data) =>{
 			string[] temp = data.Json.args[0].ToString().Split(':');
 			//if(temp[0]!=ClientID){
-				_player_hp_reciever.receive(data.Json.args[0].ToString());					
+			_player_hp_reciever.receive(data.Json.args[0].ToString());					
 			//}
 		});
-
-//skills sync
+		
+		//skills sync
 		//skill attack
 		SocketStarter.Socket.On ("SkillAttack", (data) =>{
 			skill_reciever.skillShot(data.Json.args[0].ToString());
 		});
-
-//master or not? 
+		
+		//master or not? 
 		if (ClientState.isMaster) {
 			SocketStarter.Socket.Emit("createRoomREQ", ClientState.id+":"+ClientState.room+":master");
 		} else {
 			SocketStarter.Socket.Emit("createRoomREQ", ClientState.id+":"+ClientState.room+":notmaster");
 		}
 	}//end start
-
-//building health change
+	
+	//building health change
 	void change_building_health(){
 		GameObject buildingnow = GameObject.Find (building_name);
 		buildingnow.GetComponent<MainFortress>().hp = building_hp_int;		
