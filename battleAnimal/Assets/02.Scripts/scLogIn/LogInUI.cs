@@ -1,25 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using System;
 public class LogInUI : MonoBehaviour {
 	public string id,password,username;
 	public InputField ID, PW;	
-	private DBManager _dbManager;
+	private loginDatabase _dbManager;
+
+	public bool loginerror;
+
 
 
 	// Use this for initialization
 	void Start () {
+
+		loginerror = false;
+
 		if(PlayerPrefs.GetString("email")!=""){
+
 			Application.LoadLevel("scStart");
+
 		}
 		Screen.SetResolution(1280, 800, true);
+		//Screen.SetResolution(800, 480, true);
 		
-		_dbManager = GetComponent<DBManager> ();
+		_dbManager = GetComponent<loginDatabase> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(loginerror){
+
+			Debug.Log("error in login");
+
+
+		}
 
 	}
 
@@ -49,17 +65,19 @@ public class LogInUI : MonoBehaviour {
 	private IEnumerator GetLoginData (string email, string password)
 	{		
 		yield return StartCoroutine (_dbManager.LoginUser(email, password)); // id를 Email로 바꿔야 하지 않을까
+
+
+		//_dbManager.fuckdata.GetString ("");
+		//try
+		//{
+
+		 
+
+
+ 		   // username = _dbManager.fuckdata.GetString("username");
 		
-		string emailman = _dbManager.fuckdata.GetString ("password");
-		
-		//Debug.Log("mailman:  "+ password);		
-		// LoginServer.hello ();
-		//if (_server.data.ContainsKey ("character")) {		
-		//Debug.Log("emailman : "+ _dbManager.fuckdata.GetString("email")) ;
-		
-		username = _dbManager.fuckdata.GetString("username");
-		
-		if(username !=""){			
+		if(_dbManager.loginwell ==true){
+
 			Debug.Log("loggedin fucker : "+_dbManager.fuckdata.GetString("email")) ;
 			
 			PlayerPrefs.SetString("email", _dbManager.fuckdata.GetString("email"));
@@ -75,10 +93,20 @@ public class LogInUI : MonoBehaviour {
 
 			Application.LoadLevel ("scStart");
 			
-		}else{			
+		}else{	
+
+			loginerror = true;
+
 			Debug.Log("not logged in : ") ;
 		}		
 		
-		yield return null;		
+
+
+		//}catch (Exception e) 
+	//	{
+		//	/
+	//	}//try
+		yield return null;	
 	}
+	
 }
