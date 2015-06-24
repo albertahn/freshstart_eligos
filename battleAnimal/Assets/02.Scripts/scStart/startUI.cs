@@ -57,7 +57,11 @@ public class startUI : MonoBehaviour {
 	}//exit
 
 	public void showFriendPannel(){
+
+		Debug.Log ("friend pannel show");
+
 		friendPannel.transform.localPosition = newpos;
+
 		myProfilePannel.transform.localPosition = outofScreen;
 
 	}//show

@@ -38,7 +38,9 @@ public class EndServerDatabase : MonoBehaviour {
 			
 			Debug.Log( "Error downloading: " + downloadbabe.error );
 			//return;
+
 		} else {
+
 			// show the highscores
 			//Debug.Log(downloadbabe.text);
 		}
