@@ -115,8 +115,12 @@ public class minimap : MonoBehaviour {
 		}
 		
 		for (int i=0; i<otherPlayerTr.Count; i++) {
-			Vector2 mapPos = FindMapPos(otherPlayerTr[i]);			
-			otherPlayerRect[i].localPosition= new Vector2(mapPos.x,mapPos.y);
+			if(otherPlayerTr[i]!=null){
+				Vector2 mapPos = FindMapPos(otherPlayerTr[i]);			
+				otherPlayerRect[i].localPosition= new Vector2(mapPos.x,mapPos.y);
+			}else{
+				otherPlayerImg[i].enabled= false;
+			}
 		}
 		
 		if (myPlayerTr != null) {

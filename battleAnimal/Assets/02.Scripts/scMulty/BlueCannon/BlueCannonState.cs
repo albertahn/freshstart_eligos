@@ -15,9 +15,9 @@ public class BlueCannonState : MonoBehaviour {
 	
 	private GameObject[] effectPool;
 	private int maxEffect;
-
+	
 	private BlueCannon_OutterCtrl _outterCtrl;
-
+	
 	// Use this for initialization
 	void Awake () {
 		maxEffect = 5;
@@ -28,7 +28,7 @@ public class BlueCannonState : MonoBehaviour {
 			effectPool[i].transform.parent = gameObject.transform;
 			effectPool[i].SetActive(false);
 		}
-
+		
 		maxhp = 200;
 		hp = maxhp;
 		isDie = false;
@@ -44,22 +44,30 @@ public class BlueCannonState : MonoBehaviour {
 	public void Heated(string firedby,GameObject obj,int damage){		
 		Collider coll = obj.collider;
 		StartCoroutine (this.CreateBloodEffect(coll.transform.position));
-
+		
 		if (ClientState.isMaster)
 		{
 			hp -= damage;		
 			string data = this.name + ":" + hp.ToString () + "";
-			SocketStarter.Socket.Emit ("attackBuilding", data);	
-
+			SocketStarter.Socket.Emit ("attackCannon", data);	
+			
 			if(hp<=0)
 			{
 				hp=0;
 				playerDie(firedby);
 			}			
 		}
-	
+		
 		//Destroy (obj.gameObject);
 	}//end heated
+	
+	public void HeatedSync(int _hp){
+		hp = _hp;
+		
+		if (hp <= 0) {
+			hp = 0;
+		}
+	}
 	
 	public void hitbySkill(string firedby,GameObject obj){
 		
@@ -85,19 +93,19 @@ public class BlueCannonState : MonoBehaviour {
 		
 		this.tag = "DIE";
 		GameObject.Find (this.name + "/touchCollider").tag = "DIE";
-
+		
 		int oldInt = PlayerPrefs.GetInt ("minions_killed");
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);
 		
-
+		
 		float  distance = Vector3.Distance(GameObject.Find(ClientState.id).transform.position, this.transform.position);
 		if (distance<10.0f) {
 			
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(100);
 			_moneyUI.makeMoney(100);
-
+			
 		}
-
+		
 		
 		GameObject flash = (GameObject)Instantiate(fireDie,this.transform.position,Quaternion.identity);
 		GameObject lava = (GameObject)Instantiate(lavaDie,this.transform.position,Quaternion.identity);
@@ -105,7 +113,7 @@ public class BlueCannonState : MonoBehaviour {
 		Destroy (this.gameObject, 3.0f);
 		
 		Destroy (flash, 5.0f); Destroy (lava, 5.0f);
-
+		
 		
 	}
 	

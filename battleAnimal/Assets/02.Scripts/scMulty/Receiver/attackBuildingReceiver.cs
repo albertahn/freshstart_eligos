@@ -6,7 +6,7 @@ public class attackBuildingReceiver : MonoBehaviour {
 	private string building_name;
 	private int building_hp_int;
 	
-	private GameObject targetObj;
+	private MainFortress targetScript;
 	
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class attackBuildingReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			
+			StartCoroutine(doit());
 			switch_=false;
 		}	
 	}
@@ -30,7 +30,8 @@ public class attackBuildingReceiver : MonoBehaviour {
 	}
 	
 	private IEnumerator doit(){
-		targetObj = GameObject.Find (building_name);
+		targetScript = GameObject.Find (building_name).GetComponent<MainFortress>();
+		targetScript.HeatedSync (building_hp_int);
 		yield return null;
 	}
 }

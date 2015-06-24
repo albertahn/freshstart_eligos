@@ -79,6 +79,15 @@ public class MainFortress : MonoBehaviour {
 		StartCoroutine (this.CreateBloodEffect(coll.transform.position));		
 	}
 	
+	public void HeatedSync(int _hp){
+		hp = _hp;
+		
+		if (hp <= 0) {
+			hp = 0;
+			buildingDie ();
+		}
+	}
+	
 	IEnumerator CreateBloodEffect(Vector3 pos)
 	{
 		GameObject _blood1 = (GameObject)Instantiate (bloodEffect, pos, Quaternion.identity);
@@ -86,11 +95,6 @@ public class MainFortress : MonoBehaviour {
 		
 		Vector3 decalPos = this.transform.position+(Vector3.right*5.01f);
 		Quaternion decalRot = Quaternion.Euler(0,Random.Range(0,360),0);
-		
-		/*GameObject _blood2 = (GameObject)Instantiate (bloodDecal, decalPos, decalRot);
-		float _scale = Random.Range (1.5f, 3.5f);
-		_blood2.transform.localScale = new Vector3 (_scale, 1, _scale);
-		Destroy (_blood2, 5.0f);*/
 		
 		yield return null;
 	}
@@ -101,4 +105,3 @@ public class MainFortress : MonoBehaviour {
 		
 	}
 }
-

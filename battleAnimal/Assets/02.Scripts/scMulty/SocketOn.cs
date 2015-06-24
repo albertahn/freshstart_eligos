@@ -48,9 +48,11 @@ public class SocketOn : MonoBehaviour {
 	private createBlueMinionReceiver _createBlueMinionReceiver;
 	private preUserMininonReceiver _preUserMinionReceiver;
 	private attackBuildingReceiver _attackBuildingReceiver;
+	private attackCannonReceiver _attackCannonReceiver;
 	private createObserver _createObserver;
 	private createMinionReceiver _createMinionReceiver;
 	private respawnReceiver _respawnReceiver;
+	private playerHpSyncReceiver _playerHpSyncReceiver;
 	
 	void Start () {
 		_mAttackReceiver = GetComponent<minionAttackReceiver>();
@@ -72,9 +74,10 @@ public class SocketOn : MonoBehaviour {
 		_preUserMinionReceiver = GetComponent<preUserMininonReceiver> ();
 		_attackBuildingReceiver = GetComponent<attackBuildingReceiver> ();
 		_createMinionReceiver = GetComponent<createMinionReceiver> ();
-		_respawnReceiver = GetComponent<respawnReceiver> ();
-		
+		_respawnReceiver = GetComponent<respawnReceiver> ();		
 		_createObserver = GetComponent<createObserver> ();
+		_attackCannonReceiver = GetComponent<attackCannonReceiver> ();
+		_playerHpSyncReceiver = GetComponent<playerHpSyncReceiver> ();
 		
 		Screen.SetResolution( 800,480, true);
 		
@@ -180,9 +183,15 @@ public class SocketOn : MonoBehaviour {
 		
 		//building attack
 		SocketStarter.Socket.On ("attackBuilding", (data) =>{
-			//if(!ClientState.isMaster){
-			_attackBuildingReceiver.receive(data.Json.args[0].ToString());
-			//}
+			if(!ClientState.isMaster){
+				_attackBuildingReceiver.receive(data.Json.args[0].ToString());
+			}
+		});
+		
+		SocketStarter.Socket.On ("attackCannonRES", (data) =>{
+			if(!ClientState.isMaster){
+				_attackCannonReceiver.receive(data.Json.args[0].ToString());
+			}
 		});
 		
 		SocketStarter.Socket.On ("minionDieRES", (data) =>{
@@ -204,6 +213,16 @@ public class SocketOn : MonoBehaviour {
 		//skill attack
 		SocketStarter.Socket.On ("SkillAttack", (data) =>{
 			skill_reciever.skillShot(data.Json.args[0].ToString());
+		});
+		
+		
+		SocketStarter.Socket.On ("playerHpSyncRES", (data) =>{
+			Debug.Log("playerHpSync11111111");
+			if(!ClientState.isMaster){
+				Debug.Log("playerHpSync12222222");
+				_playerHpSyncReceiver.receive(data.Json.args[0].ToString());
+				Debug.Log("playerHpSync1333333333");
+			}
 		});
 		
 		//master or not? 

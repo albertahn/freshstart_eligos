@@ -122,6 +122,10 @@ io.sockets.on('connection', function (socket) {
         io.sockets.in(socket.room).emit("attackMinion", data);
     });
     
+    socket.on('attackCannon', function(data){        
+        io.sockets.in(socket.room).emit("attackCannonRES", data);
+    });
+    
      socket.on('minionDieREQ', function(data){
         io.sockets.in(socket.room).emit("minionDieRES", data);
     });
@@ -136,6 +140,11 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('HealthSync', function(data){
        io.sockets.in(socket.room).emit("HealthSync", data);
+    });
+    
+       
+    socket.on('playerHpSync', function(data){
+       io.sockets.in(socket.room).emit("playerHpSyncRES", data);
     });
 
      socket.on('cannonDie', function(data){
