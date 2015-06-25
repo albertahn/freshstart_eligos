@@ -13,6 +13,7 @@ public class PlayerHealthState : MonoBehaviour {
 	private GameObject[] effectPool;
 	private int maxEffect;
 	private AniCtrl _aniCtrl;
+	private moneyUI _moneyUI;
 	
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,7 @@ public class PlayerHealthState : MonoBehaviour {
 		
 		isDie = false;
 		_respawn = GameObject.Find ("NetworkManager").GetComponent<Respawn> ();
+		_moneyUI = GameObject.Find ("UIManager").GetComponent<moneyUI> ();
 		myplayer = this.gameObject;
 		hp = playerStat.maxHp;
 		maxhp = playerStat.maxHp;
@@ -108,10 +110,12 @@ public class PlayerHealthState : MonoBehaviour {
 		this.transform.FindChild ("touchCollider").tag = "DIE";
 		this.collider.enabled = false;
 		isDie = true;
-		//GetComponent<MoveCtrl> ().isDie = true;
-		
-		if (ClientState.isMaster) {
+		GetComponent<MoveCtrl> ().idle ();
+
+		if (ClientState.id==this.name) {
 			ClientState.death++;
+			_moneyUI.deathPrint();
+			Debug.Log("ClientState.death = "+ClientState.death);
 			_respawn.Set(this.name);
 			SocketStarter.Socket.Emit ("respawnREQ", this.name);	
 		}

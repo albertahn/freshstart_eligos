@@ -54,7 +54,7 @@ public class UI_skill_manager : MonoBehaviour {
 			tutu_skill.Skill2_bot();
 			break;
 		case "guci":
-			guci_skill_gui.Skill1_bot();
+			guci_skill_gui.Skill2_bot();
 			break;
 		}
 	}
@@ -68,7 +68,7 @@ public class UI_skill_manager : MonoBehaviour {
 			tutu_skill.Skill3_bot(); 			
 			break;
 		case "guci":
-			guci_skill_gui.Skill1_bot();
+			guci_skill_gui.Skill3_bot();
 			break;
 		}	
 	}

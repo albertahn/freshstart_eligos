@@ -87,24 +87,27 @@ public class itemInfoUI : MonoBehaviour {
 	}
 
 	public void pressOK(){
-		switch (ItemType) {
-			case 0:
-				_itemShop.buySword2();
-				closeWindow();
-			break;
-			case 1:
-				_itemShop.buyAmor2();
-				closeWindow();
-			break;
-			case 100:
-				_itemShop.sellSword();
-				closeWindow();				
-			break;
-			case 101:
-				_itemShop.sellAmor();
-				closeWindow();				
-			break;
-
+		int _money = itemInfo.list [0].money;
+		int count = _itemShop.count;
+		if (count < 6 && ClientState.money >= _money) {
+						switch (ItemType) {
+						case 0:
+								_itemShop.buySword2 ();
+								closeWindow ();
+								break;
+						case 1:
+								_itemShop.buyAmor2 ();
+								closeWindow ();
+								break;
+						case 100:
+								_itemShop.sellSword ();
+								closeWindow ();				
+								break;
+						case 101:
+								_itemShop.sellAmor ();
+								closeWindow ();				
+								break;
+						}
 		}
 	}
 

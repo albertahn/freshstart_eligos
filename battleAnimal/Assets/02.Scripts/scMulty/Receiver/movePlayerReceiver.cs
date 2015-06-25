@@ -15,7 +15,7 @@ public class movePlayerReceiver : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		switch_ = false;
-		limit = 10.0f;
+		limit = 5.0f;
 	}
 	
 	// Update is called once per frame
@@ -43,29 +43,18 @@ public class movePlayerReceiver : MonoBehaviour {
 		switch_ = true;
 	}
 	
-	float distance(Vector3 a,Vector3 b){
-		return Mathf.Sqrt ((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + (a.z - b.z) * (a.z - b.z));
-	}
-
 	private IEnumerator doit(){
 		GameObject a = GameObject.Find (id);
 		
 		if (a != null) {
-			//if(distance(a.transform.position,currPos)>limit)
-			a.transform.position = currPos;
+			if(Vector3.Distance(a.transform.position,currPos)>limit)
+				a.transform.position = currPos;
+			
 			a.transform.LookAt( destPos);
-		//	if(character=="dog"){
-		//		Debug.Log ("dog");
-				_moveCtrl = a.GetComponent<MoveCtrl>();
-				_moveCtrl.clickendpoint= destPos;
-				_moveCtrl.move();
-		/*	}
-			else if(character=="turtle"){
-				Debug.Log ("turtle");
-				_tutu_moveCtrl = a.GetComponent<tutu_MoveCtrl>();
-				_tutu_moveCtrl.clickendpoint= destPos;
-				_tutu_moveCtrl.move();
-			}*/
+			
+			_moveCtrl = a.GetComponent<MoveCtrl>();
+			_moveCtrl.clickendpoint= destPos;
+			_moveCtrl.move();
 		}
 		yield return null;
 	}

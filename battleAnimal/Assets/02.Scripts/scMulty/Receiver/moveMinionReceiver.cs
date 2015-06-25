@@ -9,11 +9,14 @@ public class moveMinionReceiver : MonoBehaviour {
 
 	private minionCtrl _ctrl;
 	private blueMinionCtrl _bctrl;
+	
+	private float _distance;
 
 	
 	// Use this for initialization
 	void Start () {
 		switch_ = false;
+		_distance = 5.0f;
 	}
 	
 	// Update is called once per frame
@@ -42,7 +45,8 @@ public class moveMinionReceiver : MonoBehaviour {
 	private IEnumerator doit(){
 		GameObject a = GameObject.Find (id);
 		if(a!=null){
-			a.transform.position = currPos;
+			if(Vector3.Distance(a.transform.position,currPos)>_distance)
+				a.transform.position = currPos;
 			
 			if (a != null) {
 				if(a.name[0]=='r'){

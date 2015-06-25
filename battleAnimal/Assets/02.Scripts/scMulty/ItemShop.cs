@@ -17,7 +17,7 @@ public class ItemShop : MonoBehaviour {
 	
 	private int[] stack;
 	private int sp;
-	private int count;
+	public int count;
 	private int[] invBool;
 	
 	private int sellIdx;
@@ -25,10 +25,12 @@ public class ItemShop : MonoBehaviour {
 	private moneyUI _moneyUI;
 	private itemInfoUI _itemInfoUI;
 	
+	private bool shopState;
+
 	// Use this for initialization
 	void Start () {
 		itemWindow = GameObject.Find ("ItemWindow").GetComponent<RectTransform>();
-		Xbutton = GameObject.Find ("Xbutton").GetComponent<RectTransform>();
+//		Xbutton = GameObject.Find ("Xbutton").GetComponent<RectTransform>();
 		itemlist = GameObject.Find ("item_list").GetComponentsInChildren<RectTransform> ();
 		inventorylist = GameObject.Find ("inventory_list").GetComponentsInChildren<RectTransform> ();
 		inventoryWindow = GameObject.Find ("inventory_list").GetComponentsInChildren<Image> ();
@@ -43,8 +45,8 @@ public class ItemShop : MonoBehaviour {
 		sx = itemWindow.sizeDelta.x;
 		sy = itemWindow.sizeDelta.y;
 		
-		xx = Xbutton.sizeDelta.x;
-		xy = Xbutton.sizeDelta.y;
+		//xx = Xbutton.sizeDelta.x;
+		//xy = Xbutton.sizeDelta.y;
 		
 		ix = itemlist [1].sizeDelta.x;
 		iy = itemlist [1].sizeDelta.y;
@@ -58,17 +60,29 @@ public class ItemShop : MonoBehaviour {
 		stack[5]=0;
 		sp=5;
 		count = 0;
-		
+
+		shopState = false;
 		closeWindow ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	}
-	
-	public void openWindow(){
+
+	public void shopButton(){
+		if (shopState == false) {
+			openWindow ();
+			shopState = true;
+		} else {
+			closeWindow();
+			shopState = false;
+		}
+
+	}
+
+	void openWindow(){
 		itemWindow.sizeDelta = new Vector2 (sx, sy);
-		Xbutton.sizeDelta = new Vector2 (xx, xy);
+		//Xbutton.sizeDelta = new Vector2 (xx, xy);
 		
 		for (int i=1; i<itemlist.Length; i++) {
 			itemlist[i].sizeDelta = new Vector2 (ix, iy);
@@ -78,9 +92,9 @@ public class ItemShop : MonoBehaviour {
 		}
 	}
 	
-	public void closeWindow(){
+	void closeWindow(){
 		itemWindow.sizeDelta = new Vector2 (0, 0);
-		Xbutton.sizeDelta = new Vector2 (0,0);
+		//Xbutton.sizeDelta = new Vector2 (0,0);
 		
 		for (int i=1;i< itemlist.Length; i++) {
 			itemlist[i].sizeDelta = new Vector2 (0, 0);
@@ -91,8 +105,7 @@ public class ItemShop : MonoBehaviour {
 	}
 	
 	public void buySword(){
-		int _money = itemInfo.list [0].money;
-		if (count < 6 && ClientState.money>=_money) {
+		//if (count < 6 && ClientState.money>=_money) {
 			_itemInfoUI.buy_sword_info();
 			
 			/*_moneyUI.makeMoney(-_money);
@@ -102,7 +115,7 @@ public class ItemShop : MonoBehaviour {
 			playerStat.changeDamage(itemInfo.list[0].option);//데미지를 증가시킨다.
 			sp--;
 			count++;*/
-		}
+		//}
 	}
 	public void buySword2(){	
 		int _money = itemInfo.list [0].money;	
@@ -116,8 +129,7 @@ public class ItemShop : MonoBehaviour {
 	}
 	
 	public void buyAmor(){
-		int _money = itemInfo.list [1].money;
-		if (count < 6 && ClientState.money>=_money) {			
+		//if (count < 6 && ClientState.money>=_money) {			
 			_itemInfoUI.buy_amor_info();
 			/*_moneyUI.makeMoney(-_money);
 			inventoryWindow [stack[sp]].sprite = amor;
@@ -126,7 +138,7 @@ public class ItemShop : MonoBehaviour {
 			playerStat.changeHp(itemInfo.list[1].option);//체력을 증가시킨다.
 			sp--;
 			count++;*/	
-		}
+		//}
 	}
 	public void buyAmor2(){
 		int _money = itemInfo.list [1].money;

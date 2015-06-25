@@ -15,7 +15,7 @@ public class mBulletCtrl : MonoBehaviour {
 		tr = GetComponent<Transform> ();
 		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
-		damage = 20;
+		damage = 7;
 		speed = 20.0f;
 		//rigidbody.AddForce (transform.forward * speed);
 		birth = Time.time;

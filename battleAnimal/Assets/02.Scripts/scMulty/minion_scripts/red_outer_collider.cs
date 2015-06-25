@@ -86,6 +86,7 @@ public class red_outer_collider : MonoBehaviour {
 		targets.Remove (go);
 		//	if (go.name == targetName) {
 		_ctrl.moveKey = true;
+		_ctrl.targetObj = null;
 		changeTarget ();
 		//	}
 	}
@@ -94,6 +95,8 @@ public class red_outer_collider : MonoBehaviour {
 		targets.Clear ();
 		targetName = null;
 		isRun = false;
+		if(_ctrl!=null)
+			_ctrl.targetObj = null;
 	}
 	
 	public IEnumerator refreshList(){

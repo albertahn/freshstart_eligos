@@ -15,7 +15,7 @@ public class SpawnPlayer : MonoBehaviour {
 	private skill1Plus _skill1Plus;
 	private skill2Plus _skill2Plus;
 	private skill3Plus _skill3Plus;
-	private UIhpbar _uihpbar;
+	//private UIhpbar _uihpbar;
 
 	private Vector3 RspawnPoint, BspawnPoint;
 
@@ -50,7 +50,7 @@ public class SpawnPlayer : MonoBehaviour {
 		_skill1Plus = GameObject.Find ("skill1+").GetComponent<skill1Plus> ();
 		_skill2Plus = GameObject.Find ("skill2+").GetComponent<skill2Plus> ();
 		_skill3Plus = GameObject.Find ("skill3+").GetComponent<skill3Plus> ();
-		_uihpbar = GameObject.Find("HpBarParent").GetComponent<UIhpbar> ();
+//		_uihpbar = GameObject.Find("HpBarParent").GetComponent<UIhpbar> ();
 
 		_minimap = GameObject.Find ("minimapWrapper").GetComponent<minimap> ();
 
@@ -85,7 +85,7 @@ public class SpawnPlayer : MonoBehaviour {
 						_skill2Plus.setPlayer ();
 						_skill3Plus.setPlayer ();
 						_cameraTouch.setPlayer ();
-						_uihpbar.setPlayer ();
+						//_uihpbar.setPlayer ();
 						_followCam.setTarget (a.transform);
 						_minimap.setPlayer (a.transform);
 		} else {

@@ -5,8 +5,10 @@ using System.Collections.Generic;
 public class minion_state : MonoBehaviour {
 	
 	public GameObject bloodEffect;
-	public GameObject bloodDecal;
-	
+	public GameObject bloodDecal;	
+	public GameObject moneyEffectObj;
+	private GameObject moneyEffect;
+
 	public int hp;
 	public string firedbyname;
 	
@@ -26,6 +28,9 @@ public class minion_state : MonoBehaviour {
 			effectPool[i].transform.parent = gameObject.transform;
 			effectPool[i].SetActive(false);
 		}
+		moneyEffect = (GameObject)Instantiate (moneyEffectObj);
+		moneyEffect.transform.parent = gameObject.transform;
+		moneyEffect.SetActive(false);
 	}
 	
 	// Use this for initialization
@@ -58,7 +63,8 @@ public class minion_state : MonoBehaviour {
 		
 		firedbyname = firedby;	
 		Collider coll = obj.collider;		
-		StartCoroutine (this.CreateBloodEffect(coll.transform.position));
+		if(this.gameObject.activeSelf==true)
+			StartCoroutine (this.CreateBloodEffect(coll.transform.position));
 	}
 	
 	public void minionDie(){
@@ -71,6 +77,7 @@ public class minion_state : MonoBehaviour {
 		if(ClientState.id==firedbyname){			
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);
+			StartCoroutine(CreateMoneyEffect());
 
 			//set stats
 			GameState.setusers_kills(firedbyname, oldInt+1);
@@ -81,7 +88,17 @@ public class minion_state : MonoBehaviour {
 		}
 		StartCoroutine (PushObjectPool ());
 	}
-	
+
+	IEnumerator CreateMoneyEffect(){
+		Vector3 pos = this.transform.position;
+		pos.y += 5.0f;
+		
+		moneyEffect.transform.position = pos;
+		moneyEffect.SetActive (true);
+		StartCoroutine(PushObjectEffectPool(moneyEffect,1.0f));
+		
+		yield return null;
+	}
 	
 	IEnumerator CreateBloodEffect(Vector3 pos)
 	{
@@ -91,25 +108,23 @@ public class minion_state : MonoBehaviour {
 			{
 				effectPool[i].transform.position = pos;
 				effectPool[i].SetActive(true);
-				StartCoroutine(PushObjectEffectPool(effectPool[i]));
+				StartCoroutine(PushObjectEffectPool(effectPool[i],0.2f));
 				break;
 			}
 		}		
 		yield return null;
 	}
 	
-	IEnumerator PushObjectEffectPool(GameObject a)
+	IEnumerator PushObjectEffectPool(GameObject a,float _time)
 	{
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (_time);
 		a.SetActive (false);
 	}
 	
 	IEnumerator PushObjectPool(){
-		yield return new WaitForSeconds(3.0f);
-		hp = 100;
-		
-		this.collider.enabled = true;
-		
+		yield return new WaitForSeconds(1.0f);
+		hp = 100;		
+		this.collider.enabled = true;		
 		gameObject.SetActive (false);
 	}
 }

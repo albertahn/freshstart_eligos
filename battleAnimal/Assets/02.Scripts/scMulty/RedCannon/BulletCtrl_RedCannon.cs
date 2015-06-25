@@ -15,7 +15,7 @@ public class BulletCtrl_RedCannon : MonoBehaviour {
 		tr = GetComponent<Transform> ();
 		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
-		damage = 10;
+		damage = 20;
 		speed = 20.0f;
 		//rigidbody.AddForce (transform.forward * speed);
 		birth = Time.time;

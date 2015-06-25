@@ -3,8 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class GuciSkill_GUI : MonoBehaviour {
-
-	
 	//public Texture2D stexture1, stexture2 , stexture3 ;
 	private Transform trans;
 	private string ClientID;
@@ -36,6 +34,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 	public PlayerHealthState _playerHealthState;
 	
 	public bool isSet;
+	
 	/*
 	void Start(){
 		isSet = false;
@@ -45,8 +44,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 		ClientID = ClientState.id;	
 		//Get game object
 		myMoveCtrl = GetComponent<MoveCtrl> ();
-		guilayer = Camera.main.GetComponent<GUILayer> ();
-		
+		guilayer = Camera.main.GetComponent<GUILayer> ();		
 		_playerHealthState = this.GetComponent<PlayerHealthState> ();
 		
 		trans = GetComponent<Transform> ();
@@ -70,15 +68,13 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skill_live [i] = true;//false;
 		}
 		_lvUpEvolve = GetComponent<Level_up_evolve> ();
-		Debug.Log ("isSet = " + isSet);
 		isSet = true;
-		Debug.Log ("isSet = " + isSet);
 	}
 	
 	
 	public void Skill1_bot()
 	{		
-		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]) {
+		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
 			GameObject dogy = GameObject.Find (ClientState.id);
 			
 			Vector3 spawnPos = dogy.transform.position;
@@ -98,7 +94,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 	
 	public void Skill2_bot()
 	{
-		if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]) {		
+		/*if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {		
 			Debug.Log ("clicked 2 man");
 			GameObject dogy = GameObject.Find (ClientID);
 			//dogy.transform.position = dogy.transform.position+ Vector3.up * 10;
@@ -122,13 +118,13 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skills [1].sprite = skill2Blank_spr;
 			
 			
-		}
+		}*/
 	}
 	
 	
 	public void Skill3_bot()
 	{
-		if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]) {
+	/*	if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
 			GameObject dogy = GameObject.Find (ClientState.id);
 			
 			//Debug.Log ("client id : "+ClientID);
@@ -145,7 +141,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
 			skills [2].sprite = skill1Blank_spr;
-		}
+		}*/
 	}
 	
 	
