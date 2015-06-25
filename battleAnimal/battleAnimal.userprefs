@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\UI\moneyUI.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/02.Scripts/scMulty/GameStat_database/Stats_gameDatabase.cs">
     <Files>
-      <File FileName="Assets\02.Scripts\scMulty\player\Player_hp\PlayerHealthState.cs" Line="117" Column="26" />
-      <File FileName="Assets\02.Scripts\scMulty\UI\moneyUI.cs" Line="15" Column="8" />
+      <File FileName="Assets/02.Scripts/scMulty/GameStat_database/Stats_gameDatabase.cs" Line="70" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

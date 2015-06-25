@@ -13,6 +13,8 @@ public class waitSocketStarter : MonoBehaviour
 		Socket = new Client(url);
 		Socket.Opened += SocketOpened;
 		Socket.Connect();
+
+		Debug.Log("roo :"+ ClientState.room);
 	}
 	
 	private void SocketOpened(object sender, System.EventArgs e)
