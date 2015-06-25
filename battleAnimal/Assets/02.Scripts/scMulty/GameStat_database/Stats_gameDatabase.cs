@@ -5,17 +5,29 @@ using System;
 using Boomlagoon.JSON;
 public class Stats_gameDatabase : MonoBehaviour {
 
-	public JSONObject fuckdata;
+	public static JSONObject statsFromDB;
 
 	// Use this for initialization
 	void Start () {
-		fuckdata = new JSONObject();
-		StartCoroutine (SaveBestScore("123","ffff","12443","hhh"));
 
-	}
+		statsFromDB = new JSONObject();
+		//StartCoroutine (SaveBestScore("123","ffff","12443","hhh"));
 
-	public IEnumerator SaveBestScore(string kills, string deaths, string assists, string gold)
+	}//end start
+
+	public static IEnumerator SaveBestScore(
+											string rooms_index,
+											string members_index,
+	                                        string level,
+	                                        string items,
+											string kills, 
+	                                        string deaths,
+	                                        string cs_kills,
+	                                        string gold,
+											string team,
+											string points)
 	{
+
 		string url = "http://mobile.sharebasket.com/room/endgame_set_stats";
 		
 		// Create a form object for sending high score data to the server
@@ -23,10 +35,19 @@ public class Stats_gameDatabase : MonoBehaviour {
 		// Assuming the perl script manages high scores for different games
 		
 		// The name of the player submitting the scores
+
+		form.AddField( "rooms_index",  rooms_index);
+		form.AddField( "members_index",  members_index);
+		form.AddField( "level",  level);
+		form.AddField( "items",  items);
+
 		form.AddField( "kills",  kills);
 		form.AddField( "deaths", deaths);
-		form.AddField( "assists",   assists);
+		form.AddField( "cs_kills",   cs_kills);
 		form.AddField( "gold",   gold);
+
+		form.AddField( "team",   team);
+		form.AddField( "points",   points);
 		
 		// Create a download object
 		WWW downloadbabe = new WWW( url, form );
@@ -50,7 +71,7 @@ public class Stats_gameDatabase : MonoBehaviour {
 			
 		} else {
 			
-			fuckdata = JSONObject.Parse(downloadbabe.text);
+			statsFromDB = JSONObject.Parse(downloadbabe.text);
 		}
 		
 		

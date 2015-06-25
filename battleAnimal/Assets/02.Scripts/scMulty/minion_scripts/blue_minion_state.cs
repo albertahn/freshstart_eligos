@@ -72,6 +72,11 @@ public class blue_minion_state : MonoBehaviour {
 		if(ClientState.id==firedbyname){			
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);
+
+	//set game stats
+			GameState.setusers_kills(firedbyname, oldInt+1);
+
+			GameState.sendData();
 			
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(10);

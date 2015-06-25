@@ -9,9 +9,11 @@ public class clickAnimation : MonoBehaviour
 		public bool reset_char_point ;
 		private Vector3[] originplace = new Vector3[4];
 		public GameObject[] gameobj = new GameObject[4];
-		float fracJourney = 14.5f;
+		float fracJourney = 24.5f;
 		// Use this for initialization
-		Vector3 newpos ;
+		Vector3 newpos, showingpos ;
+
+
 
 	float nextUsage;
 
@@ -29,8 +31,11 @@ public class clickAnimation : MonoBehaviour
 
 				move_furfur = move_stola = move_gusi = move_barbas = false;
 	
-		newpos = new Vector3 (600.0f, gameobj[0].transform.localPosition.y, 0);
+		newpos = new Vector3 (800.0f, gameobj[0].transform.localPosition.y, 0);
 				reset_char_point = false;
+
+		showingpos =  new Vector3 (-100.0f, gameobj[0].transform.localPosition.y, 0);
+		reset_char_point = false;
 
 		}
 	
@@ -124,17 +129,25 @@ public class clickAnimation : MonoBehaviour
 				switch (charname) {
 				case "furfur":
 
+			gameobj[0].transform.localPosition = showingpos;
+
 						move_barbas = move_gusi = move_stola = true;
 						break;
 				case "stola":
+
+			gameobj[1].transform.localPosition = showingpos;
 
 						move_barbas = move_gusi = move_furfur = true;
 						break;
 				case "gusi":
 
+			gameobj[2].transform.localPosition = showingpos;
+
 						move_barbas = move_furfur = move_stola = true;
 						break;
 				case "barbas":
+
+			gameobj[3].transform.localPosition = showingpos;
 						move_furfur = move_gusi = move_stola = true;
 						break;
 				default:
