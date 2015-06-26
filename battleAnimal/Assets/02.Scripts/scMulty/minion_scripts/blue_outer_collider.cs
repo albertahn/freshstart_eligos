@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class blue_outer_collider : MonoBehaviour {
 	public blueMinionCtrl _ctrl;
 	public List<GameObject> targets;
+	public List<string> targetString;
 	public string targetName;
 	public bool isRun;
 	
@@ -12,6 +13,8 @@ public class blue_outer_collider : MonoBehaviour {
 	void Start () {
 		_ctrl = GetComponentInParent<blueMinionCtrl> ();
 		targets = new List<GameObject>();
+		targetString = new List<string> ();
+		
 		isRun = false;
 		StartCoroutine (refreshList ());
 	}
@@ -29,6 +32,7 @@ public class blue_outer_collider : MonoBehaviour {
 		if(targets.Count<=0){
 			isRun=false;
 			targetName = null;
+			_ctrl.targetObj = null;
 		}else if(targets.Count>=2){
 			int i;
 			for(i=0;i<targets.Count;i++){
@@ -71,18 +75,22 @@ public class blue_outer_collider : MonoBehaviour {
 	}
 	
 	public void addEnemy(GameObject _zn){
-		targets.Add(_zn);
-		if(isRun==false){
-			targetName = _zn.name;
-			_ctrl.targetObj = _zn;
-			_ctrl.playerTr = _zn.transform;
-			_ctrl.traceKey = true;
-			isRun = true;
+		if (targetString.BinarySearch (_zn.name) <0) {
+			targets.Add (_zn);
+			targetString.Add (_zn.name);
+			if (isRun == false) {
+				targetName = _zn.name;
+				_ctrl.targetObj = _zn;
+				_ctrl.playerTr = _zn.transform;
+				_ctrl.traceKey = true;
+				isRun = true;
+			}
 		}
 	}
 	
 	public void removeOne(GameObject go){
 		targets.Remove (go);
+		targetString.Remove (go.name);
 		//	if (go.name == targetName) {
 		_ctrl.moveKey = true;
 		_ctrl.targetObj = null;
@@ -92,6 +100,7 @@ public class blue_outer_collider : MonoBehaviour {
 	
 	public void removeAll(){
 		targets.Clear ();
+		targetString.Clear ();
 		targetName = null;
 		isRun= false;
 		if(_ctrl!=null)
@@ -106,6 +115,7 @@ public class blue_outer_collider : MonoBehaviour {
 					if(i==0)
 						targetName = null;
 					targets.Remove (targets [i]);
+					targetString.Remove(targets[i].name);
 				}
 			}
 		}

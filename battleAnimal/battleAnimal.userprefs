@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/02.Scripts/scMulty/player/MoveCtrl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\RedCannon\RedCannon_OutterCtrl.cs">
     <Files>
-      <File FileName="Assets/02.Scripts/scMulty/player/MoveCtrl.cs" Line="99" Column="9" />
+      <File FileName="Assets\02.Scripts\scMulty\RedCannon\RedCannon_OutterCtrl.cs" Line="30" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

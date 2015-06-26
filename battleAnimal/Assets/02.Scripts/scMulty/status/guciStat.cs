@@ -7,6 +7,7 @@ public class guciStat : MonoBehaviour {
 	private int damage;
 	private float attack_distance;
 	private float attack_speed;
+	private int HpIncTerm;
 	
 	// Use this for initialization
 	void Awake () {
@@ -15,6 +16,7 @@ public class guciStat : MonoBehaviour {
 		damage = 20;
 		attack_distance = 7.0f;
 		attack_speed = 0.5f;
+		HpIncTerm = 150;
 		initiate ();
 	}
 	
@@ -24,5 +26,6 @@ public class guciStat : MonoBehaviour {
 		playerStat.damage = damage;
 		playerStat.attack_speed = attack_speed;
 		playerStat.attack_distance = attack_distance;
+		playerStat.HpIncTerm = HpIncTerm;
 	}
 }

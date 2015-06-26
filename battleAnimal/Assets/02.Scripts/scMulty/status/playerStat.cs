@@ -7,15 +7,17 @@ public class playerStat : MonoBehaviour {
 	public static int damage;
 	public static float attack_distance;
 	public static float attack_speed;
-
+	
+	public static int HpIncTerm;
+	
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}	
 	
 	public static void changeHp(int a){
