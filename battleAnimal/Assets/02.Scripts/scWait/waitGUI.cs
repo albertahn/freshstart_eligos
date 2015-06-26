@@ -25,6 +25,7 @@ public class waitGUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start (){
+
 		addUserSwitch = false;
 		charSelectSwitch = false;
 		delUserSwitch = false;
@@ -40,14 +41,17 @@ public class waitGUI : MonoBehaviour {
 		for(int i=0;i<6;i++){
 			//portrait[i] = emptyPortrait;
 			portrait_[i].sprite = emptyPortrait;
+
 		}
 		switch(Random.Range(1,3)){
+
 		case 1:
 			ClientState.character = "dog";					
 			break;
 		case 2:
 			ClientState.character = "turtle";						
 			break;
+
 		}
 	}
 	/*
@@ -56,13 +60,16 @@ public class waitGUI : MonoBehaviour {
 	*/
 
 	public void remoteAddUser(int _order,string _id){
+
 		while (addUserSwitch) {	}
 		addUserOrder = _order;
 		addUserId = _id;
 		addUserSwitch = true;
+
 	}
 
 	void addUser(int _order,string _id){
+
 		name [_order] = _id;
 		portrait_ [_order].sprite = randomPortrait;
 		userNum++;
@@ -107,23 +114,44 @@ public class waitGUI : MonoBehaviour {
 		GUI.Label(new Rect(200,310,50,50),"isMaster = "+ClientState.isMaster);
 	}
 
-	public void Dog_bot()
+	public void FurFur_bot()
 	{
 		if (ClientState.id != "ob") {
-						string data = ClientState.id + ":" + ClientState.order + ":dog";
+						string data = ClientState.id + ":" + ClientState.order + ":furfur";
 						waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
-						ClientState.character = "guci";
+						ClientState.character = "Furfur";
 				}
 	}
 
-	public void Turtle_bot()
+	public void Stola_bot()
 	{
 		if (ClientState.id != "ob") {
-						string data = ClientState.id + ":" + ClientState.order + ":turtle";
+						string data = ClientState.id + ":" + ClientState.order + ":stola";
 						waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
-						ClientState.character = "turtle";	
+						ClientState.character = "Stola";	
 				}
 	}
+
+	public void Guci_bot()
+	{
+		if (ClientState.id != "ob") {
+			string data = ClientState.id + ":" + ClientState.order + ":guci";
+			waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
+			ClientState.character = "guci";	
+		}
+	}//gucibot
+
+
+	public void Barbas_bot()
+	{
+		if (ClientState.id != "ob") {
+			string data = ClientState.id + ":" + ClientState.order + ":barbas";
+			waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
+			ClientState.character = "Barbas";	
+		}
+	}
+
+
 
 	public void Random_bot()
 	{

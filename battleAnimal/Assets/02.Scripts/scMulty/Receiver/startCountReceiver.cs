@@ -10,7 +10,7 @@ public class startCountReceiver : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		time = 10;
+		time = 3;//10;
 		switch_ = false;
 		TimeObj = (GameObject)GameObject.Find ("Canvas/Time");
 		TimeObj.SetActive (false);
