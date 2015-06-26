@@ -96,7 +96,7 @@ public class MoveCtrl : MonoBehaviour {
 					if (EventSystem.current.IsPointerOverGameObject () == false)
 						PCcontroller();
 				#endif
-		} 
+		}//end 
 		
 		if(!_state.isDie){
 			//ifmove

@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/02.Scripts/scMulty/minion_scripts/red_outer_collider.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/02.Scripts/scMulty/player/MoveCtrl.cs">
     <Files>
-      <File FileName="Assets/02.Scripts/scWait/waitGUI.cs" Line="147" Column="32" />
-      <File FileName="Assets/02.Scripts/scMulty/minion_scripts/red_outer_collider.cs" Line="51" Column="1" />
+      <File FileName="Assets/02.Scripts/scMulty/player/MoveCtrl.cs" Line="99" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
