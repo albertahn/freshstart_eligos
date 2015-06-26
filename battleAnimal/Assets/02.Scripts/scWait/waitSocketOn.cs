@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class waitSocketOn : MonoBehaviour {
 	private string clientID;
 	private	waitGUI _waitGUI;
+	private readyButtonReceiver _readyButtonReceiver;
+	private startCountReceiver _startCountReceiver;
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +14,8 @@ public class waitSocketOn : MonoBehaviour {
 
 		clientID = ClientState.id;
 		_waitGUI = GetComponent<waitGUI> ();
+		_readyButtonReceiver = GetComponent<readyButtonReceiver> ();
+		_startCountReceiver = GetComponent<startCountReceiver> ();
 
 		waitSocketStarter.Socket.On("createPlayerRES",(data) =>
 		                        {//접속한 플레이어가 있을때 호출된다.
@@ -57,6 +61,9 @@ public class waitSocketOn : MonoBehaviour {
 					int num = int.Parse(temp4[0]+"");
 					string id = temp4[1];
 					string character = temp4[2];
+					string team = temp4[3];
+					string ready = temp4[4];
+					_readyButtonReceiver.readySync(id,team);
 					_waitGUI.remoteAddUser(num,id);
 					_waitGUI.remoteSetCharacter(num,character);
 				}
@@ -70,6 +77,18 @@ public class waitSocketOn : MonoBehaviour {
 			string character = temp2[1];
 
 			_waitGUI.remoteSetCharacter(order,character);
+		});
+
+		waitSocketStarter.Socket.On ("readyButtonRES", (data) =>{
+			if(ClientState.isMaster){
+				string temp = data.Json.args[0].ToString();
+				_readyButtonReceiver.receive(temp);
+			}
+		});
+
+		waitSocketStarter.Socket.On ("startCountRES", (data) =>{
+			string temp = data.Json.args[0].ToString();
+			_startCountReceiver.receive(temp);
 		});
 
 		waitSocketStarter.Socket.On ("createRoomRES", (data) =>{

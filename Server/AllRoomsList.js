@@ -8,7 +8,7 @@ io.configure(function(){
 
 var request = require("request")
 
-var roomurl = "http://mobile.sharebasket.com/room";
+var roomurl = "http://mobile.sharebasket.com/room/show_all_rooms_list/";
 
 var allRooms;
 
@@ -24,9 +24,26 @@ request({
 });
 
 
+function refreshList(){
+
+
+request({
+    url: roomurl,
+    json: true
+}, function (error, response, body) {
+    
+        allRooms = body;
+    if (!error && response.statusCode === 200) {
+       // console.log(body) // Print the json response
+    }
+});
+
+}
+
+
 //var allRooms = getAllRooms;
 
-console.log(allRooms);
+console.log("hi: "+allRooms);
 
 var socketRoom = {};
 
@@ -49,9 +66,10 @@ io.sockets.on('connection', function (socket) {
     
     
     socket.on("getAllRoomREQ", function(data){
+
+        refreshList();
         
-        io.sockets.emit("getAllRoomRES", allRooms );//allRooms);
-        
+        io.sockets.emit("getAllRoomRES", allRooms );//allRooms);       
         
        
     });

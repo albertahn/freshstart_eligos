@@ -143,18 +143,18 @@ public class waitGUI : MonoBehaviour {
 
 
 	public void Ready()
-	{
-		
+	{		
 		if (ClientState.id == "ob") {
-						ClientState.team = "gray";
-				} else {
-						if (ClientState.order % 2 == 0) {
-								ClientState.team = "red";
-						} else
-								ClientState.team = "blue";
-				}
-
-		Application.LoadLevel("scMulty");
+			ClientState.team = "gray";
+		} else {
+			if (ClientState.order % 2 == 0){
+				ClientState.team = "red";
+			} else
+				ClientState.team = "blue";
+		}
+		string data = ClientState.id + ":" + ClientState.team;
+		waitSocketStarter.Socket.Emit ("readyButtonREQ", data);
+		//Application.LoadLevel("scMulty");
 	}
 
 	public void Back()

@@ -14,6 +14,8 @@ function A(){
     this.thrashIdx =5;
     this.userNames = {};//id
     this.selectCharacter={};
+    this.ready={};
+    this.team={};
     this.userNum={};
 }
 
@@ -23,6 +25,7 @@ io.sockets.on('connection', function (socket) {
     socket.on("joinRoomREQ",function(data){       
         var roomname = data;        
         var rooms = io.sockets.manager.rooms;
+        console.log("rooms = "+rooms);
         
         if(true ==(roomname in socketRoom)){
           socket.room = data;
@@ -53,7 +56,7 @@ io.sockets.on('connection', function (socket) {
         var ret=data+'=';
         
         for(var key in jarray[socket.room].selectCharacter){
-           ret +=jarray[socket.room].userNum[key]+':'+key+':'+jarray[socket.room].selectCharacter[key]+'-';
+           ret +=jarray[socket.room].userNum[key]+':'+key+':'+jarray[socket.room].selectCharacter[key]+":"+jarray[socket.room].team[key]+":"+jarray[socket.room].ready[key]+'-';
         }
         io.sockets.in(socket.room).emit("preuserRES",ret);
     });
@@ -64,6 +67,18 @@ io.sockets.on('connection', function (socket) {
                 
         var ret = temp[1]+':'+temp[2];
         io.sockets.in(socket.room).emit("characterSelectRES",ret);
+    });
+    
+    socket.on("readyButtonREQ", function(data){   
+        var temp=data.split(':');
+        jarray[socket.room].ready[temp[0]] = "true";
+        jarray[socket.room].team[temp[0]] = temp[1];
+        
+        io.sockets.in(socket.room).emit("readyButtonRES",data);
+    });
+    
+    socket.on("startCountREQ", function(data){        
+        io.sockets.in(socket.room).emit("startCountRES",data);
     });
     
     socket.on('disconnect',function(data){
@@ -87,7 +102,7 @@ io.sockets.on('connection', function (socket) {
                 delete(jarray[socket.room].userNames[socket.id]);
             }
             socket.leave(key);
-            }
+        }
         }
     });
 });
