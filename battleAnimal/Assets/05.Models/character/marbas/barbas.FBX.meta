@@ -72,8 +72,15 @@ ModelImporter:
     400064: Box003
     400066: Sky001
     4300000: Box003
-    7400000: Take 001
+    7400000: run
+    7400002: idle
+    7400004: die
+    7400006: skill1
+    7400008: skill2
+    7400010: skill3
+    7400012: attack
     9500000: //RootNode
+    11100000: //RootNode
     13700000: Box003
   materials:
     importMaterials: 1
@@ -90,7 +97,665 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone002
+        weight: 1
+      - path: Bone002/Bone003
+        weight: 1
+      - path: Bone002/Bone003/Bone023
+        weight: 1
+      - path: Bone002/Bone003/Bone024
+        weight: 1
+      - path: Bone002/Bone003/Bone026
+        weight: 1
+      - path: Bone002/Bone003/Bone027
+        weight: 1
+      - path: Bone002/Bone003/Bone028
+        weight: 1
+      - path: Bone002/Bone003/Bone029
+        weight: 1
+      - path: Bone002/Bone003/Bone030
+        weight: 1
+      - path: Bone002/Bone003/Bone031
+        weight: 1
+      - path: Bone002/Bone003/Bone032
+        weight: 1
+      - path: Bone002/Bone004
+        weight: 1
+      - path: Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone002/Bone004/Bone007
+        weight: 1
+      - path: Bone002/Bone004/Bone007/Bone008
+        weight: 1
+      - path: Bone002/Bone009
+        weight: 1
+      - path: Bone002/Bone009/Bone010
+        weight: 1
+      - path: Bone002/Bone011
+        weight: 1
+      - path: Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone002/Bone013
+        weight: 1
+      - path: Bone002/Bone013/Bone014
+        weight: 1
+      - path: Bone002/Bone015
+        weight: 1
+      - path: Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone002/Bone017
+        weight: 1
+      - path: Bone002/Bone017/Bone018
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Box002
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Sky001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone002
+        weight: 1
+      - path: Bone002/Bone003
+        weight: 1
+      - path: Bone002/Bone003/Bone023
+        weight: 1
+      - path: Bone002/Bone003/Bone024
+        weight: 1
+      - path: Bone002/Bone003/Bone026
+        weight: 1
+      - path: Bone002/Bone003/Bone027
+        weight: 1
+      - path: Bone002/Bone003/Bone028
+        weight: 1
+      - path: Bone002/Bone003/Bone029
+        weight: 1
+      - path: Bone002/Bone003/Bone030
+        weight: 1
+      - path: Bone002/Bone003/Bone031
+        weight: 1
+      - path: Bone002/Bone003/Bone032
+        weight: 1
+      - path: Bone002/Bone004
+        weight: 1
+      - path: Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone002/Bone004/Bone007
+        weight: 1
+      - path: Bone002/Bone004/Bone007/Bone008
+        weight: 1
+      - path: Bone002/Bone009
+        weight: 1
+      - path: Bone002/Bone009/Bone010
+        weight: 1
+      - path: Bone002/Bone011
+        weight: 1
+      - path: Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone002/Bone013
+        weight: 1
+      - path: Bone002/Bone013/Bone014
+        weight: 1
+      - path: Bone002/Bone015
+        weight: 1
+      - path: Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone002/Bone017
+        weight: 1
+      - path: Bone002/Bone017/Bone018
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Box002
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Sky001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: die
+      takeName: Take 001
+      firstFrame: 70
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone002
+        weight: 1
+      - path: Bone002/Bone003
+        weight: 1
+      - path: Bone002/Bone003/Bone023
+        weight: 1
+      - path: Bone002/Bone003/Bone024
+        weight: 1
+      - path: Bone002/Bone003/Bone026
+        weight: 1
+      - path: Bone002/Bone003/Bone027
+        weight: 1
+      - path: Bone002/Bone003/Bone028
+        weight: 1
+      - path: Bone002/Bone003/Bone029
+        weight: 1
+      - path: Bone002/Bone003/Bone030
+        weight: 1
+      - path: Bone002/Bone003/Bone031
+        weight: 1
+      - path: Bone002/Bone003/Bone032
+        weight: 1
+      - path: Bone002/Bone004
+        weight: 1
+      - path: Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone002/Bone004/Bone007
+        weight: 1
+      - path: Bone002/Bone004/Bone007/Bone008
+        weight: 1
+      - path: Bone002/Bone009
+        weight: 1
+      - path: Bone002/Bone009/Bone010
+        weight: 1
+      - path: Bone002/Bone011
+        weight: 1
+      - path: Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone002/Bone013
+        weight: 1
+      - path: Bone002/Bone013/Bone014
+        weight: 1
+      - path: Bone002/Bone015
+        weight: 1
+      - path: Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone002/Bone017
+        weight: 1
+      - path: Bone002/Bone017/Bone018
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Box002
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Sky001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skill1
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone002
+        weight: 1
+      - path: Bone002/Bone003
+        weight: 1
+      - path: Bone002/Bone003/Bone023
+        weight: 1
+      - path: Bone002/Bone003/Bone024
+        weight: 1
+      - path: Bone002/Bone003/Bone026
+        weight: 1
+      - path: Bone002/Bone003/Bone027
+        weight: 1
+      - path: Bone002/Bone003/Bone028
+        weight: 1
+      - path: Bone002/Bone003/Bone029
+        weight: 1
+      - path: Bone002/Bone003/Bone030
+        weight: 1
+      - path: Bone002/Bone003/Bone031
+        weight: 1
+      - path: Bone002/Bone003/Bone032
+        weight: 1
+      - path: Bone002/Bone004
+        weight: 1
+      - path: Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone002/Bone004/Bone007
+        weight: 1
+      - path: Bone002/Bone004/Bone007/Bone008
+        weight: 1
+      - path: Bone002/Bone009
+        weight: 1
+      - path: Bone002/Bone009/Bone010
+        weight: 1
+      - path: Bone002/Bone011
+        weight: 1
+      - path: Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone002/Bone013
+        weight: 1
+      - path: Bone002/Bone013/Bone014
+        weight: 1
+      - path: Bone002/Bone015
+        weight: 1
+      - path: Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone002/Bone017
+        weight: 1
+      - path: Bone002/Bone017/Bone018
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Box002
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Sky001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skill2
+      takeName: Take 001
+      firstFrame: 180
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone002
+        weight: 1
+      - path: Bone002/Bone003
+        weight: 1
+      - path: Bone002/Bone003/Bone023
+        weight: 1
+      - path: Bone002/Bone003/Bone024
+        weight: 1
+      - path: Bone002/Bone003/Bone026
+        weight: 1
+      - path: Bone002/Bone003/Bone027
+        weight: 1
+      - path: Bone002/Bone003/Bone028
+        weight: 1
+      - path: Bone002/Bone003/Bone029
+        weight: 1
+      - path: Bone002/Bone003/Bone030
+        weight: 1
+      - path: Bone002/Bone003/Bone031
+        weight: 1
+      - path: Bone002/Bone003/Bone032
+        weight: 1
+      - path: Bone002/Bone004
+        weight: 1
+      - path: Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone002/Bone004/Bone007
+        weight: 1
+      - path: Bone002/Bone004/Bone007/Bone008
+        weight: 1
+      - path: Bone002/Bone009
+        weight: 1
+      - path: Bone002/Bone009/Bone010
+        weight: 1
+      - path: Bone002/Bone011
+        weight: 1
+      - path: Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone002/Bone013
+        weight: 1
+      - path: Bone002/Bone013/Bone014
+        weight: 1
+      - path: Bone002/Bone015
+        weight: 1
+      - path: Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone002/Bone017
+        weight: 1
+      - path: Bone002/Bone017/Bone018
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Box002
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Sky001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skill3
+      takeName: Take 001
+      firstFrame: 200
+      lastFrame: 260
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone002
+        weight: 1
+      - path: Bone002/Bone003
+        weight: 1
+      - path: Bone002/Bone003/Bone023
+        weight: 1
+      - path: Bone002/Bone003/Bone024
+        weight: 1
+      - path: Bone002/Bone003/Bone026
+        weight: 1
+      - path: Bone002/Bone003/Bone027
+        weight: 1
+      - path: Bone002/Bone003/Bone028
+        weight: 1
+      - path: Bone002/Bone003/Bone029
+        weight: 1
+      - path: Bone002/Bone003/Bone030
+        weight: 1
+      - path: Bone002/Bone003/Bone031
+        weight: 1
+      - path: Bone002/Bone003/Bone032
+        weight: 1
+      - path: Bone002/Bone004
+        weight: 1
+      - path: Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone002/Bone004/Bone007
+        weight: 1
+      - path: Bone002/Bone004/Bone007/Bone008
+        weight: 1
+      - path: Bone002/Bone009
+        weight: 1
+      - path: Bone002/Bone009/Bone010
+        weight: 1
+      - path: Bone002/Bone011
+        weight: 1
+      - path: Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone002/Bone013
+        weight: 1
+      - path: Bone002/Bone013/Bone014
+        weight: 1
+      - path: Bone002/Bone015
+        weight: 1
+      - path: Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone002/Bone017
+        weight: 1
+      - path: Bone002/Bone017/Bone018
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Box002
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Sky001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: attack
+      takeName: Take 001
+      firstFrame: 260
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone002
+        weight: 1
+      - path: Bone002/Bone003
+        weight: 1
+      - path: Bone002/Bone003/Bone023
+        weight: 1
+      - path: Bone002/Bone003/Bone024
+        weight: 1
+      - path: Bone002/Bone003/Bone026
+        weight: 1
+      - path: Bone002/Bone003/Bone027
+        weight: 1
+      - path: Bone002/Bone003/Bone028
+        weight: 1
+      - path: Bone002/Bone003/Bone029
+        weight: 1
+      - path: Bone002/Bone003/Bone030
+        weight: 1
+      - path: Bone002/Bone003/Bone031
+        weight: 1
+      - path: Bone002/Bone003/Bone032
+        weight: 1
+      - path: Bone002/Bone004
+        weight: 1
+      - path: Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone002/Bone004/Bone007
+        weight: 1
+      - path: Bone002/Bone004/Bone007/Bone008
+        weight: 1
+      - path: Bone002/Bone009
+        weight: 1
+      - path: Bone002/Bone009/Bone010
+        weight: 1
+      - path: Bone002/Bone011
+        weight: 1
+      - path: Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone002/Bone013
+        weight: 1
+      - path: Bone002/Bone013/Bone014
+        weight: 1
+      - path: Bone002/Bone015
+        weight: 1
+      - path: Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone002/Bone017
+        weight: 1
+      - path: Bone002/Bone017/Bone018
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone002/Bone017/Bone018/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Box002
+        weight: 1
+      - path: Box003
+        weight: 1
+      - path: Sky001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -126,6 +791,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   additionalBone: 0
   userData: 

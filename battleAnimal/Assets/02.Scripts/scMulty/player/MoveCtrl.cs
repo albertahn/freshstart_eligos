@@ -73,6 +73,8 @@ public class MoveCtrl : MonoBehaviour {
 		_controller = GetComponent<CharacterController> ();
 		_state = GetComponent<PlayerHealthState> ();
 		ClientID = ClientState.id;
+
+
 		_aniCtrl = GetComponent<AniCtrl> ();
 		
 		myxpos = tr.transform.position.x;

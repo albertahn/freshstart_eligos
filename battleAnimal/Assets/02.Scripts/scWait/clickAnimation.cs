@@ -47,8 +47,8 @@ public class clickAnimation : MonoBehaviour
 			furfur_btn.transform.localPosition = Vector3.MoveTowards (furfur_btn.transform.localPosition, newpos, fracJourney);
 			
 			//Debug.Log ("xhi: " + furfur_btn.transform.position.x); 
-			Debug.Log("yhi: "+furfur_btn.transform.position.y); 
-			Debug.Log("movemomove_furfur :" +move_furfur);
+			//Debug.Log("yhi: "+furfur_btn.transform.position.y); 
+//			Debug.Log("movemomove_furfur :" +move_furfur);
 			
 		}
 		
@@ -57,28 +57,28 @@ public class clickAnimation : MonoBehaviour
 			
 			barbas_btn.transform.localPosition = Vector3.MoveTowards (barbas_btn.transform.localPosition, newpos, fracJourney);
 			
-			Debug.Log ("xhi: " + barbas_btn.transform.position.x); 
-			//Debug.Log("yhi: "+chichibtn.transform.position.y); 
-			Debug.Log("movemove_barbas :" +move_barbas);
+			//Debug.Log ("xhi: " + barbas_btn.transform.position.x); 
+			///Debug.Log("yhi: "+chichibtn.transform.position.y); 
+			//Debug.Log("movemove_barbas :" +move_barbas);
 		}
 		
 		if (move_stola) {
 			
 			stola_btn.transform.localPosition = Vector3.MoveTowards (stola_btn.transform.localPosition, newpos, fracJourney);
 			
-			Debug.Log ("xhi: " + stola_btn.transform.position.x); 
+		//	Debug.Log ("xhi: " + stola_btn.transform.position.x); 
 			//Debug.Log("yhi: "+chichibtn.transform.position.y); 
-			Debug.Log("movemove_stola :" +move_stola);
+		//	Debug.Log("movemove_stola :" +move_stola);
 		}
 		
 		if (move_gusi) {
 			
 			gusi_btn.transform.localPosition = Vector3.MoveTowards (gusi_btn.transform.localPosition, newpos, fracJourney);
 			
-			Debug.Log ("xhi: " + gusi_btn.transform.position.x); 
+		//	Debug.Log ("xhi: " + gusi_btn.transform.position.x); 
 			//Debug.Log("yhi: "+chichibtn.transform.position.y);
 			
-			Debug.Log("move move_gusi:" +move_gusi);
+		//	Debug.Log("move move_gusi:" +move_gusi);
 			
 		}
 		

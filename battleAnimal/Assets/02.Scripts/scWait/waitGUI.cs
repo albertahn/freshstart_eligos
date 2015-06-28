@@ -4,7 +4,11 @@ using UnityEngine.UI;
 
 public class waitGUI : MonoBehaviour {
 
-	public Sprite dogPortrait,turtlePortrait,randomPortrait,emptyPortrait,nameTag;
+	public Sprite furfurPortrait,
+	stolaPortrait,
+	barbasProtrait,
+	guciPortrait,
+	randomPortrait,emptyPortrait,nameTag;
 
 	private string[] name;
 	//public Texture2D[] portrait;
@@ -46,10 +50,10 @@ public class waitGUI : MonoBehaviour {
 		switch(Random.Range(1,3)){
 
 		case 1:
-			ClientState.character = "dog";					
+			ClientState.character = "Furfur";					
 			break;
 		case 2:
-			ClientState.character = "turtle";						
+			ClientState.character = "Barbas";						
 			break;
 
 		}
@@ -119,7 +123,7 @@ public class waitGUI : MonoBehaviour {
 		if (ClientState.id != "ob") {
 						string data = ClientState.id + ":" + ClientState.order + ":furfur";
 						waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
-						ClientState.character = "Furfur";
+						ClientState.character = "furfur";
 				}
 	}
 
@@ -128,7 +132,7 @@ public class waitGUI : MonoBehaviour {
 		if (ClientState.id != "ob") {
 						string data = ClientState.id + ":" + ClientState.order + ":stola";
 						waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
-						ClientState.character = "Stola";	
+						ClientState.character = "stola";	
 				}
 	}
 
@@ -147,7 +151,7 @@ public class waitGUI : MonoBehaviour {
 		if (ClientState.id != "ob") {
 			string data = ClientState.id + ":" + ClientState.order + ":barbas";
 			waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
-			ClientState.character = "Barbas";	
+			ClientState.character = "barbas";	
 		}
 	}
 
@@ -160,10 +164,10 @@ public class waitGUI : MonoBehaviour {
 						waitSocketStarter.Socket.Emit ("characterSelectREQ", data);
 						switch (Random.Range (1, 3)) {
 						case 1:
-								ClientState.character = "dog";					
+								ClientState.character = "furfur";					
 								break;
 						case 2:
-								ClientState.character = "turtle";						
+								ClientState.character = "stola";						
 								break;
 						}
 				}
@@ -191,10 +195,17 @@ public class waitGUI : MonoBehaviour {
 	}
 
 	void setCharacter(int _order,string _char){
-		if (_char == "dog")
-			portrait_[_order].sprite = dogPortrait;
-		else if(_char =="turtle")
-			portrait_[_order].sprite = turtlePortrait;
+
+		Debug.Log ("char: "+_char);
+
+		if (_char == "furfur")
+			portrait_[_order].sprite = furfurPortrait;
+		else if(_char =="barbas")
+			portrait_[_order].sprite = barbasProtrait;
+		else if(_char =="guci")
+			portrait_[_order].sprite = guciPortrait;
+		else if(_char =="stola")
+			portrait_[_order].sprite = stolaPortrait;
 		else if(_char =="random")
 			portrait_[_order].sprite = randomPortrait;
 	}
