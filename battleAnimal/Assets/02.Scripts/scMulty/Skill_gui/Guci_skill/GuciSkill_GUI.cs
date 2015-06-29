@@ -59,7 +59,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 		skillCool = new float[3];
 		skillCool [0] = 5.0f;
 		skillCool [1] = 5.0f;
-		skillCool [2] = 15.0f;
+		skillCool [2] = 5.0f;
 		
 		skillStartTime = new float[3];
 		
@@ -89,42 +89,37 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skillStartTime[0] = Time.time;
 			skill_state [0] = false;
 			skills [0].sprite = skill1Blank_spr;
+
 		}
 	}
 	
 	public void Skill2_bot()
 	{
-		/*if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {		
-			Debug.Log ("clicked 2 man");
+		if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {
+
 			GameObject dogy = GameObject.Find (ClientID);
-			//dogy.transform.position = dogy.transform.position+ Vector3.up * 10;
 			
-			Vector3 spawnPos = dogy.transform.position;
+			Vector3 spawnPos = dogy.transform.position+ Vector3.up * 3;
 			Quaternion rotationdog = dogy.transform.rotation;
-			if( _playerHealthState.hp < _playerHealthState.maxhp){
-				_playerHealthState.hp= _playerHealthState.hp+150;
-				
-			}
-			
-			
+
 			GameObject a;
 			a = (GameObject)Instantiate (secondskill, spawnPos, rotationdog);
-			a.name = "secondskill";
-			
+			a.name = "secondskill";			
 			a.transform.parent = dogy.transform;
-			skillTwoReady = true;
+
+			GetComponent<Guci_secondSkill>().startSkill();
+
 			skillStartTime[1] = Time.time;
 			skill_state [1] = false;
-			skills [1].sprite = skill2Blank_spr;
-			
-			
-		}*/
+			skills [1].sprite = skill2Blank_spr;			
+		}
 	}
 	
 	
 	public void Skill3_bot()
 	{
-	/*	if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
+		if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
+
 			GameObject dogy = GameObject.Find (ClientState.id);
 			
 			//Debug.Log ("client id : "+ClientID);
@@ -133,7 +128,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 			Quaternion rotationdog = dogy.transform.rotation;
 			
 			GameObject a;
-			a = (GameObject)Instantiate (firstskill, spawnPos, rotationdog);
+			a = (GameObject)Instantiate (thirdskill, spawnPos, rotationdog);
 			a.name = "thirdskill";
 			
 			a.transform.parent = dogy.transform;	
@@ -141,7 +136,8 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
 			skills [2].sprite = skill1Blank_spr;
-		}*/
+
+		}
 	}
 	
 	
@@ -196,7 +192,6 @@ public class GuciSkill_GUI : MonoBehaviour {
 			
 			
 			if (Input.GetMouseButtonDown (0)) {
-				
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				
 				
@@ -230,40 +225,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 						
 						
 					}//skill 1 ready true
-					
-					if (skillTwoReady == true) {
-						
-						Debug.Log ("sec skill fired");
-						
-						GameObject dog = GameObject.Find (ClientID);
-						
-						dog.transform.LookAt (hiterone.point);
-						
-						Vector3 clickendpoint = hiterone.point;
-						float step = 35 * Time.deltaTime;
-						
-						
-						
-						
-						
-						dog.transform.position = Vector3.MoveTowards (dog.transform.position, clickendpoint, step);
-						
-						//dog.transform.position.y = 50.0f;
-						
-						skillTwoReady = false;
-						
-						GameObject skill1 = GameObject.Find ("secondskill");
-						Destroy (skill1);	
-						
-						
-						clickendpoint = hiterone.point;
-						string data = ClientID + ":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z + ":" + ClientState.character + ":second";
-						
-						SocketStarter.Socket.Emit ("SkillAttack", data);
-						
-					}
-					
-					
+
 					
 					if (skillThreeReady) {
 						
@@ -291,6 +253,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 					
 					
 				} ///raycasr
+
 				
 			}
 		}
@@ -323,14 +286,20 @@ public class GuciSkill_GUI : MonoBehaviour {
 		skillOneReady = false;
 		
 	}
-	
+
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
 		
-		gameobject.transform.LookAt(vector);
+		GameObject dog = gameobject;		
+		dog.transform.LookAt(vector);
+
+		Guci_thirdSkill thirdSkill_script = dog.GetComponent<Guci_thirdSkill> ();	
+		thirdSkill_script.startSkill(firedBy,vector);
+
+
+		clearSkillWraps();
 		
-		FireSkill skillfire = gameobject.GetComponent<FireSkill> ();	
-		skillfire.fireBall(firedBy);
-		
+		skillThreeReady = false;
+
 		
 	}
 }

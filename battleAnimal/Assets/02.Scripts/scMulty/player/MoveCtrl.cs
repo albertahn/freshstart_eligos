@@ -43,7 +43,7 @@ public class MoveCtrl : MonoBehaviour {
 	private int floorLayerMask;
 	private int uiLayerMask;
 
-	private float terrainHeight;
+	public float terrainHeight;
 
 	string myDebug;
 	
