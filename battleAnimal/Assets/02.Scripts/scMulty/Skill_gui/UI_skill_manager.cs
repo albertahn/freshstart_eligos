@@ -5,6 +5,7 @@ public class UI_skill_manager : MonoBehaviour {
 	public GameObject myplayer;
 	public DogSkill_GUI dog_skill_gui;
 	public GuciSkill_GUI guci_skill_gui;
+	public Barbas_GUI barbas_skill_gui;
 	public Tutu_skill_gui tutu_skill;
 
 	public void setPlayer(){
@@ -22,6 +23,10 @@ public class UI_skill_manager : MonoBehaviour {
 			case "turtle":
 			tutu_skill = GameObject.Find (ClientState.id).GetComponent<Tutu_skill_gui>();
 			tutu_skill.setPlayer();
+			break;
+			case "barbas":
+			barbas_skill_gui = GameObject.Find (ClientState.id).GetComponent<Barbas_GUI>();
+			barbas_skill_gui.setPlayer();
 			break;
 		}
 	}
@@ -42,6 +47,9 @@ public class UI_skill_manager : MonoBehaviour {
 		case "guci":
 			guci_skill_gui.Skill1_bot();
 			break;
+		case "barbas":
+			barbas_skill_gui.Skill1_bot();
+			break;
 		}
 	}
 	
@@ -56,6 +64,9 @@ public class UI_skill_manager : MonoBehaviour {
 		case "guci":
 			guci_skill_gui.Skill2_bot();
 			break;
+		case "barbas":
+				barbas_skill_gui.Skill2_bot();
+			break;
 		}
 	}
 	
@@ -69,6 +80,9 @@ public class UI_skill_manager : MonoBehaviour {
 			break;
 		case "guci":
 			guci_skill_gui.Skill3_bot();
+			break;
+		case "barbas":
+			barbas_skill_gui.Skill3_bot();
 			break;
 		}	
 	}
