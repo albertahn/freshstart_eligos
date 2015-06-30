@@ -7,11 +7,8 @@ using Boomlagoon.JSON;
 public class EndGameManager : MonoBehaviour {
 
 	public GameObject stat_row, pannel_content;
-
 	private EndServerDatabase endServerDatabase;
-
 	private FriendDatabase friendDatabase;
-
 	public int itemCount = 10, columnCount = 1;
 
 	public string my_index;
@@ -52,8 +49,9 @@ public class EndGameManager : MonoBehaviour {
 		yield return StartCoroutine (endServerDatabase.getRoomStats(roomIndex)); // id를 Email로 바꿔야 하지 않을까
 
 		//Debug.Log("myindex:  "+ PlayerPrefs.GetString("user_index"));	
+        //containerRectTransform.sizeDelta = new Vector2( 20, 100*endServerDatabase.fuckArray.Length);
 
-		//containerRectTransform.sizeDelta = new Vector2( 20, 100*endServerDatabase.fuckArray.Length);
+		eraseNotUsed (endServerDatabase.fuckArray.Length);
 
 		for ( int i =0; i< endServerDatabase.fuckArray.Length; i ++){
 
@@ -76,8 +74,53 @@ public class EndGameManager : MonoBehaviour {
 		}//end for 
 
 
-		yield return null;		
+		yield return null;	
+
+
 	}
+
+	public void eraseNotUsed(int numPlayers){
+		//switch(numPlayers)
+
+		GameObject red1 = GameObject.Find ("stat_row_red1");
+		GameObject red2 = GameObject.Find ("stat_row_red2");
+		GameObject red3 = GameObject.Find ("stat_row_red3");
+
+		GameObject b1 = GameObject.Find ("stat_row_blue1");
+		GameObject b2 = GameObject.Find ("stat_row_blue2");
+		GameObject b3 = GameObject.Find ("stat_row_blue3");
+	    
+		switch (numPlayers)
+		{
+		case 0:
+			Destroy(red2);Destroy(red3);
+			Destroy(b1);Destroy(b2);Destroy(b3);
+			break;
+		case 1:
+			Destroy(red2);Destroy(red3);
+			Destroy(b1);Destroy(b2);Destroy(b3);
+			break;
+		case 2:
+			Destroy(red2);Destroy(red3);
+			Destroy(b2);Destroy(b3);
+			break;
+		case 3:
+			Destroy(red3);
+			Destroy(b3);
+			break;
+		case 4:
+			Destroy(red3);
+			Destroy(b3);
+			break;
+		case 5:
+			
+			break;
+		default:
+
+			break;
+		}
+	
+	}//switch
 
 
 	public void setStatRow_red(int num,
