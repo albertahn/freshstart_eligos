@@ -76,7 +76,7 @@ public class Barbas_GUI : MonoBehaviour {
 	{
 		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
 			GameObject dogy = GameObject.Find (ClientState.id);
-
+			
 			Vector3 spawnPos = dogy.transform.position;
 			Quaternion rotationdog = dogy.transform.rotation;
 			
@@ -95,16 +95,16 @@ public class Barbas_GUI : MonoBehaviour {
 	public void Skill2_bot()
 	{
 		if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {
-
+			
 			GameObject dogy = GameObject.Find (ClientID);
 			
 			Vector3 spawnPos = dogy.transform.position+ Vector3.up * 3;
 			Quaternion rotationdog = dogy.transform.rotation;
-
+			
 			GameObject a;
 			a = (GameObject)Instantiate (secondskill, spawnPos, rotationdog);
 			a.name = "secondskill";			
-
+			
 			a.transform.parent = dogy.transform;
 			skillTwoReady = true;
 			skillStartTime[1] = Time.time;
@@ -117,7 +117,7 @@ public class Barbas_GUI : MonoBehaviour {
 	public void Skill3_bot()
 	{
 		if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
-
+			
 			GameObject dogy = GameObject.Find (ClientState.id);
 			
 			//Debug.Log ("client id : "+ClientID);
@@ -134,7 +134,7 @@ public class Barbas_GUI : MonoBehaviour {
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
 			skills [2].sprite = skill3Blank_spr;
-
+			
 		}
 	}
 	
@@ -214,7 +214,7 @@ public class Barbas_GUI : MonoBehaviour {
 						//SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.						
 						
 					}//skill 1 ready true
-
+					
 					if (skillTwoReady) {
 						
 						//	Debug.Log("fired: skill "+skillfire.ToString());
@@ -235,7 +235,7 @@ public class Barbas_GUI : MonoBehaviour {
 						
 						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.						
 					}//skill 1 ready true
-
+					
 					if (skillThreeReady) {
 						
 						Debug.Log ("3 skill fired");
@@ -262,7 +262,7 @@ public class Barbas_GUI : MonoBehaviour {
 					
 					
 				} ///raycasr
-
+				
 				
 			}
 		}
@@ -295,7 +295,7 @@ public class Barbas_GUI : MonoBehaviour {
 		skillOneReady = false;
 		
 	}
-
+	
 	public void fireSecond(GameObject gameobject, Vector3 vector, string firedBy){
 		
 		GameObject dog = gameobject;
@@ -309,22 +309,22 @@ public class Barbas_GUI : MonoBehaviour {
 		
 		skillTwoReady = false;		
 	}
-
-
+	
+	
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
 		
 		GameObject dog = gameobject;		
 		dog.transform.LookAt(vector);
-
-		Guci_thirdSkill thirdSkill_script = dog.GetComponent<Guci_thirdSkill> ();	
+		
+		Barbas_thirdSkill thirdSkill_script = dog.GetComponent<Barbas_thirdSkill> ();	
 		thirdSkill_script.startSkill(firedBy,vector);
-
-
+		
+		
 		clearSkillWraps();
 		
 		skillThreeReady = false;		
 	}
-
+	
 	void OnGUI(){
 		GUI.Label(new Rect(200,100,100,100),"skillPoint = "+ClientState.skillPoint);
 	}

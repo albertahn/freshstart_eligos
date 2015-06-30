@@ -5,13 +5,13 @@ public class Barbas_thirdSkill : MonoBehaviour {
 	public GameObject bulleta;
 	private float distance;
 	private MoveCtrl _moveCtrl;
-
+	public Transform firepos;
+	
 	// Use this for initialization
 	void Start () {
-		_moveCtrl = GetComponent<MoveCtrl> ();
-		distance = 10.0f;
+		_moveCtrl = GetComponent<MoveCtrl>();
+		distance = 20.0f;
 	}
-
 	
 	public void startSkill(string firedBy,Vector3 _pos){
 		StartCoroutine (this.CreateBullet (firedBy,_pos));
@@ -21,18 +21,20 @@ public class Barbas_thirdSkill : MonoBehaviour {
 	IEnumerator CreateBullet(string firedBy,Vector3 _pos){
 		while (true) {
 			yield return new WaitForSeconds(1.0f);
-						float dist = Vector3.Distance (this.transform.position, _pos);
-						if (dist > distance) {
-								_moveCtrl.clickendpoint = _pos;
-								_moveCtrl.clickendpoint.y = _moveCtrl.terrainHeight;
-								//_moveCtrl.isMoveAndAttack = true;
-								_moveCtrl.playermoving = true;
-								//moveAndAttack ();
-						} else {
-								GameObject a = (GameObject)Instantiate (bulleta, _pos, this.transform.rotation);
-								_moveCtrl.idle();
-								break;	
-						}		
+			float dist = Vector3.Distance (this.transform.position, _pos);
+			if (dist > distance) {
+				_moveCtrl.clickendpoint = _pos;
+				_moveCtrl.clickendpoint.y = _moveCtrl.terrainHeight;
+				//_moveCtrl.isMoveAndAttack = true;
+				_moveCtrl.playermoving = true;
+				//moveAndAttack ();
+			} else {
+				GameObject a = (GameObject)Instantiate (bulleta, firepos.position, this.transform.rotation);
+				a.GetComponent<Barbas_thirdBulletCtrl>().setPosition(firedBy,_pos);
+				
+				_moveCtrl.idle();
+				break;	
+			}		
 		}
 	}
 	

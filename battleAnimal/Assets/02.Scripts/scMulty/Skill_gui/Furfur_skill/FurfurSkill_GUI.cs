@@ -94,7 +94,7 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	
 	public void Skill2_bot()
 	{
-		/*if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {		
+		if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {		
 			Debug.Log ("clicked 2 man");
 			GameObject dogy = GameObject.Find (ClientID);
 			//dogy.transform.position = dogy.transform.position+ Vector3.up * 10;
@@ -102,46 +102,37 @@ public class FurfurSkill_GUI : MonoBehaviour {
 			Vector3 spawnPos = dogy.transform.position;
 			Quaternion rotationdog = dogy.transform.rotation;
 			if( _playerHealthState.hp < _playerHealthState.maxhp){
-				_playerHealthState.hp= _playerHealthState.hp+150;
-				
+				_playerHealthState.hp= _playerHealthState.hp+150;				
 			}
 			
+			GameObject a=  GameObject.Find(ClientState.id);
+			fireSecond(a);
 			
-			GameObject a;
-			a = (GameObject)Instantiate (secondskill, spawnPos, rotationdog);
-			a.name = "secondskill";
-			
-			a.transform.parent = dogy.transform;
-			skillTwoReady = true;
 			skillStartTime[1] = Time.time;
 			skill_state [1] = false;
-			skills [1].sprite = skill2Blank_spr;
-			
-			
-		}*/
+			skills [1].sprite = skill2Blank_spr;			
+		}
 	}
 	
 	
 	public void Skill3_bot()
 	{
-	/*	if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
+		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
 			GameObject dogy = GameObject.Find (ClientState.id);
-			
-			//Debug.Log ("client id : "+ClientID);
 			
 			Vector3 spawnPos = dogy.transform.position;
 			Quaternion rotationdog = dogy.transform.rotation;
 			
 			GameObject a;
-			a = (GameObject)Instantiate (firstskill, spawnPos, rotationdog);
+			a = (GameObject)Instantiate (thirdskill, spawnPos, rotationdog);
 			a.name = "thirdskill";
 			
 			a.transform.parent = dogy.transform;	
 			skillThreeReady = true;
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
-			skills [2].sprite = skill1Blank_spr;
-		}*/
+			skills [2].sprite = skill3Blank_spr;
+		}
 	}
 	
 	
@@ -267,8 +258,6 @@ public class FurfurSkill_GUI : MonoBehaviour {
 					
 					if (skillThreeReady) {
 						
-						Debug.Log ("3 skill fired");
-						
 						//	Debug.Log("fired: skill "+skillfire.ToString());
 						GameObject dog = GameObject.Find (ClientState.id);
 						
@@ -315,7 +304,7 @@ public class FurfurSkill_GUI : MonoBehaviour {
 		
 		dog.transform.LookAt(vector);
 		
-		Guci_firstSkill firstSkill = dog.GetComponent<Guci_firstSkill> ();	
+		Furfur_firstSkill firstSkill = dog.GetComponent<Furfur_firstSkill> ();	
 		firstSkill.fireBall (firedBy,vector);
 		
 		clearSkillWraps();
@@ -324,13 +313,28 @@ public class FurfurSkill_GUI : MonoBehaviour {
 		
 	}
 	
+	public void fireSecond(GameObject gameobject){		
+		GameObject dog = gameobject;
+		
+		Furfur_secondSkill secondSkill = dog.GetComponent<Furfur_secondSkill> ();	
+		secondSkill.startSkill (this.name);
+		
+		clearSkillWraps();
+		
+		skillOneReady = false;		
+	}
+	
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
 		
-		gameobject.transform.LookAt(vector);
+		GameObject dog = gameobject;
 		
-		FireSkill skillfire = gameobject.GetComponent<FireSkill> ();	
-		skillfire.fireBall(firedBy);
+		dog.transform.LookAt(vector);
 		
+		Furfur_thirdSkill thirdSkill = dog.GetComponent<Furfur_thirdSkill> ();	
+		thirdSkill.startSkill (firedBy, vector);
 		
+		clearSkillWraps();
+		
+		skillOneReady = false;	
 	}
 }

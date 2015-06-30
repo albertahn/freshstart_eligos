@@ -9,6 +9,7 @@ public class skill2Plus : MonoBehaviour {
 	private Tutu_skill_gui _turtle;
 	private GuciSkill_GUI _guci;
 	private Barbas_GUI _barbas;
+	private FurfurSkill_GUI _furfur;
 	
 	public void setPlayer(){
 		Button b = gameObject.GetComponent<Button>();
@@ -25,6 +26,9 @@ public class skill2Plus : MonoBehaviour {
 		}else if (ClientState.character == "barbas") {
 			_barbas = GameObject.Find(ClientState.id).GetComponent<Barbas_GUI>();
 			b.onClick.AddListener(delegate() { barbasUI();});
+		}else if (ClientState.character == "furfur") {
+			_furfur = GameObject.Find(ClientState.id).GetComponent<FurfurSkill_GUI>();
+			b.onClick.AddListener(delegate() { furfurUI(); });
 		}
 	}
 	
@@ -46,15 +50,19 @@ public class skill2Plus : MonoBehaviour {
 	{
 		_turtle.skill2Plus_bot ();
 	}
-
+	
 	public void guciUI()
 	{
 		_guci.skill2Plus_bot ();
 	}
-
+	
 	public void barbasUI()
 	{
 		_barbas.skill1Plus_bot ();
 	}
+	
+	public void furfurUI()
+	{
+		_furfur.skill1Plus_bot ();
+	}
 }
-

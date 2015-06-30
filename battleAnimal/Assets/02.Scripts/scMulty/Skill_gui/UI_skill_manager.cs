@@ -7,35 +7,40 @@ public class UI_skill_manager : MonoBehaviour {
 	public GuciSkill_GUI guci_skill_gui;
 	public Barbas_GUI barbas_skill_gui;
 	public Tutu_skill_gui tutu_skill;
-
+	public FurfurSkill_GUI furfur_skill;
+	
 	public void setPlayer(){
 		myplayer = GameObject.Find (ClientState.id);
-
+		
 		switch (ClientState.character) {
-			case "dog":
+		case "dog":
 			dog_skill_gui  = GameObject.Find (ClientState.id).GetComponent<DogSkill_GUI>();
 			dog_skill_gui.setPlayer();
 			break;
-			case "guci":
+		case "guci":
 			guci_skill_gui  = GameObject.Find (ClientState.id).GetComponent<GuciSkill_GUI>();
 			guci_skill_gui.setPlayer();
 			break;
-			case "turtle":
+		case "turtle":
 			tutu_skill = GameObject.Find (ClientState.id).GetComponent<Tutu_skill_gui>();
 			tutu_skill.setPlayer();
 			break;
-			case "barbas":
+		case "barbas":
 			barbas_skill_gui = GameObject.Find (ClientState.id).GetComponent<Barbas_GUI>();
 			barbas_skill_gui.setPlayer();
 			break;
+		case "furfur":
+			furfur_skill = GameObject.Find (ClientState.id).GetComponent<FurfurSkill_GUI>();
+			furfur_skill.setPlayer();
+			break;
 		}
 	}
-
+	
 	// Use this for initialization
 	void Start () {
-
+		
 	}
-
+	
 	public void firstSkill(){
 		switch (ClientState.character) {
 		case "dog":
@@ -49,6 +54,9 @@ public class UI_skill_manager : MonoBehaviour {
 			break;
 		case "barbas":
 			barbas_skill_gui.Skill1_bot();
+			break;
+		case "furfur":
+			furfur_skill.Skill1_bot();
 			break;
 		}
 	}
@@ -65,7 +73,10 @@ public class UI_skill_manager : MonoBehaviour {
 			guci_skill_gui.Skill2_bot();
 			break;
 		case "barbas":
-				barbas_skill_gui.Skill2_bot();
+			barbas_skill_gui.Skill2_bot();
+			break;
+		case "furfur":
+			furfur_skill.Skill2_bot();
 			break;
 		}
 	}
@@ -84,11 +95,15 @@ public class UI_skill_manager : MonoBehaviour {
 		case "barbas":
 			barbas_skill_gui.Skill3_bot();
 			break;
+		case "furfur":
+			furfur_skill.Skill3_bot();
+			break;
 		}	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	}
-
+	
 }
+
