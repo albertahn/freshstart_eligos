@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Boomlagoon.JSON;
 
 public class startUI : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class startUI : MonoBehaviour {
 	public Vector3 newpos, outofScreen;
 
 	public Vector3 followers_pos, my_followers_pos;
+
+	private JSONObject availRoomObj;
 	
 	// Use this for initialization
 	void Start () {
@@ -58,7 +61,7 @@ public class startUI : MonoBehaviour {
 
 	public void showFriendPannel(){
 
-		Debug.Log ("friend pannel show");
+
 
 		friendPannel.transform.localPosition = newpos;
 
@@ -78,13 +81,54 @@ public class startUI : MonoBehaviour {
 		
 		followers_pos =  following_board.transform.position;
 		my_followers_pos = my_followers_board.transform.position;
-
 		Debug.Log ("floowers");
-
 		my_followers_board.transform.position = followers_pos;
-		 
 		following_board.transform.position = my_followers_pos;
 
 	}//sh
+
+	public void startRandomRoom(){
+
+		//Debug.Log ("randosm");
+		StartCoroutine (getAvailRoomsDataAndStart());
+
+	}//end start
+
+	public IEnumerator getAvailRoomsDataAndStart(){
+
+		string url = "http://mobile.sharebasket.com/room/get_available_rooms";
+		WWW downloadbabe = new WWW( url );
+		// Wait until the download is done
+		yield return downloadbabe;
+		if(downloadbabe.error !=null) {
+			
+			Debug.Log( "Error downloading: " + downloadbabe.error );
+			//return;
+			
+		} else {
+
+			Debug.Log(downloadbabe.text);
+		}
+
+		if (downloadbabe.size <= 2) {
+			
+			yield return null;
+			
+		} else {
+			
+			availRoomObj = JSONObject.Parse(downloadbabe.text);
+
+			string[] temp2 = availRoomObj.ToString().Split(',');
+			string[] roomarray = temp2 [0].ToString ().Split (':');
+			
+			//Debug.Log ("room array: "+roomarray[1].ToString());
+			
+			ClientState.room = roomarray [1].ToString ();
+			
+			Application.LoadLevel ("scWait");
+
+		}
+
+	}//end availroos
 	
 }
