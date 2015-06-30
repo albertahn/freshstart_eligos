@@ -40,7 +40,8 @@ public class createPlayerReceiver : MonoBehaviour {
 		switch_ = true;
 	}
 	private IEnumerator doit(){
-		_spawnPlayer.setSpawn(addId,spawnPos,_char,team);		
+
+		_spawnPlayer.setSpawn(addId, spawnPos,_char,team);		
 		
 		int i = GameState.idx;
 		GameState.name [i] = addId;
@@ -48,8 +49,10 @@ public class createPlayerReceiver : MonoBehaviour {
 		GameState.idx++;
 		
 		if(ClientState.id==addId){
+
 			SocketStarter.Socket.Emit ("preuserREQ", addId);
+
 		}
 		yield return null;
-	}
+	}//end do it
 }

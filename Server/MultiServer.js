@@ -150,4 +150,8 @@ io.sockets.on('connection', function (socket) {
      socket.on('cannonDie', function(data){
        io.sockets.in(socket.room).emit("cannonDie", data);
     });
+
+     socket.on('statSyncReq', function(data){
+       io.sockets.in(socket.room).emit("statSyncRes", data);
+    });
 });

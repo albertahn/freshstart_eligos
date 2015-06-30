@@ -93,6 +93,9 @@ public class waitGUI : MonoBehaviour {
 	
 	// Update is called once per framess
 	void Update () {
+
+
+
 		if (addUserSwitch) {
 			addUser(addUserOrder,addUserId);
 			addUserSwitch = false;
@@ -106,6 +109,15 @@ public class waitGUI : MonoBehaviour {
 			deleteUser(delUserOrder);
 			delUserSwitch = false;
 		}
+
+		if (ClientState.order % 2 == 0){
+			
+			ClientState.team = "red";
+			
+		} else{
+			ClientState.team = "blue";
+		}
+
 	}
 
 	void OnGUI(){
@@ -180,9 +192,12 @@ public class waitGUI : MonoBehaviour {
 			ClientState.team = "gray";
 		} else {
 			if (ClientState.order % 2 == 0){
+
 				ClientState.team = "red";
-			} else
+
+			} else{
 				ClientState.team = "blue";
+			}
 		}
 		string data = ClientState.id + ":" + ClientState.team;
 		waitSocketStarter.Socket.Emit ("readyButtonREQ", data);

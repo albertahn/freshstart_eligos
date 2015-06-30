@@ -10,36 +10,36 @@ public class MainFortress : MonoBehaviour {public GameObject bloodEffect;
 	
 	// Use this for initialization
 	void Start () {		
-		buildingDead = false;		
+		buildingDead = false;	
+
+
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
+
 	
 	void OnGUI(){		
+
+
 		if (this.gameObject.name == "blue_building" && buildingDead ==true ) {			
 			if(ClientState.team =="red"){
-				GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
+				GUI.DrawTexture(new Rect (300, 10, 550, 400), victory);
 				
 			}else{
-				GUI.DrawTexture(new Rect (10, 100, 450, 300), defeat);
+				GUI.DrawTexture(new Rect (300, 10, 550, 400), defeat);
 			}
 			
-			if (GUI.Button (new Rect (100, 400, 150, 100), "ok")) {
+			if (GUI.Button (new Rect (450, 370, 150, 100), "ok")) {
 				Application.LoadLevel ("scEndGame");
 			}
 		}else if(this.gameObject.name == "red_building" && buildingDead==true){			
 			if(ClientState.team =="blue"){
-				GUI.DrawTexture(new Rect (10, 100, 450, 300), victory);
+				GUI.DrawTexture(new Rect (300, 10, 550, 400), victory);
 				
 			}else{
-				GUI.DrawTexture(new Rect (10, 100, 450, 300), defeat);
+				GUI.DrawTexture(new Rect (300, 10, 550, 400), defeat);
 			}
 			
-			if (GUI.Button (new Rect (100, 400, 150, 100), "ok")) {				
+			if (GUI.Button (new Rect (450, 370, 150, 100), "ok")) {				
 				Application.LoadLevel ("scEndGame");				
 			}
 		}

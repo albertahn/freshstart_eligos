@@ -24,12 +24,14 @@ public class minionDieReceiver : MonoBehaviour {
 	}
 	
 	private IEnumerator doit(){
+
 		if (GameObject.Find (name) != null) {
 			if (name [0] == 'r')
 				GameObject.Find (name).GetComponent<minion_state> ().minionDie ();
 			else
 				GameObject.Find (name).GetComponent<blue_minion_state> ().minionDie ();
 		}
+
 		yield return null;
 	}
 }

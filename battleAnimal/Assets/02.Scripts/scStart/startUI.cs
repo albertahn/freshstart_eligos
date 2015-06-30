@@ -27,7 +27,7 @@ public class startUI : MonoBehaviour {
 		Cash.text = PlayerPrefs.GetString ("cash");
 		ClientState.id = UserName.text;
 
-		newpos = new Vector3 (-200.0f, friendPannel.transform.localPosition.y, 0);
+		newpos = new Vector3 (-150.0f, friendPannel.transform.localPosition.y, 0);
 		outofScreen = friendPannel.transform.localPosition;
 
 

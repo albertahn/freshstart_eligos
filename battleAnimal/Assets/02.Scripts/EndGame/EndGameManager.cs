@@ -36,7 +36,7 @@ public class EndGameManager : MonoBehaviour {
 
 		friendDatabase = GetComponent<FriendDatabase> ();
 
-		StartCoroutine (GetStatData ("1"));//ClientState.room));
+		StartCoroutine (GetStatData (ClientState.room));//ClientState.room));
 
 //		containerRectTransform = pannel_content.GetComponent<RectTransform>();		
 		//calculate the width and height of each child item.
@@ -48,6 +48,7 @@ public class EndGameManager : MonoBehaviour {
 
 	private IEnumerator GetStatData (string roomIndex)
 	{		
+
 		yield return StartCoroutine (endServerDatabase.getRoomStats(roomIndex)); // id를 Email로 바꿔야 하지 않을까
 
 		//Debug.Log("myindex:  "+ PlayerPrefs.GetString("user_index"));	

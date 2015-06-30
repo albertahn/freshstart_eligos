@@ -30,10 +30,10 @@ public class clickAnimation : MonoBehaviour
 		
 		move_furfur = move_stola = move_gusi = move_barbas = false;
 		
-		newpos = new Vector3 (1000.0f, gameobj[0].transform.localPosition.y, 0);
+		newpos = new Vector3 (1000.0f, -90, 0); //gameobj[0].transform.localPosition.y
 		reset_char_point = false;
 		
-		showingpos =  new Vector3 (0f, gameobj[0].transform.localPosition.y, 0);
+		showingpos =  new Vector3 (0f, -90, 0);
 		reset_char_point = false;
 		
 	}

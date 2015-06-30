@@ -2,25 +2,13 @@
 using System.Collections;
 
 public class GameState : MonoBehaviour {
-
-	/*
-SaveBestScore(
-											string rooms_index,
-											string members_index,
-	                                        string level,
-	                                        string items,
-											string kills, 
-	                                        string deaths,
-	                                        string cs_kills,
-	                                        string gold,
-											string team,
-											string points)
-			 */
 	
+
 	public static string[] name;
 	public static string[] team;
 	public static int[] level;
 	public static string[] items_array;
+	public static string[] user_index_array;
 	public static int[] kills_array;
 	public static int[] deaths_array;
 	public static int[] cs_kills_array;
@@ -36,8 +24,10 @@ SaveBestScore(
 	
 	// Use this for initialization
 	void Awake () {
+
 		idx = 0;
-		
+
+		user_index_array = new string[6];
 		name = new string[6];
 		team = new string[6];
 		level = new int[6];
@@ -52,7 +42,7 @@ SaveBestScore(
 		points_array = new int[6];
 		
 		statsgamedb = GetComponent<Stats_gameDatabase> ();
-	}
+	} //awake 
 	
 	
 	public static int search_by_name(string _name){
@@ -70,56 +60,61 @@ SaveBestScore(
 	
 	//set user kills stat
 	
-	public static void setusers_kills(string username, int cskills){
-		
+	public static void setusers_cs_kills(string username, int cskills){
 		int user_index = search_by_name (username);
-		kills_array[user_index] = cskills;
-		
-		
-		Debug.Log ("stats bro! :"+kills_array[user_index].ToString()+"  "+kills_array.ToString());
-		
-		
-		
+		cs_kills_array[user_index] = cskills;
+
+		/*Debug.Log ("stats bro! :"+ cs_kills_array[user_index].ToString() +"  "+ cs_kills_array.ToString());
+
+		string data = ClientState.id + 
+			             ":"+ClientState.members_index +
+						":" + ClientState.level + 
+						":" + ClientState.money+
+						":"+ClientState.death+
+						":"+ClientState.kill+":"+
+						":"+ClientState.cs_kill
+						;
+		SocketStarter.Socket.Emit ("statSyncReq", data);*/
+
 	}//
+
+	public static void setuser_index_array(string username, string members_index){
+
+		int index = search_by_name (username);
+		user_index_array [index] = members_index;
+	
+	}//end
 	
 	
 	public static void sendData(){
-		
+
 		senddatabool = true;
 	}
+
 	
 	void Update(){
 		
 		if(senddatabool){
-			/*
-SaveBestScore(
-											string rooms_index,
-											string members_index,
-	                                        string level,
-	                                        string items,
-											string kills, 
-	                                        string deaths,
-	                                        string cs_kills,
-	                                        string gold,
-											string team,
-											string points)
-			 */
+
+			Debug.Log("ClientState.cs_kill: "+ ClientState.cs_kill);
+			     
+
+
+				StartCoroutine (Stats_gameDatabase.SaveBestScore(ClientState.room.ToString(),
+			                                                 ClientState.members_index.ToString(),
+			                                                 ClientState.level.ToString(), // string level
+			                                                 ClientState.items.ToString(),
+			                                                 ClientState.kill.ToString(),
+			                                                 ClientState.death.ToString(),
+			                                                 ClientState.cs_kill.ToString(),
+			                                                 ClientState.money.ToString(),
+			                                                 ClientState.team.ToString(),
+			                                                 ClientState.points.ToString())); 
 
 			
-			StartCoroutine (Stats_gameDatabase.SaveBestScore("1",
-			                                                 PlayerPrefs.GetString("user_index"),
-			                                                 ClientState.level.ToString(), // string level
-			                                                 "items",
-			                                                 "123",
-			                                                 "4555",
-			                                                 "1231",
-			                                                 "88888",
-			                                                 "red",
-			                                                 "12123")); 
-			
 			senddatabool = false;
-		}
-	}
+		}//end send bo
+	}//end update
 	
 	
 	

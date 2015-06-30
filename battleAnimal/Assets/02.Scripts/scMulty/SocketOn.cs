@@ -53,8 +53,15 @@ public class SocketOn : MonoBehaviour {
 	private createMinionReceiver _createMinionReceiver;
 	private respawnReceiver _respawnReceiver;
 	private playerHpSyncReceiver _playerHpSyncReceiver;
+	private Stats_sync_reciever _statSync_reciever;
+
 	
 	void Start () {
+
+		//Screen.SetResolution( 800,480, true);
+
+		Screen.SetResolution( 1024,600, true);
+
 		_mAttackReceiver = GetComponent<minionAttackReceiver>();
 		_mDieReceiver = GetComponent<minionDieReceiver> ();
 		_movePlayerReceiver = GetComponent<movePlayerReceiver> ();
@@ -79,7 +86,7 @@ public class SocketOn : MonoBehaviour {
 		_attackCannonReceiver = GetComponent<attackCannonReceiver> ();
 		_playerHpSyncReceiver = GetComponent<playerHpSyncReceiver> ();
 		
-		Screen.SetResolution( 800,480, true);
+
 		
 		_spawnMinion = GetComponent<SpawnMinion> ();
 		_lobbyUI = GameObject.Find("MultiManager").GetComponent<LobbyUI>();
@@ -126,6 +133,12 @@ public class SocketOn : MonoBehaviour {
 		
 		SocketStarter.Socket.On ("preuserRES", (data) => {
 			_preUserPlayerReceiver.receive(data.Json.args[0].ToString());
+		});
+
+//statSyncReq
+		SocketStarter.Socket.On("statSyncRes", (data) => {
+
+			_statSync_reciever.recieve(data.Json.args[0].ToString());
 		});
 		
 		SocketStarter.Socket.On ("movePlayerRES", (data) =>
@@ -217,11 +230,11 @@ public class SocketOn : MonoBehaviour {
 		
 		
 		SocketStarter.Socket.On ("playerHpSyncRES", (data) =>{
-			Debug.Log("playerHpSync11111111");
+		//	Debug.Log("playerHpSync11111111");
 			if(!ClientState.isMaster){
-				Debug.Log("playerHpSync12222222");
+				//Debug.Log("playerHpSync12222222");
 				_playerHpSyncReceiver.receive(data.Json.args[0].ToString());
-				Debug.Log("playerHpSync1333333333");
+			//	Debug.Log("playerHpSync1333333333");
 			}
 		});
 		

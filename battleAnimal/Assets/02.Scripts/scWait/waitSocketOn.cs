@@ -27,6 +27,7 @@ public class waitSocketOn : MonoBehaviour {
 		
 
 			if(clientID == id){
+
 				ClientState.order = num;
 				waitSocketStarter.Socket.Emit ("preuserREQ", id);
 

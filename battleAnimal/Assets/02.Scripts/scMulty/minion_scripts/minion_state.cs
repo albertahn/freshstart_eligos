@@ -74,13 +74,20 @@ public class minion_state : MonoBehaviour {
 		this.collider.enabled = false;
 		GetComponent<minionCtrl> ().isDie = true;
 		
-		if(ClientState.id==firedbyname){			
+		if(ClientState.id==firedbyname){
+
+			Debug.Log ("firedby: "+ firedbyname);
+
+
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);
 			StartCoroutine(CreateMoneyEffect());
 
 			//set stats
-			GameState.setusers_kills(firedbyname, oldInt+1);
+			GameState.setusers_cs_kills(firedbyname, oldInt+1);
+
+			ClientState.cs_kill = oldInt+1;
+
 			GameState.sendData();
 			
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);

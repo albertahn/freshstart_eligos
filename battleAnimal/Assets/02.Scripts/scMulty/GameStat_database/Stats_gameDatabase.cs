@@ -57,9 +57,12 @@ public class Stats_gameDatabase : MonoBehaviour {
 			
 			Debug.Log( "Error downloading: " + downloadbabe.error );
 			//return;
+
 		} else {
+
 			// show the highscores
 			Debug.Log(downloadbabe.text);
+
 		}
 		
 		//WWW www = new WWW (url);

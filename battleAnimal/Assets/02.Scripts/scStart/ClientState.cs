@@ -8,9 +8,10 @@ public class ClientState : MonoBehaviour {
 	public static int order;
 	public static string character;
 	public static string team;
-	public static int kill,death,level;
+	public static int kill, death, level, cs_kill;
+	public static string members_index, items;
 	public static int exp;
-	public static int money;
+	public static int money, points;
 	public static string[] inventory;
 
 	public static int[] maxExp;
@@ -20,10 +21,21 @@ public class ClientState : MonoBehaviour {
 	// Use this for initialization
 	void Awake(){
 		id = PlayerPrefs.GetString ("email");
-		isMaster = false;
-		exp = 0;
+
+		members_index = PlayerPrefs.GetString ("user_index");
 		level = 1;
 		money = 0;
+		points = 0;
+		items = "";
+		death = 0;
+
+
+
+		isMaster = false;
+		exp = 0;
+
+
+
 		skillPoint = 0;
 		
 		inventory = new string[6];
@@ -36,12 +48,7 @@ public class ClientState : MonoBehaviour {
 		maxExp [5] = 2200;
 		maxExp [6] = 3000;
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
-	
 	public static void addInventory(string a,int idx){
 		inventory [idx] = a.ToString();
 	}
