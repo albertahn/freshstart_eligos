@@ -75,16 +75,16 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	public void Skill1_bot()
 	{		
 		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
-			GameObject dogy = GameObject.Find (ClientState.id);
+			//GameObject dogy = GameObject.Find (ClientState.id);
 			
-			Vector3 spawnPos = dogy.transform.position;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a;
 			a = (GameObject)Instantiate (firstskill, spawnPos, rotationdog);
 			a.name = "firstskill";
 			
-			a.transform.parent = dogy.transform;	
+			a.transform.parent = transform;	
 			skillOneReady = true;
 			skillStartTime[0] = Time.time;
 			skill_state [0] = false;
@@ -96,14 +96,11 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	{
 		if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {		
 			Debug.Log ("clicked 2 man");
-			GameObject dogy = GameObject.Find (ClientID);
+			//GameObject dogy = GameObject.Find (ClientID);
 			//dogy.transform.position = dogy.transform.position+ Vector3.up * 10;
 			
-			Vector3 spawnPos = dogy.transform.position;
-			Quaternion rotationdog = dogy.transform.rotation;
-			if( _playerHealthState.hp < _playerHealthState.maxhp){
-				_playerHealthState.hp= _playerHealthState.hp+150;				
-			}
+			Vector3 spawnPos = transform.position;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a=  GameObject.Find(ClientState.id);
 			fireSecond(a);
@@ -118,16 +115,16 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	public void Skill3_bot()
 	{
 		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
-			GameObject dogy = GameObject.Find (ClientState.id);
+		//	GameObject dogy = GameObject.Find (ClientState.id);
 			
-			Vector3 spawnPos = dogy.transform.position;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a;
 			a = (GameObject)Instantiate (thirdskill, spawnPos, rotationdog);
 			a.name = "thirdskill";
 			
-			a.transform.parent = dogy.transform;	
+			a.transform.parent = transform;	
 			skillThreeReady = true;
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
@@ -200,14 +197,14 @@ public class FurfurSkill_GUI : MonoBehaviour {
 					
 					if (skillOneReady == true) {
 						
-						GameObject dog = GameObject.Find (ClientState.id);
+						//GameObject dog = GameObject.Find (ClientState.id);
 						
 						Vector3 clickendpoint = hiterone.point;
 						
-						fireFirst (dog, clickendpoint, ClientState.id);
+						fireFirst (this.gameObject, clickendpoint, ClientState.id);
 						
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						
 						clearSkillWraps ();
 						
@@ -226,9 +223,9 @@ public class FurfurSkill_GUI : MonoBehaviour {
 						
 						Debug.Log ("sec skill fired");
 						
-						GameObject dog = GameObject.Find (ClientID);
+						//GameObject dog = GameObject.Find (ClientID);
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						
 						Vector3 clickendpoint = hiterone.point;
 						float step = 35 * Time.deltaTime;
@@ -237,7 +234,7 @@ public class FurfurSkill_GUI : MonoBehaviour {
 						
 						
 						
-						dog.transform.position = Vector3.MoveTowards (dog.transform.position, clickendpoint, step);
+						transform.position = Vector3.MoveTowards (transform.position, clickendpoint, step);
 						
 						//dog.transform.position.y = 50.0f;
 						
@@ -259,11 +256,11 @@ public class FurfurSkill_GUI : MonoBehaviour {
 					if (skillThreeReady) {
 						
 						//	Debug.Log("fired: skill "+skillfire.ToString());
-						GameObject dog = GameObject.Find (ClientState.id);
+						//GameObject dog = GameObject.Find (ClientState.id);
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						
-						fireThird (dog, hiterone.point, ClientState.id);
+						fireThird (this.gameObject, hiterone.point, ClientState.id);
 						
 						
 						//destroy gameobject]
@@ -300,11 +297,11 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	
 	public void fireFirst(GameObject gameobject, Vector3 vector, string firedBy){
 		
-		GameObject dog = gameobject;
+		//GameObject dog = gameobject;
 		
-		dog.transform.LookAt(vector);
+		transform.LookAt(vector);
 		
-		Furfur_firstSkill firstSkill = dog.GetComponent<Furfur_firstSkill> ();	
+		Furfur_firstSkill firstSkill = GetComponent<Furfur_firstSkill> ();	
 		firstSkill.fireBall (firedBy,vector);
 		
 		clearSkillWraps();
@@ -314,9 +311,9 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	}
 	
 	public void fireSecond(GameObject gameobject){		
-		GameObject dog = gameobject;
+		//GameObject dog = gameobject;
 		
-		Furfur_secondSkill secondSkill = dog.GetComponent<Furfur_secondSkill> ();	
+		Furfur_secondSkill secondSkill = GetComponent<Furfur_secondSkill> ();	
 		secondSkill.startSkill (this.name);
 		
 		clearSkillWraps();
@@ -326,11 +323,11 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
 		
-		GameObject dog = gameobject;
+	//	GameObject dog = gameobject;
 		
-		dog.transform.LookAt(vector);
+		transform.LookAt(vector);
 		
-		Furfur_thirdSkill thirdSkill = dog.GetComponent<Furfur_thirdSkill> ();	
+		Furfur_thirdSkill thirdSkill = GetComponent<Furfur_thirdSkill> ();	
 		thirdSkill.startSkill (firedBy, vector);
 		
 		clearSkillWraps();

@@ -75,16 +75,15 @@ public class GuciSkill_GUI : MonoBehaviour {
 	public void Skill1_bot()
 	{		
 		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
-			GameObject dogy = GameObject.Find (ClientState.id);
 			
-			Vector3 spawnPos = dogy.transform.position;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a;
 			a = (GameObject)Instantiate (firstskill, spawnPos, rotationdog);
 			a.name = "firstskill";
 			
-			a.transform.parent = dogy.transform;	
+			a.transform.parent = transform;	
 			skillOneReady = true;
 			skillStartTime[0] = Time.time;
 			skill_state [0] = false;
@@ -97,15 +96,15 @@ public class GuciSkill_GUI : MonoBehaviour {
 	{
 		if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {
 
-			GameObject dogy = GameObject.Find (ClientID);
+			//GameObject dogy = GameObject.Find (ClientID);
 			
-			Vector3 spawnPos = dogy.transform.position+ Vector3.up * 3;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position+ Vector3.up * 3;
+			Quaternion rotationdog = transform.rotation;
 
 			GameObject a;
 			a = (GameObject)Instantiate (secondskill, spawnPos, rotationdog);
 			a.name = "secondskill";			
-			a.transform.parent = dogy.transform;
+			a.transform.parent = transform;
 
 			GetComponent<Guci_secondSkill>().startSkill();
 
@@ -120,18 +119,18 @@ public class GuciSkill_GUI : MonoBehaviour {
 	{
 		if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
 
-			GameObject dogy = GameObject.Find (ClientState.id);
+			//GameObject dogy = GameObject.Find (ClientState.id);
 			
 			//Debug.Log ("client id : "+ClientID);
 			
-			Vector3 spawnPos = dogy.transform.position;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a;
 			a = (GameObject)Instantiate (thirdskill, spawnPos, rotationdog);
 			a.name = "thirdskill";
 			
-			a.transform.parent = dogy.transform;	
+			a.transform.parent = transform;	
 			skillThreeReady = true;
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;

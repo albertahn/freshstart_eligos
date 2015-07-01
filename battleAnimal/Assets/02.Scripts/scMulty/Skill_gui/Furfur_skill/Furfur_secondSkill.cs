@@ -8,11 +8,13 @@ public class Furfur_secondSkill : MonoBehaviour {
 	
 	private float birth;
 	public float duration;
+	private PlayerHealthState _playerHealthState;
 	
 	GameObject a;
 	// Use this for initialization
 	void Start () {
-		//_renderera.enabled = false;	
+		//_renderera.enabled = false;
+		_playerHealthState = GetComponent<PlayerHealthState> ();
 		duration =10.0f;
 	}
 	
@@ -26,6 +28,8 @@ public class Furfur_secondSkill : MonoBehaviour {
 		Vector3 _pos = this.transform.position;
 		a.transform.position = _pos;
 		a.transform.parent = GameObject.Find (firedby).transform;
+
+		_playerHealthState.hp += playerStat.skill2_damage;
 		StartCoroutine(stopSkill ());
 	}
 

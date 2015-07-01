@@ -17,7 +17,7 @@ public class Furfur_firstBulletCtrl : MonoBehaviour {
 		tr = GetComponent<Transform> ();
 		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
-		damage = playerStat.damage;
+		damage = playerStat.skill1_damage;
 		speed = 20.0f;
 		rigidbody.AddForce (transform.up * 1000.0f);
 		birth = Time.time;
