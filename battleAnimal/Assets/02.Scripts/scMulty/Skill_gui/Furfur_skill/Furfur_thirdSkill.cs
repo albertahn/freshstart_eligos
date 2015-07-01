@@ -27,7 +27,8 @@ public class Furfur_thirdSkill : MonoBehaviour {
 				_moveCtrl.clickendpoint.y = _moveCtrl.terrainHeight;
 				_moveCtrl.playermoving = true;
 			} else {
-				GameObject a = (GameObject)Instantiate (bulleta, _pos, this.transform.rotation);
+				GameObject a = (GameObject)Instantiate (bulleta, _pos, this.transform.rotation);				
+				a.GetComponent<Furfur_skill3Ctrl> ().setTarget (firedBy);
 				_moveCtrl.idle();
 				break;	
 			}		

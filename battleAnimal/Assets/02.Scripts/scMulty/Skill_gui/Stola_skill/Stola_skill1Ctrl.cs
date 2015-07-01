@@ -18,7 +18,7 @@ public class Stola_skill1Ctrl : MonoBehaviour {
 		tr = GetComponent<Transform> ();
 		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
-		damage = playerStat.damage;
+		damage = playerStat.skill1_damage;
 		speed = 30.0f;
 		//rigidbody.AddForce (transform.forward * speed);
 		birth = Time.time;
@@ -49,7 +49,7 @@ public class Stola_skill1Ctrl : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 	}
-
+	
 	Vector3 calculateFarPos(Vector3 _near,Vector3 _far){
 		float distance = 1000.0f;
 		Vector3 tempPos = new Vector3(_far.x-_near.x,_far.y-_near.y,_far.z-_near.z);
@@ -61,33 +61,34 @@ public class Stola_skill1Ctrl : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider coll){
-		if (target != null) {
-			Debug.Log("target.tag = "+target.tag);
-			if(target.name==coll.name){
-				if(target.tag=="MINION"){
-					if(target.name[0]=='r')
-						target.GetComponent<minion_state>().Heated(firedbyname, gameObject,playerStat.damage);
-					else
-						target.GetComponent<blue_minion_state>().Heated(firedbyname, gameObject,playerStat.damage);
-					Destroy(this.gameObject);
-				}else if(target.tag=="Player"){
-					target.GetComponent<PlayerHealthState>().Heated(firedbyname, gameObject,playerStat.damage);
-					Destroy(this.gameObject);
-				}else if(target.tag=="RED_CANNON"){
-					target.GetComponent<RedCannonState>().Heated(firedbyname, gameObject,playerStat.damage);
-					Destroy(this.gameObject);
-				}else if(target.tag=="BLUE_CANNON"){
-					target.GetComponent<BlueCannonState>().Heated("minion", gameObject,playerStat.damage);
-					Destroy(this.gameObject);
-				}else if(target.tag=="BLUE_CANNON"){
-					target.GetComponent<BlueCannonState>().Heated("minion", gameObject,playerStat.damage);
-					Destroy(this.gameObject);
-				}else if(target.tag=="BUILDING"){
-					target.GetComponent<MainFortress>().Heated(firedbyname, gameObject,playerStat.damage);
-					Destroy(this.gameObject);
-				}
-				Destroy(this.gameObject);
+		Debug.Log ("skill3 !!! coll.gameObject.tag = "+coll.gameObject.tag);
+		if (coll.gameObject.tag == "MINION") {
+			string hitParentName = coll.transform.parent.name;
+			string firedparentName = GameObject.Find (firedbyname).transform.parent.name;
+			
+			if ((ClientState.team == "red" && coll.name [0] == 'b') ||
+			    (ClientState.team == "blue" && coll.name [0] == 'r')) {
+				//Debug.Log("skill first hit min");
+				if (coll.gameObject.name [0] == 'r')
+					coll.gameObject.GetComponent<minion_state> ().Heated ("skill", gameObject, damage);
+				else if (coll.gameObject.name [0] == 'b')
+					coll.gameObject.GetComponent<blue_minion_state> ().Heated ("skill", gameObject, damage);
+				//Destroy (this.gameObject);
 			}
+		} else if (coll.gameObject.tag == "Player" && coll.name != "touchCollider"&&coll.name!=firedbyname) {
+			
+			string hitParentName = coll.transform.parent.name;
+			string firedparentName = GameObject.Find (firedbyname).transform.parent.name;
+			
+			if (hitParentName != firedparentName && hitParentName != firedbyname) {
+				Debug.Log ("hit target = " + coll.name);
+				
+				coll.gameObject.GetComponent<PlayerHealthState> ().hitbySkill (firedbyname, this.gameObject);
+				//Destroy (this.gameObject);
+			}//if
+		} else if (coll.gameObject.tag == "FLOOR") {
+			Debug.Log ("coll.gameObject.name = "+coll.gameObject.name);
+			//Destroy (this.gameObject);
 		}
 	}
 }

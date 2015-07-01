@@ -24,7 +24,7 @@ public class stolaStat : MonoBehaviour {
 		
 		skill1_damage=100;
 		skill2_damage=100;
-		skill3_damage=100;
+		skill3_damage=10;
 		initiate ();
 	}
 	

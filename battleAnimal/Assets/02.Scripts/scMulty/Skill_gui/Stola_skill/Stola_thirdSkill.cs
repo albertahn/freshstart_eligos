@@ -32,6 +32,7 @@ public class Stola_thirdSkill : MonoBehaviour {
 				_pos.y +=3.0f;
 				GameObject a = (GameObject)Instantiate (bulleta, _pos, this.transform.rotation);
 				a.transform.parent = this.transform;
+				a.GetComponent<Stola_skill3Ctrl>().setTarget(firedBy);
 				_moveCtrl.idle();
 				break;	
 			}		
