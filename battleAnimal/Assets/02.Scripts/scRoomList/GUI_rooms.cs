@@ -69,9 +69,4 @@ public class GUI_rooms : MonoBehaviour {
 	}
 
 
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

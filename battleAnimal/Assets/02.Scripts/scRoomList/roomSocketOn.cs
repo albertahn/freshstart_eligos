@@ -15,11 +15,11 @@ public class roomSocketOn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Screen.SetResolution(480, 800, true);
+		Screen.SetResolution(1024, 600, true);
 
 		loadRooms = false;
 
-		Screen.SetResolution(480, 800, true);
+		//Screen.SetResolution(480, 800, true);
 
 		clientID = ClientState.id;
 		_waitGUI = GetComponent<waitGUI> ();
@@ -75,17 +75,10 @@ public class roomSocketOn : MonoBehaviour {
 		if(loadRooms){
 
 			GameObject text =  GameObject.Find("testrooms");
-			
 			text.GetComponent<GUIText>().text = roomstring;
-
-
-
 			loadRooms = false;
 
-			
-		}
+		}//end if
 	
-	}
-	void OnGUI(){
 	}
 }

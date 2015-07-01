@@ -181,6 +181,7 @@
      <Compile Include="Assets\02.Scripts\scMulty\user_interface\My_inteface_hp_bar.cs" />
      <Compile Include="Assets\02.Scripts\scRegist\RegUI.cs" />
      <Compile Include="Assets\02.Scripts\scRoomList\GUI_rooms.cs" />
+     <Compile Include="Assets\02.Scripts\scRoomList\phpRoomsList.cs" />
      <Compile Include="Assets\02.Scripts\scRoomList\roomSocketOn.cs" />
      <Compile Include="Assets\02.Scripts\scRoomList\roomSocketStarter.cs" />
      <Compile Include="Assets\02.Scripts\scStart\ClientState.cs" />
