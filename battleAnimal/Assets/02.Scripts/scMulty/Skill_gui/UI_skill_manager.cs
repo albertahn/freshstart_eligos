@@ -8,6 +8,7 @@ public class UI_skill_manager : MonoBehaviour {
 	public Barbas_GUI barbas_skill_gui;
 	public Tutu_skill_gui tutu_skill;
 	public FurfurSkill_GUI furfur_skill;
+	public StolaSkill_GUI _stola_skill;
 	
 	public void setPlayer(){
 		myplayer = GameObject.Find (ClientState.id);
@@ -32,6 +33,10 @@ public class UI_skill_manager : MonoBehaviour {
 		case "furfur":
 			furfur_skill = GameObject.Find (ClientState.id).GetComponent<FurfurSkill_GUI>();
 			furfur_skill.setPlayer();
+			break;
+		case "stola":
+			_stola_skill = GameObject.Find (ClientState.id).GetComponent<StolaSkill_GUI>();
+			_stola_skill.setPlayer();
 			break;
 		}
 	}
@@ -58,6 +63,9 @@ public class UI_skill_manager : MonoBehaviour {
 		case "furfur":
 			furfur_skill.Skill1_bot();
 			break;
+		case "stola":
+			_stola_skill.Skill1_bot();
+			break;
 		}
 	}
 	
@@ -77,6 +85,9 @@ public class UI_skill_manager : MonoBehaviour {
 			break;
 		case "furfur":
 			furfur_skill.Skill2_bot();
+			break;
+		case "stola":
+			_stola_skill.Skill2_bot();
 			break;
 		}
 	}
@@ -98,7 +109,10 @@ public class UI_skill_manager : MonoBehaviour {
 		case "furfur":
 			furfur_skill.Skill3_bot();
 			break;
-		}	
+		case "stola":
+			_stola_skill.Skill3_bot();
+			break;
+		}
 	}
 	
 	// Update is called once per frame

@@ -9,6 +9,7 @@ public class skill1Plus : MonoBehaviour {
 	private GuciSkill_GUI _guci;
 	private Barbas_GUI _barbas;
 	private FurfurSkill_GUI _furfur;
+	private StolaSkill_GUI _stola;
 	
 	public void setPlayer(){
 		Button b = gameObject.GetComponent<Button>();
@@ -28,6 +29,9 @@ public class skill1Plus : MonoBehaviour {
 		}else if (ClientState.character == "furfur") {
 			_furfur = GameObject.Find(ClientState.id).GetComponent<FurfurSkill_GUI>();
 			b.onClick.AddListener(delegate() { furfurUI(); });
+		}else if (ClientState.character == "stola") {
+			_stola = GameObject.Find(ClientState.id).GetComponent<StolaSkill_GUI>();
+			b.onClick.AddListener(delegate() { stolaUI(); });
 		}
 	}
 	
@@ -63,6 +67,11 @@ public class skill1Plus : MonoBehaviour {
 	public void furfurUI()
 	{
 		_furfur.skill1Plus_bot ();
+	}
+
+	public void stolaUI()
+	{
+		_stola.skill1Plus_bot ();
 	}
 }
 
