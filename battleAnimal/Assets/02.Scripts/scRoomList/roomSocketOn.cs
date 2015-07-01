@@ -63,9 +63,9 @@ public class roomSocketOn : MonoBehaviour {
 
 		});
 
-		string dataman = "hi" + ":" +"hiafdas";
+	//	string dataman = "hi" + ":" +"hiafdas";
 		
-		roomSocketStarter.Socket.Emit ("getAllRoomREQ", dataman);
+		//roomSocketStarter.Socket.Emit ("getAllRoomREQ", dataman);
 	}//end start
 
 	

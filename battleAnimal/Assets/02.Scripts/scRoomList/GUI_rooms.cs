@@ -19,7 +19,7 @@ public class GUI_rooms : MonoBehaviour {
 
 		//innertext = this.GetComponent<roomSocketOn> ().roomstring;
 
-	}
+	}//end start
 
 
 
@@ -27,10 +27,10 @@ public class GUI_rooms : MonoBehaviour {
 
 		innertext = this.GetComponent<roomSocketOn> ().roomstring;
 
-		if (innertext != null) {
+		/*if (innertext != null) {
 				
 			gotString = true;
-		}
+		}*/
 
 
 		scrollPos = GUI.BeginScrollView (new Rect(100,150,300,420), scrollPos, new Rect (0,0,190,400));
@@ -67,6 +67,14 @@ public class GUI_rooms : MonoBehaviour {
 		GUI.EndScrollView ();
 
 	}
+
+	public void backtoProfile(){
+
+		Debug.Log("profile");
+
+		Application.LoadLevel("scStart");
+
+	}//end profile
 
 
 }
