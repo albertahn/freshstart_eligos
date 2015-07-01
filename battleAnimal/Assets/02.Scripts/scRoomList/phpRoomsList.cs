@@ -63,8 +63,6 @@ public class phpRoomsList : MonoBehaviour {
 
 	public void setFriendRow(int num, string bracketlessString){
 
-		//Debug.Log ("bracketlessString: "+bracketlessString);
-
 		string[] roomstring  = bracketlessString.Split(':');
 
 		GameObject newItem = Instantiate(roomRow) as GameObject;
@@ -72,11 +70,14 @@ public class phpRoomsList : MonoBehaviour {
 		
 	//	Debug.Log ("height: "+itemheight);
 		//newItem.GetComponent<RectTransform>().rect.height;
-		
 		//GameObject pannelContent = Instantiate(pannel_content) as GameObject;
+
+		roomstring[0] = roomstring[0].Replace("\"", "");
 		
 		newItem.transform.FindChild ("roomname_tx").transform.GetComponent<Text> ().text ="Room Number: "+ roomstring[0];
 		newItem.transform.FindChild ("enterRoom_btn").transform.GetComponent<Button> ().onClick.AddListener(() => { 
+
+			roomstring[1] = roomstring[1].Replace("\"", "");
 
 			ClientState.room = roomstring[1];
 			//Debug.Log("roomstring:"+ roomstring[0]);
@@ -84,7 +85,6 @@ public class phpRoomsList : MonoBehaviour {
 
 		}); 
 
-		
 		newItem.transform.position = new Vector3 (0, -num * itemheight, 0);
 		
 		//newItem.transform.localPosition = new Vector3 (0,0, 0);//num *itemheight

@@ -122,6 +122,8 @@ public class startUI : MonoBehaviour {
 			string[] roomarray = temp2 [0].ToString ().Split (':');
 			
 			//Debug.Log ("room array: "+roomarray[1].ToString());
+
+			roomarray [1] = roomarray [1].Replace("\"","");
 			
 			ClientState.room = roomarray [1].ToString ();
 			
