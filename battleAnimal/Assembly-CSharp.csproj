@@ -106,6 +106,7 @@
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_firstBulletCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_firstSkill.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_secondSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_skill1Ctrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_thirdBulletCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_thirdSkill.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Dog_skill\DogSkill_GUI.cs" />
@@ -125,6 +126,7 @@
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\GuciSkill_GUI.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_firstSkill.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_secondSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_skill3Ctrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_thirdSkill.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\beShotEffectCtrl.cs" />
      <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Skill_socket_reciever.cs" />

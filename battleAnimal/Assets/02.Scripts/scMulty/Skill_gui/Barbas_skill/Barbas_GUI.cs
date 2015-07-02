@@ -75,16 +75,16 @@ public class Barbas_GUI : MonoBehaviour {
 	public void Skill1_bot()
 	{
 		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
-			GameObject dogy = GameObject.Find (ClientState.id);
+			//GameObject dogy = GameObject.Find (ClientState.id);
 			
-			Vector3 spawnPos = dogy.transform.position;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a;
 			a = (GameObject)Instantiate (firstskill, spawnPos, rotationdog);
 			a.name = "firstskill";
 			
-			a.transform.parent = dogy.transform;
+			a.transform.parent = transform;
 			skillOneReady = true;
 			skillStartTime[0] = Time.time;
 			skill_state [0] = false;
@@ -96,16 +96,16 @@ public class Barbas_GUI : MonoBehaviour {
 	{
 		if (skill_state [1]&&Time.time-skillStartTime[1]>=skillCool[1]&&!_playerHealthState.isDie) {
 			
-			GameObject dogy = GameObject.Find (ClientID);
+			//GameObject dogy = GameObject.Find (ClientID);
 			
-			Vector3 spawnPos = dogy.transform.position+ Vector3.up * 3;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position+ Vector3.up * 3;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a;
 			a = (GameObject)Instantiate (secondskill, spawnPos, rotationdog);
 			a.name = "secondskill";			
 			
-			a.transform.parent = dogy.transform;
+			a.transform.parent = transform;
 			skillTwoReady = true;
 			skillStartTime[1] = Time.time;
 			skill_state [1] = false;
@@ -118,18 +118,18 @@ public class Barbas_GUI : MonoBehaviour {
 	{
 		if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
 			
-			GameObject dogy = GameObject.Find (ClientState.id);
+			//GameObject dogy = GameObject.Find (ClientState.id);
 			
 			//Debug.Log ("client id : "+ClientID);
 			
-			Vector3 spawnPos = dogy.transform.position;
-			Quaternion rotationdog = dogy.transform.rotation;
+			Vector3 spawnPos = transform.position;
+			Quaternion rotationdog = transform.rotation;
 			
 			GameObject a;
 			a = (GameObject)Instantiate (thirdskill, spawnPos, rotationdog);
 			a.name = "thirdskill";
 			
-			a.transform.parent = dogy.transform;	
+			a.transform.parent = transform;	
 			skillThreeReady = true;
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
@@ -201,12 +201,12 @@ public class Barbas_GUI : MonoBehaviour {
 					
 					
 					if (skillOneReady == true) {						
-						GameObject dog = GameObject.Find (ClientState.id);
+						//GameObject dog = GameObject.Find (ClientState.id);
 						Vector3 clickendpoint = hiterone.point;
-						fireFirst (dog, clickendpoint, ClientState.id);
+						fireFirst (this.gameObject, clickendpoint, ClientState.id);
 						
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						clearSkillWraps ();
 						skillOneReady = false;
 						
@@ -218,11 +218,11 @@ public class Barbas_GUI : MonoBehaviour {
 					if (skillTwoReady) {
 						
 						//	Debug.Log("fired: skill "+skillfire.ToString());
-						GameObject dog = GameObject.Find (ClientState.id);
+						//GameObject dog = GameObject.Find (ClientState.id);
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						
-						fireSecond (dog, hiterone.point, ClientState.id);
+						fireSecond (this.gameObject, hiterone.point, ClientState.id);
 						
 						
 						//destroy gameobject]
@@ -241,11 +241,11 @@ public class Barbas_GUI : MonoBehaviour {
 						Debug.Log ("3 skill fired");
 						
 						//	Debug.Log("fired: skill "+skillfire.ToString());
-						GameObject dog = GameObject.Find (ClientState.id);
+						//GameObject dog = GameObject.Find (ClientState.id);
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						
-						fireThird (dog, hiterone.point, ClientState.id);
+						fireThird (this.gameObject, hiterone.point, ClientState.id);
 						
 						
 						//destroy gameobject]

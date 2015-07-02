@@ -10,7 +10,7 @@ public class Barbas_thirdSkill : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_moveCtrl = GetComponent<MoveCtrl>();
-		distance = 20.0f;
+		distance = 40.0f;
 	}
 	
 	public void startSkill(string firedBy,Vector3 _pos){
@@ -30,7 +30,7 @@ public class Barbas_thirdSkill : MonoBehaviour {
 				//moveAndAttack ();
 			} else {
 				GameObject a = (GameObject)Instantiate (bulleta, firepos.position, this.transform.rotation);
-				a.GetComponent<Barbas_thirdBulletCtrl>().setPosition(firedBy,_pos);
+				a.GetComponent<Barbas_thirdBulletCtrl>().setPosition(firedBy,transform.position,_pos);
 				
 				_moveCtrl.idle();
 				break;	

@@ -30,6 +30,7 @@ public class Guci_thirdSkill : MonoBehaviour {
 								//moveAndAttack ();
 						} else {
 								GameObject a = (GameObject)Instantiate (bulleta, _pos, this.transform.rotation);
+								a.GetComponent<Guci_skill3Ctrl>().setOwner(this.name);
 								_moveCtrl.idle();
 								break;	
 						}		

@@ -30,6 +30,7 @@ public class Barbas_firstSkill : MonoBehaviour {
 				//moveAndAttack ();
 			} else {
 				GameObject a = (GameObject)Instantiate (bulleta, _pos, this.transform.rotation);
+				a.GetComponent<Barbas_skill1Ctrl>().setOwner(this.name);
 				_moveCtrl.idle();
 				break;	
 			}		

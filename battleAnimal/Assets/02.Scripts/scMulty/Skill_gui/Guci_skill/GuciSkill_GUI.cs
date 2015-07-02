@@ -203,14 +203,14 @@ public class GuciSkill_GUI : MonoBehaviour {
 					
 					if (skillOneReady == true) {
 						
-						GameObject dog = GameObject.Find (ClientState.id);
+						//GameObject dog = GameObject.Find (ClientState.id);
 						
 						Vector3 clickendpoint = hiterone.point;
 						
-						fireFirst (dog, clickendpoint, ClientState.id);
+						fireFirst (this.gameObject, clickendpoint, ClientState.id);
 						
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						
 						clearSkillWraps ();
 						
@@ -231,11 +231,11 @@ public class GuciSkill_GUI : MonoBehaviour {
 						Debug.Log ("3 skill fired");
 						
 						//	Debug.Log("fired: skill "+skillfire.ToString());
-						GameObject dog = GameObject.Find (ClientState.id);
+					//	GameObject dog = GameObject.Find (ClientState.id);
 						
-						dog.transform.LookAt (hiterone.point);
+						transform.LookAt (hiterone.point);
 						
-						fireThird (dog, hiterone.point, ClientState.id);
+						fireThird (this.gameObject, hiterone.point, ClientState.id);
 						
 						
 						//destroy gameobject]
@@ -273,32 +273,27 @@ public class GuciSkill_GUI : MonoBehaviour {
 	
 	public void fireFirst(GameObject gameobject, Vector3 vector, string firedBy){
 		
-		GameObject dog = gameobject;
+		//GameObject dog = gameobject;
 		
-		dog.transform.LookAt(vector);
+		transform.LookAt(vector);
 		
-		Guci_firstSkill firstSkill = dog.GetComponent<Guci_firstSkill> ();	
+		Guci_firstSkill firstSkill = GetComponent<Guci_firstSkill> ();	
 		firstSkill.fireBall (firedBy,vector);
 		
-		clearSkillWraps();
-		
-		skillOneReady = false;
-		
+		clearSkillWraps();		
+		skillOneReady = false;		
 	}
 
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
 		
-		GameObject dog = gameobject;		
-		dog.transform.LookAt(vector);
+		//GameObject dog = gameobject;		
+		transform.LookAt(vector);
 
-		Guci_thirdSkill thirdSkill_script = dog.GetComponent<Guci_thirdSkill> ();	
+		Guci_thirdSkill thirdSkill_script = GetComponent<Guci_thirdSkill> ();	
 		thirdSkill_script.startSkill(firedBy,vector);
 
 
-		clearSkillWraps();
-		
-		skillThreeReady = false;
-
-		
+		clearSkillWraps();		
+		skillThreeReady = false;		
 	}
 }
