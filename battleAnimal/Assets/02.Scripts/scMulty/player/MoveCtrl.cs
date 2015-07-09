@@ -46,6 +46,13 @@ public class MoveCtrl : MonoBehaviour {
 	public float terrainHeight;
 
 	string myDebug;
+
+	public bool skillMode;
+
+	private Barbas_GUI _barbas_skill;
+	private FurfurSkill_GUI _furfur_skill;
+	private GuciSkill_GUI _guci_skill;
+	private StolaSkill_GUI _stola_skill;
 	
 	IEnumerator playSfx(AudioClip _clip){
 		audio.PlayOneShot (_clip, 0.9f);
@@ -54,6 +61,7 @@ public class MoveCtrl : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		skillMode = false;
 		myDebug = null;
 		GameObject movetomark = (GameObject)Resources.Load("moveToMark");
 		Vector3 point = new Vector3 (0,0,0);
@@ -86,6 +94,16 @@ public class MoveCtrl : MonoBehaviour {
 		
 		swiped = false;
 		terrainHeight = 50.1f;
+
+		if (ClientState.character == "barbas") {
+
+		} else if (ClientState.character == "furfur") {
+
+		} else if (ClientState.character == "guci") {
+
+		} else if (ClientState.character == "stola") {
+
+		}
 	}	
 	
 	// Update is called once per frame
@@ -242,6 +260,9 @@ public class MoveCtrl : MonoBehaviour {
 			}
 		}*/
 				if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
+			if(skillMode == true){
+				//skillCancle();
+			}
 						if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
 								Ray ray = Camera.main.ScreenPointToRay (Input.touches [0].position);
 								RaycastHit hit3;
@@ -251,9 +272,10 @@ public class MoveCtrl : MonoBehaviour {
 									if(hit3.collider.tag =="MINIMAP"){
 										Debug.Log("minimap~~ hi!!");
 									}
-								}else if (Physics.Raycast (ray, out hit3, Mathf.Infinity, touchLayerMask)) {
+								}else if (skillMode ==false&&Physics.Raycast (ray, out hit3, Mathf.Infinity, touchLayerMask)) {
 										myDebug = ("hit3.collider.tag = " + hit3.collider.tag);
 										//	if(hit3.collider.tag!="UI"){
+										//if(skillMode == false){
 										if (hit3.collider.tag == "DIE") {
 												_attackMarkMaker.deleteMarker ();
 												myxpos = hit3.point.x; //Input.touches [0].position.x;
@@ -326,7 +348,6 @@ public class MoveCtrl : MonoBehaviour {
 														}
 												}
 										}
-										//}
 								} else if (Physics.Raycast (ray, out hit4, Mathf.Infinity, floorLayerMask)) {
 										myDebug = ("hit4.collider.tag = " + hit4.collider.tag);
 										_attackMarkMaker.deleteMarker ();
@@ -358,11 +379,14 @@ public class MoveCtrl : MonoBehaviour {
 		RaycastHit hitman2;		
 		
 		if (Input.GetMouseButtonDown (0)) {
+			if(skillMode == true){
+				//skillCancle();
+			}
 			if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,uiLayerMask)) {
 				if(hitman2.collider.tag =="MINIMAP"){
 					Debug.Log("minimap~~ hi!!");
 				}
-			}else if (Physics.Raycast (ray, out hitman2, Mathf.Infinity,touchLayerMask)) {
+			}else if (skillMode==false&&Physics.Raycast (ray, out hitman2, Mathf.Infinity,touchLayerMask)) {
 				if(hitman2.collider.tag =="DIE")
 				{
 						_attackMarkMaker.deleteMarker();
@@ -448,6 +472,18 @@ public class MoveCtrl : MonoBehaviour {
 						
 						move ();
 			}
+		}
+	}
+
+	private void skillCancle(){
+		if(ClientState.character=="guci"){
+
+		}else if(ClientState.character=="stola"){
+
+		}else if(ClientState.character=="furfur"){
+			
+		}else if(ClientState.character=="barbas"){
+			
 		}
 	}
 }

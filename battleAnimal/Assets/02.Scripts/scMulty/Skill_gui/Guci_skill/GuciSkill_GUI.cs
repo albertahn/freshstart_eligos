@@ -87,8 +87,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skillOneReady = true;
 			skillStartTime[0] = Time.time;
 			skill_state [0] = false;
-			skills [0].sprite = skill1Blank_spr;
-
+			myMoveCtrl.skillMode = true;
 		}
 	}
 	
@@ -135,7 +134,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
 			skills [2].sprite = skill1Blank_spr;
-
+			myMoveCtrl.skillMode = true;
 		}
 	}
 	
@@ -191,6 +190,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 			
 			
 			if (Input.GetMouseButtonDown (0)) {
+				myMoveCtrl.skillMode = false;
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				
 				
@@ -250,7 +250,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 						
 					}//skill 1 ready true
 					
-					
+
 				} ///raycasr
 
 				

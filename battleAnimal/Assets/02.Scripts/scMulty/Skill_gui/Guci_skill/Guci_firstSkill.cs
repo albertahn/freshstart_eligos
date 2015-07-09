@@ -9,14 +9,16 @@ public class Guci_firstSkill : MonoBehaviour {
 	private float birth;
 	private float duration;
 	
-	public float distancea;
+	public float distance;
+	private MoveCtrl _moveCtrl;
 	
 	
 	// Use this for initialization
 	void Start () {
-		//_renderera.enabled = false;	
+		//_renderera.enabled = false;
+		_moveCtrl = GetComponent<MoveCtrl> ();	
 		duration = 0.5f;
-		distancea = 10.0f;
+		distance = 10.0f;
 	}
 	
 	// Update is called once per frame
@@ -29,8 +31,28 @@ public class Guci_firstSkill : MonoBehaviour {
 		StartCoroutine (this.ShowMuzzleFlash ());
 		birth = Time.time;
 	}
+
 	
 	IEnumerator CreateBullet(string firedBy,Vector3 _pos){
+		while (true) {
+			yield return new WaitForSeconds(1.0f);
+			float dist = Vector3.Distance (this.transform.position, _pos);
+			if (dist > distance) {
+				_moveCtrl.clickendpoint = _pos;
+				_moveCtrl.clickendpoint.y = _moveCtrl.terrainHeight;
+				//_moveCtrl.isMoveAndAttack = true;
+				_moveCtrl.playermoving = true;
+				//moveAndAttack ();
+			} else {
+				GameObject a = (GameObject)Instantiate (bulleta, firePosa.position, this.transform.rotation);
+				a.GetComponent<GUCI_firstBulletCtrl>().setTarget (firedBy, _pos);
+				_moveCtrl.idle();
+				break;	
+			}
+		}
+	}
+	
+	/*IEnumerator CreateBullet(string firedBy,Vector3 _pos){
 		
 		GameObject a = (GameObject)Instantiate(bulleta,firePosa.position,firePosa.rotation);
 		
@@ -38,7 +60,7 @@ public class Guci_firstSkill : MonoBehaviour {
 		
 		
 		yield return null;
-	}
+	}*/
 	
 	IEnumerator ShowMuzzleFlash(){
 		//_renderera.enabled = true;

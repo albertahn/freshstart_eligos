@@ -89,6 +89,7 @@ public class StolaSkill_GUI : MonoBehaviour {
 			skillStartTime[0] = Time.time;
 			skill_state [0] = false;
 			skills [0].sprite = skill1Blank_spr;
+			myMoveCtrl.skillMode = true;
 		}
 	}
 	
@@ -110,6 +111,7 @@ public class StolaSkill_GUI : MonoBehaviour {
 			skillStartTime[1] = Time.time;
 			skill_state [1] = false;
 			skills [1].sprite = skill2Blank_spr;		
+			myMoveCtrl.skillMode = true;
 		}
 	}
 	
@@ -134,6 +136,7 @@ public class StolaSkill_GUI : MonoBehaviour {
 			skillStartTime[2] = Time.time;
 			skill_state [2] = false;
 			skills [2].sprite = skill1Blank_spr;
+			myMoveCtrl.skillMode = true;
 		}
 	}
 	
@@ -189,6 +192,7 @@ public class StolaSkill_GUI : MonoBehaviour {
 			
 			
 			if (Input.GetMouseButtonDown (0)) {
+				myMoveCtrl.skillMode = false;
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				
 				
