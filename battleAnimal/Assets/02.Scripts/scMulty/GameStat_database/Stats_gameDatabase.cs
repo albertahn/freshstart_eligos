@@ -61,7 +61,7 @@ public class Stats_gameDatabase : MonoBehaviour {
 		} else {
 
 			// show the highscores
-			Debug.Log(downloadbabe.text);
+			//Debug.Log(downloadbabe.text);
 
 		}
 		

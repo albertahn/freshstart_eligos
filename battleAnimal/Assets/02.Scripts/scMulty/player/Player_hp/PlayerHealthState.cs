@@ -97,9 +97,9 @@ public class PlayerHealthState : MonoBehaviour {
 		if (ClientState.id==this.name) {
 			ClientState.death++;
 			_moneyUI.deathPrint();
-			Debug.Log("ClientState.death = "+ClientState.death);
+			//Debug.Log("ClientState.death = "+ClientState.death);
 			_respawn.Set(this.name);
-			SocketStarter.Socket.Emit ("respawnREQ", this.name);	
+			SocketStarter.Socket.Emit ("respawnREQ", this.name);
 		}
 		
 		this.collider.enabled = false;

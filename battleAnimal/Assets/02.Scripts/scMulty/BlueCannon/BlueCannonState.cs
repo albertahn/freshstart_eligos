@@ -98,9 +98,10 @@ public class BlueCannonState : MonoBehaviour {
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);
 		
 		
-		float  distance = Vector3.Distance(GameObject.Find(ClientState.id).transform.position, this.transform.position);
-		if (distance<10.0f) {
+		//float  distance = Vector3.Distance(GameObject.Find(ClientState.id).transform.position, this.transform.position);
+		//if (distance<10.0f) {
 			
+		if (firedby == ClientState.id) {	
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(100);
 			_moneyUI.makeMoney(100);
 			

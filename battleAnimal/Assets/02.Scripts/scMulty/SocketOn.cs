@@ -127,7 +127,7 @@ public class SocketOn : MonoBehaviour {
 		
 		SocketStarter.Socket.On("respawnRES",(data) =>
 		                        {//접속한 플레이어가 있을때 호출된다.
-			if(!ClientState.isMaster)
+			//if(!ClientState.isMaster)
 				_respawnReceiver.receive(data.Json.args[0].ToString());
 		});
 		

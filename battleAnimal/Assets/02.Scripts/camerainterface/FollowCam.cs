@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FollowCam : MonoBehaviour {
 	public Transform target;
-	public float dist = 10.0f;
+	public float dist = 15.0f;
 	public float height = 5.0f;
 	public float side = 10.0f;
 	public float dampRotate = 5.0f;
@@ -16,13 +16,11 @@ public class FollowCam : MonoBehaviour {
 	private Vector3 velocity = Vector3.zero;
 	// Use this for initialization
 	void Start () {
-		dist = 5.0f;
+		dist = 15.0f;
 		height = 15.0f;
 		side = 5.0f;
 		tr = GetComponent<Transform> ();
 
-
-	
 	}
 
 	public void setTarget(Transform a){

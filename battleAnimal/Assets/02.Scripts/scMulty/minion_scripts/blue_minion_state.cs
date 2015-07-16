@@ -76,7 +76,7 @@ public class blue_minion_state : MonoBehaviour {
 		
 		if(ClientState.id==firedbyname){
 
-			Debug.Log ("firedby: "+ firedbyname);
+			Debug.Log ("BLUE minion die firedby: "+ firedbyname);
 
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);

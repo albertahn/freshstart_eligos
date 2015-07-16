@@ -85,8 +85,7 @@ public class RedCannonState : MonoBehaviour {
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
 		
 		string data = this.name+":" + hp.ToString()+"";
-		SocketStarter.Socket.Emit ("attackMinion", data);    
-		
+		SocketStarter.Socket.Emit ("attackMinion", data);
 	}
 	
 	
@@ -108,7 +107,7 @@ public class RedCannonState : MonoBehaviour {
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);
 		
 		if (firedby == ClientState.id) {
-			
+			Debug.Log("redCannon die_ firedBy = "+firedby);
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(100);
 			_moneyUI.makeMoney(100);
 		}

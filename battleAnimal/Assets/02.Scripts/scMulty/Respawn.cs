@@ -62,14 +62,13 @@ public class Respawn : MonoBehaviour {
 			player.collider.enabled = true;
 			player.tag = "Player";
 			player.transform.FindChild ("touchCollider").tag = "Player";
-			_playerState.hp =playerStat.maxHp;
+			_playerState.hp =_playerState.maxhp;
 			if(team=="red")
 				player.transform.position = RspawnPos;
 			else
 				player.transform.position = BspawnPos;
 			_switch = false;
 			_CameraTouch.focusCamPlayer = true;
-		}
-		
+		}		
 	}
 }

@@ -21,7 +21,8 @@ public class respawnReceiver : MonoBehaviour {
 	}
 	public void receive(string data){
 		_id = data;
-		switch_ = true;
+		if(_id!=ClientState.id)
+			switch_ = true;
 	}
 	
 	private IEnumerator doit(){

@@ -96,7 +96,7 @@ public class GameState : MonoBehaviour {
 		
 		if(senddatabool){
 
-			Debug.Log("ClientState.cs_kill: "+ ClientState.cs_kill);
+//			Debug.Log("ClientState.cs_kill: "+ ClientState.cs_kill);
 			     
 
 

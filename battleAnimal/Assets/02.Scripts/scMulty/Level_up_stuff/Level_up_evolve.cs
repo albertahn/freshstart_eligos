@@ -126,8 +126,8 @@ public class Level_up_evolve : MonoBehaviour {
 		_playerHealthState.maxhp = playerStat.maxHp;
 		_playerHealthState.hp = _playerHealthState.maxhp;
 		_moneyUI.levelPrint();
-		string data = ClientState.id+":"+playerStat.maxHp;
-		SocketStarter.Socket.Emit ("levelUpREQ",data);
+		//string data = ClientState.id+":"+playerStat.maxHp;
+		//SocketStarter.Socket.Emit ("levelUpREQ",data);
 	}
 	
 	public void processSync(int _maxHp){
