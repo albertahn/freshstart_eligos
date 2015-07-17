@@ -5,16 +5,55 @@ public class Stola_thirdSkill : MonoBehaviour {
 	public GameObject bulleta;
 	private float distance;
 	private MoveCtrl _moveCtrl;
+
+	private bool playermoving;
+	private Vector3 clickendpoint;
+	private float terrainHeight;
+	private CharacterController _controller;
+	private AniCtrl _aniCtrl;
+	private Transform tr;
+	
+	private Coroutine createBulletCoroutine;
 	
 	// Use this for initialization
 	void Start () {
 		_moveCtrl = GetComponent<MoveCtrl> ();
 		distance = 5.0f;
+		
+		tr = transform;
+		terrainHeight = 50.1f;
+		_controller = GetComponent<CharacterController> ();
+		_aniCtrl = GetComponent<AniCtrl> ();
 	}
-	
-	
+
+	void Update () {
+		if (playermoving) {
+			tr.LookAt (clickendpoint);
+			
+			float step = playerStat.speed * Time.deltaTime;
+			
+			clickendpoint.y = terrainHeight;
+			Vector3 dir = clickendpoint - tr.position;
+			Vector3 movement = dir.normalized * step;
+			if (movement.magnitude > dir.magnitude)
+				movement = dir;
+			_controller.Move (movement);
+			
+			_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);
+			_aniCtrl._animation ["attack"].speed = 2.5f;
+			_aniCtrl._animation ["run"].speed = 2.5f;
+		}
+	}
+
+	public void cancleSkill(){
+		if (createBulletCoroutine != null) {
+			StopCoroutine (createBulletCoroutine);
+			playermoving = false;
+		}
+	}
+
 	public void startSkill(string firedBy,Vector3 _pos){
-		StartCoroutine (this.CreateBullet (firedBy,_pos));
+		createBulletCoroutine = StartCoroutine (this.CreateBullet (firedBy,_pos));
 		StartCoroutine (this.ShowMuzzleFlash ());
 	}
 	

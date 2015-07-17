@@ -30,7 +30,6 @@ public class SocketOn : MonoBehaviour {
 	// Use this for initialization
 	
 	public GameObject nmanager; // = GameObject.Find("NetworkManager");
-	public Skill_socket_reciever skill_reciever;
 	private minionAttackReceiver _mAttackReceiver;
 	private minionDieReceiver _mDieReceiver;
 	private movePlayerReceiver _movePlayerReceiver;
@@ -54,6 +53,7 @@ public class SocketOn : MonoBehaviour {
 	private respawnReceiver _respawnReceiver;
 	private playerHpSyncReceiver _playerHpSyncReceiver;
 	private Stats_sync_reciever _statSync_reciever;
+	private skillAttackReceiver _skillAttackReceiver;
 
 	
 	void Start () {
@@ -65,7 +65,6 @@ public class SocketOn : MonoBehaviour {
 		_mAttackReceiver = GetComponent<minionAttackReceiver>();
 		_mDieReceiver = GetComponent<minionDieReceiver> ();
 		_movePlayerReceiver = GetComponent<movePlayerReceiver> ();
-		skill_reciever = GetComponent<Skill_socket_reciever> ();
 		_pAttackReceiver = GetComponent<playerAttackReceiver> ();
 		_moveMinionReceiver = GetComponent<moveMinionReceiver> ();
 		_createPlayerReceiver = GetComponent<createPlayerReceiver> ();
@@ -225,16 +224,15 @@ public class SocketOn : MonoBehaviour {
 		//skills sync
 		//skill attack
 		SocketStarter.Socket.On ("SkillAttack", (data) =>{
-			skill_reciever.skillShot(data.Json.args[0].ToString());
+			string[] temp = data.Json.args[0].ToString().Split(':');
+			if(temp[0]!=ClientState.id)
+				_skillAttackReceiver.receive (data.Json.args[0].ToString());
 		});
 		
 		
 		SocketStarter.Socket.On ("playerHpSyncRES", (data) =>{
-		//	Debug.Log("playerHpSync11111111");
 			if(!ClientState.isMaster){
-				//Debug.Log("playerHpSync12222222");
 				_playerHpSyncReceiver.receive(data.Json.args[0].ToString());
-			//	Debug.Log("playerHpSync1333333333");
 			}
 		});
 		

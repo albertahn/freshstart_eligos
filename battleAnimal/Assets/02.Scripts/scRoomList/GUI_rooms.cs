@@ -21,7 +21,12 @@ public class GUI_rooms : MonoBehaviour {
 
 	}//end start
 
-
+	public void joinDemoRoom(){
+		
+		ClientState.room = "demoRoom";
+		
+		Application.LoadLevel ("scWait");
+	}
 
 	void OnGUI (){
 

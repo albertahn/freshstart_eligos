@@ -9,8 +9,7 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	
 	public Image[] skills;
 	public Sprite skill1_spr,skill2_spr,skill3_spr;
-	public Sprite skill1Blank_spr,skill2Blank_spr,skill3Blank_spr;
-	
+	public Sprite skill1Blank_spr,skill2Blank_spr,skill3Blank_spr;	
 	
 	public int xfirst, yfirst, xsecond, ysecond, xthird, ythird, xfourth ;	
 	public MoveCtrl myMoveCtrl;
@@ -34,7 +33,11 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	public PlayerHealthState _playerHealthState;
 	
 	public bool isSet;
-	
+
+	Furfur_firstSkill firstSkill;
+	Furfur_secondSkill secondSkill;
+	Furfur_thirdSkill thirdSkill;
+
 	/*
 	void Start(){
 		isSet = false;
@@ -69,6 +72,10 @@ public class FurfurSkill_GUI : MonoBehaviour {
 		}
 		_lvUpEvolve = GetComponent<Level_up_evolve> ();
 		isSet = true;
+		
+		firstSkill = GetComponent<Furfur_firstSkill> ();
+		secondSkill = GetComponent<Furfur_secondSkill> ();
+		thirdSkill = GetComponent<Furfur_thirdSkill> ();
 	}
 	
 	
@@ -221,7 +228,9 @@ public class FurfurSkill_GUI : MonoBehaviour {
 						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
 						
 						
-					}//skill 1 ready true
+					}else{
+						firstSkill.cancleSkill();
+					}
 					
 					if (skillTwoReady == true) {
 						
@@ -277,7 +286,9 @@ public class FurfurSkill_GUI : MonoBehaviour {
 						
 						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
 						
-					}//skill 1 ready true
+					}else{
+						thirdSkill.cancleSkill();
+					}
 					
 					
 				} ///raycasr
@@ -302,10 +313,8 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	public void fireFirst(GameObject gameobject, Vector3 vector, string firedBy){
 		
 		//GameObject dog = gameobject;
-		
+		myMoveCtrl.idle ();
 		transform.LookAt(vector);
-		
-		Furfur_firstSkill firstSkill = GetComponent<Furfur_firstSkill> ();	
 		firstSkill.fireBall (firedBy,vector);
 		
 		clearSkillWraps();
@@ -316,8 +325,7 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	
 	public void fireSecond(GameObject gameobject){		
 		//GameObject dog = gameobject;
-		
-		Furfur_secondSkill secondSkill = GetComponent<Furfur_secondSkill> ();	
+
 		secondSkill.startSkill (this.name);
 		
 		clearSkillWraps();
@@ -327,11 +335,11 @@ public class FurfurSkill_GUI : MonoBehaviour {
 	
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
 		
-	//	GameObject dog = gameobject;
+		//	GameObject dog = gameobject;
+		myMoveCtrl.idle ();
 		
 		transform.LookAt(vector);
-		
-		Furfur_thirdSkill thirdSkill = GetComponent<Furfur_thirdSkill> ();	
+
 		thirdSkill.startSkill (firedBy, vector);
 		
 		clearSkillWraps();

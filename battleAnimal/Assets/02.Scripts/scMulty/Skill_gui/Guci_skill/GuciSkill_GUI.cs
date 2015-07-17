@@ -34,6 +34,10 @@ public class GuciSkill_GUI : MonoBehaviour {
 	public PlayerHealthState _playerHealthState;
 	
 	public bool isSet;
+
+	
+	private Guci_firstSkill firstSkill;
+	private Guci_thirdSkill thirdSkill_script;
 	
 	/*
 	void Start(){
@@ -69,13 +73,16 @@ public class GuciSkill_GUI : MonoBehaviour {
 		}
 		_lvUpEvolve = GetComponent<Level_up_evolve> ();
 		isSet = true;
+
+		firstSkill = GetComponent<Guci_firstSkill> ();
+		thirdSkill_script = GetComponent<Guci_thirdSkill> ();	
 	}
 	
 	
 	public void Skill1_bot()
 	{		
 		if (skill_state [0]&&Time.time-skillStartTime[0]>=skillCool[0]&&!_playerHealthState.isDie) {
-			
+			myMoveCtrl.enabled = false;
 			Vector3 spawnPos = transform.position;
 			Quaternion rotationdog = transform.rotation;
 			
@@ -88,6 +95,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 			skillStartTime[0] = Time.time;
 			skill_state [0] = false;
 			myMoveCtrl.skillMode = true;
+			skills [0].sprite = skill1Blank_spr;
 		}
 	}
 	
@@ -117,11 +125,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 	public void Skill3_bot()
 	{
 		if (skill_state [2]&& Time.time-skillStartTime[2] >= skillCool[2]&&!_playerHealthState.isDie) {
-
-			//GameObject dogy = GameObject.Find (ClientState.id);
-			
-			//Debug.Log ("client id : "+ClientID);
-			
+			myMoveCtrl.enabled = false;
 			Vector3 spawnPos = transform.position;
 			Quaternion rotationdog = transform.rotation;
 			
@@ -215,45 +219,26 @@ public class GuciSkill_GUI : MonoBehaviour {
 						clearSkillWraps ();
 						
 						skillOneReady = false;
-						
-						
-						
-						string data = ClientID + ":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z + ":" + ClientState.character + ":first";
-						
-						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
-						
-						
-					}//skill 1 ready true
+					}else{
+						firstSkill.cancleSkill();
+					}
 
 					
 					if (skillThreeReady) {
 						
-						Debug.Log ("3 skill fired");
-						
-						//	Debug.Log("fired: skill "+skillfire.ToString());
-					//	GameObject dog = GameObject.Find (ClientState.id);
-						
 						transform.LookAt (hiterone.point);
 						
 						fireThird (this.gameObject, hiterone.point, ClientState.id);
-						
-						
-						//destroy gameobject]
-						//destroy all wraps
+
 						clearSkillWraps ();
 						skillThreeReady = false;
 						
 						Vector3 clickendpoint = hiterone.point;
-						string data = ClientID + ":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z + ":" + ClientState.character + ":third";
-						
-						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
-						
-					}//skill 1 ready true
-					
-
+					}else{
+						thirdSkill_script.cancleSkill();
+					}
 				} ///raycasr
-
-				
+				myMoveCtrl.enabled = true;
 			}
 		}
 		
@@ -274,22 +259,21 @@ public class GuciSkill_GUI : MonoBehaviour {
 	public void fireFirst(GameObject gameobject, Vector3 vector, string firedBy){
 		
 		//GameObject dog = gameobject;
-		
+		myMoveCtrl.idle ();
 		transform.LookAt(vector);
-		
-		Guci_firstSkill firstSkill = GetComponent<Guci_firstSkill> ();	
+
 		firstSkill.fireBall (firedBy,vector);
 		
-		clearSkillWraps();		
-		skillOneReady = false;		
+		clearSkillWraps();
+		skillOneReady = false;
 	}
 
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
 		
-		//GameObject dog = gameobject;		
+		//GameObject dog = gameobject;
+		myMoveCtrl.idle ();		
 		transform.LookAt(vector);
 
-		Guci_thirdSkill thirdSkill_script = GetComponent<Guci_thirdSkill> ();	
 		thirdSkill_script.startSkill(firedBy,vector);
 
 

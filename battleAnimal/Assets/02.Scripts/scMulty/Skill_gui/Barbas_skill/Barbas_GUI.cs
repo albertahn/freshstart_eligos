@@ -35,6 +35,10 @@ public class Barbas_GUI : MonoBehaviour {
 	
 	public bool isSet;
 	
+	Barbas_firstSkill firstSkill;
+	Barbas_secondSkill secondSkill;
+	Barbas_thirdSkill thirdSkill_script;
+
 	/*
 	void Start(){
 		isSet = false;
@@ -69,6 +73,10 @@ public class Barbas_GUI : MonoBehaviour {
 		}
 		_lvUpEvolve = GetComponent<Level_up_evolve> ();
 		isSet = true;
+		
+		firstSkill = GetComponent<Barbas_firstSkill> ();
+		secondSkill = GetComponent<Barbas_secondSkill> ();
+		thirdSkill_script = GetComponent<Barbas_thirdSkill> ();
 	}
 	
 	
@@ -216,7 +224,9 @@ public class Barbas_GUI : MonoBehaviour {
 						//string data = ClientID + ":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z + ":" + ClientState.character + ":first";						
 						//SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.						
 						
-					}//skill 1 ready true
+					}else{
+						firstSkill.cancleSkill();
+					}
 					
 					if (skillTwoReady) {
 						
@@ -261,7 +271,9 @@ public class Barbas_GUI : MonoBehaviour {
 						
 						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
 						
-					}//skill 1 ready true
+					}else{
+						thirdSkill_script.cancleSkill();
+					}
 					
 					
 				} ///raycasr
@@ -289,8 +301,7 @@ public class Barbas_GUI : MonoBehaviour {
 		GameObject dog = gameobject;
 		
 		dog.transform.LookAt(vector);
-		
-		Barbas_firstSkill firstSkill = dog.GetComponent<Barbas_firstSkill> ();	
+
 		firstSkill.startSkill (firedBy,vector);
 		
 		clearSkillWraps();
@@ -304,8 +315,7 @@ public class Barbas_GUI : MonoBehaviour {
 		GameObject dog = gameobject;
 		
 		dog.transform.LookAt(vector);
-		
-		Barbas_secondSkill secondSkill = dog.GetComponent<Barbas_secondSkill> ();	
+
 		secondSkill.startSkill (firedBy,vector);
 		
 		clearSkillWraps();
@@ -318,8 +328,7 @@ public class Barbas_GUI : MonoBehaviour {
 		
 		GameObject dog = gameobject;		
 		dog.transform.LookAt(vector);
-		
-		Barbas_thirdSkill thirdSkill_script = dog.GetComponent<Barbas_thirdSkill> ();	
+
 		thirdSkill_script.startSkill(firedBy,vector);
 		
 		

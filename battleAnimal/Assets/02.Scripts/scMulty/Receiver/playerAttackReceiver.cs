@@ -26,7 +26,6 @@ public class playerAttackReceiver : MonoBehaviour {
 		attacker = temp [0];
 		character = temp [1];
 		target = temp [2];
-		Debug.Log("attacker = "+attacker+" target = "+target);
 		switch_ = true;
 	}
 

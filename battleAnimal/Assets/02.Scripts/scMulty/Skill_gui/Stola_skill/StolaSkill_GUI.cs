@@ -35,6 +35,9 @@ public class StolaSkill_GUI : MonoBehaviour {
 	
 	public bool isSet;
 	
+	private Stola_firstSkill firstSkill;
+	private Stola_secondSkill secondSkill;	
+	private Stola_thirdSkill thirdSkill_script;
 	/*
 	void Start(){
 		isSet = false;
@@ -69,6 +72,9 @@ public class StolaSkill_GUI : MonoBehaviour {
 		}
 		_lvUpEvolve = GetComponent<Level_up_evolve> ();
 		isSet = true;
+		firstSkill = GetComponent<Stola_firstSkill> ();
+		secondSkill = GetComponent<Stola_secondSkill> ();	
+		thirdSkill_script = GetComponent<Stola_thirdSkill> ();
 	}
 	
 	
@@ -225,7 +231,9 @@ public class StolaSkill_GUI : MonoBehaviour {
 						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
 						
 						
-					}//skill 1 ready true
+					}else{
+						firstSkill.cancleSkill();
+					}
 					
 					if (skillTwoReady == true) {
 						
@@ -247,7 +255,9 @@ public class StolaSkill_GUI : MonoBehaviour {
 						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
 						
 						
-					}//skill 2 ready true
+					}else{
+						secondSkill.cancleSkill();
+					}
 					
 					if (skillThreeReady) {
 						
@@ -271,7 +281,9 @@ public class StolaSkill_GUI : MonoBehaviour {
 						
 						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.
 						
-					}//skill 1 ready true
+					}else{
+						thirdSkill_script.cancleSkill();
+					}
 					
 					
 				} ///raycasr
@@ -295,12 +307,11 @@ public class StolaSkill_GUI : MonoBehaviour {
 	}
 	
 	public void fireFirst(GameObject gameobject, Vector3 vector, string firedBy){
-		
-		//GameObject dog = gameobject;
+
+		myMoveCtrl.idle ();
 		
 		transform.LookAt(vector);
-		
-		Stola_firstSkill firstSkill = GetComponent<Stola_firstSkill> ();	
+
 		firstSkill.fireBall (firedBy,vector);
 		
 		clearSkillWraps();
@@ -314,8 +325,7 @@ public class StolaSkill_GUI : MonoBehaviour {
 		//GameObject dog = gameobject;
 		
 		transform.LookAt(vector);
-		
-		Stola_secondSkill secondSkill = GetComponent<Stola_secondSkill> ();	
+			
 		secondSkill.fireBall (firedBy,vector);
 		
 		clearSkillWraps();
@@ -328,8 +338,7 @@ public class StolaSkill_GUI : MonoBehaviour {
 		
 		//GameObject dog = gameobject;
 		transform.LookAt(vector);
-		
-		Stola_thirdSkill thirdSkill_script = GetComponent<Stola_thirdSkill> ();
+
 		thirdSkill_script.startSkill(firedBy,vector);
 		
 		clearSkillWraps();

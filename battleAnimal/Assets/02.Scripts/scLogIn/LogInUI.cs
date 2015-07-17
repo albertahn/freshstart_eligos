@@ -8,14 +8,18 @@ public class LogInUI : MonoBehaviour {
 	private loginDatabase _dbManager;
 
 	public bool loginerror;
-
+	
+	private GameObject guestID_pannel;
+	private Vector3 inCamPos, outCamPos;
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () {		
+		guestID_pannel = GameObject.Find ("guestID_pannel");		
+		inCamPos = new Vector3 (-50,guestID_pannel.transform.localPosition.y,guestID_pannel.transform.position.z );
+		outCamPos =  new Vector3 (778,guestID_pannel.transform.localPosition.y,guestID_pannel.transform.position.z );
 
 		loginerror = false;
-
 		if(PlayerPrefs.GetString("email")!=""){
 
 			Application.LoadLevel("scStart");
@@ -24,6 +28,7 @@ public class LogInUI : MonoBehaviour {
 		Screen.SetResolution(1280, 800, true);
 		//Screen.SetResolution(800, 480, true);
 		
+		guestID_pannel.transform.localPosition = outCamPos;
 		_dbManager = GetComponent<loginDatabase> ();
 	}
 	
@@ -55,7 +60,24 @@ public class LogInUI : MonoBehaviour {
 	{
 		Application.LoadLevel ("scRegist");
 	}
-	
+
+	public void openGuestID(){
+		guestID_pannel.transform.localPosition = inCamPos;
+	}
+	public void closeGuestID(){
+		guestID_pannel.transform.localPosition = outCamPos;
+	}
+
+	public void loginPlayer1(){
+		PlayerPrefs.SetString("username","player1");
+		Application.LoadLevel ("scStart");
+	}
+
+	public void loginPlayer2(){
+		PlayerPrefs.SetString("username","player2");
+		Application.LoadLevel ("scStart");
+	}
+
 	public void Cancel()
 	{
 		Application.Quit ();

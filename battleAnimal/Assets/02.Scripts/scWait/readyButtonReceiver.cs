@@ -57,6 +57,7 @@ public class readyButtonReceiver : MonoBehaviour {
 
 		
 		if (redCount == blueCount||redCount==1||blueCount==1) {
+	//	if (redCount == blueCount) {
 			waitSocketStarter.Socket.Emit("startCountREQ","h");
 		}
 
