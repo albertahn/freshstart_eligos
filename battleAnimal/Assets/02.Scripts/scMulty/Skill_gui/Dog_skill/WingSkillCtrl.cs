@@ -52,7 +52,7 @@ public class WingSkillCtrl : MonoBehaviour {
 			if( hitParentName != firedparentName&&hitParentName != firedByName){
 				Debug.Log("hit target = "+coll.name);
 				
-				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject);
+				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject,damage);
 				Destroy (this.gameObject);
 			}//if
 			

@@ -110,14 +110,6 @@ public class waitGUI : MonoBehaviour {
 			delUserSwitch = false;
 		}
 
-		if (ClientState.order % 2 == 0){
-			
-			ClientState.team = "red";
-			
-		} else{
-			ClientState.team = "blue";
-		}
-
 	}
 
 	void OnGUI(){
@@ -210,9 +202,6 @@ public class waitGUI : MonoBehaviour {
 	}
 
 	void setCharacter(int _order,string _char){
-
-		Debug.Log ("char: "+_char);
-
 		if (_char == "furfur")
 			portrait_[_order].sprite = furfurPortrait;
 		else if(_char =="barbas")

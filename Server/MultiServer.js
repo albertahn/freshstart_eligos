@@ -49,11 +49,10 @@ io.sockets.on('connection', function (socket) {
     });
     
 //crate playe
-    socket.on("createPlayerREQ", function(data) {        
+    socket.on("createPlayerREQ", function(data) {
         var ret = data.split(":");
     
-        io.sockets.in(socket.room).emit("createPlayerRES", data);
-        
+        io.sockets.in(socket.room).emit("createPlayerRES", data);        
         jarray[socket.room].userNames[socket.id] = ret[0];    //client id      
         jarray[socket.room].userPos[ret[0]] = ret[1];         //position 
         jarray[socket.room].userCharacter[ret[0]] = ret[2];    //char
@@ -136,7 +135,12 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('SkillAttack', function(data){
        io.sockets.in(socket.room).emit("SkillAttack", data);
-    });    
+    });
+    
+    socket.on('SkillDamageREQ', function(data){
+        console.log("skillDAMAGE REQ");
+       io.sockets.in(socket.room).emit("SkillDamageRES", data);
+    });  
     
     socket.on('HealthSync', function(data){
        io.sockets.in(socket.room).emit("HealthSync", data);

@@ -24,15 +24,20 @@ public class waitSocketOn : MonoBehaviour {
 			int num = int.Parse (temp[0]);
 			string id = temp[1];//접속한 유저 아이디
 
-		
-
 			if(clientID == id){
-
 				ClientState.order = num;
 				waitSocketStarter.Socket.Emit ("preuserREQ", id);
 
 				if (ClientState.order ==0){
 					ClientState.isMaster = true;
+				}
+				
+				
+				if (ClientState.order % 2 == 0){			
+					ClientState.team = "red";
+					
+				} else{
+					ClientState.team = "blue";
 				}
 
 			}else{
@@ -49,13 +54,10 @@ public class waitSocketOn : MonoBehaviour {
 		waitSocketStarter.Socket.On("preuserRES",(data) =>
 		                            {//접속한 플레이어가 있을때 호출된다.
 			string temp = data.Json.args[0].ToString();
-			Debug.Log ("preuserRes = "+temp);
 			string[] temp2 = temp.Split('=');
 			string sender = temp2[0];
-			Debug.Log ("hello ob1!");
 
 			if(clientID==sender){
-				Debug.Log ("hello ob2!");
 				string[] temp3 = temp2[1].Split('-');
 				for(int i=0;i<temp3.Length-1;i++){
 					string[] temp4 = temp3[i].Split(':');
@@ -103,12 +105,7 @@ public class waitSocketOn : MonoBehaviour {
 			}
 		});
 
-
-		//waitSocketStarter.Socket.Emit ("createRoomREQ", clientID);
-
 		waitSocketStarter.Socket.Emit ("joinRoomREQ", ClientState.room);
 
 	}//starts
-	
-
 }

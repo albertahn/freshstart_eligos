@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_thirdSkill.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Desktop\1st Zinco\Assets\02.Script\PlayScene\BackGround\BackgroundCtrl.cs">
     <Files>
-      <File FileName="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\GuciSkill_GUI.cs" Line="248" Column="2" />
-      <File FileName="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_firstSkill.cs" Line="9" Column="22" />
-      <File FileName="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_GUI.cs" Line="275" Column="39" />
-      <File FileName="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_firstSkill.cs" Line="48" Column="32" />
-      <File FileName="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_thirdSkill.cs" Line="35" Column="2" />
+      <File FileName="..\..\..\..\Desktop\1st Zinco\Assets\02.Script\PlayScene\BackGround\BackgroundCtrl.cs" Line="15" Column="28" />
+      <File FileName="..\..\..\..\Desktop\1st Zinco\Assets\02.Script\PlayScene\GameManager\savedPlayerStat.cs" Line="49" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

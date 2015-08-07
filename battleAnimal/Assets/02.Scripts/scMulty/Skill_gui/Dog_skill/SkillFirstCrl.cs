@@ -53,7 +53,7 @@ public class SkillFirstCrl : MonoBehaviour {
 			
 			if( hitParentName != firedparentName&&hitParentName != firedByName){
 				
-				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject);
+				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject,damage);
 				//Destroy (this.gameObject);
 			}//if
 			

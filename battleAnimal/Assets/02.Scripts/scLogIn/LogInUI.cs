@@ -77,6 +77,11 @@ public class LogInUI : MonoBehaviour {
 		PlayerPrefs.SetString("username","player2");
 		Application.LoadLevel ("scStart");
 	}
+	
+	public void loginObserver(){
+		PlayerPrefs.SetString("username","ob");
+		Application.LoadLevel ("scStart");
+	}
 
 	public void Cancel()
 	{

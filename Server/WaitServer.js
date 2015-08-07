@@ -43,9 +43,15 @@ io.sockets.on('connection', function (socket) {
 //creat player
      socket.on("createPlayerREQ", function(data) {
         jarray[socket.room].userNames[socket.id] = data;
-        jarray[socket.room].userNum[data] =  jarray[socket.room].thrashNum[jarray[socket.room].thrashIdx];
+        var order = jarray[socket.room].userNum[data] =  jarray[socket.room].thrashNum[jarray[socket.room].thrashIdx];
         jarray[socket.room].thrashIdx--;
         jarray[socket.room].selectCharacter[data] = "random";
+        
+        if (order % 2 == 0){
+            jarray[socket.room].team[data] = "red";		
+	} else{
+            jarray[socket.room].team[data] = "blue";
+        }
         
         var ret;
         ret =  jarray[socket.room].userNum[data]+':'+data;
@@ -63,8 +69,8 @@ io.sockets.on('connection', function (socket) {
     
     socket.on("characterSelectREQ", function(data){
         var temp=data.split(':');
-        jarray[socket.room].selectCharacter[temp[0]] = temp[2];    
-                
+        jarray[socket.room].selectCharacter[temp[0]] = temp[2];
+        
         var ret = temp[1]+':'+temp[2];
         io.sockets.in(socket.room).emit("characterSelectRES",ret);
     });
@@ -77,8 +83,27 @@ io.sockets.on('connection', function (socket) {
         io.sockets.in(socket.room).emit("readyButtonRES",data);
     });
     
-    socket.on("startCountREQ", function(data){        
-        io.sockets.in(socket.room).emit("startCountRES",data);
+    socket.on("startCountREQ", function(data){
+         var retPre="";
+        
+        for(var key in jarray[socket.room]["userNames"]){
+            var id =  jarray[socket.room].userNames[key];
+            var character = jarray[socket.room].selectCharacter[id];
+            if(character == "random"){
+                var num = Math.ceil(Math.random() * 4);
+                switch(num){
+                    case 1:character="furfur";break;
+                    case 2:character="barbas";break;
+                    case 3:character="guci";break;
+                    case 4:character="stola";break;
+                }
+            }
+            retPre += id+":"
+             +character+":"
+             +jarray[socket.room].team[id]+"_";
+        }
+        
+        io.sockets.in(socket.room).emit("startCountRES",retPre);
     });
     
     socket.on('disconnect',function(data){

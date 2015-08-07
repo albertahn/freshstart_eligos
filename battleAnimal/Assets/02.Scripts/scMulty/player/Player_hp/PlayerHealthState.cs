@@ -76,15 +76,15 @@ public class PlayerHealthState : MonoBehaviour {
 		}
 	}
 	
-	public void hitbySkill(string firedby,GameObject obj){		
-		Debug.Log ("skill hit: "+ firedby);		
-		//hp -= obj.GetComponent<SkillFirstCrl>().damage;
-		hp -= 50;		
+	public void hitbySkill(string firedby,GameObject obj,int damage){
+		hp -= damage;
+		if (hp <= 0) {
+			hp = 0;
+			if (!isDie)
+				playerDie ();
+		}
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
-		string data = this.name+":" + hp.ToString()+"";
-		//SocketStarter.Socket.Emit ("attackMinion", data);	
 	}
-	
 	
 	void playerDie(){
 		this.tag = "DIE";

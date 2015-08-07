@@ -16,7 +16,8 @@ public class Stola_skill3Ctrl : MonoBehaviour{
 		dotTimeStart = Time.time;
 		durationTime = 5.0f;
 		dotTime = 1.0f;
-		StartCoroutine (damageTargets());
+		if(ClientState.isMaster)
+			StartCoroutine (damageTargets());
 	}
 	
 	public void setTarget(string firedby){
@@ -46,7 +47,6 @@ public class Stola_skill3Ctrl : MonoBehaviour{
 					if (coll.gameObject.name [0] == 'r')
 						targetList.Add (coll);
 					else if (coll.gameObject.name [0] == 'b') {
-						Debug.Log ("hey blue minion!!");
 						targetList.Add (coll);
 					}
 					//Destroy (this.gameObject);
@@ -58,7 +58,6 @@ public class Stola_skill3Ctrl : MonoBehaviour{
 				
 				if (hitParentName != firedparentName && hitParentName != firedByName) {
 					targetList.Add (coll);
-					//Destroy (this.gameObject);
 				}//if
 			}
 		}
@@ -82,29 +81,30 @@ public class Stola_skill3Ctrl : MonoBehaviour{
 						
 						if ((ClientState.team == "red" && targetList[i].name [0] == 'b') ||
 						    (ClientState.team == "blue" && targetList[i].name [0] == 'r')) {
-							//Debug.Log("skill first hit min");
-							if (targetList[i].gameObject.name [0] == 'r')
+							if (targetList[i].gameObject.name [0] == 'r'){
 								targetList[i].gameObject.GetComponent<minion_state> ().Heated ("skill", gameObject, damage);
-							else if (targetList[i].gameObject.name [0] == 'b'){
-								Debug.Log("hey blue minion!!");
+								onTriggerEmitter(targetList[i].gameObject.name,1);
+							}else if (targetList[i].gameObject.name [0] == 'b'){
 								targetList[i].gameObject.GetComponent<blue_minion_state> ().Heated ("skill", gameObject, damage);
+								onTriggerEmitter(targetList[i].gameObject.name,2);
 							}
-							//Destroy (this.gameObject);
 						}
 					} else if (targetList[i].gameObject.tag == "Player" && targetList[i].name != "touchCollider" && targetList[i].name != firedByName) {
-						
 						string hitParentName = targetList[i].transform.parent.name;
 						string firedparentName = GameObject.Find (firedByName).transform.parent.name;
 						
 						if (hitParentName != firedparentName && hitParentName != firedByName) {
-							Debug.Log ("hit target = " + targetList[i].name);
-							
-							targetList[i].gameObject.GetComponent<PlayerHealthState> ().hitbySkill (firedByName, this.gameObject);
-							//Destroy (this.gameObject);
+							targetList[i].gameObject.GetComponent<PlayerHealthState> ().hitbySkill (firedByName, this.gameObject,damage);
+							onTriggerEmitter(targetList[i].gameObject.name,3);
 						}//if
 					}
 				}
 			}
 		}
+	}
+	
+	private void onTriggerEmitter(string enemy,int order){
+		string data = ClientState.id + ":"+ClientState.character+":"+"third"+":"+enemy+":"+order.ToString()+":"+damage.ToString() ;
+		SocketStarter.Socket.Emit ("SkillDamageREQ", data);
 	}
 }

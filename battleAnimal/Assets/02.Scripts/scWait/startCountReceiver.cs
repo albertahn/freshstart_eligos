@@ -8,6 +8,8 @@ public class startCountReceiver : MonoBehaviour {
 	private GameObject TimeObj;
 	public Text timeText;
 
+	string temp;
+
 	// Use this for initialization
 	void Start () {
 		time = 3;//10;
@@ -19,17 +21,19 @@ public class startCountReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(switch_){
-			StartCoroutine(doit ());			
+			StartCoroutine(doit ());
 			switch_=false;
 		}	
 	}
 	public void receive(string data){
-		string[] temp = data.Split (':');
-		
+		//string[] temp = data.Split (':');
+		temp = data;
+
 		switch_ = true;
 	}
 	
 	private IEnumerator doit(){
+		starterInfo.info = temp;
 		StartCoroutine (TimeCheck ());
 		yield return null;
 	}

@@ -93,7 +93,6 @@ public class friendList : MonoBehaviour {
 		//pannel_content.GetComponent<RectTransform>().sizeDelta = new Vector2(2, 20*num * itemheight);
 
 		newItem.transform.SetParent (pannel_content.transform,false);
-
 	}
 
 

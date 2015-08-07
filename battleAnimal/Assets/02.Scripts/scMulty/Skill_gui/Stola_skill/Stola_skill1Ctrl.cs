@@ -61,19 +61,21 @@ public class Stola_skill1Ctrl : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider coll){
-		Debug.Log ("skill3 !!! coll.gameObject.tag = "+coll.gameObject.tag);
+		if(ClientState.isMaster){
+		Debug.Log ("skill1 hit!!");
 		if (coll.gameObject.tag == "MINION") {
 			string hitParentName = coll.transform.parent.name;
 			string firedparentName = GameObject.Find (firedbyname).transform.parent.name;
 			
 			if ((ClientState.team == "red" && coll.name [0] == 'b') ||
 			    (ClientState.team == "blue" && coll.name [0] == 'r')) {
-				//Debug.Log("skill first hit min");
-				if (coll.gameObject.name [0] == 'r')
+				if (coll.gameObject.name [0] == 'r'){
 					coll.gameObject.GetComponent<minion_state> ().Heated ("skill", gameObject, damage);
-				else if (coll.gameObject.name [0] == 'b')
+					onTriggerEmitter(coll.gameObject.name,1);
+				}else if (coll.gameObject.name [0] == 'b'){
 					coll.gameObject.GetComponent<blue_minion_state> ().Heated ("skill", gameObject, damage);
-				//Destroy (this.gameObject);
+					onTriggerEmitter(coll.gameObject.name,2);
+				}
 			}
 		} else if (coll.gameObject.tag == "Player" && coll.name != "touchCollider"&&coll.name!=firedbyname) {
 			
@@ -81,14 +83,17 @@ public class Stola_skill1Ctrl : MonoBehaviour {
 			string firedparentName = GameObject.Find (firedbyname).transform.parent.name;
 			
 			if (hitParentName != firedparentName && hitParentName != firedbyname) {
-				Debug.Log ("hit target = " + coll.name);
-				
-				coll.gameObject.GetComponent<PlayerHealthState> ().hitbySkill (firedbyname, this.gameObject);
-				//Destroy (this.gameObject);
+				coll.gameObject.GetComponent<PlayerHealthState> ().hitbySkill (firedbyname, this.gameObject,damage);
+				onTriggerEmitter(coll.gameObject.name,3);
 			}//if
 		} else if (coll.gameObject.tag == "FLOOR") {
-			Debug.Log ("coll.gameObject.name = "+coll.gameObject.name);
-			//Destroy (this.gameObject);
+		
 		}
+		}
+	}
+	
+	private void onTriggerEmitter(string enemy,int order){
+		string data = ClientState.id + ":"+ClientState.character+":"+"first"+":"+enemy+":"+order.ToString()+":"+damage.ToString() ;
+		SocketStarter.Socket.Emit ("SkillDamageREQ", data);
 	}
 }

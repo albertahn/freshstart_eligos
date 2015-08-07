@@ -35,7 +35,7 @@ public class SpawnPlayer : MonoBehaviour {
 				+":"+BspawnPoint.x+","+BspawnPoint.y+","+BspawnPoint.z+":"
 				+ClientState.character+":"+ClientState.team;
 		}		
-		SocketStarter.Socket.Emit("createPlayerREQ",data);
+		//SocketStarter.Socket.Emit("createPlayerREQ",data);
 	}
 
 	// Use this for initialization
@@ -62,19 +62,20 @@ public class SpawnPlayer : MonoBehaviour {
 		BspawnPoint = GameObject.Find ("BlueTeam/spawnPoint").transform.position;
 
 		PlayerPrefs.SetString("evolved", "false");
-		//StartCoroutine (CreatePlayer());
+//		StartCoroutine (CreatePlayer());
 	}
 
-	public void setSpawn(string _id,Vector3 pos,string _char,string _team){
+	public void setSpawn(string _id,string _char,string _team){
 		GameObject a;
 		player = (GameObject)Resources.Load(_char);
-		a = (GameObject)Instantiate(player,pos,Quaternion.identity);
-		a.name=_id;
 		if(_team =="red"){
+			a = (GameObject)Instantiate(player,RspawnPoint,Quaternion.identity);
 			a.transform.parent = Rteam.transform;
 		}else{
+			a = (GameObject)Instantiate(player,BspawnPoint,Quaternion.identity);
 			a.transform.parent = Bteam.transform;
 		}
+		a.name=_id;
 		//a.GetComponentInChildren<HP_Bar>().target = a.transform;
 		if (_id == ClientState.id) {
 						_respawn.setPlayer ();

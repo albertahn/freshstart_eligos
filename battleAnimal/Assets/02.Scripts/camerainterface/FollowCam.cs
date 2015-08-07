@@ -31,16 +31,6 @@ public class FollowCam : MonoBehaviour {
 	void LateUpdate () {
 		if (target != null) {
 
-			/*target.position.x = target.position.x + side; //target.position - Vector3.forward*dist -  Vector3.left*side ;
-			target.position.y = target.position.y + height;
-
-
-			tr.position = Vector3.Lerp (
-				transform.position, target.position,
-				Time.deltaTime * smooth);
-*/
-			//tr.position = target.position + (Vector3.up * height) - Vector3.forward*dist -  Vector3.left*side ;
-
 			Vector3 point = tr.position;
 			Vector3 delta = target.position + (Vector3.up * height) - Vector3.forward*dist -  Vector3.left*side ;//target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
 			Vector3 destination = delta;

@@ -75,7 +75,6 @@ public class minion_state : MonoBehaviour {
 		GetComponent<minionCtrl> ().isDie = true;
 		
 		if(ClientState.id==firedbyname){
-			Debug.Log ("RED minion die firedby: "+ firedbyname);
 
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);

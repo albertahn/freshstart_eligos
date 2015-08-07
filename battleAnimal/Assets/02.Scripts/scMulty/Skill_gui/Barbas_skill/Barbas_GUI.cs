@@ -39,20 +39,22 @@ public class Barbas_GUI : MonoBehaviour {
 	Barbas_secondSkill secondSkill;
 	Barbas_thirdSkill thirdSkill_script;
 
-	/*
+
 	void Start(){
-		isSet = false;
-	}*/
+		myMoveCtrl = GetComponent<MoveCtrl> ();
+		_playerHealthState = this.GetComponent<PlayerHealthState> ();		
+		trans = GetComponent<Transform> ();		
+		firstSkill = GetComponent<Barbas_firstSkill> ();
+		secondSkill = GetComponent<Barbas_secondSkill> ();
+		thirdSkill_script = GetComponent<Barbas_thirdSkill> ();
+	}
 	
 	public void setPlayer(){
 		ClientID = ClientState.id;	
 		//Get game object
-		myMoveCtrl = GetComponent<MoveCtrl> ();
-		guilayer = Camera.main.GetComponent<GUILayer> ();		
-		_playerHealthState = this.GetComponent<PlayerHealthState> ();
+
 		
-		trans = GetComponent<Transform> ();
-		//FireSkill skillfire = GetComponent<FireSkill>();
+		guilayer = Camera.main.GetComponent<GUILayer> ();
 		
 		skills = GameObject.Find ("skillWindow").GetComponentsInChildren <Image> ();
 		
@@ -73,10 +75,6 @@ public class Barbas_GUI : MonoBehaviour {
 		}
 		_lvUpEvolve = GetComponent<Level_up_evolve> ();
 		isSet = true;
-		
-		firstSkill = GetComponent<Barbas_firstSkill> ();
-		secondSkill = GetComponent<Barbas_secondSkill> ();
-		thirdSkill_script = GetComponent<Barbas_thirdSkill> ();
 	}
 	
 	
@@ -219,10 +217,7 @@ public class Barbas_GUI : MonoBehaviour {
 						
 						transform.LookAt (hiterone.point);
 						clearSkillWraps ();
-						skillOneReady = false;
-						
-						//string data = ClientID + ":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z + ":" + ClientState.character + ":first";						
-						//SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.						
+						skillOneReady = false;				
 						
 					}else{
 						firstSkill.cancleSkill();
@@ -241,12 +236,7 @@ public class Barbas_GUI : MonoBehaviour {
 						//destroy gameobject]
 						//destroy all wraps
 						clearSkillWraps ();
-						skillTwoReady = false;
-						
-						Vector3 clickendpoint = hiterone.point;
-						string data = ClientID + ":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z + ":" + ClientState.character + ":third";
-						
-						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.						
+						skillTwoReady = false;				
 					}//skill 1 ready true
 					
 					if (skillThreeReady) {
@@ -264,12 +254,7 @@ public class Barbas_GUI : MonoBehaviour {
 						//destroy gameobject]
 						//destroy all wraps
 						clearSkillWraps ();
-						skillThreeReady = false;
-						
-						Vector3 clickendpoint = hiterone.point;
-						string data = ClientID + ":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z + ":" + ClientState.character + ":third";
-						
-						SocketStarter.Socket.Emit ("SkillAttack", data);  //내위치를 서버에 알린다.				
+						skillThreeReady = false;	
 						
 					}else{
 						thirdSkill_script.cancleSkill();
@@ -303,6 +288,7 @@ public class Barbas_GUI : MonoBehaviour {
 		dog.transform.LookAt(vector);
 
 		firstSkill.startSkill (firedBy,vector);
+		skill1Emitter (vector);
 		
 		clearSkillWraps();
 		
@@ -317,6 +303,7 @@ public class Barbas_GUI : MonoBehaviour {
 		dog.transform.LookAt(vector);
 
 		secondSkill.startSkill (firedBy,vector);
+		skill2Emitter (vector);
 		
 		clearSkillWraps();
 		
@@ -330,14 +317,39 @@ public class Barbas_GUI : MonoBehaviour {
 		dog.transform.LookAt(vector);
 
 		thirdSkill_script.startSkill(firedBy,vector);
-		
+		skill3Emitter (vector);
 		
 		clearSkillWraps();
 		
 		skillThreeReady = false;		
 	}
+
+	private void skill1Emitter(Vector3 targetPt){
+		string data = ClientID + ":"+ClientState.character+":"+"first"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
+			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+		SocketStarter.Socket.Emit ("SkillAttack", data);
+	}
+	private void skill2Emitter(Vector3 targetPt){
+		string data = ClientID + ":"+ClientState.character+":"+"second"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
+			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+		SocketStarter.Socket.Emit ("SkillAttack", data);
+	}
+	private void skill3Emitter(Vector3 targetPt){
+		string data = ClientID + ":"+ClientState.character+":"+"third"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
+			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+		SocketStarter.Socket.Emit ("SkillAttack", data);
+	}
 	
-	void OnGUI(){
-		GUI.Label(new Rect(200,100,100,100),"skillPoint = "+ClientState.skillPoint);
+	public void skill1Net(Vector3 hiterone){
+		firstSkill.startSkill (this.name,hiterone);
+		transform.LookAt (hiterone);
+	}
+	public void skill2Net(Vector3 hiterone){
+		secondSkill.startSkill(this.name,hiterone);
+		transform.LookAt (hiterone);
+	}
+	public void skill3Net(Vector3 hiterone){
+		thirdSkill_script.startSkill(this.name,hiterone);
+		transform.LookAt (hiterone);
 	}
 }

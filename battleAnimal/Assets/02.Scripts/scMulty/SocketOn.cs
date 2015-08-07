@@ -54,6 +54,7 @@ public class SocketOn : MonoBehaviour {
 	private playerHpSyncReceiver _playerHpSyncReceiver;
 	private Stats_sync_reciever _statSync_reciever;
 	private skillAttackReceiver _skillAttackReceiver;
+	private skillDamageReceiver _skillDamageReceiver;
 
 	
 	void Start () {
@@ -84,7 +85,8 @@ public class SocketOn : MonoBehaviour {
 		_createObserver = GetComponent<createObserver> ();
 		_attackCannonReceiver = GetComponent<attackCannonReceiver> ();
 		_playerHpSyncReceiver = GetComponent<playerHpSyncReceiver> ();
-		
+		_skillAttackReceiver = GetComponent<skillAttackReceiver> ();
+		_skillDamageReceiver = GetComponent<skillDamageReceiver> ();
 
 		
 		_spawnMinion = GetComponent<SpawnMinion> ();
@@ -96,9 +98,6 @@ public class SocketOn : MonoBehaviour {
 		
 		SocketStarter.Socket.On("createRoomRES", (data) =>{
 			string temp = data.Json.args[0].ToString();
-			
-			Debug.Log("cretate RoomRes = "+temp);
-			
 			if(temp== ClientID){
 				if(temp!="ob"){
 					_createRoomReceiver.receive();
@@ -119,10 +118,10 @@ public class SocketOn : MonoBehaviour {
 				_CannonSync_reciever.killCannon (data.Json.args [0].ToString ());
 		});
 		
-		SocketStarter.Socket.On("createPlayerRES",(data) =>
+		/*SocketStarter.Socket.On("createPlayerRES",(data) =>
 		                        {//접속한 플레이어가 있을때 호출된다.
 			_createPlayerReceiver.receive(data.Json.args[0].ToString());
-		});
+		});*/
 		
 		SocketStarter.Socket.On("respawnRES",(data) =>
 		                        {//접속한 플레이어가 있을때 호출된다.
@@ -130,9 +129,9 @@ public class SocketOn : MonoBehaviour {
 				_respawnReceiver.receive(data.Json.args[0].ToString());
 		});
 		
-		SocketStarter.Socket.On ("preuserRES", (data) => {
+		/*SocketStarter.Socket.On ("preuserRES", (data) => {
 			_preUserPlayerReceiver.receive(data.Json.args[0].ToString());
-		});
+		});*/
 
 //statSyncReq
 		SocketStarter.Socket.On("statSyncRes", (data) => {
@@ -223,6 +222,11 @@ public class SocketOn : MonoBehaviour {
 		
 		//skills sync
 		//skill attack
+		SocketStarter.Socket.On ("SkillDamageRES", (data) =>{
+			if(!ClientState.isMaster)
+				_skillDamageReceiver.receive(data.Json.args[0].ToString());
+		});
+
 		SocketStarter.Socket.On ("SkillAttack", (data) =>{
 			string[] temp = data.Json.args[0].ToString().Split(':');
 			if(temp[0]!=ClientState.id)
@@ -242,13 +246,14 @@ public class SocketOn : MonoBehaviour {
 		} else {
 			SocketStarter.Socket.Emit("createRoomREQ", ClientState.id+":"+ClientState.room+":notmaster");
 		}
-	}//end start
+	}
 	
 	//building health change
 	void change_building_health(){
 		GameObject buildingnow = GameObject.Find (building_name);
 		buildingnow.GetComponent<MainFortress>().hp = building_hp_int;		
 	}
+	
 	//change minion health
 	void change_minion_health(){
 		GameObject mininow = GameObject.Find (""+minion_name);

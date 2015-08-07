@@ -35,25 +35,27 @@ public class GuciSkill_GUI : MonoBehaviour {
 	
 	public bool isSet;
 
+	public Guci_firstSkill firstSkill;
+	public Guci_thirdSkill thirdSkill_script;
 	
-	private Guci_firstSkill firstSkill;
-	private Guci_thirdSkill thirdSkill_script;
-	
-	/*
+
 	void Start(){
-		isSet = false;
-	}*/
+		myMoveCtrl = GetComponent<MoveCtrl> ();		
+		_playerHealthState = this.GetComponent<PlayerHealthState> ();
+		_lvUpEvolve = GetComponent<Level_up_evolve> ();
+		firstSkill = GetComponent<Guci_firstSkill> ();
+		thirdSkill_script = GetComponent<Guci_thirdSkill> ();	
+		trans = GetComponent<Transform> ();
+	}
 	
 	public void setPlayer(){
 		ClientID = ClientState.id;	
 		//Get game object
-		myMoveCtrl = GetComponent<MoveCtrl> ();
-		guilayer = Camera.main.GetComponent<GUILayer> ();		
-		_playerHealthState = this.GetComponent<PlayerHealthState> ();
-		
-		trans = GetComponent<Transform> ();
+
 		//FireSkill skillfire = GetComponent<FireSkill>();
 		
+		guilayer = Camera.main.GetComponent<GUILayer> ();
+		isSet = true;
 		skills = GameObject.Find ("skillWindow").GetComponentsInChildren <Image> ();
 		
 		skill_state = new bool[3];
@@ -71,11 +73,6 @@ public class GuciSkill_GUI : MonoBehaviour {
 		for (int i=0; i<3; i++) {
 			skill_live [i] = true;//false;
 		}
-		_lvUpEvolve = GetComponent<Level_up_evolve> ();
-		isSet = true;
-
-		firstSkill = GetComponent<Guci_firstSkill> ();
-		thirdSkill_script = GetComponent<Guci_thirdSkill> ();	
 	}
 	
 	
@@ -114,6 +111,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 			a.transform.parent = transform;
 
 			GetComponent<Guci_secondSkill>().startSkill();
+			skill2Emitter();
 
 			skillStartTime[1] = Time.time;
 			skill_state [1] = false;
@@ -213,11 +211,8 @@ public class GuciSkill_GUI : MonoBehaviour {
 						
 						fireFirst (this.gameObject, clickendpoint, ClientState.id);
 						
-						
 						transform.LookAt (hiterone.point);
-						
 						clearSkillWraps ();
-						
 						skillOneReady = false;
 					}else{
 						firstSkill.cancleSkill();
@@ -232,7 +227,6 @@ public class GuciSkill_GUI : MonoBehaviour {
 
 						clearSkillWraps ();
 						skillThreeReady = false;
-						
 						Vector3 clickendpoint = hiterone.point;
 					}else{
 						thirdSkill_script.cancleSkill();
@@ -263,21 +257,69 @@ public class GuciSkill_GUI : MonoBehaviour {
 		transform.LookAt(vector);
 
 		firstSkill.fireBall (firedBy,vector);
-		
+		skill1Emitter (vector);
+
 		clearSkillWraps();
 		skillOneReady = false;
 	}
 
 	public void fireThird(GameObject gameobject, Vector3 vector, string firedBy){
-		
 		//GameObject dog = gameobject;
-		myMoveCtrl.idle ();		
+		myMoveCtrl.idle ();
 		transform.LookAt(vector);
 
 		thirdSkill_script.startSkill(firedBy,vector);
+		skill3Emitter (vector);
 
+		clearSkillWraps();
+		skillThreeReady = false;
+	}
 
-		clearSkillWraps();		
-		skillThreeReady = false;		
+	private void skill1Emitter(Vector3 targetPt){
+		string data = ClientID + ":"+ClientState.character+":"+"first"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
+			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+		SocketStarter.Socket.Emit ("SkillAttack", data);
+	}
+	private void skill2Emitter(){
+		string data = ClientID + ":"+ClientState.character+":"+"second"+":"+ trans.position.x + "," + trans.position.y +"," + trans.position.z+
+			":" + "1" + "," + "1" + "," + "1";
+		SocketStarter.Socket.Emit ("SkillAttack", data);
+	}
+	private void skill3Emitter(Vector3 targetPt){
+		string data = ClientID + ":"+ClientState.character+":"+"third"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
+			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+		SocketStarter.Socket.Emit ("SkillAttack", data);
+	}
+
+	/*
+	private void skill1CancleEmitter(){
+		string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
+			":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
+		SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+	}
+	*/
+
+	public void skill1Net(Vector3 hiterone){
+		firstSkill.fireBall (this.name,hiterone);
+		transform.LookAt (hiterone);
+	}
+	public void skill2Net(){
+		Vector3 spawnPos = transform.position+ Vector3.up * 3;
+		Quaternion rotationdog = transform.rotation;
+		
+		GameObject a;
+		a = (GameObject)Instantiate (secondskill, spawnPos, rotationdog);
+		a.name = "secondskill";
+		a.transform.parent = transform;
+		
+		GetComponent<Guci_secondSkill>().startSkill();
+	}
+	public void skill3Net(Vector3 hiterone){
+		thirdSkill_script.startSkill(this.name,hiterone);
+		transform.LookAt (hiterone);
+	}
+	public void skill1CancleNet(Vector3 hiterone){
+		firstSkill.fireBall (this.name,hiterone);
+		transform.LookAt (hiterone);
 	}
 }

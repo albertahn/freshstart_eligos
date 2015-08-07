@@ -54,7 +54,7 @@ public class SwirlSwordCtrl : MonoBehaviour {
 			if( hitParentName != firedparentName){
 				Debug.Log("hitskill");
 				
-				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject);
+				coll.gameObject.GetComponent<PlayerHealthState>().hitbySkill(firedByName, this.gameObject,damage);
 				//Destroy (this.gameObject);
 			}//if
 			

@@ -45,10 +45,10 @@ public class FireCtrl : MonoBehaviour {
 		if ((Time.time - birth) > duration) {
 			StartCoroutine (this.CreateBullet (_target));
 			StartCoroutine (this.ShowMuzzleFlash ());
-			//StartCoroutine (this.PlaySfx(fireSfx));
 			birth = Time.time;
 		}
 	}
+
 	IEnumerator PlaySfx(AudioClip _clip){
 		audio.PlayOneShot (_clip, 0.9f);
 		yield return null;

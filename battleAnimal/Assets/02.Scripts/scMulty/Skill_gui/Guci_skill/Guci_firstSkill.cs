@@ -86,7 +86,7 @@ public class Guci_firstSkill : MonoBehaviour {
 			yield return new WaitForSeconds(1.0f);
 		}
 	}
-	
+
 	IEnumerator ShowMuzzleFlash(){
 		//_renderera.enabled = true;
 		yield return new WaitForSeconds(Random.Range(0.01f,0.2f));
