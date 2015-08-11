@@ -14,6 +14,8 @@ public class ClientState : MonoBehaviour {
 	public static int money, points;
 	public static string[] inventory;
 
+	public static bool isMulty;
+
 	public static int[] maxExp;
 
 	public static int skillPoint;
@@ -29,7 +31,7 @@ public class ClientState : MonoBehaviour {
 		items = "";
 		death = 0;
 
-
+		isMulty = false;
 
 		isMaster = false;
 		exp = 0;
@@ -52,12 +54,4 @@ public class ClientState : MonoBehaviour {
 	public static void addInventory(string a,int idx){
 		inventory [idx] = a.ToString();
 	}
-	
-	/*void OnGUI(){
-		GUI.Label(new Rect(200,10,50,50),"id = "+id);
-		GUI.Label(new Rect(200,70,50,50),"room = "+room);
-		GUI.Label(new Rect(200,130,50,50),"order = "+order);
-		GUI.Label(new Rect(200,190,50,50),"character = "+character);
-		GUI.Label(new Rect(200,250,50,50),"team = "+team);
-	}*/
 }

@@ -48,8 +48,11 @@ public class BlueCannonState : MonoBehaviour {
 		if (ClientState.isMaster)
 		{
 			hp -= damage;		
-			string data = this.name + ":" + hp.ToString () + "";
-			SocketStarter.Socket.Emit ("attackCannon", data);	
+
+			if(ClientState.isMulty){
+				string data = this.name + ":" + hp.ToString () + "";
+				SocketStarter.Socket.Emit ("attackCannon", data);	
+			}
 			
 			if(hp<=0)
 			{
@@ -76,16 +79,20 @@ public class BlueCannonState : MonoBehaviour {
 		hp -= obj.GetComponent<SkillFirstCrl>().damage;
 		
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
-		
-		string data = this.name+":" + hp.ToString()+"";
-		SocketStarter.Socket.Emit ("attackMinion", data);		
+
+		if (ClientState.isMulty) {
+						string data = this.name + ":" + hp.ToString () + "";
+						SocketStarter.Socket.Emit ("attackMinion", data);	
+				}
 	}
 	
 	
 	void playerDie(string firedby){
 		_outterCtrl.isRun = false;
-		string data = this.name;
-		SocketStarter.Socket.Emit ("cannonDie", data); 
+			if (ClientState.isMulty) {
+						string data = this.name;
+						SocketStarter.Socket.Emit ("cannonDie", data); 
+				}
 		
 		this.collider.enabled = false;
 		isDie = true;

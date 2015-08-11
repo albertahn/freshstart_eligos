@@ -128,9 +128,11 @@ public class blueMinionCtrl : MonoBehaviour {
 			if (isMaster) {
 				if (moveKey) {
 					moveKey = false;
+					if(ClientState.isMulty){
 					string data = gameObject.name + ":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z+
 						":"+dest.x+","+dest.y+","+dest.z;
 					SocketStarter.Socket.Emit("moveMinionREQ", data);
+					}
 					move ();
 				}
 				if (traceKey) {
@@ -242,8 +244,10 @@ public class blueMinionCtrl : MonoBehaviour {
 				if(isAttack==false){
 					attackKey = true;	
 					
+					if(ClientState.isMulty){
 					string data = gameObject.name + ":" + targetObj.name+":"+minionTr.position.x+","+minionTr.position.y+","+minionTr.position.z;
 					SocketStarter.Socket.Emit ("minionAttackREQ", data);
+					}
 				}
 			}
 			

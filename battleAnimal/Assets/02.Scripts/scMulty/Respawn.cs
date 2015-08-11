@@ -37,7 +37,11 @@ public class Respawn : MonoBehaviour {
 	
 	public void Set(string _id){
 		int i = GameState.search_by_name (_id);
-		team = GameState.team [i];
+		if (ClientState.isMulty)
+			team = GameState.team [i];
+		else 
+			team = "red";
+
 		player = GameObject.Find (_id);
 		level = GameState.level [i];
 		

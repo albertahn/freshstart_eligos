@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Desktop\1st Zinco\Assets\02.Script\PlayScene\BackGround\BackgroundCtrl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\02.Scripts\scMulty\GameState.cs">
     <Files>
-      <File FileName="..\..\..\..\Desktop\1st Zinco\Assets\02.Script\PlayScene\BackGround\BackgroundCtrl.cs" Line="15" Column="28" />
-      <File FileName="..\..\..\..\Desktop\1st Zinco\Assets\02.Script\PlayScene\GameManager\savedPlayerStat.cs" Line="49" Column="27" />
+      <File FileName="Assets\02.Scripts\scMulty\GameState.cs" Line="119" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -38,7 +38,7 @@ public class startCountReceiver : MonoBehaviour {
 		yield return null;
 	}
 
-	private IEnumerator TimeCheck(){
+	public IEnumerator TimeCheck(){
 		TimeObj.SetActive (true);
 		timeText = GameObject.Find ("Canvas/Time/waitTime").GetComponent<Text> ();
 		while (true) {

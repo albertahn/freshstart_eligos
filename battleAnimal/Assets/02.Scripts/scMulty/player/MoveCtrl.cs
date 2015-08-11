@@ -283,10 +283,12 @@ public class MoveCtrl : MonoBehaviour {
 												myzpos = hit3.point.z;
 						
 												clickendpoint = hit3.point;
-						
-												string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
+
+												if(ClientState.isMulty){
+													string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 														":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-												SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+													SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+												}
 						
 												move ();
 										} else {
@@ -300,19 +302,24 @@ public class MoveCtrl : MonoBehaviour {
 																_attackMarkMaker.mark (hit3.collider.gameObject);
 																Vector3 target = hit3.point;
 																attackPoint = target;
-							
+								
+								if(ClientState.isMulty){
 																string data = ClientID + ":" + ClientState.character + ":" + targetName;
 																SocketStarter.Socket.Emit ("attackREQ", data);	
+								}
 																attack (targetName);
 														} else {//같은편을 클릭한 경우
 																_attackMarkMaker.deleteMarker ();
 							
 																Vector3 target = new Vector3 (hit3.point.x, 0, hit3.point.z);
 							
-																clickendpoint = hit3.point;					
+																clickendpoint = hit3.point;		
+								
+								if(ClientState.isMulty){
 																string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 																		":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 																SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+								}
 							
 																move ();
 							
@@ -326,19 +333,24 @@ public class MoveCtrl : MonoBehaviour {
 																_attackMarkMaker.mark (hit3.collider.gameObject);
 																Vector3 target = hit3.point;
 																attackPoint = target;
-							
+								
+								if(ClientState.isMulty){
 																string data = ClientID + ":" + ClientState.character + ":" + targetName;
 																SocketStarter.Socket.Emit ("attackREQ", data);	
+								}
 																attack (targetName);
 														} else {//같은편을 클릭한 경우
 																_attackMarkMaker.deleteMarker ();
 							
 																Vector3 target = new Vector3 (hit3.point.x, 0, hit3.point.z);
 							
-																clickendpoint = hit3.point;					
+																clickendpoint = hit3.point;
+								
+								if(ClientState.isMulty){
 																string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 																		":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 																SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+								}
 							
 																move ();
 							
@@ -354,10 +366,13 @@ public class MoveCtrl : MonoBehaviour {
 					
 										Vector3 target = new Vector3 (hit4.point.x, 0, hit4.point.z);
 					
-										clickendpoint = hit4.point;					
+										clickendpoint = hit4.point;				
+					
+					if(ClientState.isMulty){
 										string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 												":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 										SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+					}
 					
 										move ();
 
@@ -396,9 +411,12 @@ public class MoveCtrl : MonoBehaviour {
 						
 						clickendpoint = hitman2.point;
 						
+					
+					if(ClientState.isMulty){
 						string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 							":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 						SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
+					}
 						
 						move ();
 				}else{
@@ -411,9 +429,12 @@ public class MoveCtrl : MonoBehaviour {
 							_attackMarkMaker.mark(hitman2.collider.gameObject);
 							Vector3 target = hitman2.point;
 							attackPoint = target;
+
 							
+							if(ClientState.isMulty){
 							string data = ClientID+ ":"+ClientState.character + ":" + targetName;
 							SocketStarter.Socket.Emit ("attackREQ",data);	
+							}
 							attack (targetName);
 						}
 						else{//같은편을 클릭한 경우
@@ -424,9 +445,12 @@ public class MoveCtrl : MonoBehaviour {
 								
 								clickendpoint = hitman2.point;
 								
+							
+							if(ClientState.isMulty){
 								string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 									":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 								SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
+							}
 								
 								move ();
 						}
@@ -437,9 +461,12 @@ public class MoveCtrl : MonoBehaviour {
 							_attackMarkMaker.mark(hitman2.collider.gameObject);
 							Vector3 target = hitman2.point;
 							attackPoint = target;
+
 							
+							if(ClientState.isMulty){
 							string data = ClientID + ":"+ClientState.character + ":" + targetName;
 							SocketStarter.Socket.Emit ("attackREQ",data);	
+							}
 							attack (targetName);
 						}
 						else{//같은편을 클릭한 경우
@@ -450,9 +477,12 @@ public class MoveCtrl : MonoBehaviour {
 								
 								clickendpoint = hitman2.point;
 								
+							
+							if(ClientState.isMulty){
 								string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 									":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 								SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
+							}
 								
 								move ();
 						}
@@ -466,9 +496,12 @@ public class MoveCtrl : MonoBehaviour {
 						
 						clickendpoint = hitman.point;
 						
+				
+				if(ClientState.isMulty){
 						string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 							":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 						SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
+				}
 						
 						move ();
 			}

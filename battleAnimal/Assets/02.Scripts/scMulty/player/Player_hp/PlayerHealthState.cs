@@ -56,8 +56,11 @@ public class PlayerHealthState : MonoBehaviour {
 		
 		if (ClientState.isMaster) {
 			hp -= damage;		
+
+			if (ClientState.isMulty) {
 			string data = this.name + ":" + hp.ToString () + "";
 			SocketStarter.Socket.Emit ("playerHpSync", data);
+			}
 			
 			if (hp <= 0) {
 				hp = 0;
@@ -99,7 +102,10 @@ public class PlayerHealthState : MonoBehaviour {
 			_moneyUI.deathPrint();
 			//Debug.Log("ClientState.death = "+ClientState.death);
 			_respawn.Set(this.name);
+
+			if (ClientState.isMulty) {
 			SocketStarter.Socket.Emit ("respawnREQ", this.name);
+			}
 		}
 		
 		this.collider.enabled = false;

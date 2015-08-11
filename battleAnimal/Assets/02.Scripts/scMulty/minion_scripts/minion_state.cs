@@ -48,16 +48,20 @@ public class minion_state : MonoBehaviour {
 		{
 			hp -= damage;
 			
+			if(ClientState.isMulty){
 			string data = this.name + ":" + hp.ToString () + "";
 			SocketStarter.Socket.Emit ("attackMinion", data);
+			}
 			
 			if(hp<=0)
 			{
 				hp=0;
 				minionDie();
 				
+				if(ClientState.isMulty){
 				string data2 = ClientState.id+":"+this.name;
 				SocketStarter.Socket.Emit ("minionDieREQ", data2);
+				}
 			}
 		}
 		

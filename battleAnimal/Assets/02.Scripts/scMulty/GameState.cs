@@ -42,7 +42,7 @@ public class GameState : MonoBehaviour {
 		
 		statsgamedb = GetComponent<Stats_gameDatabase> ();
 	} //awake 
-	
+	/*
 	void OnGUI(){
 		
 		GUI.Label(new Rect(200,10,50,50),"id = "+ClientState.id);
@@ -52,7 +52,7 @@ public class GameState : MonoBehaviour {
 		GUI.Label(new Rect(200,250,50,50),"team = "+ClientState.team);
 		GUI.Label(new Rect(200,310,50,50),"isMaster = "+ClientState.isMaster);
 	}
-
+*/
 	public static int search_by_name(string _name){
 		
 		for (int i=0; i<idx; i++) {
@@ -70,7 +70,11 @@ public class GameState : MonoBehaviour {
 	
 	public static void setusers_cs_kills(string username, int cskills){
 		int user_index = search_by_name (username);
-		cs_kills_array[user_index] = cskills;
+
+		if(ClientState.isMulty)
+			cs_kills_array[user_index] = cskills;
+		else
+			cs_kills_array[0] = cskills;
 
 		/*Debug.Log ("stats bro! :"+ cs_kills_array[user_index].ToString() +"  "+ cs_kills_array.ToString());
 
@@ -89,7 +93,11 @@ public class GameState : MonoBehaviour {
 	public static void setuser_index_array(string username, string members_index){
 
 		int index = search_by_name (username);
-		user_index_array [index] = members_index;
+
+		if(ClientState.isMulty)
+			user_index_array [index] = members_index;
+		else
+			user_index_array [0] = members_index;
 	
 	}//end
 	
@@ -107,8 +115,8 @@ public class GameState : MonoBehaviour {
 //			Debug.Log("ClientState.cs_kill: "+ ClientState.cs_kill);
 			     
 
-
-				StartCoroutine (Stats_gameDatabase.SaveBestScore(ClientState.room.ToString(),
+			if (ClientState.isMulty) {
+			StartCoroutine (Stats_gameDatabase.SaveBestScore(ClientState.room.ToString(),
 			                                                 ClientState.members_index.ToString(),
 			                                                 ClientState.level.ToString(), // string level
 			                                                 ClientState.items.ToString(),
@@ -118,6 +126,7 @@ public class GameState : MonoBehaviour {
 			                                                 ClientState.money.ToString(),
 			                                                 ClientState.team.ToString(),
 			                                                 ClientState.points.ToString())); 
+			}
 
 			
 			senddatabool = false;

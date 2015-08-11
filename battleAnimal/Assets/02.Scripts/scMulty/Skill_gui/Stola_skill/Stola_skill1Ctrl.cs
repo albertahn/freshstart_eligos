@@ -93,7 +93,9 @@ public class Stola_skill1Ctrl : MonoBehaviour {
 	}
 	
 	private void onTriggerEmitter(string enemy,int order){
-		string data = ClientState.id + ":"+ClientState.character+":"+"first"+":"+enemy+":"+order.ToString()+":"+damage.ToString() ;
-		SocketStarter.Socket.Emit ("SkillDamageREQ", data);
+		if (ClientState.isMulty) {
+						string data = ClientState.id + ":" + ClientState.character + ":" + "first" + ":" + enemy + ":" + order.ToString () + ":" + damage.ToString ();
+						SocketStarter.Socket.Emit ("SkillDamageREQ", data);
+				}
 	}
 }

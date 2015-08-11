@@ -48,9 +48,11 @@ public class MainFortress : MonoBehaviour {public GameObject bloodEffect;
 	public void Heated(string firedby, GameObject obj,int damage){
 		if (ClientState.isMaster) {	
 			hp -= damage;
-			
+
+			if (ClientState.isMulty) {
 			string data = this.name + ":" + hp.ToString () + "";
 			SocketStarter.Socket.Emit ("attackBuilding", data);
+			}
 			
 			if (hp <= 0) {
 				hp = 0;

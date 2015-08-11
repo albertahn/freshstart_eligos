@@ -335,19 +335,25 @@ public class StolaSkill_GUI : MonoBehaviour {
 	}
 
 	private void skill1Emitter(Vector3 targetPt){
-		string data = ClientID + ":"+ClientState.character+":"+"first"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
-			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
-		SocketStarter.Socket.Emit ("SkillAttack", data);
+		if (ClientState.isMulty) {
+						string data = ClientID + ":" + ClientState.character + ":" + "first" + ":" + trans.position.x + "," + trans.position.y + "," + trans.position.z +
+								":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+						SocketStarter.Socket.Emit ("SkillAttack", data);
+				}
 	}
 	private void skill2Emitter(Vector3 targetPt){
-		string data = ClientID + ":"+ClientState.character+":"+"second"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
-			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
-		SocketStarter.Socket.Emit ("SkillAttack", data);
+		if (ClientState.isMulty) {
+						string data = ClientID + ":" + ClientState.character + ":" + "second" + ":" + trans.position.x + "," + trans.position.y + "," + trans.position.z +
+								":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+						SocketStarter.Socket.Emit ("SkillAttack", data);
+				}
 	}
 	private void skill3Emitter(Vector3 targetPt){
-		string data = ClientID + ":"+ClientState.character+":"+"third"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
-			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
-		SocketStarter.Socket.Emit ("SkillAttack", data);
+		if (ClientState.isMulty) {
+						string data = ClientID + ":" + ClientState.character + ":" + "third" + ":" + trans.position.x + "," + trans.position.y + "," + trans.position.z +
+								":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+						SocketStarter.Socket.Emit ("SkillAttack", data);
+				}
 	}
 
 	public void skill1Net(Vector3 hiterone){

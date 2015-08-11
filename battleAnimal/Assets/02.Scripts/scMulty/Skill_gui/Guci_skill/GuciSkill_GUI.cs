@@ -40,7 +40,7 @@ public class GuciSkill_GUI : MonoBehaviour {
 	
 
 	void Start(){
-		myMoveCtrl = GetComponent<MoveCtrl> ();		
+		myMoveCtrl = GetComponent<MoveCtrl> ();
 		_playerHealthState = this.GetComponent<PlayerHealthState> ();
 		_lvUpEvolve = GetComponent<Level_up_evolve> ();
 		firstSkill = GetComponent<Guci_firstSkill> ();
@@ -276,19 +276,25 @@ public class GuciSkill_GUI : MonoBehaviour {
 	}
 
 	private void skill1Emitter(Vector3 targetPt){
-		string data = ClientID + ":"+ClientState.character+":"+"first"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
-			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
-		SocketStarter.Socket.Emit ("SkillAttack", data);
+		if (ClientState.isMulty) {
+						string data = ClientID + ":" + ClientState.character + ":" + "first" + ":" + trans.position.x + "," + trans.position.y + "," + trans.position.z +
+								":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+						SocketStarter.Socket.Emit ("SkillAttack", data);
+				}
 	}
 	private void skill2Emitter(){
-		string data = ClientID + ":"+ClientState.character+":"+"second"+":"+ trans.position.x + "," + trans.position.y +"," + trans.position.z+
-			":" + "1" + "," + "1" + "," + "1";
-		SocketStarter.Socket.Emit ("SkillAttack", data);
+		if (ClientState.isMulty) {
+						string data = ClientID + ":" + ClientState.character + ":" + "second" + ":" + trans.position.x + "," + trans.position.y + "," + trans.position.z +
+								":" + "1" + "," + "1" + "," + "1";
+						SocketStarter.Socket.Emit ("SkillAttack", data);
+				}
 	}
 	private void skill3Emitter(Vector3 targetPt){
-		string data = ClientID + ":"+ClientState.character+":"+"third"+":"+ trans.position.x + "," + trans.position.y + "," + trans.position.z +
-			":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
-		SocketStarter.Socket.Emit ("SkillAttack", data);
+		if (ClientState.isMulty) {
+						string data = ClientID + ":" + ClientState.character + ":" + "third" + ":" + trans.position.x + "," + trans.position.y + "," + trans.position.z +
+								":" + targetPt.x + "," + targetPt.y + "," + targetPt.z;
+						SocketStarter.Socket.Emit ("SkillAttack", data);
+				}
 	}
 
 	/*

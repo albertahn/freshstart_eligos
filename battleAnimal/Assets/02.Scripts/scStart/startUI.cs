@@ -44,12 +44,18 @@ public class startUI : MonoBehaviour {
 		GUI.Label(new Rect(200,250,50,50),"team = "+ClientState.team);
 		GUI.Label(new Rect(200,310,50,50),"isMaster = "+ClientState.isMaster);
 	}
+
+	public void SingleWait(){
+		ClientState.isMulty = false;
+		Application.LoadLevel("scSingleWait");
+	}
+
 	public void Multy()
 	{
+		ClientState.isMulty = true;
 		Application.LoadLevel("scRoomsList");
-
 	}
-	
+
 	public void Logout()
 	{
 		PlayerPrefs.SetString("email", "");
@@ -67,18 +73,13 @@ public class startUI : MonoBehaviour {
 	}//exit
 
 	public void showFriendPannel(){
-
-
-
 		friendPannel.transform.localPosition = newpos;
-
 		myProfilePannel.transform.localPosition = outofScreen;
-
 	}//show
+
 	public void showMyProfile(){
 		friendPannel.transform.localPosition = outofScreen;
-			myProfilePannel.transform.localPosition =  newpos; 
-
+			myProfilePannel.transform.localPosition =  newpos;
 	}
 
 	//show my followers

@@ -92,6 +92,7 @@ public class SpawnMinion : MonoBehaviour {
 				break;
 			}
 		}
+		if(ClientState.isMulty)
 		SocketStarter.Socket.Emit ("createMinionREQ",data);
 	}
 	
