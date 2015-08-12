@@ -7,7 +7,7 @@ public class Level_up_evolve : MonoBehaviour {
 	public GameObject firstEvolvPlayer;	
 	public bool switchToEvol;	
 	public bool evol_already;
-	private int exp;
+	public int exp;
 	private RectTransform plusWindow;
 	private RectTransform plusSkill1;
 	private RectTransform plusSkill2;
@@ -51,7 +51,7 @@ public class Level_up_evolve : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {		
+	void Update () {
 		if(switchToEvol==true && PlayerPrefs.GetString("evolved") =="false"){			
 			StartEvolution();
 			PlayerPrefs.SetString ("evolved", "true");
@@ -93,15 +93,16 @@ public class Level_up_evolve : MonoBehaviour {
 		if (exp >= ClientState.maxExp[2]&&ClientState.level<3) {
 			if(currentlevel!=3){
 				process(3);
+				Debug.Log("lv3");
 			}
-		}else if (exp <= ClientState.maxExp[3]&&ClientState.level<4){
+		}else if (exp >= ClientState.maxExp[3]&&ClientState.level<4){
 			if(currentlevel!=4){
 				process(4);
 			}
 		}
 		if (exp >= ClientState.maxExp[4]&&ClientState.level<5){
 			if(currentlevel!=5){
-				process(5);
+				process(5);;
 			}
 		}
 		if (exp >=ClientState.maxExp[5]&&ClientState.level<6) {
@@ -109,7 +110,7 @@ public class Level_up_evolve : MonoBehaviour {
 				process(6);
 			}
 		}
-		if (_exp >=ClientState.maxExp[6]&&ClientState.level<7) {
+		if (exp >=ClientState.maxExp[6]&&ClientState.level<7) {
 			if(currentlevel!=7){
 				process(7);
 			}

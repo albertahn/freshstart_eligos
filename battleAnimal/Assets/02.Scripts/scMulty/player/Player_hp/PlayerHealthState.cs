@@ -46,14 +46,8 @@ public class PlayerHealthState : MonoBehaviour {
 	}
 	
 	public void Heated(string firedby,GameObject obj,int damage){
-		
-		//Debug.Log ("playerhp: "+hp);
-		
-		Collider coll = obj.collider;
-		
+		Collider coll = obj.collider;		
 		StartCoroutine (this.CreateBloodEffect(coll.transform.position));
-		
-		
 		if (ClientState.isMaster) {
 			hp -= damage;		
 
@@ -72,7 +66,6 @@ public class PlayerHealthState : MonoBehaviour {
 	
 	public void HeatedSync(int _hp){
 		hp = _hp;
-		Debug.Log ("player hp sync");
 		if (hp <= 0) {
 			hp = 0;
 			playerDie ();
@@ -107,16 +100,15 @@ public class PlayerHealthState : MonoBehaviour {
 			SocketStarter.Socket.Emit ("respawnREQ", this.name);
 			}
 		}
+		else if((!ClientState.isMulty)&&gameObject.name =="Enemy")
+		{
+			_respawn.SetEnemy();
+		}
 		
 		this.collider.enabled = false;
 		int oldInt = PlayerPrefs.GetInt ("minions_killed");
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);
-		
-		/*if(PlayerPrefs.GetInt ("minions_killed") >1  && PlayerPrefs.GetString("evolved")=="false"){			
-			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().switchToEvol=true;			
-			//PlayerPrefs.SetString("evolved", "true");			
-		}*/
-		//	Destroy (this.gameObject, 3.0f);
+
 	}
 	
 	

@@ -109,7 +109,7 @@ public class BlueCannonState : MonoBehaviour {
 		//if (distance<10.0f) {
 			
 		if (firedby == ClientState.id) {	
-			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(100);
+			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(100);
 			
 		}

@@ -80,8 +80,6 @@ public class RedCannonState : MonoBehaviour {
 	
 	public void hitbySkill(string firedby, GameObject obj){
 		
-		Debug.Log ("skill hit: "+ firedby);
-		
 		hp -= obj.GetComponent<SkillFirstCrl>().damage;
 		
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
@@ -113,7 +111,7 @@ public class RedCannonState : MonoBehaviour {
 		
 		if (firedby == ClientState.id) {
 			Debug.Log("redCannon die_ firedBy = "+firedby);
-			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(100);
+			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(100);
 		}
 		

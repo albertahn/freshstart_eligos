@@ -76,6 +76,10 @@ public class SpawnPlayer : MonoBehaviour {
 			a.transform.parent = Bteam.transform;
 		}
 		a.name=_id;
+		if (_id != "Enemy") {
+			a.GetComponent<MoveCtrl>().DieOutterCollider();
+		}
+
 		//a.GetComponentInChildren<HP_Bar>().target = a.transform;
 		if (_id == ClientState.id) {
 						_respawn.setPlayer ();

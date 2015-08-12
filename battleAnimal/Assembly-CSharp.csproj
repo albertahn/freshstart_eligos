@@ -197,8 +197,10 @@
      <Compile Include="Assets\02.Scripts\scRoomList\roomSocketOn.cs" />
      <Compile Include="Assets\02.Scripts\scRoomList\roomSocketStarter.cs" />
      <Compile Include="Assets\02.Scripts\scSingle\CreatePlayer.cs" />
+     <Compile Include="Assets\02.Scripts\scSingle\Enemy_outter_collider.cs" />
      <Compile Include="Assets\02.Scripts\scSingleWait\singleWaitGUI.cs" />
      <Compile Include="Assets\02.Scripts\scStart\ClientState.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\EnemyState.cs" />
      <Compile Include="Assets\02.Scripts\scStart\create_room.cs" />
      <Compile Include="Assets\02.Scripts\scStart\friendList.cs" />
      <Compile Include="Assets\02.Scripts\scStart\startUI.cs" />

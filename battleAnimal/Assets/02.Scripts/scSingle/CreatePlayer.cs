@@ -16,6 +16,8 @@ public class CreatePlayer : MonoBehaviour {
 		ClientState.team = "red";
 		ClientState.isMaster = true;
 		_spawnPlayer.setSpawn(ClientState.id,ClientState.character,ClientState.team);
+		_spawnPlayer.setSpawn(EnemyState.id,EnemyState.character,EnemyState.team);
+
 	}
 	
 	// Update is called once per frame

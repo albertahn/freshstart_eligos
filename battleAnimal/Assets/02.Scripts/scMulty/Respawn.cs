@@ -36,14 +36,16 @@ public class Respawn : MonoBehaviour {
 	}
 	
 	public void Set(string _id){
-		int i = GameState.search_by_name (_id);
-		if (ClientState.isMulty)
+		if (ClientState.isMulty) {
+			int i = GameState.search_by_name (_id);		
 			team = GameState.team [i];
-		else 
-			team = "red";
-
-		player = GameObject.Find (_id);
-		level = GameState.level [i];
+			player = GameObject.Find (_id);
+			level = GameState.level [i];
+		} else {
+			team = ClientState.team;
+			player = GameObject.Find (_id);
+			level = ClientState.level;
+		}
 		
 		_playerState = player.GetComponent<PlayerHealthState> ();
 		
@@ -58,7 +60,19 @@ public class Respawn : MonoBehaviour {
 		birth = Time.time;
 		_switch = true;
 	}
-	
+
+	public void SetEnemy(){
+		team = "blue";
+		player = GameObject.Find ("Enemy");
+
+		respawnTime = 4.0f;
+
+		_playerState = player.GetComponent<PlayerHealthState> ();
+		
+		birth = Time.time;
+		_switch = true;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (_switch && (Time.time - birth > respawnTime)) {
@@ -71,8 +85,16 @@ public class Respawn : MonoBehaviour {
 				player.transform.position = RspawnPos;
 			else
 				player.transform.position = BspawnPos;
-			_switch = false;
 			_CameraTouch.focusCamPlayer = true;
-		}		
+
+			if((!ClientState.isMulty)&&player.name=="Enemy"){
+				MoveCtrl moveCtrl = player.GetComponent<MoveCtrl>();
+				moveCtrl.initiatePoints();
+				moveCtrl.targetObj=null;
+				moveCtrl.moveKey=true;
+				StartCoroutine (moveCtrl.CheckMonsterState ());
+			}
+			_switch = false;
+		}
 	}
 }

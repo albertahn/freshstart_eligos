@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class MoveCtrl : MonoBehaviour {	
-	private Transform tr;
+	public Transform tr;
 	private CharacterController _controller;
 	private FireCtrl _fireCtrl;
 	public AudioClip stepSfx;
@@ -27,8 +28,7 @@ public class MoveCtrl : MonoBehaviour {
 	public bool directionChosen;
 	
 	public float timeOfTouch;
-	
-	public bool isAttack;
+
 	public Vector3 attackPoint;	
 	public bool isMoveAndAttack;
 	
@@ -59,6 +59,13 @@ public class MoveCtrl : MonoBehaviour {
 		yield return null;
 	}
 	
+	public Transform[] pointTemp;
+	public List<Transform> point;
+
+	public void DieOutterCollider(){
+		GameObject.Find(gameObject.name+"/outerCollider").SetActive(false);
+	}
+
 	// Use this for initialization
 	void Start () {
 		skillMode = false;
@@ -85,13 +92,18 @@ public class MoveCtrl : MonoBehaviour {
 
 		_aniCtrl = GetComponent<AniCtrl> ();
 		
+		_aniCtrl._animation ["attack"].speed = 2.5f;
+		_aniCtrl._animation ["run"].speed = 2.5f;
+
 		myxpos = tr.transform.position.x;
 		myypos = tr.transform.position.y;
 		
 		directionChosen = false;
 		isAttack = false;
 		isMoveAndAttack=false;
-		
+
+		_outterCtrl = GetComponentInChildren<Enemy_outter_collider> ();	
+
 		swiped = false;
 		terrainHeight = 50.1f;
 
@@ -104,8 +116,46 @@ public class MoveCtrl : MonoBehaviour {
 		} else if (ClientState.character == "stola") {
 
 		}
+
+		if ((!ClientState.isMulty)&&gameObject.name =="Enemy") {
+			traceDist = 20.0f;
+			attackDist = 7.0f;
+			initiatePoints();
+			moveKey=true;
+			StartCoroutine (this.CheckMonsterState ());
+		}
 	}	
-	
+
+	public Vector3 dest;
+	public void initiatePoints(){
+		Debug.Log ("hello initiatePoints");
+		point.Clear ();
+
+		int line = Random.Range (1, 3);
+
+		if(line==1)
+			pointTemp = GameObject.Find ("enemyMovePoints/route1").GetComponentsInChildren<Transform> ();
+		else if(line==2)
+			pointTemp = GameObject.Find ("enemyMovePoints/route2").GetComponentsInChildren<Transform> ();
+		
+		for (int i=1; i<pointTemp.Length; i++) {
+			point.Add(pointTemp[i]);
+		}
+		
+		sortPointsByDistance ();
+		
+		dest = point[0].position;
+		
+		point.RemoveAt (0);
+	}
+
+	private void sortPointsByDistance(){
+		point.Sort (delegate(Transform t1,Transform t2) {
+			return(Vector3.Distance (t1.position, tr.position).CompareTo
+			       (Vector3.Distance (t2.position, tr.position)));
+		});
+	}
+
 	// Update is called once per frame
 	void Update () {
 		//id가 내 캐릭터 일때
@@ -116,95 +166,94 @@ public class MoveCtrl : MonoBehaviour {
 					if (EventSystem.current.IsPointerOverGameObject () == false)
 						PCcontroller();
 				#endif
-		}//end 
-		
-		if(!_state.isDie){
-			//ifmove
-			if (playermoving) {
-				tr.LookAt (clickendpoint);
-				//if (clickendpoint != tr.position) {
-				float step = playerStat.speed * Time.deltaTime;
-
-				clickendpoint.y = terrainHeight;
-				Vector3 dir = clickendpoint - tr.position;
-				Vector3 movement = dir.normalized * step;
-				if (movement.magnitude > dir.magnitude)
-					movement = dir;
-				_controller.Move (movement);
-				
-				
-				//tr.position = Vector3.MoveTowards(tr.position, clickendpoint, step);
-				//}
-				_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);
-				_aniCtrl._animation ["attack"].speed = 2.5f;
-				_aniCtrl._animation ["run"].speed = 2.5f;
-			}
-			
-			if (isAttack) {
-				if (targetObj != null) {
-					_aniCtrl._animation.CrossFade (_aniCtrl.anim.attack.name, 0.3f);
-					//if(targetObj.GetComponent<minionCtrl>()!=null){
-					if (targetObj.tag == "MINION") {
-						if (targetObj.name [0] == 'b') {
-							if (targetObj.GetComponent<blueMinionCtrl> ().isDie == true)
-								idle ();
-							else {
-								tr.LookAt (targetObj.transform.position);			
-								_fireCtrl.Fire (targetObj.name);
-								
-								if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance)
-								{
-									clickendpoint = targetObj.transform.position;
-									isMoveAndAttack = true;
-									playermoving = true;
-								}
-							}
-						} else if (targetObj.name [0] == 'r') {
-							if (targetObj.GetComponent<minionCtrl> ().isDie == true)
-								idle ();
-							else {
-								tr.LookAt (targetObj.transform.position);			
-								_fireCtrl.Fire (targetObj.name);
-								
-								if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance)
-								{
-									clickendpoint = targetObj.transform.position;
-									isMoveAndAttack = true;
-									playermoving = true;
-								}
-							}
-						}
-					}
-					else if(targetObj.tag == "DIE"){
-						idle ();
-					}else {//non minions
-						Vector3 tt;
-						tt = targetObj.transform.position;
-						tt.y = terrainHeight;
-						tr.LookAt (tt);			
-						_fireCtrl.Fire (targetObj.name);
-						
-						if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
-							clickendpoint = targetObj.transform.position;
-							isMoveAndAttack = true;
-							playermoving = true;
-						}
-					}//npnmins
-				}
-			}
-			
-			if (Vector3.Distance (clickendpoint, tr.position) <= 0.5f) {
-				playermoving = false;
-				_aniCtrl._animation.CrossFade (_aniCtrl.anim.idle.name, 0.3f);
-			}
-			
-			if (isMoveAndAttack) {
-				if (Vector3.Distance (tr.position, targetObj.transform.position) <= _fireCtrl.distance) {
-					isMoveAndAttack = false;
-					attack (targetObj.name);
-				}
-			}
+		}else if(gameObject.name =="Enemy"&& _state.isDie == false){
+			EnemyCtrl();
 		}
+
+		if (gameObject.name != "Enemy") {
+						if (!_state.isDie) {
+								//ifmove
+								if (playermoving) {
+										tr.LookAt (clickendpoint);
+										//if (clickendpoint != tr.position) {
+										float step = playerStat.speed * Time.deltaTime;
+
+										clickendpoint.y = terrainHeight;
+										Vector3 dir = clickendpoint - tr.position;
+										Vector3 movement = dir.normalized * step;
+										if (movement.magnitude > dir.magnitude)
+												movement = dir;
+										_controller.Move (movement);
+				
+				
+										//tr.position = Vector3.MoveTowards(tr.position, clickendpoint, step);
+										//}
+										_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);
+								}
+			
+								if (isAttack) {
+										if (targetObj != null) {
+												_aniCtrl._animation.CrossFade (_aniCtrl.anim.attack.name, 0.3f);
+												//if(targetObj.GetComponent<minionCtrl>()!=null){
+												if (targetObj.tag == "MINION") {
+														if (targetObj.name [0] == 'b') {
+																if (targetObj.GetComponent<blueMinionCtrl> ().isDie == true)
+																		idle ();
+																else {
+																		tr.LookAt (targetObj.transform.position);			
+																		_fireCtrl.Fire (targetObj.name);
+								
+																		if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
+																				clickendpoint = targetObj.transform.position;
+																				isMoveAndAttack = true;
+																				playermoving = true;
+																		}
+																}
+														} else if (targetObj.name [0] == 'r') {
+																if (targetObj.GetComponent<minionCtrl> ().isDie == true)
+																		idle ();
+																else {
+																		tr.LookAt (targetObj.transform.position);			
+																		_fireCtrl.Fire (targetObj.name);
+								
+																		if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
+																				clickendpoint = targetObj.transform.position;
+																				isMoveAndAttack = true;
+																				playermoving = true;
+																		}
+																}
+														}
+												} else if (targetObj.tag == "DIE") {
+														idle ();
+												} else {//non minions
+														Vector3 tt;
+														tt = targetObj.transform.position;
+														tt.y = terrainHeight;
+														tr.LookAt (tt);			
+														_fireCtrl.Fire (targetObj.name);
+						
+														if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
+																clickendpoint = targetObj.transform.position;
+																isMoveAndAttack = true;
+																playermoving = true;
+														}
+												}//npnmins
+										}
+								}
+			
+								if (Vector3.Distance (clickendpoint, tr.position) <= 0.5f) {
+										playermoving = false;
+										_aniCtrl._animation.CrossFade (_aniCtrl.anim.idle.name, 0.3f);
+								}
+			
+								if (isMoveAndAttack) {
+										if (Vector3.Distance (tr.position, targetObj.transform.position) <= _fireCtrl.distance) {
+												isMoveAndAttack = false;
+												attack (targetObj.name);
+										}
+								}
+						}
+				}
 	}//end update
 	
 	public void attack(string _targetName){
@@ -507,6 +556,100 @@ public class MoveCtrl : MonoBehaviour {
 			}
 		}
 	}
+	
+	public bool isTraceE;
+	public bool isAttack;
+	public bool isAttackE;
+	public bool isMoveE;
+	
+	public bool moveKey;
+	public bool traceKey;
+	public bool attackKey;
+
+	public Enemy_outter_collider _outterCtrl;
+
+	private void EnemyCtrl(){
+			if (moveKey) {
+				moveKey = false;
+
+				moveE ();
+			}
+			if (traceKey) {
+				traceKey = false;
+				traceE();
+			}
+			if (attackKey) {
+				attackKey = false;
+				attackE();
+			}
+		
+		if (isMoveE) {
+		//	nvAgent.Stop();
+			tr.LookAt (dest);
+			if(dest!=tr.position){
+				_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);
+				float step = playerStat.speed * Time.deltaTime;
+				tr.position = Vector3.MoveTowards (tr.position, dest, step);
+			//	nvAgent.destination = dest;
+			}
+			if(Vector3.Distance(dest,tr.position)<=5.0f)
+			{
+				if(point.Count>0){
+					dest = point [0].position;
+					point.RemoveAt (0);
+				}
+				/*if(idx<8){
+						idx++;
+						moveKey = true;
+					}*/					
+			}											
+		}
+		
+		if (isTraceE) {
+			if (targetObj != null) {
+				_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);					
+			//	nvAgent.destination = targetObj.transform.position;
+				//syncTarget = target = playerTr.position;
+				tr.LookAt (targetObj.transform.position);
+				float step = playerStat.speed * Time.deltaTime;
+				tr.position = Vector3.MoveTowards (tr.position, targetObj.transform.position, step);
+			}
+		}
+		
+		if (isAttackE) {
+		//	nvAgent.Stop();
+			if (targetObj != null) {
+				if(targetObj.tag=="DIE"){
+					_outterCtrl.removeOne(targetObj);
+				}else{
+					_aniCtrl._animation.CrossFade (_aniCtrl.anim.attack.name, 0.3f);
+					tr.LookAt (targetObj.transform.position);
+					_fireCtrl.Fire (targetObj.name);	
+				}
+			}else{					
+				_outterCtrl.refreshList();	
+				move();
+			}
+		}
+	}
+
+	public void moveE(){
+		isMoveE = true;
+		isTraceE = false;
+		isAttackE = false;
+	}
+	
+	public void traceE(){		
+		isMoveE=false;
+		isTraceE = true;
+		isAttackE = false;
+	}
+	
+	public void attackE(){		
+		isMoveE=false;
+		isTraceE = false;
+		isAttackE = true;
+	}
 
 	private void skillCancle(){
 		if(ClientState.character=="guci"){
@@ -517,6 +660,37 @@ public class MoveCtrl : MonoBehaviour {
 			
 		}else if(ClientState.character=="barbas"){
 			
+		}
+	}
+
+	private float dist,attackDist,traceDist;
+	public IEnumerator CheckMonsterState(){
+		while (!_state.isDie) {
+			yield return new WaitForSeconds(0.2f);
+			
+			if(targetObj!=null){
+				float innerSize = targetObj.transform.localScale.x/2;
+				dist = Vector3.Distance(targetObj.transform.position,tr.position)-innerSize;
+			}
+			else{
+				dist = 1000.0f;
+			}
+			
+			if(dist<=attackDist){
+				if(isAttackE==false){
+					attackKey = true;
+				}
+			}
+			else if(dist<=traceDist)
+			{
+				if(isTraceE==false)
+					traceKey = true;
+			}else
+			{
+				if(isMoveE==false){
+					moveKey = true;
+				}
+			}
 		}
 	}
 }

@@ -102,8 +102,7 @@ public class friendList : MonoBehaviour {
 		GameObject newItem = Instantiate(friend_row) as GameObject;
 
 		float itemheight = newItem.GetComponent<RectTransform>().rect.height;
-		
-		Debug.Log ("height: "+itemheight);
+
 		//newItem.GetComponent<RectTransform>().rect.height;
 		
 		//GameObject pannelContent = Instantiate(pannel_content) as GameObject;

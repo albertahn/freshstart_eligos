@@ -25,6 +25,7 @@ public class ClientState : MonoBehaviour {
 		id = PlayerPrefs.GetString ("email");
 
 		members_index = PlayerPrefs.GetString ("user_index");
+
 		level = 1;
 		money = 0;
 		points = 0;
@@ -42,9 +43,9 @@ public class ClientState : MonoBehaviour {
 		
 		inventory = new string[6];
 		maxExp = new int[7];
-		maxExp [0] = 10;
-		maxExp [1] = 30;
-		maxExp [2] = 60;
+		maxExp [0] = 100;
+		maxExp [1] = 300;
+		maxExp [2] = 600;
 		maxExp [3] = 1000;
 		maxExp [4] = 1500;
 		maxExp [5] = 2200;

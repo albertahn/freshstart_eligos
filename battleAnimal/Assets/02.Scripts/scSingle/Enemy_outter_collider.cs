@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class red_outer_collider : MonoBehaviour {
-	public minionCtrl _ctrl;
+public class Enemy_outter_collider : MonoBehaviour {
+	public MoveCtrl _ctrl;
 	public List<GameObject> targets;
 	public List<string> targetString;
 	public string targetName;
@@ -11,11 +11,12 @@ public class red_outer_collider : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		_ctrl = GetComponentInParent<minionCtrl> ();
+		_ctrl = GetComponentInParent<MoveCtrl> ();
 		targets = new List<GameObject>();
 		targetString = new List<string> ();
 		
 		isRun = false;
+
 		StartCoroutine (refreshList ());
 	}
 	
@@ -41,33 +42,33 @@ public class red_outer_collider : MonoBehaviour {
 			}
 			targetName = targets[i].name;
 			_ctrl.targetObj = targets[i];
-			_ctrl.isAttack = true;
+			_ctrl.isAttackE = true;
 		}else{
 			targetName = targets[targets.Count-1].name;
 			_ctrl.targetObj = targets[targets.Count-1];
-			_ctrl.isAttack = true;
+			_ctrl.isAttackE = true;
 		}	
 	}
 	
 	void OnTriggerEnter(Collider coll){
-		if (coll.gameObject.name != "touchCollider") {
-			if (coll.tag == "Player") {
-				string parentName = coll.gameObject.transform.parent.name;
-				if (parentName [0] == 'B') {
-					addEnemy(coll.gameObject);
-				}
-			} else if (coll.tag == "MINION") {
-				if (coll.name [0] == 'b') {
-					addEnemy(coll.gameObject);
-				}
-			} else if (coll.tag == "BUILDING") {
-				if (coll.name [0] == 'b') {
-					addEnemy(coll.gameObject);
-				}
-			} else if (coll.tag == "BLUE_CANNON") {
-				addEnemy(coll.gameObject);
-			}
-		}
+						if (coll.gameObject.name != "touchCollider") {
+								if (coll.tag == "Player") {
+										string parentName = coll.gameObject.transform.parent.name;
+										if (parentName [0] == 'R') {
+												addEnemy (coll.gameObject);							
+										}
+								} else if (coll.tag == "MINION") {			
+										if (coll.name [0] == 'r') {
+												addEnemy (coll.gameObject);	
+										}
+								} else if (coll.tag == "BUILDING") {		
+										if (coll.name [0] == 'r') {
+												addEnemy (coll.gameObject);	
+										}
+								} else if (coll.tag == "RED_CANNON") {
+										addEnemy (coll.gameObject);	
+								}
+						}
 	}
 	
 	void OnTriggerExit(Collider coll){
@@ -75,7 +76,7 @@ public class red_outer_collider : MonoBehaviour {
 	}
 	
 	public void addEnemy(GameObject _zn){
-		if (targetString.BinarySearch (_zn.name) <0){
+		if (targetString.BinarySearch (_zn.name) <0) {
 			targets.Add (_zn);
 			targetString.Add (_zn.name);
 			if (isRun == false) {
@@ -94,14 +95,14 @@ public class red_outer_collider : MonoBehaviour {
 		_ctrl.moveKey = true;
 		_ctrl.targetObj = null;
 		changeTarget ();
-		//	}
+		//		}
 	}
 	
 	public void removeAll(){
 		targets.Clear ();
 		targetString.Clear ();
 		targetName = null;
-		isRun = false;
+		isRun= false;
 		if(_ctrl!=null)
 			_ctrl.targetObj = null;
 	}

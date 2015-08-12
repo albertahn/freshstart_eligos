@@ -42,7 +42,7 @@ public class GameState : MonoBehaviour {
 		
 		statsgamedb = GetComponent<Stats_gameDatabase> ();
 	} //awake 
-	/*
+
 	void OnGUI(){
 		
 		GUI.Label(new Rect(200,10,50,50),"id = "+ClientState.id);
@@ -51,8 +51,9 @@ public class GameState : MonoBehaviour {
 		GUI.Label(new Rect(200,190,50,50),"character = "+ClientState.character);
 		GUI.Label(new Rect(200,250,50,50),"team = "+ClientState.team);
 		GUI.Label(new Rect(200,310,50,50),"isMaster = "+ClientState.isMaster);
+		GUI.Label(new Rect(200,370,50,50),"isMulty = "+ClientState.isMulty);
 	}
-*/
+
 	public static int search_by_name(string _name){
 		
 		for (int i=0; i<idx; i++) {

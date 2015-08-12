@@ -81,7 +81,6 @@ public class blue_outer_collider : MonoBehaviour {
 			if (isRun == false) {
 				targetName = _zn.name;
 				_ctrl.targetObj = _zn;
-				_ctrl.playerTr = _zn.transform;
 				_ctrl.traceKey = true;
 				isRun = true;
 			}

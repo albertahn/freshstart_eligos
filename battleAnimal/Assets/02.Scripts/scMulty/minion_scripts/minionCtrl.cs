@@ -5,8 +5,7 @@ using System.Collections.Generic;
 public class minionCtrl : MonoBehaviour {
 	private Transform minionTr;
 	public Transform playerTr;
-	
-	public bool isMove;
+
 	public Transform[] pointTemp;
 	public List<Transform> point;
 	
@@ -26,6 +25,7 @@ public class minionCtrl : MonoBehaviour {
 	private bool isPlayer;
 	public bool isTrace;
 	public bool isAttack;
+	public bool isMove;
 	
 	public float dist;
 	

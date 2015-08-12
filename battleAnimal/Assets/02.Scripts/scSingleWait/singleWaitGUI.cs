@@ -167,6 +167,7 @@ public class singleWaitGUI : MonoBehaviour {
 	
 	public void Ready()
 	{
+		setEnemyCharacter ();
 		StartCoroutine (TimeCheck ());
 	}
 	
@@ -186,6 +187,24 @@ public class singleWaitGUI : MonoBehaviour {
 				Application.LoadLevel("scSinglePlay");
 				break;
 			}
+		}
+	}
+
+	private void setEnemyCharacter(){
+		int i = Random.Range (1, 5);
+		switch (i) {
+		case 1:
+			EnemyState.character = "guci";
+			break;
+		case 2:
+			EnemyState.character = "barbas";
+			break;
+		case 3:
+			EnemyState.character = "stola";
+			break;
+		case 4:
+			EnemyState.character = "furfur";
+			break;
 		}
 	}
 }
