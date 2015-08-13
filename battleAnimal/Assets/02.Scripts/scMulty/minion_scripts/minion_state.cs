@@ -8,7 +8,7 @@ public class minion_state : MonoBehaviour {
 	public GameObject bloodDecal;	
 	public GameObject moneyEffectObj;
 	private GameObject moneyEffect;
-
+	
 	public int hp;
 	public string firedbyname;
 	
@@ -49,8 +49,8 @@ public class minion_state : MonoBehaviour {
 			hp -= damage;
 			
 			if(ClientState.isMulty){
-			string data = this.name + ":" + hp.ToString () + "";
-			SocketStarter.Socket.Emit ("attackMinion", data);
+				string data = this.name + ":" + hp.ToString () + "";
+				SocketStarter.Socket.Emit ("attackMinion", data);
 			}
 			
 			if(hp<=0)
@@ -59,8 +59,8 @@ public class minion_state : MonoBehaviour {
 				minionDie();
 				
 				if(ClientState.isMulty){
-				string data2 = ClientState.id+":"+this.name;
-				SocketStarter.Socket.Emit ("minionDieREQ", data2);
+					string data2 = ClientState.id+":"+this.name;
+					SocketStarter.Socket.Emit ("minionDieREQ", data2);
 				}
 			}
 		}
@@ -79,24 +79,25 @@ public class minion_state : MonoBehaviour {
 		GetComponent<minionCtrl> ().isDie = true;
 		
 		if(ClientState.id==firedbyname){
-
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);
 			StartCoroutine(CreateMoneyEffect());
-
+			
 			//set stats
 			GameState.setusers_cs_kills(firedbyname, oldInt+1);
-
+			
 			ClientState.cs_kill = oldInt+1;
-
+			
 			GameState.sendData();
 			
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(10);
 		}
+		
+		
 		StartCoroutine (PushObjectPool ());
 	}
-
+	
 	IEnumerator CreateMoneyEffect(){
 		Vector3 pos = this.transform.position;
 		pos.y += 5.0f;

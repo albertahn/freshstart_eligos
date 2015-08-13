@@ -7,7 +7,7 @@ public class minion_HP : MonoBehaviour {
 	private int maxHP;
 	// Use this for initialization
 	void Start () {
-
+		
 		maxHP = minion.GetComponent<minion_state> ().hp;
 	}
 	
@@ -17,10 +17,16 @@ public class minion_HP : MonoBehaviour {
 			
 			int hp = minion.GetComponent<minion_state> ().hp;
 			Vector3 temp = new Vector3 ((float)hp / maxHP, 1, 1);
+			if(hp<=0){
+				hp=0;
+				temp = new Vector3 (0, 1, 1);
+			}
+			
 			this.transform.localScale = temp;
 			
-//			hpText.GetComponent<TextMesh>().text = ""+hp.ToString();
+			//			hpText.GetComponent<TextMesh>().text = ""+hp.ToString();
 			
 		}
 	}
 }
+

@@ -26,7 +26,7 @@ public class RedCannonState : MonoBehaviour {
 	private RedCannon_OutterCtrl _outterCtrl;
 	
 	
-	void Start () {
+	void Awake () {
 		maxEffect = 5;
 		effectPool = new GameObject[maxEffect];
 		for (int i=0; i<maxEffect; i++)
@@ -36,7 +36,7 @@ public class RedCannonState : MonoBehaviour {
 			effectPool[i].SetActive(false);
 		}
 		
-		maxhp = 200;
+		maxhp = 1000;
 		hp = maxhp;
 		isDie = false;
 		_outterCtrl = GetComponentInChildren<RedCannon_OutterCtrl> ();
@@ -57,8 +57,8 @@ public class RedCannonState : MonoBehaviour {
 		{
 			hp -= damage;
 			if (ClientState.isMulty) {
-			string data = this.name + ":" + hp.ToString () + "";
-			SocketStarter.Socket.Emit ("attackCannon", data);
+				string data = this.name + ":" + hp.ToString () + "";
+				SocketStarter.Socket.Emit ("attackCannon", data);
 			}
 			
 			if(hp<=0)
@@ -83,20 +83,20 @@ public class RedCannonState : MonoBehaviour {
 		hp -= obj.GetComponent<SkillFirstCrl>().damage;
 		
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
-
+		
 		if (ClientState.isMulty) {
-						string data = this.name + ":" + hp.ToString () + "";
-						SocketStarter.Socket.Emit ("attackMinion", data);
+			string data = this.name + ":" + hp.ToString () + "";
+			SocketStarter.Socket.Emit ("attackMinion", data);
 		}
 	}
 	
 	
 	void playerDie(string firedby){
 		_outterCtrl.isRun = false;
-
+		
 		if (ClientState.isMulty) {
-						string data = this.name;
-						SocketStarter.Socket.Emit ("cannonDie", data); 
+			string data = this.name;
+			SocketStarter.Socket.Emit ("cannonDie", data); 
 		}
 		
 		this.collider.enabled = false;
@@ -110,7 +110,6 @@ public class RedCannonState : MonoBehaviour {
 		PlayerPrefs.SetInt ("minions_killed",oldInt+1);
 		
 		if (firedby == ClientState.id) {
-			Debug.Log("redCannon die_ firedBy = "+firedby);
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(100);
 		}

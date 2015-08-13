@@ -15,7 +15,7 @@ public class BulletCtrl_BlueCannon : MonoBehaviour {
 		tr = GetComponent<Transform> ();
 		_trail = GetComponent<TrailRenderer> ();
 		//target = null;
-		damage = 20;
+		damage = 40;
 		speed = 20.0f;
 		//rigidbody.AddForce (transform.forward * speed);
 		birth = Time.time;
@@ -37,7 +37,7 @@ public class BulletCtrl_BlueCannon : MonoBehaviour {
 			}
 		}
 		if ((Time.time - birth) > durationTime) {
-				StartCoroutine (PushObjectPool ());	
+			StartCoroutine (PushObjectPool ());	
 			birth = Time.time;
 		}
 	}
@@ -58,7 +58,7 @@ public class BulletCtrl_BlueCannon : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	IEnumerator PushObjectPool()
 	{
 		yield return new WaitForSeconds(0.1f);

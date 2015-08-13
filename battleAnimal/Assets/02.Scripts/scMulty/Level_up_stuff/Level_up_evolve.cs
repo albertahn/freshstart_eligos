@@ -80,37 +80,31 @@ public class Level_up_evolve : MonoBehaviour {
 		if (exp >= ClientState.maxExp[6])
 			ClientState.exp = 3000;
 		
-		if (exp >= ClientState.maxExp[0]&&ClientState.level<1) {
-			if(currentlevel!=1){
-				process(1);
-			}
-		}
-		if (exp >= ClientState.maxExp[1]&&ClientState.level<2) {			
+		if (exp >= ClientState.maxExp[0]&&ClientState.level<2) {			
 			if(currentlevel!=2){
 				process(2);
 			}
 		}
-		if (exp >= ClientState.maxExp[2]&&ClientState.level<3) {
+		if (exp >= ClientState.maxExp[1]&&ClientState.level<3) {
 			if(currentlevel!=3){
 				process(3);
-				Debug.Log("lv3");
 			}
-		}else if (exp >= ClientState.maxExp[3]&&ClientState.level<4){
+		}else if (exp >= ClientState.maxExp[2]&&ClientState.level<4){
 			if(currentlevel!=4){
 				process(4);
 			}
 		}
-		if (exp >= ClientState.maxExp[4]&&ClientState.level<5){
+		if (exp >= ClientState.maxExp[3]&&ClientState.level<5){
 			if(currentlevel!=5){
 				process(5);;
 			}
 		}
-		if (exp >=ClientState.maxExp[5]&&ClientState.level<6) {
+		if (exp >=ClientState.maxExp[4]&&ClientState.level<6) {
 			if(currentlevel!=6){
 				process(6);
 			}
 		}
-		if (exp >=ClientState.maxExp[6]&&ClientState.level<7) {
+		if (exp >=ClientState.maxExp[5]&&ClientState.level<7) {
 			if(currentlevel!=7){
 				process(7);
 			}

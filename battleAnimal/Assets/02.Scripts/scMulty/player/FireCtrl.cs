@@ -7,26 +7,26 @@ public class FireCtrl : MonoBehaviour {
 	public GameObject bullet;
 	public Transform firePos;
 	public MeshRenderer _renderer;
-
+	
 	private float birth;
 	private float duration;
-
+	
 	public float distance;
 	public AudioClip fireSfx;
-
+	
 	private GameObject[] bulletPool;
 	private BulletCtrl[] _bulletCtrl;
 	private TrailRenderer[] _trail;
 	private int maxBullet;
-
-
+	
+	
 	// Use this for initialization
 	void Start () {
 		maxBullet = 6;
 		bulletPool = new GameObject[maxBullet];
 		_bulletCtrl = new BulletCtrl[maxBullet];
 		_trail = new TrailRenderer[maxBullet];
-
+		
 		for (int i=0; i<maxBullet; i++) {
 			bulletPool[i] = (GameObject)Instantiate(bullet);
 			_bulletCtrl[i] = bulletPool[i].GetComponent<BulletCtrl>();
@@ -35,12 +35,12 @@ public class FireCtrl : MonoBehaviour {
 			bulletPool[i].transform.parent = GameObject.Find("bullets").transform;
 			bulletPool[i].SetActive(false);
 		}
-
+		
 		_renderer.enabled = false;	
 		duration = playerStat.attack_speed;
 		distance = playerStat.attack_distance;
 	}
-
+	
 	public void Fire(string _target){
 		if ((Time.time - birth) > duration) {
 			StartCoroutine (this.CreateBullet (_target));
@@ -48,17 +48,17 @@ public class FireCtrl : MonoBehaviour {
 			birth = Time.time;
 		}
 	}
-
+	
 	IEnumerator PlaySfx(AudioClip _clip){
 		audio.PlayOneShot (_clip, 0.9f);
 		yield return null;
 	}
-
+	
 	IEnumerator CreateBullet(string _target){
 		for (int i=0; i<maxBullet; i++) {
 			if(bulletPool[i].activeSelf==false){
 				bulletPool[i].transform.position = firePos.position;
-				_bulletCtrl[i].setTarget(ClientState.id, _target);
+				_bulletCtrl[i].setTarget(this.name, _target);
 				_trail[i].enabled = true;
 				bulletPool[i].SetActive(true);
 				break;
@@ -66,7 +66,7 @@ public class FireCtrl : MonoBehaviour {
 		}
 		yield return null;
 	}
-
+	
 	IEnumerator ShowMuzzleFlash(){
 		_renderer.enabled = true;
 		yield return new WaitForSeconds(Random.Range(0.01f,0.2f));

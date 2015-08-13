@@ -13,9 +13,7 @@ public class blue_minion_state : MonoBehaviour {
 	public string firedbyname;
 	
 	private moneyUI _moneyUI;
-	
 	private GameObject[] effectPool;
-	
 	private int maxEffect;
 	
 	void Awake(){
@@ -41,7 +39,7 @@ public class blue_minion_state : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-	}		
+	}
 	
 	public void Heated(string firedby, GameObject obj,int damage){
 		if (ClientState.isMaster) 
@@ -49,8 +47,8 @@ public class blue_minion_state : MonoBehaviour {
 			hp -= damage;
 			
 			if(ClientState.isMulty){
-			string data = this.name+":" + hp.ToString()+"";
-			SocketStarter.Socket.Emit ("attackMinion", data);	
+				string data = this.name+":" + hp.ToString()+"";
+				SocketStarter.Socket.Emit ("attackMinion", data);	
 			}
 			
 			if(hp<=0)
@@ -59,8 +57,8 @@ public class blue_minion_state : MonoBehaviour {
 				minionDie();
 				
 				if(ClientState.isMulty){
-				string data2 = ClientState.id+":"+this.name;
-				SocketStarter.Socket.Emit ("minionDieREQ", data2);
+					string data2 = ClientState.id+":"+this.name;
+					SocketStarter.Socket.Emit ("minionDieREQ", data2);
 				}
 			}
 		}
@@ -79,16 +77,13 @@ public class blue_minion_state : MonoBehaviour {
 		GetComponent<blueMinionCtrl> ().isDie = true;
 		
 		if(ClientState.id==firedbyname){
-
-			Debug.Log ("BLUE minion die firedby: "+ firedbyname);
-
 			int oldInt = PlayerPrefs.GetInt ("minions_killed");
 			PlayerPrefs.SetInt ("minions_killed",oldInt+1);
-
+			
 			ClientState.cs_kill = oldInt+1;
-
+			
 			StartCoroutine(CreateMoneyEffect());
-
+			
 			//set game stats
 			GameState.setusers_cs_kills(firedbyname, oldInt+1);
 			GameState.sendData();
@@ -96,9 +91,15 @@ public class blue_minion_state : MonoBehaviour {
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(10);
 		}
+		
+		if (!ClientState.isMulty) {
+			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
+			_moneyUI.makeMoney(10);
+		}
+		
 		StartCoroutine (PushObjectPool ());
 	}
-
+	
 	IEnumerator CreateMoneyEffect(){
 		Vector3 pos = this.transform.position;
 		pos.y += 5.0f;
@@ -125,13 +126,13 @@ public class blue_minion_state : MonoBehaviour {
 		
 		yield return null;
 	}
-
+	
 	IEnumerator PushObjectEffectPool(GameObject a,float _time)
 	{
 		yield return new WaitForSeconds (_time);
 		a.SetActive (false);
 	}
-
+	
 	IEnumerator PushObjectPool(){
 		yield return new WaitForSeconds(1.0f);		
 		hp = 100;

@@ -28,7 +28,7 @@ public class MoveCtrl : MonoBehaviour {
 	public bool directionChosen;
 	
 	public float timeOfTouch;
-
+	
 	public Vector3 attackPoint;	
 	public bool isMoveAndAttack;
 	
@@ -37,18 +37,18 @@ public class MoveCtrl : MonoBehaviour {
 	private PlayerHealthState _state;
 	
 	private AniCtrl _aniCtrl;
-
+	
 	private int layerMask;
 	private int touchLayerMask;
 	private int floorLayerMask;
 	private int uiLayerMask;
-
+	
 	public float terrainHeight;
-
+	
 	string myDebug;
-
+	
 	public bool skillMode;
-
+	
 	private Barbas_GUI _barbas_skill;
 	private FurfurSkill_GUI _furfur_skill;
 	private GuciSkill_GUI _guci_skill;
@@ -61,11 +61,11 @@ public class MoveCtrl : MonoBehaviour {
 	
 	public Transform[] pointTemp;
 	public List<Transform> point;
-
+	
 	public void DieOutterCollider(){
 		GameObject.Find(gameObject.name+"/outerCollider").SetActive(false);
 	}
-
+	
 	// Use this for initialization
 	void Start () {
 		skillMode = false;
@@ -80,7 +80,7 @@ public class MoveCtrl : MonoBehaviour {
 		touchLayerMask = (1 << LayerMask.NameToLayer ("TOUCH"));
 		floorLayerMask = (1 << LayerMask.NameToLayer ("FLOOR"));
 		uiLayerMask = (1 << LayerMask.NameToLayer ("UI"));
-
+		
 		_attackMarkMaker = GetComponent<attackMarkMaker> ();
 		attackPoint = Vector3.zero;
 		tr = this.GetComponent<Transform> ();
@@ -88,35 +88,31 @@ public class MoveCtrl : MonoBehaviour {
 		_controller = GetComponent<CharacterController> ();
 		_state = GetComponent<PlayerHealthState> ();
 		ClientID = ClientState.id;
-
-
+		
+		
 		_aniCtrl = GetComponent<AniCtrl> ();
 		
 		_aniCtrl._animation ["attack"].speed = 2.5f;
 		_aniCtrl._animation ["run"].speed = 2.5f;
-
+		
 		myxpos = tr.transform.position.x;
 		myypos = tr.transform.position.y;
 		
 		directionChosen = false;
 		isAttack = false;
 		isMoveAndAttack=false;
-
+		
 		_outterCtrl = GetComponentInChildren<Enemy_outter_collider> ();	
-
+		
 		swiped = false;
 		terrainHeight = 50.1f;
-
-		if (ClientState.character == "barbas") {
-
-		} else if (ClientState.character == "furfur") {
-
-		} else if (ClientState.character == "guci") {
-
-		} else if (ClientState.character == "stola") {
-
+		
+		if (ClientState.character == "barbas") {			
+		} else if (ClientState.character == "furfur") {			
+		} else if (ClientState.character == "guci") {			
+		} else if (ClientState.character == "stola") {			
 		}
-
+		
 		if ((!ClientState.isMulty)&&gameObject.name =="Enemy") {
 			traceDist = 20.0f;
 			attackDist = 7.0f;
@@ -124,18 +120,17 @@ public class MoveCtrl : MonoBehaviour {
 			moveKey=true;
 			StartCoroutine (this.CheckMonsterState ());
 		}
-	}	
-
+	}
+	
 	public Vector3 dest;
 	public void initiatePoints(){
-		Debug.Log ("hello initiatePoints");
 		point.Clear ();
-
+		
 		int line = Random.Range (1, 3);
-
+		
 		if(line==1)
 			pointTemp = GameObject.Find ("enemyMovePoints/route1").GetComponentsInChildren<Transform> ();
-		else if(line==2)
+		else
 			pointTemp = GameObject.Find ("enemyMovePoints/route2").GetComponentsInChildren<Transform> ();
 		
 		for (int i=1; i<pointTemp.Length; i++) {
@@ -148,112 +143,112 @@ public class MoveCtrl : MonoBehaviour {
 		
 		point.RemoveAt (0);
 	}
-
+	
 	private void sortPointsByDistance(){
 		point.Sort (delegate(Transform t1,Transform t2) {
 			return(Vector3.Distance (t1.position, tr.position).CompareTo
 			       (Vector3.Distance (t2.position, tr.position)));
 		});
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
 		//id가 내 캐릭터 일때
 		if (ClientID == gameObject.name && _state.isDie == false) {
-				#if UNITY_ANDROID||UNITY_IPHONE
-						mobileController();
-				#else
-					if (EventSystem.current.IsPointerOverGameObject () == false)
-						PCcontroller();
-				#endif
+			#if UNITY_ANDROID||UNITY_IPHONE
+			mobileController();
+			#else
+			if (EventSystem.current.IsPointerOverGameObject () == false)
+				PCcontroller();
+			#endif
 		}else if(gameObject.name =="Enemy"&& _state.isDie == false){
 			EnemyCtrl();
 		}
-
+		
 		if (gameObject.name != "Enemy") {
-						if (!_state.isDie) {
-								//ifmove
-								if (playermoving) {
-										tr.LookAt (clickendpoint);
-										//if (clickendpoint != tr.position) {
-										float step = playerStat.speed * Time.deltaTime;
-
-										clickendpoint.y = terrainHeight;
-										Vector3 dir = clickendpoint - tr.position;
-										Vector3 movement = dir.normalized * step;
-										if (movement.magnitude > dir.magnitude)
-												movement = dir;
-										_controller.Move (movement);
-				
-				
-										//tr.position = Vector3.MoveTowards(tr.position, clickendpoint, step);
-										//}
-										_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);
-								}
-			
-								if (isAttack) {
-										if (targetObj != null) {
-												_aniCtrl._animation.CrossFade (_aniCtrl.anim.attack.name, 0.3f);
-												//if(targetObj.GetComponent<minionCtrl>()!=null){
-												if (targetObj.tag == "MINION") {
-														if (targetObj.name [0] == 'b') {
-																if (targetObj.GetComponent<blueMinionCtrl> ().isDie == true)
-																		idle ();
-																else {
-																		tr.LookAt (targetObj.transform.position);			
-																		_fireCtrl.Fire (targetObj.name);
-								
-																		if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
-																				clickendpoint = targetObj.transform.position;
-																				isMoveAndAttack = true;
-																				playermoving = true;
-																		}
-																}
-														} else if (targetObj.name [0] == 'r') {
-																if (targetObj.GetComponent<minionCtrl> ().isDie == true)
-																		idle ();
-																else {
-																		tr.LookAt (targetObj.transform.position);			
-																		_fireCtrl.Fire (targetObj.name);
-								
-																		if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
-																				clickendpoint = targetObj.transform.position;
-																				isMoveAndAttack = true;
-																				playermoving = true;
-																		}
-																}
-														}
-												} else if (targetObj.tag == "DIE") {
-														idle ();
-												} else {//non minions
-														Vector3 tt;
-														tt = targetObj.transform.position;
-														tt.y = terrainHeight;
-														tr.LookAt (tt);			
-														_fireCtrl.Fire (targetObj.name);
-						
-														if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
-																clickendpoint = targetObj.transform.position;
-																isMoveAndAttack = true;
-																playermoving = true;
-														}
-												}//npnmins
-										}
-								}
-			
-								if (Vector3.Distance (clickendpoint, tr.position) <= 0.5f) {
-										playermoving = false;
-										_aniCtrl._animation.CrossFade (_aniCtrl.anim.idle.name, 0.3f);
-								}
-			
-								if (isMoveAndAttack) {
-										if (Vector3.Distance (tr.position, targetObj.transform.position) <= _fireCtrl.distance) {
-												isMoveAndAttack = false;
-												attack (targetObj.name);
-										}
-								}
-						}
+			if (!_state.isDie) {
+				//ifmove
+				if (playermoving) {
+					tr.LookAt (clickendpoint);
+					//if (clickendpoint != tr.position) {
+					float step = playerStat.speed * Time.deltaTime;
+					
+					clickendpoint.y = terrainHeight;
+					Vector3 dir = clickendpoint - tr.position;
+					Vector3 movement = dir.normalized * step;
+					if (movement.magnitude > dir.magnitude)
+						movement = dir;
+					_controller.Move (movement);
+					
+					
+					//tr.position = Vector3.MoveTowards(tr.position, clickendpoint, step);
+					//}
+					_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);
 				}
+				
+				if (isAttack) {
+					if (targetObj != null) {
+						_aniCtrl._animation.CrossFade (_aniCtrl.anim.attack.name, 0.3f);
+						//if(targetObj.GetComponent<minionCtrl>()!=null){
+						if (targetObj.tag == "MINION") {
+							if (targetObj.name [0] == 'b') {
+								if (targetObj.GetComponent<blueMinionCtrl> ().isDie == true)
+									idle ();
+								else {
+									tr.LookAt (targetObj.transform.position);			
+									_fireCtrl.Fire (targetObj.name);
+									
+									if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
+										clickendpoint = targetObj.transform.position;
+										isMoveAndAttack = true;
+										playermoving = true;
+									}
+								}
+							} else if (targetObj.name [0] == 'r') {
+								if (targetObj.GetComponent<minionCtrl> ().isDie == true)
+									idle ();
+								else {
+									tr.LookAt (targetObj.transform.position);			
+									_fireCtrl.Fire (targetObj.name);
+									
+									if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
+										clickendpoint = targetObj.transform.position;
+										isMoveAndAttack = true;
+										playermoving = true;
+									}
+								}
+							}
+						} else if (targetObj.tag == "DIE") {
+							idle ();
+						} else {//non minions
+							Vector3 tt;
+							tt = targetObj.transform.position;
+							tt.y = terrainHeight;
+							tr.LookAt (tt);			
+							_fireCtrl.Fire (targetObj.name);
+							
+							if (Vector3.Distance (tr.position, targetObj.transform.position) > _fireCtrl.distance) {
+								clickendpoint = targetObj.transform.position;
+								isMoveAndAttack = true;
+								playermoving = true;
+							}
+						}//npnmins
+					}
+				}
+				
+				if (Vector3.Distance (clickendpoint, tr.position) <= 0.5f) {
+					playermoving = false;
+					_aniCtrl._animation.CrossFade (_aniCtrl.anim.idle.name, 0.3f);
+				}
+				
+				if (isMoveAndAttack) {
+					if (Vector3.Distance (tr.position, targetObj.transform.position) <= _fireCtrl.distance) {
+						isMoveAndAttack = false;
+						attack (targetObj.name);
+					}
+				}
+			}
+		}
 	}//end update
 	
 	public void attack(string _targetName){
@@ -286,7 +281,7 @@ public class MoveCtrl : MonoBehaviour {
 		isAttack = false;
 		isMoveAndAttack = false;
 	}
-
+	
 	public void idle(){
 		playermoving = false;
 		isAttack = false;
@@ -297,143 +292,143 @@ public class MoveCtrl : MonoBehaviour {
 		GameObject pastmovetomark = GameObject.Find ("MoveMark"); 		
 		pastmovetomark.transform.position = point;	
 	}
-
-
-
+	
+	
+	
 	//Input process
 	private void mobileController(){
-
-				/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
+		
+		/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
 			if (!EventSystemManager.currentSystem.IsPointerOverEventSystemObject (Input.GetTouch (0).fingerId)) {
 				//Handle Touch
 			}
 		}*/
-				if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
+		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
 			if(skillMode == true){
 				//skillCancle();
 			}
-						if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
-								Ray ray = Camera.main.ScreenPointToRay (Input.touches [0].position);
-								RaycastHit hit3;
-								RaycastHit hit4;
-
-								if (Physics.Raycast (ray, out hit3, Mathf.Infinity,uiLayerMask)) {
-									if(hit3.collider.tag =="MINIMAP"){
-										Debug.Log("minimap~~ hi!!");
-									}
-								}else if (skillMode ==false&&Physics.Raycast (ray, out hit3, Mathf.Infinity, touchLayerMask)) {
-										myDebug = ("hit3.collider.tag = " + hit3.collider.tag);
-										//	if(hit3.collider.tag!="UI"){
-										//if(skillMode == false){
-										if (hit3.collider.tag == "DIE") {
-												_attackMarkMaker.deleteMarker ();
-												myxpos = hit3.point.x; //Input.touches [0].position.x;
-												myypos = hit3.point.y;  //Input.touches [0].position.y;
-												myzpos = hit3.point.z;
+			if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
+				Ray ray = Camera.main.ScreenPointToRay (Input.touches [0].position);
+				RaycastHit hit3;
+				RaycastHit hit4;
+				
+				if (Physics.Raycast (ray, out hit3, Mathf.Infinity,uiLayerMask)) {
+					if(hit3.collider.tag =="MINIMAP"){
+						Debug.Log("minimap~~ hi!!");
+					}
+				}else if (skillMode ==false&&Physics.Raycast (ray, out hit3, Mathf.Infinity, touchLayerMask)) {
+					myDebug = ("hit3.collider.tag = " + hit3.collider.tag);
+					//	if(hit3.collider.tag!="UI"){
+					//if(skillMode == false){
+					if (hit3.collider.tag == "DIE") {
+						_attackMarkMaker.deleteMarker ();
+						myxpos = hit3.point.x; //Input.touches [0].position.x;
+						myypos = hit3.point.y;  //Input.touches [0].position.y;
+						myzpos = hit3.point.z;
 						
-												clickendpoint = hit3.point;
-
-												if(ClientState.isMulty){
-													string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
-														":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-													SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
-												}
+						clickendpoint = hit3.point;
 						
-												move ();
-										} else {
-												string targetName = hit3.collider.transform.parent.name;
-					
-												if (hit3.collider.tag == "Player") {
-														string parentName = hit3.collider.transform.parent.transform.parent.name;
+						if(ClientState.isMulty){
+							string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
+								":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
+							SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+						}
 						
-														if (ClientState.team == "red" && parentName == "BlueTeam"
-																|| ClientState.team == "blue" && parentName == "RedTeam") {
-																_attackMarkMaker.mark (hit3.collider.gameObject);
-																Vector3 target = hit3.point;
-																attackPoint = target;
+						move ();
+					} else {
+						string targetName = hit3.collider.transform.parent.name;
+						
+						if (hit3.collider.tag == "Player") {
+							string parentName = hit3.collider.transform.parent.transform.parent.name;
+							
+							if (ClientState.team == "red" && parentName == "BlueTeam"
+							    || ClientState.team == "blue" && parentName == "RedTeam") {
+								_attackMarkMaker.mark (hit3.collider.gameObject);
+								Vector3 target = hit3.point;
+								attackPoint = target;
 								
 								if(ClientState.isMulty){
-																string data = ClientID + ":" + ClientState.character + ":" + targetName;
-																SocketStarter.Socket.Emit ("attackREQ", data);	
+									string data = ClientID + ":" + ClientState.character + ":" + targetName;
+									SocketStarter.Socket.Emit ("attackREQ", data);	
 								}
-																attack (targetName);
-														} else {//같은편을 클릭한 경우
-																_attackMarkMaker.deleteMarker ();
-							
-																Vector3 target = new Vector3 (hit3.point.x, 0, hit3.point.z);
-							
-																clickendpoint = hit3.point;		
+								attack (targetName);
+							} else {//같은편을 클릭한 경우
+								_attackMarkMaker.deleteMarker ();
+								
+								Vector3 target = new Vector3 (hit3.point.x, 0, hit3.point.z);
+								
+								clickendpoint = hit3.point;		
 								
 								if(ClientState.isMulty){
-																string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
-																		":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-																SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+									string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
+										":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
+									SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
 								}
-							
-																move ();
-							
-																tr.LookAt (hit3.point); 
-																myxpos = hit3.point.x; //Input.touches [0].position.x;
-																myypos = hit3.point.z;  //Input.touches [0].position.y;
-														}
-												} else {
-														if (ClientState.team == "red" && targetName [0] == 'b'
-																|| ClientState.team == "blue" && targetName [0] == 'r') {
-																_attackMarkMaker.mark (hit3.collider.gameObject);
-																Vector3 target = hit3.point;
-																attackPoint = target;
+								
+								move ();
+								
+								tr.LookAt (hit3.point); 
+								myxpos = hit3.point.x; //Input.touches [0].position.x;
+								myypos = hit3.point.z;  //Input.touches [0].position.y;
+							}
+						} else {
+							if (ClientState.team == "red" && targetName [0] == 'b'
+							    || ClientState.team == "blue" && targetName [0] == 'r') {
+								_attackMarkMaker.mark (hit3.collider.gameObject);
+								Vector3 target = hit3.point;
+								attackPoint = target;
 								
 								if(ClientState.isMulty){
-																string data = ClientID + ":" + ClientState.character + ":" + targetName;
-																SocketStarter.Socket.Emit ("attackREQ", data);	
+									string data = ClientID + ":" + ClientState.character + ":" + targetName;
+									SocketStarter.Socket.Emit ("attackREQ", data);	
 								}
-																attack (targetName);
-														} else {//같은편을 클릭한 경우
-																_attackMarkMaker.deleteMarker ();
-							
-																Vector3 target = new Vector3 (hit3.point.x, 0, hit3.point.z);
-							
-																clickendpoint = hit3.point;
+								attack (targetName);
+							} else {//같은편을 클릭한 경우
+								_attackMarkMaker.deleteMarker ();
+								
+								Vector3 target = new Vector3 (hit3.point.x, 0, hit3.point.z);
+								
+								clickendpoint = hit3.point;
 								
 								if(ClientState.isMulty){
-																string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
-																		":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-																SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+									string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
+										":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
+									SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
 								}
-							
-																move ();
-							
-																tr.LookAt (hit3.point); 
-																myxpos = hit3.point.x; //Input.touches [0].position.x;
-																myypos = hit3.point.z;  //Input.touches [0].position.y;
-														}
-												}
-										}
-								} else if (Physics.Raycast (ray, out hit4, Mathf.Infinity, floorLayerMask)) {
-										myDebug = ("hit4.collider.tag = " + hit4.collider.tag);
-										_attackMarkMaker.deleteMarker ();
+								
+								move ();
+								
+								tr.LookAt (hit3.point); 
+								myxpos = hit3.point.x; //Input.touches [0].position.x;
+								myypos = hit3.point.z;  //Input.touches [0].position.y;
+							}
+						}
+					}
+				} else if (Physics.Raycast (ray, out hit4, Mathf.Infinity, floorLayerMask)) {
+					myDebug = ("hit4.collider.tag = " + hit4.collider.tag);
+					_attackMarkMaker.deleteMarker ();
 					
-										Vector3 target = new Vector3 (hit4.point.x, 0, hit4.point.z);
+					Vector3 target = new Vector3 (hit4.point.x, 0, hit4.point.z);
 					
-										clickendpoint = hit4.point;				
+					clickendpoint = hit4.point;				
 					
 					if(ClientState.isMulty){
-										string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
-												":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-										SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
+						string data = ClientID + ":" + ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
+							":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
+						SocketStarter.Socket.Emit ("movePlayerREQ", data);//내위치를 서버에 알린다.
 					}
 					
-										move ();
-
-										tr.LookAt (hit4.point); 
-										myxpos = hit4.point.x; //Input.touches [0].position.x;
-										myypos = hit4.point.z;  //Input.touches [0].position.y;
-								}//if
-						}
-				}
+					move ();
+					
+					tr.LookAt (hit4.point); 
+					myxpos = hit4.point.x; //Input.touches [0].position.x;
+					myypos = hit4.point.z;  //Input.touches [0].position.y;
+				}//if
+			}
 		}
-
-
+	}
+	
+	
 	private void PCcontroller(){	
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
@@ -453,21 +448,21 @@ public class MoveCtrl : MonoBehaviour {
 			}else if (skillMode==false&&Physics.Raycast (ray, out hitman2, Mathf.Infinity,touchLayerMask)) {
 				if(hitman2.collider.tag =="DIE")
 				{
-						_attackMarkMaker.deleteMarker();
-						myxpos = hitman2.point.x; //Input.touches [0].position.x;
-						myypos = hitman2.point.y;  //Input.touches [0].position.y;
-						myzpos = hitman2.point.z;
-						
-						clickendpoint = hitman2.point;
-						
+					_attackMarkMaker.deleteMarker();
+					myxpos = hitman2.point.x; //Input.touches [0].position.x;
+					myypos = hitman2.point.y;  //Input.touches [0].position.y;
+					myzpos = hitman2.point.z;
+					
+					clickendpoint = hitman2.point;
+					
 					
 					if(ClientState.isMulty){
 						string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 							":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 						SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
 					}
-						
-						move ();
+					
+					move ();
 				}else{
 					string targetName= hitman2.collider.transform.parent.name;
 					
@@ -478,30 +473,30 @@ public class MoveCtrl : MonoBehaviour {
 							_attackMarkMaker.mark(hitman2.collider.gameObject);
 							Vector3 target = hitman2.point;
 							attackPoint = target;
-
+							
 							
 							if(ClientState.isMulty){
-							string data = ClientID+ ":"+ClientState.character + ":" + targetName;
-							SocketStarter.Socket.Emit ("attackREQ",data);	
+								string data = ClientID+ ":"+ClientState.character + ":" + targetName;
+								SocketStarter.Socket.Emit ("attackREQ",data);	
 							}
 							attack (targetName);
 						}
 						else{//같은편을 클릭한 경우
-								_attackMarkMaker.deleteMarker();
-								myxpos = hitman2.point.x; //Input.touches [0].position.x;
-								myypos = hitman2.point.y;  //Input.touches [0].position.y;
-								myzpos = hitman2.point.z;
-								
-								clickendpoint = hitman2.point;
-								
+							_attackMarkMaker.deleteMarker();
+							myxpos = hitman2.point.x; //Input.touches [0].position.x;
+							myypos = hitman2.point.y;  //Input.touches [0].position.y;
+							myzpos = hitman2.point.z;
+							
+							clickendpoint = hitman2.point;
+							
 							
 							if(ClientState.isMulty){
 								string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 									":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 								SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
 							}
-								
-								move ();
+							
+							move ();
 						}
 					}
 					else {
@@ -510,49 +505,49 @@ public class MoveCtrl : MonoBehaviour {
 							_attackMarkMaker.mark(hitman2.collider.gameObject);
 							Vector3 target = hitman2.point;
 							attackPoint = target;
-
+							
 							
 							if(ClientState.isMulty){
-							string data = ClientID + ":"+ClientState.character + ":" + targetName;
-							SocketStarter.Socket.Emit ("attackREQ",data);	
+								string data = ClientID + ":"+ClientState.character + ":" + targetName;
+								SocketStarter.Socket.Emit ("attackREQ",data);	
 							}
 							attack (targetName);
 						}
 						else{//같은편을 클릭한 경우
-								_attackMarkMaker.deleteMarker();
-								myxpos = hitman2.point.x; //Input.touches [0].position.x;
-								myypos = hitman2.point.y;  //Input.touches [0].position.y;
-								myzpos = hitman2.point.z;
-								
-								clickendpoint = hitman2.point;
-								
+							_attackMarkMaker.deleteMarker();
+							myxpos = hitman2.point.x; //Input.touches [0].position.x;
+							myypos = hitman2.point.y;  //Input.touches [0].position.y;
+							myzpos = hitman2.point.z;
+							
+							clickendpoint = hitman2.point;
+							
 							
 							if(ClientState.isMulty){
 								string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
 									":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
 								SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
 							}
-								
-								move ();
+							
+							move ();
 						}
 					}
 				}
 			}else if (Physics.Raycast (ray, out hitman, Mathf.Infinity, floorLayerMask)) {
-						_attackMarkMaker.deleteMarker();
-						myxpos = hitman.point.x; //Input.touches [0].position.x;
-						myypos = hitman.point.y;  //Input.touches [0].position.y;
-						myzpos = hitman.point.z;
-						
-						clickendpoint = hitman.point;
-						
+				_attackMarkMaker.deleteMarker();
+				myxpos = hitman.point.x; //Input.touches [0].position.x;
+				myypos = hitman.point.y;  //Input.touches [0].position.y;
+				myzpos = hitman.point.z;
+				
+				clickendpoint = hitman.point;
+				
 				
 				if(ClientState.isMulty){
-						string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
-							":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
-						SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
+					string data = ClientID + ":"+ClientState.character + ":" + tr.position.x + "," + tr.position.y + "," + tr.position.z +
+						":" + clickendpoint.x + "," + clickendpoint.y + "," + clickendpoint.z;
+					SocketStarter.Socket.Emit ("movePlayerREQ",data);//내위치를 서버에 알린다.
 				}
-						
-						move ();
+				
+				move ();
 			}
 		}
 	}
@@ -565,32 +560,32 @@ public class MoveCtrl : MonoBehaviour {
 	public bool moveKey;
 	public bool traceKey;
 	public bool attackKey;
-
+	
 	public Enemy_outter_collider _outterCtrl;
-
+	
 	private void EnemyCtrl(){
-			if (moveKey) {
-				moveKey = false;
-
-				moveE ();
-			}
-			if (traceKey) {
-				traceKey = false;
-				traceE();
-			}
-			if (attackKey) {
-				attackKey = false;
-				attackE();
-			}
+		if (moveKey) {
+			moveKey = false;
+			
+			moveE ();
+		}
+		if (traceKey) {
+			traceKey = false;
+			traceE();
+		}
+		if (attackKey) {
+			attackKey = false;
+			attackE();
+		}
 		
 		if (isMoveE) {
-		//	nvAgent.Stop();
+			//	nvAgent.Stop();
 			tr.LookAt (dest);
 			if(dest!=tr.position){
 				_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);
 				float step = playerStat.speed * Time.deltaTime;
 				tr.position = Vector3.MoveTowards (tr.position, dest, step);
-			//	nvAgent.destination = dest;
+				//	nvAgent.destination = dest;
 			}
 			if(Vector3.Distance(dest,tr.position)<=5.0f)
 			{
@@ -608,7 +603,7 @@ public class MoveCtrl : MonoBehaviour {
 		if (isTraceE) {
 			if (targetObj != null) {
 				_aniCtrl._animation.CrossFade (_aniCtrl.anim.run.name, 0.3f);					
-			//	nvAgent.destination = targetObj.transform.position;
+				//	nvAgent.destination = targetObj.transform.position;
 				//syncTarget = target = playerTr.position;
 				tr.LookAt (targetObj.transform.position);
 				float step = playerStat.speed * Time.deltaTime;
@@ -617,7 +612,7 @@ public class MoveCtrl : MonoBehaviour {
 		}
 		
 		if (isAttackE) {
-		//	nvAgent.Stop();
+			//	nvAgent.Stop();
 			if (targetObj != null) {
 				if(targetObj.tag=="DIE"){
 					_outterCtrl.removeOne(targetObj);
@@ -632,7 +627,7 @@ public class MoveCtrl : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void moveE(){
 		isMoveE = true;
 		isTraceE = false;
@@ -650,19 +645,19 @@ public class MoveCtrl : MonoBehaviour {
 		isTraceE = false;
 		isAttackE = true;
 	}
-
+	
 	private void skillCancle(){
 		if(ClientState.character=="guci"){
-
+			
 		}else if(ClientState.character=="stola"){
-
+			
 		}else if(ClientState.character=="furfur"){
 			
 		}else if(ClientState.character=="barbas"){
 			
 		}
 	}
-
+	
 	private float dist,attackDist,traceDist;
 	public IEnumerator CheckMonsterState(){
 		while (!_state.isDie) {

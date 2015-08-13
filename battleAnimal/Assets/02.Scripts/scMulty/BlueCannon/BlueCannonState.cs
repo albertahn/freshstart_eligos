@@ -29,7 +29,7 @@ public class BlueCannonState : MonoBehaviour {
 			effectPool[i].SetActive(false);
 		}
 		
-		maxhp = 200;
+		maxhp = 1000;
 		hp = maxhp;
 		isDie = false;
 		_outterCtrl = GetComponentInChildren<BlueCannon_OutterCtrl> ();
@@ -48,7 +48,7 @@ public class BlueCannonState : MonoBehaviour {
 		if (ClientState.isMaster)
 		{
 			hp -= damage;		
-
+			
 			if(ClientState.isMulty){
 				string data = this.name + ":" + hp.ToString () + "";
 				SocketStarter.Socket.Emit ("attackCannon", data);	
@@ -74,25 +74,24 @@ public class BlueCannonState : MonoBehaviour {
 	
 	public void hitbySkill(string firedby,GameObject obj){
 		
-		Debug.Log ("skill hit: "+ firedby);
 		
 		hp -= obj.GetComponent<SkillFirstCrl>().damage;
 		
 		StartCoroutine (this.CreateBloodEffect(obj.transform.position));
-
+		
 		if (ClientState.isMulty) {
-						string data = this.name + ":" + hp.ToString () + "";
-						SocketStarter.Socket.Emit ("attackMinion", data);	
-				}
+			string data = this.name + ":" + hp.ToString () + "";
+			SocketStarter.Socket.Emit ("attackMinion", data);	
+		}
 	}
 	
 	
 	void playerDie(string firedby){
 		_outterCtrl.isRun = false;
-			if (ClientState.isMulty) {
-						string data = this.name;
-						SocketStarter.Socket.Emit ("cannonDie", data); 
-				}
+		if (ClientState.isMulty) {
+			string data = this.name;
+			SocketStarter.Socket.Emit ("cannonDie", data); 
+		}
 		
 		this.collider.enabled = false;
 		isDie = true;
@@ -107,7 +106,7 @@ public class BlueCannonState : MonoBehaviour {
 		
 		//float  distance = Vector3.Distance(GameObject.Find(ClientState.id).transform.position, this.transform.position);
 		//if (distance<10.0f) {
-			
+		
 		if (firedby == ClientState.id) {	
 			GameObject.Find (ClientState.id).GetComponent<Level_up_evolve>().expUp(10);
 			_moneyUI.makeMoney(100);

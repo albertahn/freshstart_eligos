@@ -13,7 +13,6 @@ public class Respawn : MonoBehaviour {
 	private string team;
 	private int level;
 	
-	
 	public CameraTouch _CameraTouch;
 	public GameObject cameraman; 
 	
@@ -64,11 +63,9 @@ public class Respawn : MonoBehaviour {
 	public void SetEnemy(){
 		team = "blue";
 		player = GameObject.Find ("Enemy");
-
 		respawnTime = 4.0f;
 
 		_playerState = player.GetComponent<PlayerHealthState> ();
-		
 		birth = Time.time;
 		_switch = true;
 	}
@@ -85,6 +82,7 @@ public class Respawn : MonoBehaviour {
 				player.transform.position = RspawnPos;
 			else
 				player.transform.position = BspawnPos;
+
 			_CameraTouch.focusCamPlayer = true;
 
 			if((!ClientState.isMulty)&&player.name=="Enemy"){
