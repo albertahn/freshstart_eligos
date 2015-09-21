@@ -23,7 +23,8 @@ public class GameState : MonoBehaviour {
 	
 	// Use this for initialization
 	void Awake () {
-
+		
+		Screen.SetResolution(1280, 800, true);
 		idx = 0;
 
 		user_index_array = new string[6];
@@ -42,17 +43,6 @@ public class GameState : MonoBehaviour {
 		
 		statsgamedb = GetComponent<Stats_gameDatabase> ();
 	} //awake 
-
-	void OnGUI(){
-		
-		GUI.Label(new Rect(200,10,50,50),"id = "+ClientState.id);
-		GUI.Label(new Rect(200,70,50,50),"room = "+ClientState.room);
-		GUI.Label(new Rect(200,130,50,50),"order = "+ClientState.order);
-		GUI.Label(new Rect(200,190,50,50),"character = "+ClientState.character);
-		GUI.Label(new Rect(200,250,50,50),"team = "+ClientState.team);
-		GUI.Label(new Rect(200,310,50,50),"isMaster = "+ClientState.isMaster);
-		GUI.Label(new Rect(200,370,50,50),"isMulty = "+ClientState.isMulty);
-	}
 
 	public static int search_by_name(string _name){
 		

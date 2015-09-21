@@ -36,10 +36,6 @@ public class SocketEmit : MonoBehaviour {
 		}
 		return ret.ToArray();
 	}
-
-	void OnGUI(){
-		GUI.Label (new Rect (10,10,100,100), "ID = " + ClientState.id);
-	}
 }
 
 public class USERS{
