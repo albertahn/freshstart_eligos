@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{0E626EFB-7852-669C-ECA1-236C53512CE6}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\02.Scripts\DBManager.cs" />
+     <Compile Include="Assets\02.Scripts\EndGame\ButtonsEndGame.cs" />
+     <Compile Include="Assets\02.Scripts\EndGame\EndGameManager.cs" />
+     <Compile Include="Assets\02.Scripts\EndGame\EndServerDatabase.cs" />
+     <Compile Include="Assets\02.Scripts\EndGame\Friend_add\FriendDatabase.cs" />
+     <Compile Include="Assets\02.Scripts\building_scripts\Building_hp.cs" />
+     <Compile Include="Assets\02.Scripts\building_scripts\MainFortress.cs" />
+     <Compile Include="Assets\02.Scripts\camerainterface\Cam_gui.cs" />
+     <Compile Include="Assets\02.Scripts\camerainterface\CameraTouch.cs" />
+     <Compile Include="Assets\02.Scripts\camerainterface\FollowCam.cs" />
+     <Compile Include="Assets\02.Scripts\scLogIn\LogInUI.cs" />
+     <Compile Include="Assets\02.Scripts\scLogIn\loginDatabase.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonFire.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonHp.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannonState.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BlueCannon_OutterCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\BlueCannon\BulletCtrl_BlueCannon.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\GameStat_database\Stats_gameDatabase.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\GameStat_database\Stats_sync_reciever.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\GameState.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\HP_Bar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfo.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\ItemInfo\itemInfoUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\ItemShop.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Level_up_stuff\Level_up_evolve.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\LobbyUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\MyGizmo.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\CannonSync_reciever.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\ImOutReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\attackBuildingReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\attackCannonReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\createBlueMinionReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\createMinionReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\createPlayerReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\createRedMinionReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\createRoomReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\levelUpReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\minionAttackReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\minionDieReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\moveMinionReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\movePlayerReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\playerAttackReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\playerHpSyncReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\preUserMininonReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\preUserPlayerReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\preUsers_reciever_2.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\receiveFormat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\respawnReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\skillAttackReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Receiver\skillDamageReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\BulletCtrl_RedCannon.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonFire.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonHp.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannonState.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\RedCannon\RedCannon_OutterCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Respawn.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_GUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_firstBulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_firstSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_secondSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_skill1Ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_thirdBulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Barbas_skill\Barbas_thirdSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Dog_skill\DogSkill_GUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Dog_skill\FireSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Dog_skill\SkillFirstCrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Dog_skill\WingSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Dog_skill\WingSkillCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\FurfurSkill_GUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\Furfur_beShotEffectCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\Furfur_firstBulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\Furfur_firstSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\Furfur_secondSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\Furfur_skill2Ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\Furfur_skill3Ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Furfur_skill\Furfur_thirdSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\GUCI_firstBulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\GuciSkill_GUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_firstSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_secondSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_skill3Ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\Guci_thirdSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Guci_skill\beShotEffectCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Skill_socket_reciever.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Skill_socket_reciever_ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Stola_skill\StolaSkill_GUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Stola_skill\Stola_firstSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Stola_skill\Stola_secondSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Stola_skill\Stola_skill1Ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Stola_skill\Stola_skill2Ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Stola_skill\Stola_skill3Ctrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Stola_skill\Stola_thirdSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\TurtleSkill.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Turtle_skill\SwirlSwordCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Turtle_skill\Tutu_skill_gui.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Turtle_skill\fireShell.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Turtle_skill\fireShellCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\Turtle_skill\swirl_sword.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\Skill_gui\UI_skill_manager.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketEmit.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketOn.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketStarter.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SocketTest.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SpawnMinion.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\SpawnPlayer.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\UIhpbar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\UImpbar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\expBar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\moneyUI.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\skill1Plus.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\skill2Plus.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\UI\skill3Plus.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minimap.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\Minion_health_reciever_socket.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blueMinionCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blue_minion_HP.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blue_minion_state.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\blue_outer_collider.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\createMinion.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\mBulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\mFireCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minionCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_HP.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\minion_state.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\minion_scripts\red_outer_collider.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\AniCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\BulletCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\FireCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\MoveCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\Player_hp\PlayerHealthState.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\Player_hp\Player_hp_bar.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\Player_hp\Player_hp_reciever_socket.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkCtrl.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\attackMarkMaker.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\player\createObserver.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\barbasStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\dogStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\furfurStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\guciStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\playerStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\stolaStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\status\turtleStat.cs" />
+     <Compile Include="Assets\02.Scripts\scMulty\user_interface\My_inteface_hp_bar.cs" />
+     <Compile Include="Assets\02.Scripts\scRegist\RegUI.cs" />
+     <Compile Include="Assets\02.Scripts\scRoomList\GUI_rooms.cs" />
+     <Compile Include="Assets\02.Scripts\scRoomList\phpRoomsList.cs" />
+     <Compile Include="Assets\02.Scripts\scRoomList\roomSocketOn.cs" />
+     <Compile Include="Assets\02.Scripts\scRoomList\roomSocketStarter.cs" />
+     <Compile Include="Assets\02.Scripts\scSingle\CreatePlayer.cs" />
+     <Compile Include="Assets\02.Scripts\scSingle\Enemy_outter_collider.cs" />
+     <Compile Include="Assets\02.Scripts\scSingleWait\singleWaitGUI.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\ClientState.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\EnemyState.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\create_room.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\friendList.cs" />
+     <Compile Include="Assets\02.Scripts\scStart\startUI.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\clickAnimation.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\readyButtonReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\startCountReceiver.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\starterInfo.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\waitGUI.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\waitSocketOn.cs" />
+     <Compile Include="Assets\02.Scripts\scWait\waitSocketStarter.cs" />
+     <Compile Include="Assets\02.Scripts\tutorialScene\moveSingle.cs" />
+     <Compile Include="Assets\02.Scripts\tutorialScene\tutorialStart.cs" />
+     <Compile Include="Assets\03.Prefebs\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Boomlagoon\JSON\JSONObject.cs" />
+     <Compile Include="Assets\Boomlagoon\JSON\TestScene\JSONObjectTester.cs" />
+     <Compile Include="Assets\Fantasy Skybox FREE\Scripts\FSPlayer.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\FireProjectile.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\HUDFPS.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\MyGUI.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\Projectile.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\ProjectileScript.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\lightScript.cs" />
+     <Compile Include="Assets\InteractiveDemo\Scripts\lightScriptLong.cs" />
+     <Compile Include="Assets\KunaiEditor\KunaiRotation.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\LookAtTarget.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\MouseMove.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Scripts\Interpolate.cs" />
+     <Compile Include="Assets\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
+     <Compile Include="Assets\SocketNetworkFucker.cs" />
+     <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
+     <None Include="Assets\DynamicElements_Effects\ScaleParticles.txt" />
+     <None Include="Assets\MeleeWeaponTrail\README.txt" />
+     <None Include="Assets\MagicProjectiles - ReadMe.txt" />
+     <None Include="Assets\Boomlagoon\JSON\Readme.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
+     <None Include="Assets\DynamicElements_Effects\readme.txt" />
+     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Fantasy Skybox FREE\Readme\Readme.txt" />
+     <None Include="Assets\KunaiEditor\Editor\Readme.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="SimpleJson">
+ <HintPath>/Users/albertan/Documents/git_hub/11_8_freshstart_eligos/clean_eligos/Assets/Plugins/Socketio/SimpleJson.dll</HintPath>
+ </Reference>
+ <Reference Include="SocketIO">
+ <HintPath>/Users/albertan/Documents/git_hub/11_8_freshstart_eligos/clean_eligos/Assets/Plugins/Socketio/SocketIO.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Common">
+ <HintPath>/Users/albertan/Documents/git_hub/11_8_freshstart_eligos/clean_eligos/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Common.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Core">
+ <HintPath>/Users/albertan/Documents/git_hub/11_8_freshstart_eligos/clean_eligos/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Core.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Protocol">
+ <HintPath>/Users/albertan/Documents/git_hub/11_8_freshstart_eligos/clean_eligos/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Protocol.dll</HintPath>
+ </Reference>
+ <Reference Include="SuperSocket.ClientEngine.Proxy">
+ <HintPath>/Users/albertan/Documents/git_hub/11_8_freshstart_eligos/clean_eligos/Assets/Plugins/Socketio/SuperSocket.ClientEngine.Proxy.dll</HintPath>
+ </Reference>
+ <Reference Include="WebSocket4Net">
+ <HintPath>/Users/albertan/Documents/git_hub/11_8_freshstart_eligos/clean_eligos/Assets/Plugins/Socketio/WebSocket4Net.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{109CA9E2-A114-830D-78A5-BC7422CBEA35}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{9C566B11-1BF7-4525-A3F5-2B274AA22B0B}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

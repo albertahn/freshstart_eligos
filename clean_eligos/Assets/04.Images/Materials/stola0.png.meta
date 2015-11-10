@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: 7ffe9a42f4f174d2eace9855da0e06d9
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: stola0_0
+    21300002: stola0_1
+    21300004: stola0_2
+    21300006: stola0_3
+    21300008: stola0_4
+    21300010: stola0_5
+    21300012: stola0_6
+    21300014: stola0_7
+    21300016: stola0_8
+    21300018: stola0_9
+    21300020: stola0_10
+    21300022: stola0_11
+    21300024: stola0_12
+    21300026: stola0_13
+    21300028: stola0_14
+    21300030: stola0_15
+    21300032: stola0_16
+    21300034: stola0_17
+    21300036: stola0_18
+    21300038: stola0_19
+    21300040: stola0_20
+    21300042: stola0_21
+    21300044: stola0_22
+    21300046: stola0_23
+    21300048: stola0_24
+    21300050: stola0_25
+    21300052: stola0_26
+    21300054: stola0_27
+    21300056: stola0_28
+    21300058: stola0_29
+    21300060: stola0_30
+    21300062: stola0_31
+    21300064: stola0_32
+    21300066: stola0_33
+    21300068: stola0_34
+    21300070: stola0_35
+    21300072: stola0_36
+    21300074: stola0_37
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: stola0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_1
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 680
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_2
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 680
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_3
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 680
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 680
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_5
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 680
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 180
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_8
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 180
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_9
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 180
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stola0_10
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 180
+        width: 400
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
